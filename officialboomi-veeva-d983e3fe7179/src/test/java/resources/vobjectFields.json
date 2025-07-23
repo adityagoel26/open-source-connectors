@@ -1,0 +1,53 @@
+{
+  "responseStatus": "SUCCESS",
+  "object": {
+    "fields": [
+      {
+        "help_content": null,
+        "editable": false,
+        "lookup_relationship_name": null,
+        "label": "ID",
+        "source": "standard",
+        "type": "ID",
+        "modified_date": "2015-10-26T18:26:53.000Z",
+        "created_by": 1,
+        "required": false,
+        "no_copy": true,
+        "name": "id",
+        "list_column": false,
+        "modified_by": 1,
+        "created_date": "2015-10-26T18:26:53.000Z",
+        "lookup_source_field": null,
+        "status": [
+          "active__v"
+        ],
+        "order": 0
+      }, {
+        "help_content": null,
+        "editable": true,
+        "lookup_relationship_name": null,
+        "start_number": null,
+        "label": "Product Name",
+        "source": "standard",
+        "type": "String",
+        "modified_date": "2015-10-26T18:26:53.000Z",
+        "created_by": 1,
+        "required": true,
+        "no_copy": false,
+        "system_managed_name": false,
+        "value_format": null,
+        "unique": true,
+        "name": "name__v",
+        "list_column": true,
+        "modified_by": 1,
+        "created_date": "2015-10-26T18:26:53.000Z",
+        "lookup_source_field": null,
+        "status": [
+          "active__v"
+        ],
+        "max_length": 128,
+        "order": 1
+      }
+    ]
+  }
+}

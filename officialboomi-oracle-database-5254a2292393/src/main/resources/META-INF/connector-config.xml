@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenericConnector sdkApiVersion="2.13.6">
+  <connectorClassName>com.boomi.connector.oracledatabase.OracleDatabaseConnector</connectorClassName>
+</GenericConnector>

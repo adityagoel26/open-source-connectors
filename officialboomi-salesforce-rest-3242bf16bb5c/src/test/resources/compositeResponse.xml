@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <result>
+        <id>0014K00000HLEt1QAH</id>
+        <success>true</success>
+    </result>
+    <result>
+        <id>0014K00000HLEt2QAH</id>
+        <success>true</success>
+    </result>
+    <result>
+        <errors>
+            <fields>Id</fields>
+            <message>Account ID: id value of incorrect type: 24 </message>
+            <statusCode>MALFORMED_ID</statusCode>
+        </errors>
+        <id xsi:nil="true"/>
+        <success>false</success>
+    </result>
+</results>

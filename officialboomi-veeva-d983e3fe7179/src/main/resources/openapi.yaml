@@ -1,0 +1,1653 @@
+---
+openapi: 3.0.0
+info:
+  title: Veeva REST API
+  description: This API provides access to Veeva Vault and Veeva Document Management
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: ActionsRemoved
+servers:
+  - url: /
+tags:
+  - name: Documents
+    description: Endpoints for managing documents
+paths:
+  /objects/documents/{doc_id}/file:
+    get:
+      tags:
+        - Documents
+      summary: Download Document File
+      description: |
+        Retrieve all versions of a document..
+      operationId: Download Document File
+      parameters:
+        - name: doc_id
+          in: path
+          description: The document id field value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: lockDocument
+          in: query
+          description: Set to true to Check Out this document before retrieval.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: On SUCCESS, Vault retrieves the latest version of the source file from the document. The HTTP Response Header Content-Type is set to application/octet-stream. The HTTP Response Header Content-Disposition contains a filename component which can be used when naming the local file. Note that for most downloads (larger file sizes), the Transfer-Encoding method is set to chunked and the Content-Length is not displayed.
+          headers:
+            Content-Disposition:
+              description: attachment;filename="CholeCap-Presentation.pptx"
+              style: simple
+              explode: false
+              schema:
+                type: string
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /objects/documents/{doc_id}/versions/{major_version}/{minor_version}/file:
+    get:
+      tags:
+        - Documents
+      summary: Download Document Version File (Using bulk operations are recommended)
+      description: Download the file of a specific document version.
+      operationId: Download Document Version File
+      parameters:
+        - name: doc_id
+          in: path
+          description: The document id field value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: major_version
+          in: path
+          description: The document major_version_number__v field value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: minor_version
+          in: path
+          description: The document minor_version field value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: On SUCCESS, Vault retrieves the latest version of the source file from the document. The HTTP Response Header Content-Type is set to application/octet-stream. The HTTP Response Header Content-Disposition contains a filename component which can be used when naming the local file. Note that for most downloads (larger file sizes), the Transfer-Encoding method is set to chunked and the Content-Length is not displayed.
+          headers:
+            Content-Disposition:
+              description: attachment;filename="CholeCap-Presentation.pptx"
+              style: simple
+              explode: false
+              schema:
+                type: string
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /objects/documents/{doc_id}/versions/{major_version}/{minor_version}/thumbnail:
+    get:
+      tags:
+        - Documents
+      summary: Download Document Version Thumbnail File
+      description: Download the thumbnail image file of a specific document version.
+      operationId: Download Document Version Thumbnail File
+      parameters:
+        - name: doc_id
+          in: path
+          description: The document id field value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: major_version
+          in: path
+          description: The document major_version_number__v field value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: minor_version
+          in: path
+          description: The document minor_version field value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: On SUCCESS, Vault retrieves the latest version of the source file from the document. The HTTP Response Header Content-Type is set to application/octet-stream. The HTTP Response Header Content-Disposition contains a filename component which can be used when naming the local file. Note that for most downloads (larger file sizes), the Transfer-Encoding method is set to chunked and the Content-Length is not displayed.
+          headers:
+            Content-Disposition:
+              description: attachment;filename="CholeCap-Presentation.pptx"
+              style: simple
+              explode: false
+              schema:
+                type: string
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  #WORK AROUND: We convert this JSON to CSV
+  /objects/documents/batch:
+    post:
+      tags:
+        - Documents
+      summary: Create Multiple Documents
+      description: This endpoint allows you to create multiple documents at once with a CSV input file.
+        The maximum CSV input file size is 1GB.
+        The values in the input must be UTF-8 encoded.
+        CSVs must follow the standard format.
+        The maximum batch size is 500.
+        Note that this API does not support adding multi-value relationship fields by name. To add multi-value fields, you must first retrieve the ID values and add them to the relationship field.
+      operationId: Create Multiple Documents
+      responses:
+        "200":
+          description: Document creation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentUploadResponse'
+    put:
+      tags:
+        - Documents
+      summary: Update Multiple Documents
+      description: Bulk update editable field values on multiple documents. You can only update the latest version of each document. To update past document versions, see Update Document Version.
+        The maximum CSV input file size is 1GB.
+        The values in the input must be UTF-8 encoded.
+        CSVs must follow the standard format.
+      operationId: Update Multiple Documents
+      responses:
+        "200":
+          description: Document update successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentUploadResponse'
+  /objects/documents/renditions/batch:
+    post:
+      tags:
+        - Documents
+      summary: Add Multiple Document Renditions
+      description: Add document renditions in bulk.
+        If the largeSizeAsset query parameter is not set to true, you must include the X-VaultAPI-MigrationMode header.
+        The maximum CSV input file size is 1GB.
+        The values in the input must be UTF-8 encoded.
+        CSVs must follow the standard format.
+        The maximum batch size is 500.
+      operationId: Add Multiple Document Renditions
+      parameters:
+        - name: idParam
+          in: query
+          description: If you�re identifying documents in your input by a unique field, add idParam={fieldname} to the request endpoint. You can use any object field which has unique set to true in the object metadata, with the exception of picklists. For example, idParam=external_id__v.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+        - name: largeSizeAsset
+          in: query
+          description: If set to true, indicates that the renditions to add are of the Large Size Asset (large_size_asset__v) rendition type. Vault applies Document Migration Mode limitations to renditions created with the request, but Document Migration permission is not required and your Vault need not be in Migration Mode to use the parameter. Note that the request results in an error if the CSV contains any rendition type other than large_size_asset__v.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: boolean
+        - name: X-VaultAPI-MigrationMode
+          in: header
+          description: If set to true, indicates to use Document Migration Mode.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: boolean
+      requestBody:
+        description: TODO Array not supported
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  file:
+                    type: string
+                    description: The filepath of your source files.
+                  id:
+                    type: integer
+                    description: The system-assigned document ID of the document to add renditions to.
+                  external_id__v:
+                    type: string
+                    description: Optional - Instead of id, you can use this user-defined document external ID.
+                  rendition_type__v:
+                    type: string
+                    description: Document rendition type to assign to the new rendition. Only one rendition of each type may exist on each document.
+                  major_version_number__v:
+                    description: Major version number to assign to the new document rendition.
+                    type: integer
+                  minor_version_number__v:
+                    type: integer
+                    description: Minor version number to assign to the new document rendition.
+      responses:
+        "200":
+          description: Document creation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentUploadResponse'
+  /vobjects/{object_name}:
+    post:
+      #WORK AROUND: We don't support DELETE with a Body so instead we do POST with query parameter _method=DELETE. POST for CREATE is handled by code because we present object lists in Import to set the path parameter
+      tags:
+        - Vault Objects
+      summary: Delete Object Records
+      description: Delete Object Records in bulk. Admins can also define special deletion rules for objects, which affects how Vault behaves when you attempt to delete an object record. Learn more about limitations on object record deletion in Vault Help. POST for CREATE is handled by code because we present object lists in Import to set the path parameter
+
+        If you need to delete a parent record along with all of its children and grandchildren, use the Cascade Delete endpoint.
+
+        Note that you cannot use this API to delete user__sys records. Use the Update Object Records endpoint to set the status__v field to inactive.
+      operationId: Delete Object Records
+      parameters:
+        - name: object_name
+          in: path
+          description: The object name__v field value (product__v, country__v, custom_object__c, etc.).
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: _method
+          in: query
+          description: Note that some HTTP clients do not support DELETE requests with a body. As a workaround for these cases, you can simulate this request using the POST method and appending _method=DELETE to the endpoint.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+            enum:
+              - DELETE
+        - name: idParam
+          in: query
+          description: "Complete this field if you are identifying objects in your input by a 'unique' field. You can use any object field which has unique set to true in the object metadata."
+          required: false
+          schema:
+            type: string
+      requestBody:
+        description: IDs of items to delete
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  external_id__v:
+                    type: string
+      responses:
+        "200":
+          description: Object edit successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectEditResponse'
+  /objects/picklists:
+    get:
+      tags:
+        - Picklists
+      summary: Retrieve All Picklists
+      description: Retrieve all picklsts and where used
+      operationId: Retrieve All Picklists
+      responses:
+        "200":
+          description: Document update successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetrieveAllPicklistsResponse'
+  /objects/picklists/{picklist_name}:
+    get:
+      tags:
+        - Picklists
+      summary: Retrieve Picklist Values
+      description: Retrieve all available values configured on a picklist.
+      operationId: Retrieve Picklist Values
+      parameters:
+        - name: picklist_name
+          in: path
+          description: The id of the picklist.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Document update successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PicklistValuesResponse'
+  /objects/picklists/{picklist_name}/{picklist_value_name}:
+    put:
+      tags:
+        - Picklists
+      summary: Update Picklist Value
+      description: Change a picklist value name or status. To change a picklist value label, see Update Picklist Value Label.
+        Use caution when editing picklist value names. When you change a picklist value name, it may affect existing document and object metadata that refer to the picklist. This may also break existing integrations that access picklist values via the API. status enables inactivating values. This is recommended over the DELETE method
+      operationId: Update Picklist Value
+      parameters:
+        - name: picklist_name
+          in: path
+          description: The id of the picklist.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: picklist_value_name
+          in: path
+          description: The name of the picklist value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        description: Form name/value pairs for each picklist item
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The new name for a picklist value. This does not affect the label. Vault adds __c after processing. Special characters and double underscores __ are not allowed.
+                status:
+                  type: string
+                  description: The new status for a picklist value. Valid values are active or inactive.
+      responses:
+        "200":
+          description: Update successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  responseStatus:
+                    type: string
+  /vobjects/{object_name}/{object_record_id}/actions:
+    get:
+      tags:
+        - Object Lifecycle
+      summary: Retrieve Object Record User Actions
+      description: Retrieve all available user actions that can be initiated on a specific object record which ":"
+        The authenticated user has permissions to view or initiate
+        Can be initiated through the API
+      operationId: Retrieve Object Record User Actions
+      parameters:
+        - name: object_name
+          in: path
+          description: The object name__v field value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: object_record_id
+          in: path
+          description: The object record id field value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: loc
+          in: query
+          description: Optional ":" When true, retrieves localized (translated) strings for the label.
+          required: false
+          explode: false
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: On SUCCESS, the response lists all available user actions that can be initiated on the specified object record.
+            For users with the View permission, the response includes a link to retrieve the metadata for the specified user action.
+            For users without the View permission, the response returns an INSUFFICIENT_ACCESS error.
+            For users with the Execute permission, the response includes a link to initiate the specified action.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  responseStatus:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        links:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              rel:
+                                type: string
+                              href:
+                                type: string
+                              accept:
+                                type: string
+                              method:
+                                type: string
+                        label:
+                          type: string
+                        type:
+                          type: string
+                        name:
+                          type: string
+  /vobjects/{object_name}/{object_record_id}/actions/{action_name}:
+    get:
+      tags:
+        - Object Lifecycle
+      summary: Retrieve Object User Action Details
+      description: TODOTODO WHAT IS STRUCTURE FOR TYPE WORKFLOW! Once you�ve retrieved the available user actions, use this request to retrieve the details for a specific user action.
+      operationId: Retrieve Object User Action Details
+      parameters:
+        - name: object_name
+          in: path
+          description: The object name__v field value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: object_record_id
+          in: path
+          description: The object record id field value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: action_name
+          in: path
+          description: Either the name of the Objectaction or Objectlifecyclestateuseraction to initiate. This is obtained from the Retrieve User Actions request.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: On SUCCESS, the response lists the fields that must be configured with values in order to initiate the user action. These are based on the controls configured in the workflow start step.
+            For users with the View permission, the response includes a link to retrieve the metadata for the specified user action.
+            For users without the View permission, the response returns an INSUFFICIENT_ACCESS error.
+            For users with the Execute permission on the action, the response includes a link to initiate the specified action.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  responseStatus:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        links:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              rel:
+                                type: string
+                              href:
+                                type: string
+                              accept:
+                                type: string
+                              method:
+                                type: string
+                        label:
+                          type: string
+                        type:
+                          type: string
+                        name:
+                          type: string
+    post:
+      tags:
+        - Object Lifecycle
+      summary: Initiate Object Action on a Single Record
+      description: TODOTODO WHAT IS STRUCTURE FOR TYPE WORKFLOW! Once you�ve retrieved the available user actions, use this request to retrieve the details for a specific user action.
+      operationId: Initiate Object Action on a Single Record
+      parameters:
+        - name: object_name
+          in: path
+          description: The object name__v field value.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: object_record_id
+          in: path
+          description: The object record id field value from which to retrieve user actions.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: action_name
+          in: path
+          description: The name of the Objectaction or Objectlifecyclestateuseraction to initiate. You can retrieve this from the Retrieve User Actions request. The format for action_name is Objectaction.vobject.action or Objectlifecyclestateuseraction.vobject.state.action.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: On SUCCESS, the response lists the fields that must be configured with values in order to initiate the user action. These are based on the controls configured in the workflow start step.
+            For users with the View permission, the response includes a link to retrieve the metadata for the specified user action.
+            For users without the View permission, the response returns an INSUFFICIENT_ACCESS error.
+            For users with the Execute permission on the action, the response includes a link to initiate the specified action.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  responseStatus:
+                    type: string
+  /services/file_staging/items/{item}:
+    put:
+      tags:
+        - FileStaging
+      summary: Update Folder or File
+      description: |
+        Move or rename a folder or file on the file staging server. You can move and rename an item in the same request.
+      operationId: Update Folder or File
+      parameters:
+        - name: item
+          in: path
+          description: The absolute path to a file. This path is specific to the authenticated user. Only admin users can access the root directory. All other users can only access their own user directory.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        description: Parent directory and/or name for the update
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                parent:
+                  type: string
+                  description: When moving a file or folder, specifies the absolute path to the parent directory in which to place the file.
+                name:
+                  type: string
+                  description: When renaming a file or folder, specifies the new name.
+      responses:
+        "200":
+          description: On SUCCESS, the response contains a job id and URL to retrieve the job status.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  responseStatus:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      job_id:
+                        type: string
+                      url:
+                        type: string
+    delete:
+      tags:
+        - FileStaging
+      summary: Delete File or Folder
+      description: |
+        Delete an individual file or folder from the file staging server.
+      operationId: Delete File or Folder
+      parameters:
+        - name: item
+          in: path
+          description: The absolute path of the file or folder to delete. This path is specific to the authenticated user. Only admin users can access the root directory. All other users can only access their own user directory.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: recursive
+          in: query
+          description: Only applicable when deleting folders. If true, the request will delete the contents of a folder and all subfolders. The default is false.
+          required: false
+          explode: false
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: On SUCCESS, the response contains a job id and URL to retrieve the job status.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  responseStatus:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      job_id:
+                        type: string
+                      url:
+                        type: string
+  /services/file_staging/items/content/{item}:
+    get:
+      tags:
+        - FileStaging
+      summary: Get Item Content
+      description: |
+        Retrieve the content of a specified file from the file staging server. Use the Range header to create resumable downloads for large files, or to continue downloading a file if your session is interrupted.
+      operationId: Get Item Content
+      parameters:
+        - name: item
+          in: path
+          description: The absolute path to a file. This path is specific to the authenticated user. Admin users can access the root directory. All other users can only access their own user directory.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: On SUCCESS, Vault retrieves the content of the specified file. The HTTP Response Header Content-Type is set to application/octet-stream and the HTTP Response Header Content-Disposition contains a filename component which can be used when naming the local file. If a range header was specified in the request, the response also includes the Content-Range HTTP Response Header, which specifies the bytes downloaded, as well as the total for the file. In the example above, the Content-Range specifies a download of bytes 1-1000 of 11737 total bytes.
+          headers:
+            Content-Disposition:
+              description: attachment;filename="CholeCap-Presentation.pptx"
+              style: simple
+              explode: false
+              schema:
+                type: string
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /services/file_staging/items:
+    post:
+      tags:
+        - FileStaging
+      summary: Create Folder or File
+      description: |
+        Upload files or folders up to 50MB to the File Staging Server. To upload files larger than 50MB, see Resumable Upload Sessions.
+      operationId: Create Folder or File
+      parameters:
+        - name: kind
+          in: query
+          description: The kind of item to create. This can be either file or folder.
+          required: true
+          explode: false
+          schema:
+            type: string
+            enum:
+              - file
+              - folder
+        - name: path
+          in: query
+          description: The absolute path, including file or folder name, to place the item in the file staging server. This path is specific to the authenticated user. Admin users can access the root directory. All other users can only access their own user directory.
+          required: true
+          explode: false
+          schema:
+            type: string
+        - name: overwrite
+          in: query
+          description: If set to true, Vault will overwrite any existing files with the same name at the specified destination. For folders, this is always false.
+          required: false
+          explode: false
+          schema:
+            type: boolean
+          # TODO Fake this multipart/form by injecting a binary and use query params as parts
+      responses:
+        "200":
+          description: On SUCCESS...
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  responseStatus:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      kind:
+                        type: string
+                      path:
+                        type: string
+                      name:
+                        type: string
+                      size:
+                        type: integer
+                      file_content_md5:
+                        type: string
+  /services/loader/load:
+    post:
+      tags:
+        - MultiFileLoad
+      summary: Load Data Objects
+      description: Create a loader job and load a set of data files. You can load a maximum of 10 data objects per request.
+      operationId: Load Data Objects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                required:
+                  - object_type
+                  - action
+                  - file
+                properties:
+                  object_type:
+                    description: "The type of data object to load"
+                    type: string
+                    enum:
+                      - vobjects__v
+                      - documents__v
+                      - document_versions__v
+                      - document_relationships__v
+                      - groups__v
+                      - document_roles__v
+                      - document_versions_roles__v
+                      - document_renditions__v
+                      - document_attachments__v
+                  object:
+                    description: "If the object_type = vobjects__v, include the object name. For example, product__v."
+                    type: string
+                  action:
+                    description: "The action type to create, update, upsert, or delete data objects. If the object_type=vobjects__v, the action types create_attachments, delete_attachments, assign_roles, and remove_roles are also available."
+                    type: string
+                    enum:
+                      - create
+                      - update
+                      - upsert
+                      - delete
+                      - create_attachments
+                      - delete_attachments
+                      - assign_roles
+                      - remove_roles
+                  file:
+                    description: "Include the filepath to reference the CSV load file on the file staging server."
+                    type: string
+                  order:
+                    description: "Specifies the order of the load task."
+                    type: integer
+                  idparam:
+                    description: "Identify object records by any unique field value. Can only be used if object_type is vobjects__v and action is upsert, update, or delete. You can use any object field which has unique set to true in the object metadata. For example, idParam=external_id__v."
+                    type: string
+                  recordmigrationmode:
+                    description: "Set to true to create or update object records in a specific state or state type for objects with lifecycles. If not specified, records will be created in their initial state. Additionally, Vault bypasses entry criteria, entry actions, event actions (create actions only), validation rules, and reference constraints. The recordmigrationmode parameter can only be used if object_type is vobjects__v and action is create, update, or upsert. You must have the Record Migration permission to use this parameter."
+                    type: boolean
+                  documentmigrationmode:
+                    description: "Set to true to create documents, document versions, document version roles, or document renditions in a specific state or state type. Also allows you to set the name, document number, and version number. For update actions, only allows you to manually reset document numbers. You must have the Document Migration permission to use this parameter."
+                    type: boolean
+      responses:
+        "200":
+          description: "On SUCCESS, the response includes the following information: the job ID value to retrieve the status of the loader/extract request, and the task ID for each load request."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  responseStatus:
+                    type: string
+                  url:
+                    type: string
+                  job_id:
+                    type: integer
+                    description: "The Job ID value to retrieve the status of the loader/extract request."
+                  tasks:
+                    description: "The task_id for each load request."
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        task_id:
+                          type: string
+                        object_type:
+                          type: string
+                        object:
+                          type: string
+                        action:
+                          type: string
+                        recordmigrationmode:
+                          type: boolean
+                        file:
+                          type: string
+                        documentmigrationmode:
+                          type: boolean
+                        idParam:
+                          type: string
+  /services/loader/extract:
+    post:
+      tags:
+        - MultiFileExtract
+      summary: Extract Data Files
+      description: Create a Loader job to extract one or more data files. You can extract a maximum of 10 data objects per request.
+      operationId: Extract Data Files
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                required:
+                  - object_type
+                  - fields
+                properties:
+                  object_type:
+                    description: "The type of data object to extract"
+                    type: string
+                    enum:
+                      - vobjects__v
+                      - documents__v
+                      - document_versions__v
+                      - document_relationships__v
+                      - groups__v
+                  object:
+                    description: "If the object_type = vobjects__v, include the object name. For example, product__v."
+                    type: string
+                  extract_options:
+                    description: Include to specify whether or not to extract renditions and/or source files for the documents__v and document_versions__v object types.
+                    type: string
+                    enum:
+                      - include_source__v
+                      - include_renditions__v
+                  fields:
+                    description: A JSON array with the field information for the specified object type. For example, id, name__v, descriptions__v, etc.
+                    type: array
+                    items:
+                      type: string
+                  vql_criteria__v:
+                    description: 'A VQL-like expression used to optionally filter the data set to only those records that meet a specified criterion.'
+                    type: string
+      responses:
+        "200":
+          description: "On SUCCESS, the response includes the following information: the job ID value to retrieve the status of the extract request, and the task ID for each extract request."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  responseStatus:
+                    type: string
+                  url:
+                    type: string
+                  job_id:
+                    type: integer
+                    description: "The Job ID value to retrieve the status of the extract request."
+                  tasks:
+                    description: "A set of tasks with a task_id for each extract request."
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        task_id:
+                          type: string
+                        object_type:
+                          type: string
+                        fields:
+                          type: array
+                          items:
+                            type: string
+                        vql_criteria__v:
+                          type: string
+                        extract_options:
+                          type: string
+  /metadata/vobjects/{object_name}:
+    get:
+      tags:
+        - Metadata
+      summary: Retrieve Object Metadata
+      description: Retrieve all metadata configured on a standard or custom Vault Object.
+      operationId: Retrieve Object Metadata
+      parameters:
+        - name: object_name
+          in: path
+          description: The object name__v field value. For example, product__v, country__v, custom_object__c.
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: loc
+          in: query
+          description: Set to true to retrieve the localized_data array, which contains the localized (translated) strings for the label and label_plural object fields. If omitted, defaults to false and localized Strings are not included.
+          required: false
+          explode: false
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: On SUCCESS...
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  responseStatus:
+                    type: string
+                  object:
+                    type: object
+                    properties:
+                      available_lifecycles:
+                        type: array
+                        items: { }
+                      label_plural:
+                        type: string
+                      prefix:
+                        type: string
+                      data_store:
+                        type: string
+                      description:
+                        type: string
+                      enable_esignatures:
+                        type: boolean
+                      source:
+                        type: string
+                      allow_attachments:
+                        type: boolean
+                      relationships:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            relationship_name:
+                              type: string
+                            relationship_label:
+                              type: string
+                            field:
+                              type: string
+                            relationship_type:
+                              type: string
+                            relationship_deletion:
+                              type: string
+                            object:
+                              type: object
+                              properties:
+                                url:
+                                  type: string
+                                label:
+                                  type: string
+                                name:
+                                  type: string
+                                label_plural:
+                                  type: string
+                                prefix:
+                                  type: string
+                            localized_data:
+                              type: object
+                              properties:
+                                relationship_label:
+                                  type: object
+                                  properties:
+                                    de:
+                                      type: string
+                                    ru:
+                                      type: string
+                                    kr:
+                                      type: string
+                                    en:
+                                      type: string
+                                    it:
+                                      type: string
+                                    pt_BR:
+                                      type: string
+                                    fr:
+                                      type: string
+                                    hu:
+                                      type: string
+                                    es:
+                                      type: string
+                                    zh:
+                                      type: string
+                                    zh_TW:
+                                      type: string
+                                    th:
+                                      type: string
+                                    ja:
+                                      type: string
+                                    pl:
+                                      type: string
+                                    nl:
+                                      type: string
+                                    tr:
+                                      type: string
+                                    pt_PT:
+                                      type: string
+                                label_plural:
+                                  type: object
+                                  properties:
+                                    de:
+                                      type: string
+                                    ru:
+                                      type: string
+                                    kr:
+                                      type: string
+                                    en:
+                                      type: string
+                                    it:
+                                      type: string
+                                    pt_BR:
+                                      type: string
+                                    fr:
+                                      type: string
+                                    hu:
+                                      type: string
+                                    es:
+                                      type: string
+                                    zh:
+                                      type: string
+                                    zh_TW:
+                                      type: string
+                                    th:
+                                      type: string
+                                    ja:
+                                      type: string
+                                    pl:
+                                      type: string
+                                    nl:
+                                      type: string
+                                    tr:
+                                      type: string
+                                    pt_PT:
+                                      type: string
+                                label:
+                                  type: object
+                                  properties:
+                                    de:
+                                      type: string
+                                    ru:
+                                      type: string
+                                    kr:
+                                      type: string
+                                    en:
+                                      type: string
+                                    it:
+                                      type: string
+                                    pt_BR:
+                                      type: string
+                                    fr:
+                                      type: string
+                                    hu:
+                                      type: string
+                                    es:
+                                      type: string
+                                    zh:
+                                      type: string
+                                    zh_TW:
+                                      type: string
+                                    th:
+                                      type: string
+                                    ja:
+                                      type: string
+                                    pl:
+                                      type: string
+                                    nl:
+                                      type: string
+                                    tr:
+                                      type: string
+                                    pt_PT:
+                                      type: string
+                      urls:
+                        type: object
+                        properties:
+                          field:
+                            type: string
+                          record:
+                            type: string
+                          list:
+                            type: string
+                          metadata:
+                            type: string
+                      role_overrides:
+                        type: boolean
+                      object_class:
+                        type: string
+                      order:
+                        type: integer
+                      allow_types:
+                        type: boolean
+                      help_content:
+                        type: 'null'
+                      in_menu:
+                        type: boolean
+                      label:
+                        type: string
+                      modified_date:
+                        type: string
+                      created_by:
+                        type: integer
+                      secure_audit_trail:
+                        type: boolean
+                      secure_sharing_settings:
+                        type: boolean
+                      dynamic_security:
+                        type: boolean
+                      auditable:
+                        type: boolean
+                      name:
+                        type: string
+                      modified_by:
+                        type: integer
+                      user_role_setup_object:
+                        type: 'null'
+                      secure_attachments:
+                        type: boolean
+                      prevent_record_overwrite:
+                        type: boolean
+                      created_date:
+                        type: string
+                      system_managed:
+                        type: boolean
+                      fields:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            lookup_relationship_name:
+                              type: 'null'
+                            source:
+                              type: string
+                            encrypted:
+                              type: boolean
+                            start_number:
+                              type: 'null'
+                            value_format:
+                              type: 'null'
+                            max_length:
+                              type: integer
+                            sequential_naming:
+                              type: boolean
+                            system_managed_name:
+                              type: boolean
+                            type:
+                              type: string
+                            relationship_outbound_name:
+                              type: string
+                            required:
+                              type: boolean
+                            relationship_type:
+                              type: string
+                            relationship_criteria:
+                              type: string
+                            list_column:
+                              type: boolean
+                            order:
+                              type: integer
+                            help_content:
+                              type: 'null'
+                            editable:
+                              type: boolean
+                            create_object_inline:
+                              type: boolean
+                            relationship_deletion:
+                              type: string
+                            label:
+                              type: string
+                            modified_date:
+                              type: string
+                            secure_relationship:
+                              type: boolean
+                            created_by:
+                              type: integer
+                            relationship_inbound_label:
+                              type: string
+                            no_copy:
+                              type: boolean
+                            unique:
+                              type: boolean
+                            name:
+                              type: string
+                            modified_by:
+                              type: integer
+                            relationship_inbound_name:
+                              type: string
+                            created_date:
+                              type: string
+                            lookup_source_field:
+                              type: 'null'
+                            status:
+                              type: array
+                              items:
+                                type: string
+                            object:
+                              type: object
+                              properties:
+                                url:
+                                  type: string
+                                label:
+                                  type: string
+                                name:
+                                  type: string
+                                label_plural:
+                                  type: string
+                                prefix:
+                                  type: string
+components:
+  schemas:
+    ObjectEditResponse:
+      type: object
+      properties:
+        responseStatus:
+          type: string
+        responseMessage:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              responseStatus:
+                type: string
+              data:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  url:
+                    type: string
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    message:
+                      type: string
+    PicklistValuesResponse:
+      type: object
+      properties:
+        responseStatus:
+          type: string
+        responseMessage:
+          type: string
+        picklistValues:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              label:
+                type: string
+    RetrieveAllPicklistsResponse:
+      type: object
+      properties:
+        responseStatus:
+          type: string
+        responseMessage:
+          type: string
+        errorCodes:
+          type: array
+          items:
+            type: object
+            properties:
+              errorCode:
+                type: string
+        picklists:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              label:
+                type: string
+              kind:
+                type: string
+              usedIn:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    documentTypeName:
+                      type: string
+                    objectName:
+                      type: string
+                    propertyName:
+                      type: string
+    DocumentUploadResponse:
+      type: object
+      properties:
+        responseStatus:
+          type: string
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              responseStatus:
+                type: string
+              id:
+                type: integer
+              external_id__v:
+                type: string
+              major_version_number__v:
+                type: integer
+              minor_version_number__v:
+                type: integer
+              rendition_type__c:
+                type: string
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    message:
+                      type: string
+    StatusResponse:
+      type: object
+      properties:
+        responseStatus:
+          type: string
+        responseMessage:
+          type: string
+        id:
+          type: integer
+    DocumentVersionResponse:
+      type: object
+      properties:
+        responseStatus:
+          type: string
+        versions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentVersion'
+        renditions:
+          $ref: '#/components/schemas/DocumentVersionResponse_renditions'
+    DocumentVersion:
+      type: object
+      properties:
+        number:
+          type: string
+        value:
+          type: string
+    Document:
+      required:
+        - attachments
+        - document
+        - renditions
+        - responseStatus
+        - versions
+      type: object
+      properties:
+        responseStatus:
+          type: string
+        document:
+          $ref: '#/components/schemas/Document_document'
+        renditions:
+          $ref: '#/components/schemas/Document_renditions'
+        versions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document_versions'
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document_attachments'
+    DocumentVersionResponse_renditions:
+      type: object
+      properties:
+        viewable_rendition__v:
+          type: string
+        veeva_distribution_package__c:
+          type: string
+    Document_document_reviewer__v:
+      required:
+        - groups
+        - users
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            type: integer
+        groups:
+          type: array
+          items:
+            type: integer
+    Document_document_distribution_contacts__v:
+      required:
+        - groups
+        - users
+      type: object
+      properties:
+        users:
+          type: array
+          items: { }
+        groups:
+          type: array
+          items: { }
+    Document_document_approver__v:
+      required:
+        - groups
+        - users
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            type: integer
+        groups:
+          type: array
+          items: { }
+    Document_document:
+      required:
+        - allow_download_embedded_viewer__v
+        - annotations_all__v
+        - annotations_anchors__v
+        - annotations_lines__v
+        - annotations_links__v
+        - annotations_notes__v
+        - annotations_resolved__v
+        - annotations_unresolved__v
+        - approver__v
+        - binder__v
+        - consumer__v
+        - coordinator__v
+        - country__v
+        - created_by__v
+        - crosslink__v
+        - description__v
+        - distribution_contacts__v
+        - document_creation_date__v
+        - document_number__v
+        - editor__v
+        - export_filename__v
+        - format__v
+        - id
+        - language__v
+        - last_modified_by__v
+        - lifecycle__v
+        - locked__v
+        - major_version_number__v
+        - md5checksum__v
+        - minor_version_number__v
+        - name__v
+        - owner__v
+        - pages__v
+        - product__v
+        - restrict_fragments_by_product__v
+        - reviewer__v
+        - size__v
+        - status__v
+        - subtype__v
+        - type__v
+        - version_created_by__v
+        - version_creation_date__v
+        - version_modified_date__v
+        - viewer__v
+      type: object
+      properties:
+        id:
+          type: integer
+        binder__v:
+          type: boolean
+        allow_download_embedded_viewer__v:
+          type: boolean
+        reviewer__v:
+          $ref: '#/components/schemas/Document_document_reviewer__v'
+        viewer__v:
+          $ref: '#/components/schemas/Document_document_reviewer__v'
+        distribution_contacts__v:
+          $ref: '#/components/schemas/Document_document_distribution_contacts__v'
+        consumer__v:
+          $ref: '#/components/schemas/Document_document_distribution_contacts__v'
+        approver__v:
+          $ref: '#/components/schemas/Document_document_approver__v'
+        editor__v:
+          $ref: '#/components/schemas/Document_document_approver__v'
+        owner__v:
+          $ref: '#/components/schemas/Document_document_approver__v'
+        coordinator__v:
+          $ref: '#/components/schemas/Document_document_distribution_contacts__v'
+        crosslink__v:
+          type: boolean
+        lifecycle__v:
+          type: string
+        version_created_by__v:
+          type: integer
+        language__v:
+          type: array
+          items:
+            type: string
+        minor_version_number__v:
+          type: integer
+        created_by__v:
+          type: integer
+        annotations_lines__v:
+          type: integer
+        version_creation_date__v:
+          type: string
+        country__v:
+          type: array
+          items: { }
+        md5checksum__v:
+          type: string
+        restrict_fragments_by_product__v:
+          type: boolean
+        annotations_notes__v:
+          type: integer
+        version_modified_date__v:
+          type: string
+        pages__v:
+          type: integer
+        major_version_number__v:
+          type: integer
+        annotations_anchors__v:
+          type: integer
+        product__v:
+          type: array
+          items:
+            type: string
+        export_filename__v:
+          type: string
+        annotations_resolved__v:
+          type: integer
+        type__v:
+          type: string
+        size__v:
+          type: integer
+        description__v:
+          type: string
+        status__v:
+          type: string
+        annotations_unresolved__v:
+          type: integer
+        document_creation_date__v:
+          type: string
+        locked__v:
+          type: boolean
+        format__v:
+          type: string
+        annotations_links__v:
+          type: integer
+        document_number__v:
+          type: string
+        annotations_all__v:
+          type: integer
+        last_modified_by__v:
+          type: integer
+        name__v:
+          type: string
+        subtype__v:
+          type: string
+    Document_renditions:
+      required:
+        - veeva_distribution_package__c
+        - viewable_rendition__v
+      type: object
+      properties:
+        viewable_rendition__v:
+          type: string
+        veeva_distribution_package__c:
+          type: string
+    Document_versions:
+      required:
+        - number
+        - value
+      type: object
+      properties:
+        number:
+          type: string
+        value:
+          type: string
+    Document_attachments:
+      required:
+        - id
+        - url
+      type: object
+      properties:
+        id:
+          type: integer
+        url:
+          type: string

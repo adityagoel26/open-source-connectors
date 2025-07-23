@@ -1,0 +1,28 @@
+<GenericConnectorDescriptor requireConnectionForBrowse="true" browsingType="any" >
+    <description>This connector uses an OpenAPI specification.</description>
+    <field id="url" label="Server" type="string">
+        <defaultValue>https://api.openai.com/v1</defaultValue>
+    </field>
+
+    <field id="overrideSpec" label="Override API specification" type="boolean">
+        <helpText>Checking this box will allow you to supply a URL for an updated OAS3 specification.</helpText>
+    </field>
+
+    <field id="spec" label="URL of OAS3 Specification" type="string">
+        <helpText>This will override the custom specification included with the connector.</helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="overrideSpec">
+                <value>true</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+
+    <field id="apiKey" label="API Key" type="password" />
+
+    <field type="customproperties" label="Request Headers" id="customHeaders" />
+
+    <operation customTypeId="GET" supportsBrowse="true" types="EXECUTE"/>
+    <operation customTypeId="POST" supportsBrowse="true" types="EXECUTE"/>
+    <operation customTypeId="DELETE" supportsBrowse="true" types="EXECUTE"/>
+
+</GenericConnectorDescriptor>

@@ -1,0 +1,362 @@
+<GenericConnectorDescriptor requireConnectionForBrowse="true">
+    <field id="authenticationType" label="Authentication Type" type="string" displayType="radio">
+        <helpText>
+            Select the method to authenticate your account and provide your Veeva Vault API endpoint, username, Session
+            Timeout (in minutes) and, optionally, Veeva Vault API Client ID.
+            When using User Credentials, set your Veeva Vault User Password.
+            When using OAuth 2.0, set your OAuth2.0/Open ID Connect profile ID and, optionally, the Vault DNS and the
+            Authorization Server Client Application ID. Also, in the OAuth 2.0 tab, set your Client ID, Client Secret,
+            Authorization Token URL, Scope (openid by default) and Access Token URL.
+            For both authentication types, the response returns a Session ID that is cached by the connector and used in
+            subsequent interactions with the Veeva Vault API.
+        </helpText>
+        <defaultValue>USER_CREDENTIALS</defaultValue>
+        <allowedValue label="User Credentials">
+            <value>USER_CREDENTIALS</value>
+        </allowedValue>
+        <allowedValue label="OAuth 2.0">
+            <value>OAUTH_2</value>
+        </allowedValue>
+    </field>
+    <field id="veevaOauth" label="OAuth 2.0" type="oauth">
+        <oauth2FieldConfig>
+            <authorizationTokenEndpoint>
+                <url/>
+            </authorizationTokenEndpoint>
+            <authorizationParameters access="hidden"/>
+            <accessTokenEndpoint>
+                <url/>
+            </accessTokenEndpoint>
+            <accessTokenParameters access="hidden"/>
+            <scope>
+                <defaultValue>openid offline_access</defaultValue>
+            </scope>
+            <grantType access="hidden">
+                <defaultValue>code</defaultValue>
+            </grantType>
+        </oauth2FieldConfig>
+    </field>
+    <field id="vaultSubdomain" label="Vault Subdomain" type="string">
+        <helpText>Your Veeva Vault DNS. For example: 'promo-vee.veevavault.com'. Subdomains indicate different Veeva
+            tenants: https://developer.veevavault.com/docs/#structuring-the-endpoint
+        </helpText>
+        <defaultValue>{vault_subdomain}.veevavault.com</defaultValue>
+        <visibilityCondition>
+            <valueCondition fieldId="authenticationType">
+                <value>USER_CREDENTIALS</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field id="vaultDNS" label="Vault DNS" type="string">
+        <helpText>Your Veeva Vault DNS. For example: 'promo-vee.veevavault.com'. Subdomains indicate different Veeva
+            tenants: https://developer.veevavault.com/docs/#structuring-the-endpoint
+        </helpText>
+        <defaultValue>{vault_subdomain}.veevavault.com</defaultValue>
+        <visibilityCondition>
+            <valueCondition fieldId="authenticationType">
+                <value>OAUTH_2</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field id="apiVersion" label="API Version" type="string">
+        <helpText>The API version. For example: v23.3</helpText>
+        <defaultValue>v23.3</defaultValue>
+    </field>
+    <field id="username" label="User" type="string">
+        <helpText>Your Vault user name</helpText>
+    </field>
+    <field id="password" label="Password" type="password">
+        <helpText>Your Vault user password</helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="authenticationType">
+                <value>USER_CREDENTIALS</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field id="oathProfileId" label="OAuth2.0/Open ID Connect profile ID" type="string">
+        <helpText>The ID of your Veeva Vault OAuth2.0 / Open ID Connect profile.</helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="authenticationType">
+                <value>OAUTH_2</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field id="authServerClientApplicationId" label="Authorization Server Client Application ID" type="string">
+        <helpText>The ID of the client application at the Authorization server (optional).</helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="authenticationType">
+                <value>OAUTH_2</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field id="sessionTimeout" label="Session Timeout (minutes)" type="integer">
+        <helpText>Indicates when to refresh a session token that is cached for multiple process executions. If
+            subsequent process executions are performed before the session expiration, the session is extended until a
+            maximum of 48 hours, which is set by the service and is not configurable. The minimum value is 10 minutes,
+            which is also the default value, and the maximum value is 480 minutes (8 hours).
+        </helpText>
+        <defaultValue>10</defaultValue>
+    </field>
+    <field id="veevaClientId" label="Veeva Vault API Client ID" type="string">
+        <helpText>Enter the Client ID to be sent in the header X-VaultAPI-ClientID for every request performed by the
+            connector. The entered value is prefixed with 'Boomi_'. If no value is defined, 'Boomi' is sent as Client
+            ID.
+        </helpText>
+    </field>
+
+    <testConnection method="CUSTOM"/>
+
+    <operation customTypeId="POST" supportsBrowse="true" types="EXECUTE" customTypeLabel="Create / Upsert Vault">
+        <field id="REQUIRED_FIELDS_ONLY" label="Include Only Required Fields" type="boolean" scope="browseOnly">
+            <helpText>Limit the number of fields in the request profile by including only required fields for creating
+                and upserting Vault Object
+            </helpText>
+            <defaultValue>true</defaultValue>
+        </field>
+        <field id="overrideApiVersion" label="Override API Version" type="boolean" scope="both">
+            <helpText>Select to override the connection API Version with the one provided in the operation.</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="operationApiVersion" label="API Version" type="string" scope="both">
+            <helpText>The API version. For example: v23.3. It overrides the value configured in the connection.
+            </helpText>
+            <defaultValue>v23.3</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="overrideApiVersion">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="QUERYPARAM_idParam" label="idParam" type="string">
+            <helpText>Complete this field if you’re identifying objects in your input by a unique field. You can use any
+                object field which has unique set to true in the object metadata.
+            </helpText>
+        </field>
+        <field id="customHeaders" label="Custom Headers" type="customproperties" overrideable="true">
+            <helpText>Indicates a set of key/value pairs to be sent as custom headers in every request to the service.
+            </helpText>
+            <customPropertiesConfiguration>
+                <restrictedKey>authorization</restrictedKey>
+                <restrictedKey>content-type</restrictedKey>
+                <restrictedKey>host</restrictedKey>
+                <restrictedKey>X-VaultAPI-ClientID</restrictedKey>
+                <restrictedKey>accept</restrictedKey>
+            </customPropertiesConfiguration>
+        </field>
+    </operation>
+
+    <operation customTypeId="PUT" supportsBrowse="true" types="EXECUTE" customTypeLabel="Update Vault">
+        <field id="REQUIRED_FIELDS_ONLY" label="Include Only Required Fields" type="boolean" scope="browseOnly">
+            <helpText>Limit the number of fields in the request profile by including only required fields for creating
+                Vault Object
+            </helpText>
+            <defaultValue>true</defaultValue>
+        </field>
+        <field id="overrideApiVersion" label="Override API Version" type="boolean" scope="both">
+            <helpText>Select to override the connection API Version with the one provided in the operation.</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="operationApiVersion" label="API Version" type="string" scope="both">
+            <helpText>The API version. For example: v23.3. It overrides the value configured in the connection.
+            </helpText>
+            <defaultValue>v23.3</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="overrideApiVersion">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="QUERYPARAM_idParam" label="idParam" type="string">
+            <helpText>Complete this field if you’re identifying objects in your input by a unique field. You can use any
+                object field which has unique set to true in the object metadata.
+            </helpText>
+        </field>
+        <field id="customHeaders" label="Custom Headers" type="customproperties" overrideable="true">
+            <helpText>Indicates a set of key/value pairs to be sent as custom headers in every request to the service.
+            </helpText>
+            <customPropertiesConfiguration>
+                <restrictedKey>authorization</restrictedKey>
+                <restrictedKey>content-type</restrictedKey>
+                <restrictedKey>host</restrictedKey>
+                <restrictedKey>X-VaultAPI-ClientID</restrictedKey>
+                <restrictedKey>accept</restrictedKey>
+            </customPropertiesConfiguration>
+        </field>
+    </operation>
+
+    <operation customTypeId="OPEN_API" supportsBrowse="true" types="EXECUTE" customTypeLabel="Execute">
+        <field id="overrideApiVersion" label="Override API Version" type="boolean" scope="both">
+            <helpText>Select to override the connection API Version with the one provided in the operation.</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="operationApiVersion" label="API Version" type="string" scope="both">
+            <helpText>The API version. For example: v23.3. It overrides the value configured in the connection.
+            </helpText>
+            <defaultValue>v23.3</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="overrideApiVersion">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="customHeaders" label="Custom Headers" type="customproperties" overrideable="true">
+            <helpText>Indicates a set of key/value pairs to be sent as custom headers in every request to the service.
+            </helpText>
+            <customPropertiesConfiguration>
+                <restrictedKey>authorization</restrictedKey>
+                <restrictedKey>content-type</restrictedKey>
+                <restrictedKey>host</restrictedKey>
+                <restrictedKey>X-VaultAPI-ClientID</restrictedKey>
+                <restrictedKey>accept</restrictedKey>
+            </customPropertiesConfiguration>
+        </field>
+    </operation>
+
+    <!-- fieldSelectLevels 0 because we will populate FieldSpecField's for this JSON profile due to bug in type filtering of filter operations -->
+    <!-- allowFieldSelection specifies whether the Fields tab appears in the Query Operation -->
+    <!-- fieldSelectionLevels specifies the number of levels that appear in the Fields tab.
+    For deep selection where an 'expand' operation is supported, specify a depth greater than 1 -->
+    <!-- fieldSelectionNone specifies whether the Fields tab is populated automatically from
+    the fields in the Response Profile for the operation -->
+    <operation types="QUERY" allowFieldSelection="true" fieldSelectionLevels="0" fieldSelectionNone="true"
+               customTypeLabel="Query Vault">
+        <field id="INCLUDE_SYSTEM_FIELDS" label="Include System Fields" type="boolean" scope="browseOnly">
+            <helpText>Include all system fields. Otherwise only a subset of system will be available for querying to
+                simplify field selection. Note, including all systems fields may provide fields that are not queryable
+                due to security permissions and selecting them will result in error.
+            </helpText>
+        </field>
+
+        <field id="JOIN_DEPTH" label="Enable VQL Joins" type="integer" scope="browseOnly" displayType="radio">
+            <helpText>Allows performing VQL joins by presenting child fields for selection. For documents, system object
+                references will be excluded. Is not applicable to "List items at path" object type.
+            </helpText>
+            <defaultValue>0</defaultValue>
+            <allowedValue label="Disable Joins">
+                <value>0</value>
+            </allowedValue>
+            <allowedValue label="Enable Single Level Joins">
+                <value>1</value>
+            </allowedValue>
+        </field>
+
+        <field id="overrideApiVersion" label="Override API Version" type="boolean" scope="both">
+            <helpText>Select to override the connection API Version with the one provided in the operation.</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="operationApiVersion" label="API Version" type="string" scope="both">
+            <helpText>The API version. For example: v23.3. It overrides the value configured in the connection.</helpText>
+            <defaultValue>v23.3</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="overrideApiVersion">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="customHeaders" label="Custom Headers" type="customproperties" overrideable="true">
+            <helpText>Indicates a set of key/value pairs to be sent as custom headers in every request to the service.
+            </helpText>
+            <customPropertiesConfiguration>
+                <restrictedKey>authorization</restrictedKey>
+                <restrictedKey>content-type</restrictedKey>
+                <restrictedKey>host</restrictedKey>
+                <restrictedKey>X-VaultAPI-ClientID</restrictedKey>
+                <restrictedKey>accept</restrictedKey>
+            </customPropertiesConfiguration>
+        </field>
+
+        <!-- 18b has different syntax and allows nested expressions, need 2nd descriptor file for that https://docs.oracle.com/en/cloud/saas/service/18b/cxska/OKCS_Query_Support.html -->
+        <queryFilter grouping="any" sorting="unbounded">
+            <operator id="eq_string" label="Equal To">
+                <supportedType type="string"/>
+            </operator>
+            <operator id="eq_date" label="Equal To">
+                <supportedType type="date"/>
+            </operator>
+            <operator id="eq_number" label="Equal To">
+                <supportedType type="number"/>
+            </operator>
+            <operator id="eq_boolean" label="Equal To">
+                <supportedType type="boolean"/>
+            </operator>
+
+            <operator id="ne_string" label="Not Equal To">
+                <supportedType type="string"/>
+            </operator>
+            <operator id="ne_date" label="Not Equal To">
+                <supportedType type="date"/>
+            </operator>
+            <operator id="ne_number" label="Not Equal To">
+                <supportedType type="number"/>
+            </operator>
+            <operator id="ne_boolean" label="Not Equal To">
+                <supportedType type="boolean"/>
+            </operator>
+
+            <operator id="gt_string" label="Greater Than">
+                <supportedType type="string"/>
+            </operator>
+            <operator id="gt_date" label="Greater Than">
+                <supportedType type="date"/>
+            </operator>
+            <operator id="gt_number" label="Greater Than">
+                <supportedType type="number"/>
+            </operator>
+
+            <operator id="lt_string" label="Less Than">
+                <supportedType type="string"/>
+            </operator>
+            <operator id="lt_date" label="Less Than">
+                <supportedType type="date"/>
+            </operator>
+            <operator id="lt_number" label="Less Than">
+                <supportedType type="number"/>
+            </operator>
+
+            <operator id="ge_string" label="Greater Than Or Equal">
+                <supportedType type="string"/>
+            </operator>
+            <operator id="ge_date" label="Greater Than Or Equal">
+                <supportedType type="date"/>
+            </operator>
+            <operator id="ge_number" label="Greater Than Or Equal">
+                <supportedType type="number"/>
+            </operator>
+
+            <operator id="le_string" label="Less Than Or Equal">
+                <supportedType type="string"/>
+            </operator>
+            <operator id="le_date" label="Less Than Or Equal">
+                <supportedType type="date"/>
+            </operator>
+            <operator id="le_number" label="Less Than Or Equal">
+                <supportedType type="number"/>
+            </operator>
+
+            <!-- STRING Operators -->
+            <operator id="CONTAINS" label="Contains one of a comma delimited list: value_1,value_2,value_3">
+                <supportedType type="string"/>
+            </operator>
+
+            <operator id="BETWEEN" label="Between 2 values with strings in single quotes: 'value_1' AND 'value_2'"
+                      numArguments="3">
+                <supportedType type="string"/>
+                <supportedType type="number"/>
+                <supportedType type="date"/>
+            </operator>
+
+            <operator id="LIKE" label="Like: '%wildcard'">
+                <supportedType type="string"/>
+            </operator>
+
+            <operator id="IN"
+                      label="Contains one of the results of a sub query. For example: SELECT id FROM document_product__vr">
+                <supportedType type="string"/>
+            </operator>
+
+            <sortOrder id="ASC" label="Ascending"/>
+            <sortOrder id="DESC" label="Descending"/>
+        </queryFilter>
+    </operation>
+    <trackedGroup id="response" label="Response Headers"/>
+</GenericConnectorDescriptor>

@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "updatedBy": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "updatedMoment": {
+      "type": "string",
+      "format": "date-time",
+      "annotations": {
+        "boomi_dataFormat": {
+          "dataType": "datetime",
+          "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        }
+      }
+    },
+    "createdBy": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "createdMoment": {
+      "type": "string",
+      "format": "date-time",
+      "annotations": {
+        "boomi_dataFormat": {
+          "dataType": "datetime",
+          "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        }
+      }
+    },
+    "operation": {
+      "type": "object",
+      "properties": {
+        "descriptor": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "state": {
+      "type": "object",
+      "properties": {
+        "descriptor": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "targetDataset": {
+      "type": "object",
+      "properties": {
+        "descriptor": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

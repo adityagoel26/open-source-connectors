@@ -1,0 +1,2674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenericConnectorDescriptor
+	dateTimeFormat="yyyy-MM-dd'T'HH:mm:ss.SSSZZ"
+	requireConnectionForBrowse="true">
+	<description>The SAP S4 OData v2 connector supports a rich set of
+		features including deep queries to join child object types, support
+		for E-Tag version control and the X-CSRF security tokens. More
+		information regarding S4 APIs are available at
+		https://help.sap.com/viewer/44e06f22436c43e582db6ccd5250e29b </description>
+	<field id="URL" label="Server Endpoint URL" type="string">
+		<helpText>SAP S/4HANA URL</helpText>
+		<defaultValue />
+	</field>
+	<field id="AUTHTYPE" label="Authentication Type" type="string">
+		<helpText />
+		<defaultValue>BASIC</defaultValue>
+		<!--<allowedValue label="None">
+			<value>NONE</value>
+		</allowedValue>-->
+		<allowedValue label="Basic">
+			<value>BASIC</value>
+		</allowedValue>
+	<!--<allowedValue label="OAuth 2.0">
+			<value>OAUTH</value>
+		</allowedValue>-->
+	</field>
+	<field id="USERNAME" label="User Name" type="string">
+		<helpText>User name for Basic Authentication. Leave blank for other
+			authenticate types.</helpText>
+		<defaultValue />
+	</field>
+	<field id="PASSWORD" label="Password" type="password">
+		<helpText>Password for Basic Authentication. Leave blank for other
+			authenticate types.</helpText>
+		<defaultValue />
+	</field>
+	<field id="SAP_CLIENT_NUMBER" label="Client Number" type="string">
+		<helpText>Required for non SAP S/4HANA Cloud System</helpText>
+		<defaultValue />
+	</field>
+	<!--Hiding OAuth2.0 for now-->
+	<!--<field id="OAUTHOPTIONS" label="OAuth 2.0" type="oauth">
+		<oauth2FieldConfig>
+			<authorizationTokenEndpoint>
+				<url />
+			</authorizationTokenEndpoint>
+			<authorizationParameters />
+			<accessTokenEnd>
+				<url />
+			</accessTokenEndpoint>
+			<scope />
+			<grantType />
+		</oauth2FieldConfig>
+	</field>-->
+	<!--
+	<field id="FETCH_HEADERS" label="Persist Authentication Headers" type="boolean">
+		<helpText>Persist X-CSRF Token and SAP_SESSIONID_COOKIE throughout an execution of a process. This relieves the user of the burden on managing these values via Document Properties.</helpText>
+		<defaultValue>true</defaultValue>
+	</field>
+	-->
+	<field id="TEST_CONNECTION_SERVICE" label="Test Connection Service (Optional)" type="string">
+		<helpText>SAP S/4HANA OData API to be used to test connection</helpText>
+		<defaultValue>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV/</defaultValue>
+	</field>
+
+	<testConnection method="CUSTOM" />
+
+	<operation types="EXECUTE" customTypeId="GET"
+		customTypeLabel="GET">
+		<field id="CATALOG_SERVICEPATH" label="SAP S/4HANA Service Catalog"
+			type="string" scope="browseOnly">
+			<helpText>Choose a service to use from the list of SAP/S4 services</helpText>
+			<defaultValue />
+			<allowedValue label="  ">
+				<value />
+			</allowedValue>
+			<allowedValue
+				label="Activity Type Plan Cost Rates - ACCOSTRATE (C_ACTYTYPEPLANCOSTRATE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_ACTYTYPEPLANCOSTRATE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill Of Material Comparison (API_BILLOFMATERIAL_COMPARISON_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILLOFMATERIAL_COMPARISON_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material CRUD (API_BILL_OF_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material CRUD V2 (API_BILL_OF_MATERIAL_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material Where Used (API_BOM_WHERE_USED_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BOM_WHERE_USED_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Billing Document (API_BILLING_DOCUMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Business Area (API_BUSINESSAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BUSINESSAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Business Partner (API_BUSINESS_PARTNER_0001)">
+				<value>/sap/opu/odata/sap/API_BUSINESS_PARTNER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Catalog Service Version v2 (/IWFND/SG_MED_CATALOG_0002)">
+				<value>/sap/opu/odata/iwfnd/CATALOGSERVICE;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Change Master (API_CHANGEMASTER_0001)">
+				<value>/sap/opu/odata/sap/API_CHANGEMASTER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Change Master v2 (API_CHANGEMASTER_0002)">
+				<value>/sap/opu/odata/sap/API_CHANGEMASTER;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Characteristic Attribute Catalog (API_CHARCATTRIBUTECATALOG_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CHARCATTRIBUTECATALOG_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Chart of accounts (API_CHARTOFACCOUNTS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CHARTOFACCOUNTS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Company Code (API_COMPANYCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COMPANYCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Controlling Debit Credit Code (API_CONTROLLINGDEBITCREDITCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CONTROLLINGDEBITCREDITCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="ControllingArea (API_CONTROLLINGAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CONTROLLINGAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center (API_COSTCENTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COSTCENTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Activity Type (API_COSTCENTERACTIVITYTYPE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COSTCENTERACTIVITYTYPE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Data Provider (FCO_PI_COST_CENTER_0001)">
+				<value>/sap/opu/odata/sap/FCO_PI_COST_CENTER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Hierarchy Node (C_COSTCENTERHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_COSTCENTERHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Estimate Items (API_FINPLAN_COSTESTIMATE_ITEMS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLAN_COSTESTIMATE_ITEMS_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Country (API_COUNTRY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COUNTRY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Credit Memo Request (API_CREDIT_MEMO_REQUEST_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer (MD_CUSTOMER_MASTER_SRV_01_0001)">
+				<value>/sap/opu/odata/sap/MD_CUSTOMER_MASTER_SRV_01/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Group (API_CUSTOMERGROUP_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMERGROUP_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Material (API_CUSTOMER_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Return (API_SALES_QUOTATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_QUOTATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Returns Delivery (API_CUSTOMER_RETURNS_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_RETURNS_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Returns Delivery v2(API_CUSTOMER_RETURNS_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_RETURNS_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Supplier Industry (API_CUSTOMERSUPPLIERINDUSTRY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMERSUPPLIERINDUSTRY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Debit Memo Request (API_DEBIT_MEMO_REQUEST_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEBIT_MEMO_REQUEST_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Defect (API_DEFECT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Category (API_DEFECTCATEGORY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCATEGORY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Class (API_DEFECTCLASS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCLASS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Code (API_DEFECTCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Distribution Channel (API_DISTRIBUTIONCHANNEL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DISTRIBUTIONCHANNEL_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Division (API_DIVISION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DIVISION_SRV/</value>
+			</allowedValue>
+			<allowedValue label="DMS (API_DMS_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DMS_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Employee Service (/SHCM/EMPLOYEE_SRV_0001)">
+				<value>/sap/opu/odata/shcm/EMPLOYEE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Employee Service Cost Rate Level (SERVICE_COSTRATE_LEVEL_SRV_0001)">
+				<value>/sap/opu/odata/shcm/SERVICE_COSTRATE_LEVEL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="External Services for Delaware (/CPD/SC_EXTERNAL_SERVICES_SRV_0001)">
+				<value>/sap/opu/odata/cpd/SC_EXTERNAL_SERVICES_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN Project Definition Details (API_FINPROJECT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPROJECT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN Unit Of Measure (C_FINUNITOFMEASURE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FINUNITOFMEASURE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN WBS Element Details (API_FINWBSELEMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINWBSELEMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN WBS Element Hierarchy Node (C_FINWBSELEMENTHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FINWBSELEMENTHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Financial Planning Entry Item (API_FINPLANNINGENTRYITEM_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLANNINGENTRYITEM_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Functional Area (API_FUNCTIONALAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FUNCTIONALAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account (API_GLACCOUNTINCHARTOFACCOUNTS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account Balance with Flow - Measure (C_GLACCOUNTFLOW_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTFLOW_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account Hierarchy Node (C_GLACCOUNTHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L AccountLineItem (API_GLACCOUNTLINEITEM_0001)">
+				<value>/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/</value>
+			</allowedValue>
+			<allowedValue
+				label="Gateway Attachment Service (API_CV_ATTACHMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Gateway Project for Functional Area Hierarchy View (C_FUNCTIONALAREAHIERNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FUNCTIONALAREAHIERNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inbound Delivery (API_INBOUND_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INBOUND_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inbound Delivery v2 (API_INBOUND_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_INBOUND_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inspection Plan (API_INSPECTIONPLAN_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INSPECTIONPLAN_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Internal Order (API_INTERNALORDER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INTERNALORDER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Journal Entry Item (API_JOURNALENTRYITEMBASIC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_JOURNALENTRYITEMBASIC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Journal Entry Item Basic View (I_JOURNALENTRYITEMBASIC_CDS_0001)">
+				<value>/sap/opu/odata/sap/I_JOURNALENTRYITEMBASIC_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="KPIs based on G/L Account Flow (C_GLACCOUNTFLOWKPI_CDS_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTFLOWKPI_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="Lean Service for Writing Plan Data to ACDOCP (API_FINPLANNINGDATA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLANNINGDATA_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Ledger (API_LEDGER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_LEDGER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Manage Workforce Timesheet API (API_MANAGE_WORKFORCE_TIMESHEET_0001)">
+				<value>/sap/opu/odata/sap/API_MANAGE_WORKFORCE_TIMESHEET/</value>
+			</allowedValue>
+			<allowedValue
+				label="Master Inspection Characteristic (API_MASTERINSPCHARACTERISTIC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_MASTERINSPCHARACTERISTIC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Material Valuation (API_MATERIAL_VALUATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_MATERIAL_VALUATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Opening Balance (API_OPENINGBALANCE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OPENINGBALANCE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Operational Accounting Document Header and Item (API_OPLACCTGDOCITEMCUBE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Outbound Delivery (API_OUTBOUND_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Outbound Delivery v2 (API_OUTBOUND_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Physical Inventory API (API_PHYSICAL_INVENTORY_DOC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Planning - ACDOCP (API_FINANCIALPLANDATA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINANCIALPLANDATA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Planning Category (API_PLANNINGCATEGORY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PLANNINGCATEGORY_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Plant (API_PLANT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PLANT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Hierarchy Node (MD_PRODUCT_HIERARCHY_SRV_0001)">
+				<value>/sap/opu/odata/sap/MD_PRODUCT_HIERARCHY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Group (API_PRODUCTGROUP_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PRODUCTGROUP_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Master (API_PRODUCT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PRODUCT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Profit Center (API_PROFITCENTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PROFITCENTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Profit Center Hierarchy Node (C_PROFITCENTERHIERNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_PROFITCENTERHIERNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Project Engagement(/CPD/SC_PROJ_ENGMT_CREATE_UPD_SRV_0001)">
+				<value>/sap/opu/odata/cpd/SC_PROJ_ENGMT_CREATE_UPD_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Public API - Availability (API_MANAGE_WF_AVAILABILITY_0001)">
+				<value>/sap/opu/odata/shcm/API_MANAGE_WF_AVAILABILITY/</value>
+			</allowedValue>
+			<allowedValue
+				label="Purchase Contract API (API_PURCHASECONTRACT_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Purchase Order (API_PURCHASEORDER_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Quality Inspection Method (API_INSPECTIONMETHOD_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INSPECTIONMETHOD_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="RAP: UI_FINS_GLACCOUNTFLOW generated at 20190213 (UI_FINS_GLACCOUNTFLOW_0001)">
+				<value>/sap/opu/odata/sap/UI_FINS_GLACCOUNTFLOW/</value>
+			</allowedValue>
+			<allowedValue
+				label="Request for Quotation (API_RFQ_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_RFQ_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales District (API_SALESDISTRICT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALESDISTRICT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order (API_SALES_ORDER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_ORDER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order Bill of Material CRUD API (API_ORDER_BILL_OF_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_ORDER_BILL_OF_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order Simulation (API_SALES_ORDER_SIMULATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_ORDER_SIMULATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Organization (API_SALESORGANIZATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALESORGANIZATION_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Segment (API_SEGMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SEGMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Statistical Key Figures - FINSSKF (C_SKF_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_SKF_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Invoice (API_SUPPLIERINVOICE_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Master (MD_SUPPLIER_MASTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/MD_SUPPLIER_MASTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Quotation (API_QTN_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_QTN_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Trading Partner (API_PARTNERCOMPANY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Trial Balance (C_TRIALBALANCE_CDS_0001)">
+				<value>/sap/opu/odata/sap/C_TRIALBALANCE_CDS/</value>
+			</allowedValue>
+		</field>
+		<field id="ALT_SERVICEPATH" label="Custom SAP S/4 OData API"
+			type="string" scope="browseOnly">
+			<helpText>Enter the SAP S/4HANA OData API if not listed in the Service Catalog.
+				This API will be used instead of the selection in the SAP S/4HANA Service Catalog</helpText>
+			<defaultValue />
+		</field>
+		<field id="MAXBROWSEDEPTH"
+			label="Maximum Entity Depth for Deep Get" type="integer"
+			scope="browseOnly">
+			<helpText>Specifies the maximum depth to include child objects in the
+				profile.</helpText>
+			<defaultValue>0</defaultValue>
+			<allowedValue label="0">
+				<value>0</value>
+			</allowedValue>
+			<allowedValue label="1">
+				<value>1</value>
+			</allowedValue>
+			<allowedValue label="2">
+				<value>2</value>
+			</allowedValue>
+			<allowedValue label="3">
+				<value>3</value>
+			</allowedValue>
+		</field>
+		<field id="EXTRA_URL_PARAMETERS"
+			label="Extra URL Query Parameters" type="string"
+			scope="operationOnly">
+			<helpText>Additional Filtering parameters associated with $expand and $select. Refer to SAP
+				documentation for the specific API for relevant parameters. Do not include a leading ? nor &amp;.
+				For example: $expand=XXX,YYY</helpText>
+		</field>
+	</operation>
+	<!-- END GET -->
+	<!-- Query only works if there are no IDs in the restful path because currently 
+		Query Operation Shapes will no accept input parameters -->
+	<!-- For example /invoices/{invoice id}/lineitems is a valid scenerio for 
+		query but it can not be implemented today with the SDK, a custom EXECUTE/GET 
+		must be used -->
+	<operation types="QUERY" allowFieldSelection="true"
+		fieldSelectionLevels="10" fieldSelectionNone="true">
+		<field id="CATALOG_SERVICEPATH" label="SAP S/4HANA Service Catalog"
+			type="string" scope="browseOnly">
+			<helpText>Choose a service to use from the list of SAP/S4 services</helpText>
+			<defaultValue />
+			<allowedValue label="  ">
+				<value />
+			</allowedValue>
+			<allowedValue
+				label="Activity Type Plan Cost Rates - ACCOSTRATE (C_ACTYTYPEPLANCOSTRATE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_ACTYTYPEPLANCOSTRATE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill Of Material Comparison (API_BILLOFMATERIAL_COMPARISON_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILLOFMATERIAL_COMPARISON_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material CRUD (API_BILL_OF_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material CRUD V2 (API_BILL_OF_MATERIAL_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material Where Used (API_BOM_WHERE_USED_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BOM_WHERE_USED_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Billing Document (API_BILLING_DOCUMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Business Area (API_BUSINESSAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BUSINESSAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Business Partner (API_BUSINESS_PARTNER_0001)">
+				<value>/sap/opu/odata/sap/API_BUSINESS_PARTNER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Catalog Service Version v2 (/IWFND/SG_MED_CATALOG_0002)">
+				<value>/sap/opu/odata/iwfnd/CATALOGSERVICE;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Change Master (API_CHANGEMASTER_0001)">
+				<value>/sap/opu/odata/sap/API_CHANGEMASTER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Change Master v2 (API_CHANGEMASTER_0002)">
+				<value>/sap/opu/odata/sap/API_CHANGEMASTER;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Characteristic Attribute Catalog (API_CHARCATTRIBUTECATALOG_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CHARCATTRIBUTECATALOG_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Chart of accounts (API_CHARTOFACCOUNTS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CHARTOFACCOUNTS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Company Code (API_COMPANYCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COMPANYCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Controlling Debit Credit Code (API_CONTROLLINGDEBITCREDITCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CONTROLLINGDEBITCREDITCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="ControllingArea (API_CONTROLLINGAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CONTROLLINGAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center (API_COSTCENTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COSTCENTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Activity Type (API_COSTCENTERACTIVITYTYPE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COSTCENTERACTIVITYTYPE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Data Provider (FCO_PI_COST_CENTER_0001)">
+				<value>/sap/opu/odata/sap/FCO_PI_COST_CENTER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Hierarchy Node (C_COSTCENTERHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_COSTCENTERHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Estimate Items (API_FINPLAN_COSTESTIMATE_ITEMS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLAN_COSTESTIMATE_ITEMS_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Country (API_COUNTRY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COUNTRY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Credit Memo Request (API_CREDIT_MEMO_REQUEST_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer (MD_CUSTOMER_MASTER_SRV_01_0001)">
+				<value>/sap/opu/odata/sap/MD_CUSTOMER_MASTER_SRV_01/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Group (API_CUSTOMERGROUP_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMERGROUP_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Material (API_CUSTOMER_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Return (API_SALES_QUOTATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_QUOTATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Returns Delivery (API_CUSTOMER_RETURNS_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_RETURNS_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Returns Delivery v2(API_CUSTOMER_RETURNS_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_RETURNS_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Supplier Industry (API_CUSTOMERSUPPLIERINDUSTRY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMERSUPPLIERINDUSTRY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Debit Memo Request (API_DEBIT_MEMO_REQUEST_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEBIT_MEMO_REQUEST_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Defect (API_DEFECT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Category (API_DEFECTCATEGORY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCATEGORY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Class (API_DEFECTCLASS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCLASS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Code (API_DEFECTCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Distribution Channel (API_DISTRIBUTIONCHANNEL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DISTRIBUTIONCHANNEL_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Division (API_DIVISION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DIVISION_SRV/</value>
+			</allowedValue>
+			<allowedValue label="DMS (API_DMS_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DMS_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Employee Service (/SHCM/EMPLOYEE_SRV_0001)">
+				<value>/sap/opu/odata/shcm/EMPLOYEE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Employee Service Cost Rate Level (SERVICE_COSTRATE_LEVEL_SRV_0001)">
+				<value>/sap/opu/odata/shcm/SERVICE_COSTRATE_LEVEL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="External Services for Delaware (/CPD/SC_EXTERNAL_SERVICES_SRV_0001)">
+				<value>/sap/opu/odata/cpd/SC_EXTERNAL_SERVICES_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN Project Definition Details (API_FINPROJECT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPROJECT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN Unit Of Measure (C_FINUNITOFMEASURE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FINUNITOFMEASURE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN WBS Element Details (API_FINWBSELEMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINWBSELEMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN WBS Element Hierarchy Node (C_FINWBSELEMENTHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FINWBSELEMENTHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Financial Planning Entry Item (API_FINPLANNINGENTRYITEM_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLANNINGENTRYITEM_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Functional Area (API_FUNCTIONALAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FUNCTIONALAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account (API_GLACCOUNTINCHARTOFACCOUNTS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account Balance with Flow - Measure (C_GLACCOUNTFLOW_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTFLOW_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account Hierarchy Node (C_GLACCOUNTHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L AccountLineItem (API_GLACCOUNTLINEITEM_0001)">
+				<value>/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/</value>
+			</allowedValue>
+			<allowedValue
+				label="Gateway Attachment Service (API_CV_ATTACHMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Gateway Project for Functional Area Hierarchy View (C_FUNCTIONALAREAHIERNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FUNCTIONALAREAHIERNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inbound Delivery (API_INBOUND_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INBOUND_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inbound Delivery v2 (API_INBOUND_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_INBOUND_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inspection Plan (API_INSPECTIONPLAN_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INSPECTIONPLAN_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Internal Order (API_INTERNALORDER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INTERNALORDER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Journal Entry Item (API_JOURNALENTRYITEMBASIC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_JOURNALENTRYITEMBASIC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Journal Entry Item Basic View (I_JOURNALENTRYITEMBASIC_CDS_0001)">
+				<value>/sap/opu/odata/sap/I_JOURNALENTRYITEMBASIC_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="KPIs based on G/L Account Flow (C_GLACCOUNTFLOWKPI_CDS_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTFLOWKPI_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="Lean Service for Writing Plan Data to ACDOCP (API_FINPLANNINGDATA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLANNINGDATA_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Ledger (API_LEDGER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_LEDGER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Manage Workforce Timesheet API (API_MANAGE_WORKFORCE_TIMESHEET_0001)">
+				<value>/sap/opu/odata/sap/API_MANAGE_WORKFORCE_TIMESHEET/</value>
+			</allowedValue>
+			<allowedValue
+				label="Master Inspection Characteristic (API_MASTERINSPCHARACTERISTIC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_MASTERINSPCHARACTERISTIC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Material Valuation (API_MATERIAL_VALUATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_MATERIAL_VALUATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Opening Balance (API_OPENINGBALANCE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OPENINGBALANCE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Operational Accounting Document Header and Item (API_OPLACCTGDOCITEMCUBE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Outbound Delivery (API_OUTBOUND_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Outbound Delivery v2 (API_OUTBOUND_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Physical Inventory API (API_PHYSICAL_INVENTORY_DOC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Planning - ACDOCP (API_FINANCIALPLANDATA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINANCIALPLANDATA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Planning Category (API_PLANNINGCATEGORY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PLANNINGCATEGORY_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Plant (API_PLANT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PLANT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Hierarchy Node (MD_PRODUCT_HIERARCHY_SRV_0001)">
+				<value>/sap/opu/odata/sap/MD_PRODUCT_HIERARCHY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Group (API_PRODUCTGROUP_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PRODUCTGROUP_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Master (API_PRODUCT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PRODUCT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Profit Center (API_PROFITCENTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PROFITCENTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Profit Center Hierarchy Node (C_PROFITCENTERHIERNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_PROFITCENTERHIERNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Project Engagement(/CPD/SC_PROJ_ENGMT_CREATE_UPD_SRV_0001)">
+				<value>/sap/opu/odata/cpd/SC_PROJ_ENGMT_CREATE_UPD_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Public API - Availability (API_MANAGE_WF_AVAILABILITY_0001)">
+				<value>/sap/opu/odata/shcm/API_MANAGE_WF_AVAILABILITY/</value>
+			</allowedValue>
+			<allowedValue
+				label="Purchase Contract API (API_PURCHASECONTRACT_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Purchase Order (API_PURCHASEORDER_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Quality Inspection Method (API_INSPECTIONMETHOD_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INSPECTIONMETHOD_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="RAP: UI_FINS_GLACCOUNTFLOW generated at 20190213 (UI_FINS_GLACCOUNTFLOW_0001)">
+				<value>/sap/opu/odata/sap/UI_FINS_GLACCOUNTFLOW/</value>
+			</allowedValue>
+			<allowedValue
+				label="Request for Quotation (API_RFQ_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_RFQ_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales District (API_SALESDISTRICT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALESDISTRICT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order (API_SALES_ORDER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_ORDER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order Bill of Material CRUD API (API_ORDER_BILL_OF_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_ORDER_BILL_OF_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order Simulation (API_SALES_ORDER_SIMULATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_ORDER_SIMULATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Organization (API_SALESORGANIZATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALESORGANIZATION_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Segment (API_SEGMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SEGMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Statistical Key Figures - FINSSKF (C_SKF_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_SKF_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Invoice (API_SUPPLIERINVOICE_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Master (MD_SUPPLIER_MASTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/MD_SUPPLIER_MASTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Quotation (API_QTN_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_QTN_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Trading Partner (API_PARTNERCOMPANY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Trial Balance (C_TRIALBALANCE_CDS_0001)">
+				<value>/sap/opu/odata/sap/C_TRIALBALANCE_CDS/</value>
+			</allowedValue>
+		</field>
+		<field id="ALT_SERVICEPATH" label="Custom SAP S/4 OData API"
+			type="string" scope="browseOnly">
+			<helpText>Enter the SAP S/4HANA OData API if not listed in the Service Catalog.
+				This API will be used instead of the selection in the SAP S/4HANA Service Catalog</helpText>
+			<defaultValue />
+		</field>
+		<field id="MAXBROWSEDEPTH" label="Maximum Browse Depth"
+			type="integer" scope="browseOnly">
+			<helpText>Specifies the maximum depth to include child objects in the
+				profile</helpText>
+			<defaultValue>1</defaultValue>
+			<allowedValue label="1">
+				<value>1</value>
+			</allowedValue>
+			<allowedValue label="2">
+				<value>2</value>
+			</allowedValue>
+			<allowedValue label="3">
+				<value>3</value>
+			</allowedValue>
+			<allowedValue label="4">
+				<value>4</value>
+			</allowedValue>
+		</field>
+		<field id="INCLUDE_RECURSIVE_NAVIGATIONS"
+			label="Include recursive navigations" type="boolean"
+			scope="browseOnly">
+			<helpText>Include deep navigations to that circle back to parent
+				object types types. For example allow Order->Order_Details->Order.</helpText>
+			<defaultValue>false</defaultValue>
+		</field>
+		<field id="PAGESIZE" label="Page Size" type="integer"
+			scope="operationOnly">
+			<helpText>Specifies the number of documents to retrieve with each
+				page transaction.</helpText>
+			<defaultValue>20</defaultValue>
+		</field>
+		<field id="MAXDOCUMENTS" label="Maximum Documents"
+			type="integer" scope="operationOnly">
+			<helpText>Limits the number of documents returned. If value is less
+				than 1, all records are returned.</helpText>
+			<defaultValue>-1</defaultValue>
+		</field>
+		<field id="ALLOWSELECT" label="Allow Field Selection"
+			type="boolean" scope="operationOnly">
+			<helpText>Allow individually fields to be selected. Otherwise field
+				selection is only to choose what related child entities to expand and include
+				in the response along with all the fields for each selected entity.
+				Specifying individual fields to return requires large API calls and
+				should only be used when relatively few fields are required.</helpText>
+			<defaultValue>false</defaultValue>
+		</field>
+		<!--https://docs.oracle.com/en/cloud/saas/applications-common/19c/farca/Collections.html -->
+		<!-- 18b has different syntax and allows nested expressions, need 2nd descriptor 
+			file for that https://docs.oracle.com/en/cloud/saas/service/18b/cxska/OKCS_Query_Support.html -->
+		<queryFilter grouping="any" sorting="unbounded">
+			<operator id="eq" label="Equal To">
+				<helpText>Example /Suppliers?$filter=Address/City eq 'Redmond'</helpText>
+			</operator>
+			<operator id="ne" label="Not Equal To" />
+			<operator id="gt" label="Greater Than" />
+			<operator id="ge" label="Greater Than Or Equal">
+			</operator>
+			<operator id="lt" label="Less Than">
+			</operator>
+			<operator id="le" label="Less Than Or Equal">
+			</operator>
+			<!-- https://www.odata.org/documentation/odata-version-2-0/uri-conventions/ -->
+			<!-- not endswith,startswith,substringof; case insensitive? -->
+			<!-- STRING Operators -->
+			<operator id="endswith" label="Ends With">
+				<supportedType type="string" />
+			</operator>
+			<operator id="startswith" label="Starts With">
+				<supportedType type="string" />
+			</operator>
+			<operator id="substringof" label="Contains">
+				<supportedType type="string" />
+			</operator>
+
+			<sortOrder id="asc" label="Ascending" />
+			<sortOrder id="desc" label="Descending" />
+		</queryFilter>
+	</operation>
+	<!-- END QUERY -->
+	<operation types="EXECUTE" customTypeId="POST"
+		customTypeLabel="CREATE">
+		<field id="CATALOG_SERVICEPATH" label="SAP S/4HANA Service Catalog"
+			type="string" scope="browseOnly">
+			<helpText>Choose a service to use from the list of SAP/S4 services</helpText>
+			<defaultValue />
+			<allowedValue label="  ">
+				<value />
+			</allowedValue>
+			<allowedValue
+				label="Activity Type Plan Cost Rates - ACCOSTRATE (C_ACTYTYPEPLANCOSTRATE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_ACTYTYPEPLANCOSTRATE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill Of Material Comparison (API_BILLOFMATERIAL_COMPARISON_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILLOFMATERIAL_COMPARISON_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material CRUD (API_BILL_OF_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material CRUD V2 (API_BILL_OF_MATERIAL_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material Where Used (API_BOM_WHERE_USED_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BOM_WHERE_USED_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Billing Document (API_BILLING_DOCUMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Business Area (API_BUSINESSAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BUSINESSAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Business Partner (API_BUSINESS_PARTNER_0001)">
+				<value>/sap/opu/odata/sap/API_BUSINESS_PARTNER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Catalog Service Version v2 (/IWFND/SG_MED_CATALOG_0002)">
+				<value>/sap/opu/odata/iwfnd/CATALOGSERVICE;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Change Master (API_CHANGEMASTER_0001)">
+				<value>/sap/opu/odata/sap/API_CHANGEMASTER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Change Master v2 (API_CHANGEMASTER_0002)">
+				<value>/sap/opu/odata/sap/API_CHANGEMASTER;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Characteristic Attribute Catalog (API_CHARCATTRIBUTECATALOG_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CHARCATTRIBUTECATALOG_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Chart of accounts (API_CHARTOFACCOUNTS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CHARTOFACCOUNTS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Company Code (API_COMPANYCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COMPANYCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Controlling Debit Credit Code (API_CONTROLLINGDEBITCREDITCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CONTROLLINGDEBITCREDITCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="ControllingArea (API_CONTROLLINGAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CONTROLLINGAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center (API_COSTCENTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COSTCENTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Activity Type (API_COSTCENTERACTIVITYTYPE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COSTCENTERACTIVITYTYPE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Data Provider (FCO_PI_COST_CENTER_0001)">
+				<value>/sap/opu/odata/sap/FCO_PI_COST_CENTER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Hierarchy Node (C_COSTCENTERHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_COSTCENTERHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Estimate Items (API_FINPLAN_COSTESTIMATE_ITEMS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLAN_COSTESTIMATE_ITEMS_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Country (API_COUNTRY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COUNTRY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Credit Memo Request (API_CREDIT_MEMO_REQUEST_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer (MD_CUSTOMER_MASTER_SRV_01_0001)">
+				<value>/sap/opu/odata/sap/MD_CUSTOMER_MASTER_SRV_01/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Group (API_CUSTOMERGROUP_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMERGROUP_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Material (API_CUSTOMER_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Return (API_SALES_QUOTATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_QUOTATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Returns Delivery (API_CUSTOMER_RETURNS_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_RETURNS_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Returns Delivery v2(API_CUSTOMER_RETURNS_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_RETURNS_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Supplier Industry (API_CUSTOMERSUPPLIERINDUSTRY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMERSUPPLIERINDUSTRY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Debit Memo Request (API_DEBIT_MEMO_REQUEST_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEBIT_MEMO_REQUEST_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Defect (API_DEFECT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Category (API_DEFECTCATEGORY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCATEGORY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Class (API_DEFECTCLASS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCLASS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Code (API_DEFECTCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Distribution Channel (API_DISTRIBUTIONCHANNEL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DISTRIBUTIONCHANNEL_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Division (API_DIVISION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DIVISION_SRV/</value>
+			</allowedValue>
+			<allowedValue label="DMS (API_DMS_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DMS_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Employee Service (/SHCM/EMPLOYEE_SRV_0001)">
+				<value>/sap/opu/odata/shcm/EMPLOYEE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Employee Service Cost Rate Level (SERVICE_COSTRATE_LEVEL_SRV_0001)">
+				<value>/sap/opu/odata/shcm/SERVICE_COSTRATE_LEVEL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="External Services for Delaware (/CPD/SC_EXTERNAL_SERVICES_SRV_0001)">
+				<value>/sap/opu/odata/cpd/SC_EXTERNAL_SERVICES_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN Project Definition Details (API_FINPROJECT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPROJECT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN Unit Of Measure (C_FINUNITOFMEASURE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FINUNITOFMEASURE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN WBS Element Details (API_FINWBSELEMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINWBSELEMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN WBS Element Hierarchy Node (C_FINWBSELEMENTHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FINWBSELEMENTHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Financial Planning Entry Item (API_FINPLANNINGENTRYITEM_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLANNINGENTRYITEM_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Functional Area (API_FUNCTIONALAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FUNCTIONALAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account (API_GLACCOUNTINCHARTOFACCOUNTS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account Balance with Flow - Measure (C_GLACCOUNTFLOW_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTFLOW_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account Hierarchy Node (C_GLACCOUNTHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L AccountLineItem (API_GLACCOUNTLINEITEM_0001)">
+				<value>/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/</value>
+			</allowedValue>
+			<allowedValue
+				label="Gateway Attachment Service (API_CV_ATTACHMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Gateway Project for Functional Area Hierarchy View (C_FUNCTIONALAREAHIERNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FUNCTIONALAREAHIERNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inbound Delivery (API_INBOUND_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INBOUND_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inbound Delivery v2 (API_INBOUND_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_INBOUND_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inspection Plan (API_INSPECTIONPLAN_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INSPECTIONPLAN_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Internal Order (API_INTERNALORDER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INTERNALORDER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Journal Entry Item (API_JOURNALENTRYITEMBASIC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_JOURNALENTRYITEMBASIC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Journal Entry Item Basic View (I_JOURNALENTRYITEMBASIC_CDS_0001)">
+				<value>/sap/opu/odata/sap/I_JOURNALENTRYITEMBASIC_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="KPIs based on G/L Account Flow (C_GLACCOUNTFLOWKPI_CDS_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTFLOWKPI_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="Lean Service for Writing Plan Data to ACDOCP (API_FINPLANNINGDATA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLANNINGDATA_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Ledger (API_LEDGER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_LEDGER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Manage Workforce Timesheet API (API_MANAGE_WORKFORCE_TIMESHEET_0001)">
+				<value>/sap/opu/odata/sap/API_MANAGE_WORKFORCE_TIMESHEET/</value>
+			</allowedValue>
+			<allowedValue
+				label="Master Inspection Characteristic (API_MASTERINSPCHARACTERISTIC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_MASTERINSPCHARACTERISTIC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Material Valuation (API_MATERIAL_VALUATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_MATERIAL_VALUATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Opening Balance (API_OPENINGBALANCE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OPENINGBALANCE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Operational Accounting Document Header and Item (API_OPLACCTGDOCITEMCUBE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Outbound Delivery (API_OUTBOUND_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Outbound Delivery v2 (API_OUTBOUND_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Physical Inventory API (API_PHYSICAL_INVENTORY_DOC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Planning - ACDOCP (API_FINANCIALPLANDATA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINANCIALPLANDATA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Planning Category (API_PLANNINGCATEGORY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PLANNINGCATEGORY_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Plant (API_PLANT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PLANT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Hierarchy Node (MD_PRODUCT_HIERARCHY_SRV_0001)">
+				<value>/sap/opu/odata/sap/MD_PRODUCT_HIERARCHY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Group (API_PRODUCTGROUP_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PRODUCTGROUP_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Master (API_PRODUCT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PRODUCT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Profit Center (API_PROFITCENTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PROFITCENTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Profit Center Hierarchy Node (C_PROFITCENTERHIERNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_PROFITCENTERHIERNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Project Engagement(/CPD/SC_PROJ_ENGMT_CREATE_UPD_SRV_0001)">
+				<value>/sap/opu/odata/cpd/SC_PROJ_ENGMT_CREATE_UPD_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Public API - Availability (API_MANAGE_WF_AVAILABILITY_0001)">
+				<value>/sap/opu/odata/shcm/API_MANAGE_WF_AVAILABILITY/</value>
+			</allowedValue>
+			<allowedValue
+				label="Purchase Contract API (API_PURCHASECONTRACT_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Purchase Order (API_PURCHASEORDER_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Quality Inspection Method (API_INSPECTIONMETHOD_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INSPECTIONMETHOD_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="RAP: UI_FINS_GLACCOUNTFLOW generated at 20190213 (UI_FINS_GLACCOUNTFLOW_0001)">
+				<value>/sap/opu/odata/sap/UI_FINS_GLACCOUNTFLOW/</value>
+			</allowedValue>
+			<allowedValue
+				label="Request for Quotation (API_RFQ_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_RFQ_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales District (API_SALESDISTRICT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALESDISTRICT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order (API_SALES_ORDER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_ORDER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order Bill of Material CRUD API (API_ORDER_BILL_OF_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_ORDER_BILL_OF_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order Simulation (API_SALES_ORDER_SIMULATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_ORDER_SIMULATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Organization (API_SALESORGANIZATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALESORGANIZATION_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Segment (API_SEGMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SEGMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Statistical Key Figures - FINSSKF (C_SKF_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_SKF_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Invoice (API_SUPPLIERINVOICE_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Master (MD_SUPPLIER_MASTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/MD_SUPPLIER_MASTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Quotation (API_QTN_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_QTN_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Trading Partner (API_PARTNERCOMPANY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Trial Balance (C_TRIALBALANCE_CDS_0001)">
+				<value>/sap/opu/odata/sap/C_TRIALBALANCE_CDS/</value>
+			</allowedValue>
+		</field>
+		<field id="ALT_SERVICEPATH" label="Custom SAP S/4 OData API"
+			type="string" scope="browseOnly">
+			<helpText>Enter the SAP S/4HANA OData API if not listed in the Service Catalog.
+				This API will be used instead of the selection in the SAP S/4HANA Service Catalog</helpText>
+			<defaultValue />
+		</field>
+		<field id="DEEPCREATEMODE" label="Child Creation Mode"
+			type="string" scope="browseOnly">
+			<helpText>Specify how child entities will be handled. 'Link Children'
+				allows mapping key fields to indicate which existing child entities
+				to link to. 'Create Children' allows for both the parent and child
+				entity types to be created if supported by the SAP S4 Entity Type.
+				For example A_BusinessPartner supports deep create. Otherwise only
+				the keys for child entities can be specified to link to those
+				existing entities.</helpText>
+			<defaultValue>LINK</defaultValue>
+			<allowedValue label="Link to Exsting Children">
+				<value>LINK</value>
+			</allowedValue>
+			<allowedValue
+				label="Create Children (Must be supported by API for this Object Type)">
+				<value>DEEPCREATE</value>
+			</allowedValue>
+		</field>
+			
+		<field id="FETCH_HEADERS" label="Fetch X-CSRF and SAP_SESSIONID" type="boolean" scope="operationOnly">
+			<helpText>X-CSRF Token and SAP_SESSIONID_COOKIE will be retrieved automatically and used in the Operation</helpText>
+			<defaultValue>true</defaultValue>
+		</field>
+
+			<!-- <allowedValue label="Create Children with Batches"> <value>BATCH</value> 
+				</allowedValue> -->
+		<field id="MAXBROWSEDEPTH"
+			label="Maximum Entity Depth for Deep Create" type="integer"
+			scope="browseOnly">
+			<helpText>Specifies the maximum depth to include child objects in the
+				profile. This enables the implementation of 'Create with Deep
+				Payload' for entities that support deep create operations.</helpText>
+			<defaultValue>0</defaultValue>
+			<allowedValue label="0">
+				<value>0</value>
+			</allowedValue>
+			<allowedValue label="1">
+				<value>1</value>
+			</allowedValue>
+			<allowedValue label="2">
+				<value>2</value>
+			</allowedValue>
+			<allowedValue label="3">
+				<value>3</value>
+			</allowedValue>
+		</field>
+	</operation>
+	<!-- END CREATE -->
+	<operation types="EXECUTE" customTypeId="PATCH"
+		customTypeLabel="UPDATE/PATCH/MERGE">
+		<field id="CATALOG_SERVICEPATH" label="SAP S/4HANA Service Catalog"
+			type="string" scope="browseOnly">
+			<helpText>Choose a service to use from the list of SAP/S4 services</helpText>
+			<defaultValue />
+			<allowedValue label="  ">
+				<value />
+			</allowedValue>
+			<allowedValue
+				label="Activity Type Plan Cost Rates - ACCOSTRATE (C_ACTYTYPEPLANCOSTRATE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_ACTYTYPEPLANCOSTRATE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill Of Material Comparison (API_BILLOFMATERIAL_COMPARISON_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILLOFMATERIAL_COMPARISON_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material CRUD (API_BILL_OF_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material CRUD V2 (API_BILL_OF_MATERIAL_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material Where Used (API_BOM_WHERE_USED_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BOM_WHERE_USED_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Billing Document (API_BILLING_DOCUMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Business Area (API_BUSINESSAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BUSINESSAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Business Partner (API_BUSINESS_PARTNER_0001)">
+				<value>/sap/opu/odata/sap/API_BUSINESS_PARTNER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Catalog Service Version v2 (/IWFND/SG_MED_CATALOG_0002)">
+				<value>/sap/opu/odata/iwfnd/CATALOGSERVICE;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Change Master (API_CHANGEMASTER_0001)">
+				<value>/sap/opu/odata/sap/API_CHANGEMASTER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Change Master v2 (API_CHANGEMASTER_0002)">
+				<value>/sap/opu/odata/sap/API_CHANGEMASTER;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Characteristic Attribute Catalog (API_CHARCATTRIBUTECATALOG_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CHARCATTRIBUTECATALOG_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Chart of accounts (API_CHARTOFACCOUNTS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CHARTOFACCOUNTS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Company Code (API_COMPANYCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COMPANYCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Controlling Debit Credit Code (API_CONTROLLINGDEBITCREDITCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CONTROLLINGDEBITCREDITCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="ControllingArea (API_CONTROLLINGAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CONTROLLINGAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center (API_COSTCENTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COSTCENTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Activity Type (API_COSTCENTERACTIVITYTYPE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COSTCENTERACTIVITYTYPE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Data Provider (FCO_PI_COST_CENTER_0001)">
+				<value>/sap/opu/odata/sap/FCO_PI_COST_CENTER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Hierarchy Node (C_COSTCENTERHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_COSTCENTERHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Estimate Items (API_FINPLAN_COSTESTIMATE_ITEMS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLAN_COSTESTIMATE_ITEMS_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Country (API_COUNTRY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COUNTRY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Credit Memo Request (API_CREDIT_MEMO_REQUEST_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer (MD_CUSTOMER_MASTER_SRV_01_0001)">
+				<value>/sap/opu/odata/sap/MD_CUSTOMER_MASTER_SRV_01/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Group (API_CUSTOMERGROUP_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMERGROUP_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Material (API_CUSTOMER_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Return (API_SALES_QUOTATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_QUOTATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Returns Delivery (API_CUSTOMER_RETURNS_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_RETURNS_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Returns Delivery v2(API_CUSTOMER_RETURNS_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_RETURNS_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Supplier Industry (API_CUSTOMERSUPPLIERINDUSTRY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMERSUPPLIERINDUSTRY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Debit Memo Request (API_DEBIT_MEMO_REQUEST_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEBIT_MEMO_REQUEST_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Defect (API_DEFECT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Category (API_DEFECTCATEGORY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCATEGORY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Class (API_DEFECTCLASS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCLASS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Code (API_DEFECTCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Distribution Channel (API_DISTRIBUTIONCHANNEL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DISTRIBUTIONCHANNEL_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Division (API_DIVISION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DIVISION_SRV/</value>
+			</allowedValue>
+			<allowedValue label="DMS (API_DMS_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DMS_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Employee Service (/SHCM/EMPLOYEE_SRV_0001)">
+				<value>/sap/opu/odata/shcm/EMPLOYEE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Employee Service Cost Rate Level (SERVICE_COSTRATE_LEVEL_SRV_0001)">
+				<value>/sap/opu/odata/shcm/SERVICE_COSTRATE_LEVEL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="External Services for Delaware (/CPD/SC_EXTERNAL_SERVICES_SRV_0001)">
+				<value>/sap/opu/odata/cpd/SC_EXTERNAL_SERVICES_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN Project Definition Details (API_FINPROJECT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPROJECT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN Unit Of Measure (C_FINUNITOFMEASURE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FINUNITOFMEASURE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN WBS Element Details (API_FINWBSELEMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINWBSELEMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN WBS Element Hierarchy Node (C_FINWBSELEMENTHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FINWBSELEMENTHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Financial Planning Entry Item (API_FINPLANNINGENTRYITEM_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLANNINGENTRYITEM_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Functional Area (API_FUNCTIONALAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FUNCTIONALAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account (API_GLACCOUNTINCHARTOFACCOUNTS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account Balance with Flow - Measure (C_GLACCOUNTFLOW_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTFLOW_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account Hierarchy Node (C_GLACCOUNTHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L AccountLineItem (API_GLACCOUNTLINEITEM_0001)">
+				<value>/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/</value>
+			</allowedValue>
+			<allowedValue
+				label="Gateway Attachment Service (API_CV_ATTACHMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Gateway Project for Functional Area Hierarchy View (C_FUNCTIONALAREAHIERNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FUNCTIONALAREAHIERNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inbound Delivery (API_INBOUND_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INBOUND_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inbound Delivery v2 (API_INBOUND_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_INBOUND_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inspection Plan (API_INSPECTIONPLAN_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INSPECTIONPLAN_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Internal Order (API_INTERNALORDER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INTERNALORDER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Journal Entry Item (API_JOURNALENTRYITEMBASIC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_JOURNALENTRYITEMBASIC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Journal Entry Item Basic View (I_JOURNALENTRYITEMBASIC_CDS_0001)">
+				<value>/sap/opu/odata/sap/I_JOURNALENTRYITEMBASIC_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="KPIs based on G/L Account Flow (C_GLACCOUNTFLOWKPI_CDS_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTFLOWKPI_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="Lean Service for Writing Plan Data to ACDOCP (API_FINPLANNINGDATA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLANNINGDATA_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Ledger (API_LEDGER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_LEDGER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Manage Workforce Timesheet API (API_MANAGE_WORKFORCE_TIMESHEET_0001)">
+				<value>/sap/opu/odata/sap/API_MANAGE_WORKFORCE_TIMESHEET/</value>
+			</allowedValue>
+			<allowedValue
+				label="Master Inspection Characteristic (API_MASTERINSPCHARACTERISTIC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_MASTERINSPCHARACTERISTIC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Material Valuation (API_MATERIAL_VALUATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_MATERIAL_VALUATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Opening Balance (API_OPENINGBALANCE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OPENINGBALANCE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Operational Accounting Document Header and Item (API_OPLACCTGDOCITEMCUBE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Outbound Delivery (API_OUTBOUND_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Outbound Delivery v2 (API_OUTBOUND_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Physical Inventory API (API_PHYSICAL_INVENTORY_DOC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Planning - ACDOCP (API_FINANCIALPLANDATA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINANCIALPLANDATA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Planning Category (API_PLANNINGCATEGORY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PLANNINGCATEGORY_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Plant (API_PLANT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PLANT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Hierarchy Node (MD_PRODUCT_HIERARCHY_SRV_0001)">
+				<value>/sap/opu/odata/sap/MD_PRODUCT_HIERARCHY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Group (API_PRODUCTGROUP_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PRODUCTGROUP_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Master (API_PRODUCT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PRODUCT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Profit Center (API_PROFITCENTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PROFITCENTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Profit Center Hierarchy Node (C_PROFITCENTERHIERNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_PROFITCENTERHIERNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Project Engagement(/CPD/SC_PROJ_ENGMT_CREATE_UPD_SRV_0001)">
+				<value>/sap/opu/odata/cpd/SC_PROJ_ENGMT_CREATE_UPD_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Public API - Availability (API_MANAGE_WF_AVAILABILITY_0001)">
+				<value>/sap/opu/odata/shcm/API_MANAGE_WF_AVAILABILITY/</value>
+			</allowedValue>
+			<allowedValue
+				label="Purchase Contract API (API_PURCHASECONTRACT_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Purchase Order (API_PURCHASEORDER_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Quality Inspection Method (API_INSPECTIONMETHOD_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INSPECTIONMETHOD_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="RAP: UI_FINS_GLACCOUNTFLOW generated at 20190213 (UI_FINS_GLACCOUNTFLOW_0001)">
+				<value>/sap/opu/odata/sap/UI_FINS_GLACCOUNTFLOW/</value>
+			</allowedValue>
+			<allowedValue
+				label="Request for Quotation (API_RFQ_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_RFQ_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales District (API_SALESDISTRICT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALESDISTRICT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order (API_SALES_ORDER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_ORDER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order Bill of Material CRUD API (API_ORDER_BILL_OF_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_ORDER_BILL_OF_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order Simulation (API_SALES_ORDER_SIMULATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_ORDER_SIMULATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Organization (API_SALESORGANIZATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALESORGANIZATION_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Segment (API_SEGMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SEGMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Statistical Key Figures - FINSSKF (C_SKF_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_SKF_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Invoice (API_SUPPLIERINVOICE_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Master (MD_SUPPLIER_MASTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/MD_SUPPLIER_MASTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Quotation (API_QTN_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_QTN_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Trading Partner (API_PARTNERCOMPANY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Trial Balance (C_TRIALBALANCE_CDS_0001)">
+				<value>/sap/opu/odata/sap/C_TRIALBALANCE_CDS/</value>
+			</allowedValue>
+		</field>
+		<field id="ALT_SERVICEPATH" label="Custom SAP S/4 OData API"
+			type="string" scope="browseOnly">
+			<helpText>Enter the SAP S/4HANA OData API if not listed in the Service Catalog.
+				This API will be used instead of the selection in the SAP S/4HANA Service Catalog</helpText>
+			<defaultValue />
+		</field>
+		<field id="FETCH_HEADERS" label="Prefetch E-Tag" type="boolean" scope="operationOnly">
+			<helpText>E-Tag will be retrieved and passed to the specific operation</helpText>
+			<defaultValue>true</defaultValue>
+		</field>
+	</operation>
+	<!-- END PATCH -->
+	<operation types="EXECUTE" customTypeId="DELETE"
+		customTypeLabel="DELETE">
+		<field id="CATALOG_SERVICEPATH" label="SAP S/4HANA Service Catalog"
+			type="string" scope="browseOnly">
+			<helpText>Choose a service to use from the list of SAP/S4 services</helpText>
+			<defaultValue />
+			<allowedValue label="  ">
+				<value />
+			</allowedValue>
+			<allowedValue
+				label="Activity Type Plan Cost Rates - ACCOSTRATE (C_ACTYTYPEPLANCOSTRATE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_ACTYTYPEPLANCOSTRATE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill Of Material Comparison (API_BILLOFMATERIAL_COMPARISON_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILLOFMATERIAL_COMPARISON_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material CRUD (API_BILL_OF_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material CRUD V2 (API_BILL_OF_MATERIAL_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material Where Used (API_BOM_WHERE_USED_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BOM_WHERE_USED_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Billing Document (API_BILLING_DOCUMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Business Area (API_BUSINESSAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BUSINESSAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Business Partner (API_BUSINESS_PARTNER_0001)">
+				<value>/sap/opu/odata/sap/API_BUSINESS_PARTNER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Catalog Service Version v2 (/IWFND/SG_MED_CATALOG_0002)">
+				<value>/sap/opu/odata/iwfnd/CATALOGSERVICE;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Change Master (API_CHANGEMASTER_0001)">
+				<value>/sap/opu/odata/sap/API_CHANGEMASTER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Change Master v2 (API_CHANGEMASTER_0002)">
+				<value>/sap/opu/odata/sap/API_CHANGEMASTER;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Characteristic Attribute Catalog (API_CHARCATTRIBUTECATALOG_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CHARCATTRIBUTECATALOG_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Chart of accounts (API_CHARTOFACCOUNTS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CHARTOFACCOUNTS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Company Code (API_COMPANYCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COMPANYCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Controlling Debit Credit Code (API_CONTROLLINGDEBITCREDITCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CONTROLLINGDEBITCREDITCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="ControllingArea (API_CONTROLLINGAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CONTROLLINGAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center (API_COSTCENTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COSTCENTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Activity Type (API_COSTCENTERACTIVITYTYPE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COSTCENTERACTIVITYTYPE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Data Provider (FCO_PI_COST_CENTER_0001)">
+				<value>/sap/opu/odata/sap/FCO_PI_COST_CENTER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Hierarchy Node (C_COSTCENTERHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_COSTCENTERHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Estimate Items (API_FINPLAN_COSTESTIMATE_ITEMS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLAN_COSTESTIMATE_ITEMS_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Country (API_COUNTRY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COUNTRY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Credit Memo Request (API_CREDIT_MEMO_REQUEST_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer (MD_CUSTOMER_MASTER_SRV_01_0001)">
+				<value>/sap/opu/odata/sap/MD_CUSTOMER_MASTER_SRV_01/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Group (API_CUSTOMERGROUP_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMERGROUP_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Material (API_CUSTOMER_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Return (API_SALES_QUOTATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_QUOTATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Returns Delivery (API_CUSTOMER_RETURNS_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_RETURNS_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Returns Delivery v2(API_CUSTOMER_RETURNS_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_RETURNS_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Supplier Industry (API_CUSTOMERSUPPLIERINDUSTRY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMERSUPPLIERINDUSTRY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Debit Memo Request (API_DEBIT_MEMO_REQUEST_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEBIT_MEMO_REQUEST_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Defect (API_DEFECT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Category (API_DEFECTCATEGORY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCATEGORY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Class (API_DEFECTCLASS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCLASS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Code (API_DEFECTCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Distribution Channel (API_DISTRIBUTIONCHANNEL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DISTRIBUTIONCHANNEL_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Division (API_DIVISION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DIVISION_SRV/</value>
+			</allowedValue>
+			<allowedValue label="DMS (API_DMS_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DMS_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Employee Service (/SHCM/EMPLOYEE_SRV_0001)">
+				<value>/sap/opu/odata/shcm/EMPLOYEE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Employee Service Cost Rate Level (SERVICE_COSTRATE_LEVEL_SRV_0001)">
+				<value>/sap/opu/odata/shcm/SERVICE_COSTRATE_LEVEL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="External Services for Delaware (/CPD/SC_EXTERNAL_SERVICES_SRV_0001)">
+				<value>/sap/opu/odata/cpd/SC_EXTERNAL_SERVICES_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN Project Definition Details (API_FINPROJECT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPROJECT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN Unit Of Measure (C_FINUNITOFMEASURE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FINUNITOFMEASURE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN WBS Element Details (API_FINWBSELEMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINWBSELEMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN WBS Element Hierarchy Node (C_FINWBSELEMENTHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FINWBSELEMENTHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Financial Planning Entry Item (API_FINPLANNINGENTRYITEM_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLANNINGENTRYITEM_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Functional Area (API_FUNCTIONALAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FUNCTIONALAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account (API_GLACCOUNTINCHARTOFACCOUNTS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account Balance with Flow - Measure (C_GLACCOUNTFLOW_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTFLOW_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account Hierarchy Node (C_GLACCOUNTHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L AccountLineItem (API_GLACCOUNTLINEITEM_0001)">
+				<value>/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/</value>
+			</allowedValue>
+			<allowedValue
+				label="Gateway Attachment Service (API_CV_ATTACHMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Gateway Project for Functional Area Hierarchy View (C_FUNCTIONALAREAHIERNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FUNCTIONALAREAHIERNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inbound Delivery (API_INBOUND_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INBOUND_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inbound Delivery v2 (API_INBOUND_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_INBOUND_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inspection Plan (API_INSPECTIONPLAN_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INSPECTIONPLAN_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Internal Order (API_INTERNALORDER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INTERNALORDER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Journal Entry Item (API_JOURNALENTRYITEMBASIC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_JOURNALENTRYITEMBASIC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Journal Entry Item Basic View (I_JOURNALENTRYITEMBASIC_CDS_0001)">
+				<value>/sap/opu/odata/sap/I_JOURNALENTRYITEMBASIC_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="KPIs based on G/L Account Flow (C_GLACCOUNTFLOWKPI_CDS_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTFLOWKPI_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="Lean Service for Writing Plan Data to ACDOCP (API_FINPLANNINGDATA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLANNINGDATA_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Ledger (API_LEDGER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_LEDGER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Manage Workforce Timesheet API (API_MANAGE_WORKFORCE_TIMESHEET_0001)">
+				<value>/sap/opu/odata/sap/API_MANAGE_WORKFORCE_TIMESHEET/</value>
+			</allowedValue>
+			<allowedValue
+				label="Master Inspection Characteristic (API_MASTERINSPCHARACTERISTIC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_MASTERINSPCHARACTERISTIC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Material Valuation (API_MATERIAL_VALUATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_MATERIAL_VALUATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Opening Balance (API_OPENINGBALANCE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OPENINGBALANCE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Operational Accounting Document Header and Item (API_OPLACCTGDOCITEMCUBE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Outbound Delivery (API_OUTBOUND_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Outbound Delivery v2 (API_OUTBOUND_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Physical Inventory API (API_PHYSICAL_INVENTORY_DOC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Planning - ACDOCP (API_FINANCIALPLANDATA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINANCIALPLANDATA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Planning Category (API_PLANNINGCATEGORY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PLANNINGCATEGORY_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Plant (API_PLANT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PLANT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Hierarchy Node (MD_PRODUCT_HIERARCHY_SRV_0001)">
+				<value>/sap/opu/odata/sap/MD_PRODUCT_HIERARCHY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Group (API_PRODUCTGROUP_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PRODUCTGROUP_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Master (API_PRODUCT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PRODUCT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Profit Center (API_PROFITCENTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PROFITCENTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Profit Center Hierarchy Node (C_PROFITCENTERHIERNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_PROFITCENTERHIERNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Project Engagement(/CPD/SC_PROJ_ENGMT_CREATE_UPD_SRV_0001)">
+				<value>/sap/opu/odata/cpd/SC_PROJ_ENGMT_CREATE_UPD_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Public API - Availability (API_MANAGE_WF_AVAILABILITY_0001)">
+				<value>/sap/opu/odata/shcm/API_MANAGE_WF_AVAILABILITY/</value>
+			</allowedValue>
+			<allowedValue
+				label="Purchase Contract API (API_PURCHASECONTRACT_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Purchase Order (API_PURCHASEORDER_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Quality Inspection Method (API_INSPECTIONMETHOD_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INSPECTIONMETHOD_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="RAP: UI_FINS_GLACCOUNTFLOW generated at 20190213 (UI_FINS_GLACCOUNTFLOW_0001)">
+				<value>/sap/opu/odata/sap/UI_FINS_GLACCOUNTFLOW/</value>
+			</allowedValue>
+			<allowedValue
+				label="Request for Quotation (API_RFQ_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_RFQ_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales District (API_SALESDISTRICT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALESDISTRICT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order (API_SALES_ORDER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_ORDER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order Bill of Material CRUD API (API_ORDER_BILL_OF_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_ORDER_BILL_OF_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order Simulation (API_SALES_ORDER_SIMULATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_ORDER_SIMULATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Organization (API_SALESORGANIZATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALESORGANIZATION_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Segment (API_SEGMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SEGMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Statistical Key Figures - FINSSKF (C_SKF_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_SKF_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Invoice (API_SUPPLIERINVOICE_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Master (MD_SUPPLIER_MASTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/MD_SUPPLIER_MASTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Quotation (API_QTN_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_QTN_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Trading Partner (API_PARTNERCOMPANY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Trial Balance (C_TRIALBALANCE_CDS_0001)">
+				<value>/sap/opu/odata/sap/C_TRIALBALANCE_CDS/</value>
+			</allowedValue>
+		</field>
+		<field id="ALT_SERVICEPATH" label="Custom SAP S/4 OData API"
+			type="string" scope="browseOnly">
+			<helpText>Enter the SAP S/4HANA OData API if not listed in the Service Catalog.
+				This API will be used instead of the selection in the SAP S/4HANA Service Catalog</helpText>
+			<defaultValue />
+		</field>
+		<field id="FETCH_HEADERS" label="Prefetch E-Tag" type="boolean" scope="operationOnly">
+			<helpText>E-Tag will be retrieved and passed to the specific operation</helpText>
+			<defaultValue>true</defaultValue>
+		</field>
+	</operation>
+	<!-- END DELETE -->
+	<!--<operation types="EXECUTE" customTypeId="EXECUTE"
+		customTypeLabel="EXECUTE FUNCTION IMPORT">
+		<field id="CATALOG_SERVICEPATH" label="SAP S/4HANA Service Catalog"
+			type="string" scope="browseOnly">
+			<helpText>Choose a service to use from the list of SAP/S4 services</helpText>
+			<defaultValue />
+			<allowedValue label="  ">
+				<value />
+			</allowedValue>
+			<allowedValue
+				label="Activity Type Plan Cost Rates - ACCOSTRATE (C_ACTYTYPEPLANCOSTRATE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_ACTYTYPEPLANCOSTRATE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill Of Material Comparison (API_BILLOFMATERIAL_COMPARISON_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILLOFMATERIAL_COMPARISON_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material CRUD (API_BILL_OF_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material CRUD V2 (API_BILL_OF_MATERIAL_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Bill of Material Where Used (API_BOM_WHERE_USED_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BOM_WHERE_USED_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Billing Document (API_BILLING_DOCUMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Business Area (API_BUSINESSAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_BUSINESSAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Business Partner (API_BUSINESS_PARTNER_0001)">
+				<value>/sap/opu/odata/sap/API_BUSINESS_PARTNER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Catalog Service Version v2 (/IWFND/SG_MED_CATALOG_0002)">
+				<value>/sap/opu/odata/iwfnd/CATALOGSERVICE;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Change Master (API_CHANGEMASTER_0001)">
+				<value>/sap/opu/odata/sap/API_CHANGEMASTER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Change Master v2 (API_CHANGEMASTER_0002)">
+				<value>/sap/opu/odata/sap/API_CHANGEMASTER;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Characteristic Attribute Catalog (API_CHARCATTRIBUTECATALOG_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CHARCATTRIBUTECATALOG_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Chart of accounts (API_CHARTOFACCOUNTS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CHARTOFACCOUNTS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Company Code (API_COMPANYCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COMPANYCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Controlling Debit Credit Code (API_CONTROLLINGDEBITCREDITCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CONTROLLINGDEBITCREDITCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="ControllingArea (API_CONTROLLINGAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CONTROLLINGAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center (API_COSTCENTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COSTCENTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Activity Type (API_COSTCENTERACTIVITYTYPE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COSTCENTERACTIVITYTYPE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Data Provider (FCO_PI_COST_CENTER_0001)">
+				<value>/sap/opu/odata/sap/FCO_PI_COST_CENTER/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Center Hierarchy Node (C_COSTCENTERHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_COSTCENTERHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Cost Estimate Items (API_FINPLAN_COSTESTIMATE_ITEMS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLAN_COSTESTIMATE_ITEMS_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Country (API_COUNTRY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_COUNTRY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Credit Memo Request (API_CREDIT_MEMO_REQUEST_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer (MD_CUSTOMER_MASTER_SRV_01_0001)">
+				<value>/sap/opu/odata/sap/MD_CUSTOMER_MASTER_SRV_01/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Group (API_CUSTOMERGROUP_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMERGROUP_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Material (API_CUSTOMER_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Return (API_SALES_QUOTATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_QUOTATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Returns Delivery (API_CUSTOMER_RETURNS_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_RETURNS_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Returns Delivery v2(API_CUSTOMER_RETURNS_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_CUSTOMER_RETURNS_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Customer Supplier Industry (API_CUSTOMERSUPPLIERINDUSTRY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CUSTOMERSUPPLIERINDUSTRY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Debit Memo Request (API_DEBIT_MEMO_REQUEST_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEBIT_MEMO_REQUEST_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Defect (API_DEFECT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Category (API_DEFECTCATEGORY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCATEGORY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Class (API_DEFECTCLASS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCLASS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Defect Code (API_DEFECTCODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DEFECTCODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Distribution Channel (API_DISTRIBUTIONCHANNEL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DISTRIBUTIONCHANNEL_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Division (API_DIVISION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DIVISION_SRV/</value>
+			</allowedValue>
+			<allowedValue label="DMS (API_DMS_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_DMS_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Employee Service (/SHCM/EMPLOYEE_SRV_0001)">
+				<value>/sap/opu/odata/shcm/EMPLOYEE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Employee Service Cost Rate Level (SERVICE_COSTRATE_LEVEL_SRV_0001)">
+				<value>/sap/opu/odata/shcm/SERVICE_COSTRATE_LEVEL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="External Services for Delaware (/CPD/SC_EXTERNAL_SERVICES_SRV_0001)">
+				<value>/sap/opu/odata/cpd/SC_EXTERNAL_SERVICES_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN Project Definition Details (API_FINPROJECT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPROJECT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN Unit Of Measure (C_FINUNITOFMEASURE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FINUNITOFMEASURE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN WBS Element Details (API_FINWBSELEMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINWBSELEMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="FIN WBS Element Hierarchy Node (C_FINWBSELEMENTHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FINWBSELEMENTHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Financial Planning Entry Item (API_FINPLANNINGENTRYITEM_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLANNINGENTRYITEM_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Functional Area (API_FUNCTIONALAREA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FUNCTIONALAREA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account (API_GLACCOUNTINCHARTOFACCOUNTS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account Balance with Flow - Measure (C_GLACCOUNTFLOW_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTFLOW_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L Account Hierarchy Node (C_GLACCOUNTHIERARCHYNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTHIERARCHYNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="G/L AccountLineItem (API_GLACCOUNTLINEITEM_0001)">
+				<value>/sap/opu/odata/sap/API_GLACCOUNTLINEITEM/</value>
+			</allowedValue>
+			<allowedValue
+				label="Gateway Attachment Service (API_CV_ATTACHMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Gateway Project for Functional Area Hierarchy View (C_FUNCTIONALAREAHIERNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_FUNCTIONALAREAHIERNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inbound Delivery (API_INBOUND_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INBOUND_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inbound Delivery v2 (API_INBOUND_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_INBOUND_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Inspection Plan (API_INSPECTIONPLAN_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INSPECTIONPLAN_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Internal Order (API_INTERNALORDER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INTERNALORDER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Journal Entry Item (API_JOURNALENTRYITEMBASIC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_JOURNALENTRYITEMBASIC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Journal Entry Item Basic View (I_JOURNALENTRYITEMBASIC_CDS_0001)">
+				<value>/sap/opu/odata/sap/I_JOURNALENTRYITEMBASIC_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="KPIs based on G/L Account Flow (C_GLACCOUNTFLOWKPI_CDS_0001)">
+				<value>/sap/opu/odata/sap/C_GLACCOUNTFLOWKPI_CDS/</value>
+			</allowedValue>
+			<allowedValue
+				label="Lean Service for Writing Plan Data to ACDOCP (API_FINPLANNINGDATA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINPLANNINGDATA_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Ledger (API_LEDGER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_LEDGER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Manage Workforce Timesheet API (API_MANAGE_WORKFORCE_TIMESHEET_0001)">
+				<value>/sap/opu/odata/sap/API_MANAGE_WORKFORCE_TIMESHEET/</value>
+			</allowedValue>
+			<allowedValue
+				label="Master Inspection Characteristic (API_MASTERINSPCHARACTERISTIC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_MASTERINSPCHARACTERISTIC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Material Valuation (API_MATERIAL_VALUATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_MATERIAL_VALUATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Opening Balance (API_OPENINGBALANCE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OPENINGBALANCE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Operational Accounting Document Header and Item (API_OPLACCTGDOCITEMCUBE_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Outbound Delivery (API_OUTBOUND_DELIVERY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Outbound Delivery v2 (API_OUTBOUND_DELIVERY_SRV_0002)">
+				<value>/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=0002/</value>
+			</allowedValue>
+			<allowedValue
+				label="Physical Inventory API (API_PHYSICAL_INVENTORY_DOC_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Planning - ACDOCP (API_FINANCIALPLANDATA_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_FINANCIALPLANDATA_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Planning Category (API_PLANNINGCATEGORY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PLANNINGCATEGORY_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Plant (API_PLANT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PLANT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Hierarchy Node (MD_PRODUCT_HIERARCHY_SRV_0001)">
+				<value>/sap/opu/odata/sap/MD_PRODUCT_HIERARCHY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Group (API_PRODUCTGROUP_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PRODUCTGROUP_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Product Master (API_PRODUCT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PRODUCT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Profit Center (API_PROFITCENTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PROFITCENTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Profit Center Hierarchy Node (C_PROFITCENTERHIERNODE_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_PROFITCENTERHIERNODE_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Project Engagement(/CPD/SC_PROJ_ENGMT_CREATE_UPD_SRV_0001)">
+				<value>/sap/opu/odata/cpd/SC_PROJ_ENGMT_CREATE_UPD_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Public API - Availability (API_MANAGE_WF_AVAILABILITY_0001)">
+				<value>/sap/opu/odata/shcm/API_MANAGE_WF_AVAILABILITY/</value>
+			</allowedValue>
+			<allowedValue
+				label="Purchase Contract API (API_PURCHASECONTRACT_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Purchase Order (API_PURCHASEORDER_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Quality Inspection Method (API_INSPECTIONMETHOD_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_INSPECTIONMETHOD_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="RAP: UI_FINS_GLACCOUNTFLOW generated at 20190213 (UI_FINS_GLACCOUNTFLOW_0001)">
+				<value>/sap/opu/odata/sap/UI_FINS_GLACCOUNTFLOW/</value>
+			</allowedValue>
+			<allowedValue
+				label="Request for Quotation (API_RFQ_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_RFQ_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales District (API_SALESDISTRICT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALESDISTRICT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order (API_SALES_ORDER_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_ORDER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order Bill of Material CRUD API (API_ORDER_BILL_OF_MATERIAL_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_ORDER_BILL_OF_MATERIAL_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Order Simulation (API_SALES_ORDER_SIMULATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALES_ORDER_SIMULATION_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Sales Organization (API_SALESORGANIZATION_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SALESORGANIZATION_SRV/</value>
+			</allowedValue>
+			<allowedValue label="Segment (API_SEGMENT_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SEGMENT_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Statistical Key Figures - FINSSKF (C_SKF_SRV_0001)">
+				<value>/sap/opu/odata/sap/C_SKF_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Invoice (API_SUPPLIERINVOICE_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Master (MD_SUPPLIER_MASTER_SRV_0001)">
+				<value>/sap/opu/odata/sap/MD_SUPPLIER_MASTER_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Supplier Quotation (API_QTN_PROCESS_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_QTN_PROCESS_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Trading Partner (API_PARTNERCOMPANY_SRV_0001)">
+				<value>/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV/</value>
+			</allowedValue>
+			<allowedValue
+				label="Trial Balance (C_TRIALBALANCE_CDS_0001)">
+				<value>/sap/opu/odata/sap/C_TRIALBALANCE_CDS/</value>
+			</allowedValue>
+		</field>
+		<field id="ALT_SERVICEPATH" label="Custom SAP S/4 OData API"
+			type="string" scope="browseOnly">
+			<helpText>Enter the SAP S/4HANA OData API if not listed in the Service Catalog.
+				This API will be used instead of the selection in the SAP S/4HANA Service Catalog</helpText>
+			<defaultValue />
+		</field>
+	</operation> -->
+	
+
+	<!-- Inbound Dynamic Document Properties -->
+	<dynamicProperty id="ETAG"
+		label="ETag/Document Version Number (Required for UPDATE operations)"
+		type="string">
+		<helpText>The E-Tag/version number to be sent with the entity/document
+			update. This needs to be acquired from the ETAG document property
+			returned by a GET operation. If the version number sent does not
+			match the version number of the currently persisted version, the
+			operation will fail. If the version number is excluded, a 403
+			Forbidden error will occur.</helpText>
+	</dynamicProperty>
+	<dynamicProperty id="X_CSRF_TOKEN"
+		label="X-CSRF Token (Required for write operations)" type="string">
+		<helpText>This token is fetched by any GET operation. This value must
+			be used to set the X-CSRF Token Document Property for any write
+			operations otherwise a 403 Forbidden Error will occur.</helpText>
+	</dynamicProperty>
+	<dynamicProperty id="SAP_SESSIONID_COOKIE"
+		label="SAP_SESSIONID_COOKIE (Required for write operations)"
+		type="string">
+		<helpText>This cookie is fetched by any GET operation. This value must
+			be used to set the SAP_SESSIONID_COOKIE Document Property for any
+			write operations otherwise a 403 Forbidden Error will occur.</helpText>
+	</dynamicProperty>
+	<dynamicProperty id="EXTRA_URL_PARAMETERS"
+		label="Extra URL Query Parameters" type="string">
+		<helpText>Additional Filtering parameters associated with $expand and $select. Refer to SAP
+			documentation for the specific API for relevant parameters.
+			Do not include a leading ? nor &amp;. For example: $expand=XXX,YYY</helpText>
+	</dynamicProperty>
+
+	<!-- Outbound Dynamic Document Properties -->
+	<trackedProperty id="ETAG"
+		label="ETag/Document Version Number (Returned by GET operations)">
+		<helpText>The E-Tag represents the current version of the
+			entity/document</helpText>
+	</trackedProperty>
+	<trackedProperty id="X_CSRF_TOKEN"
+		label="X-CSRF Token (Returned by GET operations)">
+		<helpText>This token is fetched by any GET operation. This value must
+			be used to set the X-CSRF Token Document Property for any write
+			operations otherwise a 403 Forbidden Error will occur.</helpText>
+	</trackedProperty>
+	<trackedProperty id="SAP_SESSIONID_COOKIE"
+		label="SAP_SESSIONID_COOKIE (Returned by GET operations)">
+		<helpText>This cookie is fetched by any GET operation. This value must
+			be used to set the SAP_SESSIONID_COOKIE Document Property for any
+			write operations otherwise a 403 Forbidden Error will occur.</helpText>
+	</trackedProperty>
+</GenericConnectorDescriptor>

@@ -1,0 +1,13 @@
+{
+    "_id": {
+        "$oid": "62e5c6dcd32da97b172bff5c"
+    },
+    "CompSalary": {
+        "value": null,
+        "notes": "",
+        "LeaderNotes": {
+            "array": []
+        }
+    },
+    "LeaderNotes": []
+}

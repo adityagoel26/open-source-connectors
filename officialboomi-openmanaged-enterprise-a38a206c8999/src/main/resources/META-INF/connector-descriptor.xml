@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="windows-1252"?><GenericConnectorDescriptor browsingType="any">
+  	<description>Dell OpenManage Enterprise (Tech Preview) Connector</description>
+	<field type="string" id="username" label="Username">
+  		<helpText>DELL OpenManage Enterprise User Name</helpText>
+  	</field>
+  		<field type="password" id="password" label="Password">
+  		<helpText>DELL OpenManage Enterprise Password</helpText>
+  	</field>
+	<field type="string" id="ipaddress" label="IP Address">
+  		<helpText>DELL OpenManage Enterprise IP Address or Hostname</helpText>
+  	</field>
+  	<field type="boolean" id="enablessl" label="Enable SSL">
+  		<helpText>Enable SSL (check this if your DELL OpenManage Enterprise instance supports SSL)</helpText>
+  	</field>
+  <testConnection method="CUSTOM" />
+  <operation types="QUERY">
+          <queryFilter grouping="noNestingImplicitAnd">
+            <operator id="EQUALS" label="Equal To"/>
+            <operator id="GREATER_THAN_OR_EQUALS" label="Greater Than Or Equal"/>
+            <operator id="LESS_THAN_OR_EQUALS" label="Less Than Or Equal"/>
+          </queryFilter>
+  </operation> 
+</GenericConnectorDescriptor>

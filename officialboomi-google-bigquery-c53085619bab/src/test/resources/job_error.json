@@ -1,0 +1,21 @@
+{
+  "id": "myJobId",
+  "state": "DONE",
+  "jobReference": {
+    "location": "myLocation",
+    "jobId": "myJobId"
+  },
+  "errorResult": {
+    "reason": "notFound",
+    "location": "US",
+    "message": "Not found"
+  },
+  "status": {
+    "errorResult": {
+      "reason": "notFound",
+      "location": "US",
+      "message": "Not found"
+    },
+    "state": "FAIL"
+  }
+}

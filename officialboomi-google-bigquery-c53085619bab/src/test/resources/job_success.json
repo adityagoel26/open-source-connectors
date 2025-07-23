@@ -1,0 +1,32 @@
+{
+  "id": "myJobId",
+  "state": "DONE",
+  "jobReference": {
+    "location": "myLocation",
+    "jobId": "myJobId"
+  },
+  "state": "DONE",
+  "statistics": {
+    "creationTime": "1641928278074",
+    "startTime": "1641928278196",
+    "endTime": "1641928279819",
+    "totalBytesProcessed": "0",
+    "query": {
+      "totalPartitionsProcessed": "0",
+      "totalBytesProcessed": "0",
+      "totalBytesBilled": "0",
+      "billingTier": 0,
+      "cacheHit": false,
+      "referencedTables": [
+        {
+          "projectId": "qasandbox-151720",
+          "datasetId": "QA_Dataset_1",
+          "tableId": "3324970510711682879"
+        }
+      ]
+    }
+  },
+  "status": {
+    "state": "DONE"
+  }
+}

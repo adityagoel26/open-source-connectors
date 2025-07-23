@@ -1,0 +1,60 @@
+// Copyright (c) 2024 Boomi, LP
+
+plugins {
+    id 'com.boomi.connector' version "${boomiConnectorVersion}"
+    id 'net.researchgate.release' version "${releasePluginVersion}"
+    id "org.sonarqube" version "3.0"
+    id 'jacoco'
+}
+
+group = "${snowflakeGroup}"
+description = "${snowflakeDescription}"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+connector {
+    sdkVersion '2.18.2'
+    className 'com.boomi.snowflake.SnowflakeConnector'
+}
+
+dependencies {
+    api 'com.boomi.connsdk:connector-sdk-util'
+    api 'com.fasterxml.jackson.core:jackson-databind:2.15.0'
+    implementation 'com.boomi.util:boomi-util:2.3.12'
+    api 'com.boomi.util:boomi-json-util:1.2.1'
+    testImplementation 'com.boomi.util:common-lite:1.1.0'
+    api 'net.snowflake:snowflake-jdbc:3.22.0'
+    api 'org.apache.commons:commons-dbcp2:2.8.0'
+    testImplementation 'com.boomi.connsdk:connector-sdk-test-util'
+    testImplementation 'org.mockito:mockito-core:2.22.0'
+    testImplementation 'org.powermock:powermock-core:2.0.9'
+    testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
+    testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
+    api 'org.bouncycastle:bcpkix-jdk15to18:1.78'
+    testImplementation 'com.h2database:h2:2.1.214'
+}
+
+test {
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
+
+release {
+    preTagCommitMessage = '[Gradle Release Plugin] - release tag: '
+    newVersionCommitMessage = '[skip ci] [Gradle Release Plugin] - increment version for next development iteration: '
+    buildTasks = ['build']
+    git {
+        requireBranch.set('master')
+        pushOptions.set(['--dry-run'])
+    }
+}

@@ -1,0 +1,6 @@
+{
+  "view": {
+    "query": "select * from `qasandbox-151720.Tango_testing.IT_no_delete`",
+    "useLegacySql": false
+  }
+}

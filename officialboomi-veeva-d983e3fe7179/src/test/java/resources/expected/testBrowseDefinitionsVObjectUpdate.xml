@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ObjectDefinitions>
+    <definition elementName="/product__v" inputType="json">
+        <jsonSchema>
+            {"$schema":"http://json-schema.org/schema#","product__v":{"type":"array","items":{"type":"object","properties":{"external_id__v":{"description":"External
+            ID","type":"string","maxLength":50},"abbreviation__c":{"description":"Product
+            Abbreviation","type":"string","maxLength":10},"global_id__sys":{"description":"Global
+            ID","type":"string","maxLength":200},"name__v":{"description":"Product
+            Name","type":"string","maxLength":128},"modified_by__v":{"description":"Last Modified
+            By","type":"string"},"modified_date__v":{"format":"date-time","description":"Last Modified
+            Date","type":"string"},"ctn_flag__v":{"description":"CTN Product for
+            Japan","type":"boolean"},"link__sys":{"description":"Link","type":"string","maxLength":255},"cdx_id__v":{"description":"CDX
+            ID","type":"string","maxLength":50},"created_date__v":{"format":"date-time","description":"Created
+            Date","type":"string"},"id":{"description":"ID","type":"string"},"status__v":{"description":"Status","type":"string"},"created_by__v":{"description":"Created
+            By","type":"string"},"ctn_data__v":{"description":"CTN Related Information / 治験届関連情報","type":"string"}}}}}
+        </jsonSchema>
+    </definition>
+    <definition elementName="/editResponse" outputType="json">
+        <jsonSchema>{
+            "$schema": "http://json-schema.org/schema#",
+            "editResponse": {
+            "type": "object",
+            "properties": {
+            "responseStatus": {
+            "type": "string"
+            },
+            "responseMessage": {
+            "type": "string"
+            },
+            "data": {
+            "type": "array",
+            "items": {
+            "type": "object",
+            "properties": {
+            "responseStatus": {
+            "type": "string"
+            },
+            "data": {
+            "type": "object",
+            "properties": {
+            "id": {
+            "type": "string"
+            },
+            "url": {
+            "type": "string"
+            }
+            }
+            },
+            "errors": {
+            "type": "array",
+            "items": {
+            "type": "object",
+            "properties": {
+            "type": {
+            "type": "string"
+            },
+            "message": {
+            "type": "string"
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        </jsonSchema>
+    </definition>
+</ObjectDefinitions>

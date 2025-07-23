@@ -1,0 +1,94 @@
+[
+  {
+    "name": "id",
+    "type": "id",
+    "length": 20,
+    "editable": false,
+    "queryable": true,
+    "required": true,
+    "multivalue": false,
+    "onCreateEditable": false
+  }, {
+  "name": "source_doc_id__v",
+  "type": "id",
+  "length": 20,
+  "editable": false,
+  "queryable": true,
+  "required": true,
+  "multivalue": false,
+  "onCreateEditable": false
+}, {
+  "name": "source_major_version__v",
+  "type": "Integer",
+  "length": 10,
+  "editable": false,
+  "queryable": true,
+  "required": false,
+  "multivalue": false,
+  "onCreateEditable": false
+}, {
+  "name": "source_minor_version__v",
+  "type": "Integer",
+  "length": 10,
+  "editable": false,
+  "queryable": true,
+  "required": false,
+  "multivalue": false,
+  "onCreateEditable": false
+}, {
+  "name": "target_doc_id__v",
+  "type": "id",
+  "length": 20,
+  "editable": false,
+  "queryable": true,
+  "required": true,
+  "multivalue": false,
+  "onCreateEditable": true
+}, {
+  "name": "target_major_version__v",
+  "type": "Integer",
+  "length": 10,
+  "editable": false,
+  "queryable": true,
+  "required": false,
+  "multivalue": false,
+  "onCreateEditable": true
+}, {
+  "name": "target_minor_version__v",
+  "type": "Integer",
+  "length": 10,
+  "editable": false,
+  "queryable": true,
+  "required": false,
+  "multivalue": false,
+  "onCreateEditable": true
+}, {
+  "name": "relationship_type__v",
+  "type": "String",
+  "length": 255,
+  "editable": false,
+  "queryable": true,
+  "required": true,
+  "multivalue": false,
+  "onCreateEditable": true
+}, {
+  "name": "created_date__v",
+  "type": "DateTime",
+  "length": 0,
+  "editable": false,
+  "queryable": true,
+  "required": false,
+  "multivalue": false,
+  "onCreateEditable": false
+}, {
+  "name": "created_by__v",
+  "type": "ObjectReference",
+  "length": 10,
+  "object": "users",
+  "editable": false,
+  "queryable": true,
+  "required": false,
+  "multivalue": false,
+  "onCreateEditable": false
+}
+]

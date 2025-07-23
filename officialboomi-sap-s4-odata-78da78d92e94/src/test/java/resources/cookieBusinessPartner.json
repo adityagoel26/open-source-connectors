@@ -1,0 +1,178 @@
+{
+	"properties": {
+		"/to_BuPaIndustry/IndustrySector": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerAddress/BusinessPartner": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerRole/BusinessPartner": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/OrganizationFoundationDate": {
+			"type": "DateTime"
+		},
+		"/to_Customer": {
+			"entitySetName": "A_Customer",
+			"isNavigationProperty": true,
+			"type": "API_BUSINESS_PARTNER.A_CustomerType"
+		},
+		"/to_BuPaIdentification/BusinessPartner": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/IsFemale": {
+			"type": "Boolean"
+		},
+		"/to_BusinessPartnerAddress/AddressID": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerRole": {
+			"entitySetName": "A_BusinessPartnerRole",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_BusinessPartnerRoleType"
+		},
+		"/IsSexUnknown": {
+			"type": "Boolean"
+		},
+		"/BirthDate": {
+			"type": "DateTime"
+		},
+		"/to_Supplier": {
+			"entitySetName": "A_Supplier",
+			"isNavigationProperty": true,
+			"type": "API_BUSINESS_PARTNER.A_SupplierType"
+		},
+		"/to_Supplier/Supplier": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/LastChangeTime": {
+			"type": "Time"
+		},
+		"/to_BusinessPartnerTax/BusinessPartner": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Customer/Customer": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/BusinessPartnerUUID": {
+			"type": "Guid"
+		},
+		"/to_BuPaIndustry": {
+			"entitySetName": "A_BuPaIndustry",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_BuPaIndustryType"
+		},
+		"/to_BusinessPartnerBank/BankIdentification": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerContact/BusinessPartnerPerson": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerRole/BusinessPartnerRole": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerContact/RelationshipNumber": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerContact/BusinessPartnerCompany": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/CreationDate": {
+			"type": "DateTime"
+		},
+		"/OrganizationLiquidationDate": {
+			"type": "DateTime"
+		},
+		"/IsMarkedForArchiving": {
+			"type": "Boolean"
+		},
+		"/to_BuPaIdentification/BPIdentificationNumber": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/IsMale": {
+			"type": "Boolean"
+		},
+		"/to_BuPaIndustry/BusinessPartner": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerTax/BPTaxType": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/LastChangeDate": {
+			"type": "DateTime"
+		},
+		"/to_BusinessPartnerBank": {
+			"entitySetName": "A_BusinessPartnerBank",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_BusinessPartnerBankType"
+		},
+		"/to_BusinessPartnerAddress": {
+			"entitySetName": "A_BusinessPartnerAddress",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_BusinessPartnerAddressType"
+		},
+		"/CreationTime": {
+			"type": "Time"
+		},
+		"/to_BuPaIdentification": {
+			"entitySetName": "A_BuPaIdentification",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_BuPaIdentificationType"
+		},
+		"/to_BuPaIdentification/BPIdentificationType": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerTax": {
+			"entitySetName": "A_BusinessPartnerTaxNumber",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_BusinessPartnerTaxNumberType"
+		},
+		"/to_BuPaIndustry/IndustrySystemType": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerContact": {
+			"entitySetName": "A_BusinessPartnerContact",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_BusinessPartnerContactType"
+		},
+		"/BusinessPartnerIsBlocked": {
+			"type": "Boolean"
+		},
+		"/to_BusinessPartnerBank/BusinessPartner": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerContact/ValidityEndDate": {
+			"type": "DateTime"
+		},
+		"/BusinessPartner": {
+			"isKey": true,
+			"type": "String"
+		}
+	}
+}

@@ -1,0 +1,28 @@
+{
+  "id": "testid:US.job_tu9KRt9lza0fgOA1YVPWfMnFMScY",
+  "kind": "bigquery#job",
+  "jobReference": {
+    "projectId": "testid",
+    "jobId": "job_tu9KRt9lza0fgOA1YVPWfMnFMScY",
+    "location": "US"
+  },
+  "state": "DONE",
+  "errorResult": {
+    "reason": "invalidQuery",
+    "location": "query",
+    "message": "Error on query"
+  },
+  "statistics": {
+    "creationTime": "1641222663588",
+    "startTime": "1641222663614",
+    "endTime": "1641222663614"
+  },
+  "status": {
+    "errorResult": {
+      "reason": "invalidQuery",
+      "location": "query",
+      "message": "Error on query"
+    },
+    "state": "DONE"
+  }
+}

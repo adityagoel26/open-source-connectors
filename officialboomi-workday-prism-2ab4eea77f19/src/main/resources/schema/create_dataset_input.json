@@ -1,0 +1,130 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+   "required": [
+    "name",
+    "displayName",
+    "fields"
+  ],
+  "properties": {
+    "name": {
+      "$id": "#/properties/name",
+      "type": "string",
+      "title": "The Name Schema",
+      "default": "",
+      "examples": [
+        "Dell_Boomi_Table_1"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "displayName": {
+      "$id": "#/properties/displayName",
+      "type": "string",
+      "title": "The Displayname Schema",
+      "default": "",
+      "examples": [
+        "Created using Postman"
+      ],
+      "pattern": "^(.*)$"
+    },
+    "fields": {
+      "$id": "#/properties/fields",
+      "type": "array",
+      "title": "The Fields Schema",
+      "items": {
+        "$id": "#/properties/fields/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "ordinal",
+          "name",
+          "description",
+          "precision",
+          "scale",
+          "type"
+        ],
+        "properties": {
+          "ordinal": {
+            "$id": "#/properties/fields/items/properties/ordinal",
+            "type": "integer",
+            "title": "The Ordinal Schema",
+            "default": 0,
+            "examples": [
+              1
+            ]
+          },
+          "name": {
+            "$id": "#/properties/fields/items/properties/name",
+            "type": "string",
+            "title": "The Name Schema",
+            "default": "",
+            "examples": [
+              "Employee"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "description": {
+            "$id": "#/properties/fields/items/properties/description",
+            "type": "string",
+            "title": "The Description Schema",
+            "default": "",
+            "examples": [
+              "Employee"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "precision": {
+            "$id": "#/properties/fields/items/properties/precision",
+            "type": "integer",
+            "title": "The Precision Schema",
+            "default": 0,
+            "examples": [
+              255
+            ]
+          },
+          "scale": {
+            "$id": "#/properties/fields/items/properties/scale",
+            "type": "integer",
+            "title": "The Scale Schema",
+            "default": 0,
+            "examples": [
+              0
+            ]
+          },
+          "type": {
+            "$id": "#/properties/fields/items/properties/type",
+            "type": "object",
+            "title": "The Type Schema",
+            "required": [
+              "id",
+              "descriptor"
+            ],
+            "properties": {
+              "id": {
+                "$id": "#/properties/fields/items/properties/type/properties/id",
+                "type": "string",
+                "title": "The Id Schema",
+                "default": "",
+                "examples": [
+                  "fdd7dd26156610006a12d4fd1ea300ce"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "descriptor": {
+                "$id": "#/properties/fields/items/properties/type/properties/descriptor",
+                "type": "string",
+                "title": "The Descriptor Schema",
+                "default": "",
+                "examples": [
+                  "Text"
+                ],
+                "pattern": "^(.*)$"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1071 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenericConnectorDescriptor requireConnectionForBrowse="true" browsingType="any">
+    <field id="connectionString" label="Connection URL*" type="string">
+        <helpText>Replace ACCOUNTNAME with the full account name provided by Snowflake, it may include [account].[region_id].[platform] </helpText>
+        <defaultValue>jdbc:snowflake://ACCOUNTNAME.snowflakecomputing.com</defaultValue>
+    </field>
+    <field  id="user" label="User Name*" type="string">
+        <helpText>Snowflake username</helpText>
+    </field>
+    <field id="password" label="Password*" type="password">
+        <helpText>Snowflake password, leave it empty to use key pair authentication</helpText>
+    </field>
+
+    <field id="privateKeyString" label="Private Key String" type="password">
+        <helpText>User private key, leave it empty to use username/password authentication</helpText>
+    </field>
+    <field id="passphrase" label="Passphrase" type="password">
+        <helpText>Passphrase for your private key, leave it empty if none</helpText>
+    </field>
+    
+    <field id="warehouse" label="Warehouse Name" type="string">
+        <helpText>Warehouse name, Case-sensitive if written between double quotation marks.</helpText>
+        <defaultValue>COMPUTE_WH</defaultValue>
+    </field>
+    <field id="db" label="Database Name" type="string">
+        <helpText>Database name, Case-sensitive if written between double quotation marks.</helpText>
+        <defaultValue>DEMO_DB</defaultValue>
+    </field>
+    <field id="schema" label="Schema Name" type="string">
+        <helpText>Schema name, Case-sensitive if written between double quotation marks.</helpText>
+        <defaultValue>PUBLIC</defaultValue>
+    </field>
+    <field id="role" label="Role" type="string">
+        <helpText>Role to be used, Case-sensitive if written between double quotation marks.</helpText>
+        <defaultValue>SYSADMIN</defaultValue>
+    </field>
+    <field type="string" id="awsAccessKey" label="S3 Access Key ID">
+        <helpText>Enter the access key for your AWS account. You manage access keys for your AWS account using
+            the AWS Management Console as the AWS account root user.
+            Leave the field empty to not use bulk loading through AWS S3.
+        </helpText>
+    </field>
+    <field type="password" id="awsSecret" label="S3 Secret Key">
+        <helpText>Enter the secret access key for your AWS account. When you create an access key, AWS allows
+            you to view and download your secret key.
+            Leave the field empty to not use bulk loading through AWS S3.
+        </helpText>
+    </field>
+    <field id="dateTimeFormat" label="Date Time Format" type="string" displayType="list">
+        <helpText>Date and time format used in the database</helpText>
+        <defaultValue>yyyyMMdd HHmmss.SSS</defaultValue>
+        <allowedValue label = "yyyyMMdd HHmmss.SSS">
+            <value>yyyyMMdd HHmmss.SSS</value>
+        </allowedValue>
+        <allowedValue label = "yyyyMMdd HHmmss">
+            <value>yyyyMMdd HHmmss</value>
+        </allowedValue>
+        <allowedValue label = "yyyy-MM-dd'T'HH:mm:ss">
+            <value>yyyy-MM-dd'T'HH:mm:ss</value>
+        </allowedValue>
+        <allowedValue label = "yyyy-MM-dd'T'HH:mm:ssZ">
+            <value>yyyy-MM-dd'T'HH:mm:ssZ</value>
+        </allowedValue>
+        <allowedValue label = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'">
+            <value>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</value>
+        </allowedValue>
+        <allowedValue label = "AUTO">
+            <value>auto</value>
+        </allowedValue>
+    </field>
+    <field id="dateFormat" label="Date Format" type="string" displayType="list">
+        <helpText>Date format used in the database</helpText>
+        <defaultValue>MMddyyyy</defaultValue>
+        <allowedValue label = "MMddyyyy">
+            <value>MMddyyyy</value>
+        </allowedValue>
+        <allowedValue label = "MM/dd/yyyy">
+            <value>MM/dd/yyyy</value>
+        </allowedValue>
+        <allowedValue label = "MM-dd-yyyy">
+            <value>MM-dd-yyyy</value>
+        </allowedValue>
+        <allowedValue label = "MMddyy">
+            <value>MMddyy</value>
+        </allowedValue>
+        <allowedValue label ="yyyy-MM-dd">
+            <value>yyyy-MM-dd</value>
+        </allowedValue>
+        <allowedValue label = "AUTO">
+            <value>auto</value>
+        </allowedValue>
+    </field>
+    <field id="timeFormat" label="Time Format" type="string" displayType="list">
+        <helpText>Time format used in the database</helpText>
+        <defaultValue>HHmmss.SSS</defaultValue>
+        <allowedValue label ="HHmmss.SSS">
+            <value>HHmmss.SSS</value>
+        </allowedValue>
+        <allowedValue label = "AUTO">
+            <value>auto</value>
+        </allowedValue>
+    </field>
+     <field id="enablePooling" label="Enable Connection Pooling" type="boolean">
+         <helpText>Select to enable connection pooling and make other fields active. If this is not enabled, then values for the other fields which are invisible are not saved including the defaults. Connection pooling may increase performance by using resources more efficiently.</helpText>
+         <defaultValue>false</defaultValue>
+    </field>
+	<field id="maximumConnections" label="Maximum Connections" type="integer">
+        <helpText>Enter the maximum number of connections allowed in the pool at any time. The default is -1, which indicates an unlimited number of connections. You will receive an error if you attempt to exceed the maximum.</helpText>
+        <defaultValue>-1</defaultValue>
+        <visibilityCondition>
+			<valueCondition fieldId="enablePooling">
+				<value>true</value>
+			</valueCondition>
+		</visibilityCondition>
+    </field>
+    <field id="minimumConnections" label="Minimum Connections" type="integer">
+        <helpText>Enter the minimum number of connections allowed in the pool at all times. The default is 0.</helpText>
+        <defaultValue>0</defaultValue>
+        <visibilityCondition>
+			<valueCondition fieldId="enablePooling">
+				<value>true</value>
+			</valueCondition>
+		</visibilityCondition>
+    </field>
+    <field id="maximumIdleTime" label="Maximum Idle Time" type="integer">
+        <helpText>Enter the length of time in seconds that a connection can remain open in an idle state. The default is 0.</helpText>
+        <defaultValue>0</defaultValue>
+        <visibilityCondition>
+			<valueCondition fieldId="enablePooling">
+				<value>true</value>
+			</valueCondition>
+		</visibilityCondition>
+    </field>
+    <field id="whenExhaustedAction" label="When Exhausted Action" type="string" displayType="list">
+        <helpText>Indicate whether to wait for a connection or immediately fail when a connection pool becomes exhausted.</helpText>
+        <defaultValue>Wait for Connection</defaultValue>
+        <allowedValue label ="Wait for Connection">
+            <value>0</value>
+        </allowedValue>
+        <allowedValue label ="Immediately Fail">
+            <value>1</value>
+        </allowedValue>
+        <visibilityCondition>
+			<valueCondition fieldId="enablePooling">
+				<value>true</value>
+			</valueCondition>
+		</visibilityCondition>
+    </field>
+    <field id="maximumWaitTime" label="Maximum Wait Time" type="integer">
+        <helpText>Enter the length of time in seconds to wait for a connection from the pool. The default is 0.</helpText>
+        <defaultValue>0</defaultValue>
+        <visibilityCondition>
+			<valueCondition fieldId="enablePooling">
+				<value>true</value>
+			</valueCondition>
+		</visibilityCondition>
+    </field>
+    <field id="testOnBorrow" label="Test Connection When Borrowing From Pool" type="boolean">
+        <helpText>Select an option to determine when to test if a connection is still valid.</helpText>
+        <defaultValue>false</defaultValue>
+        <visibilityCondition>
+			<valueCondition fieldId="enablePooling">
+				<value>true</value>
+			</valueCondition>
+		</visibilityCondition>
+    </field>
+    <field id="testOnReturn" label="Test Connection When Returning From Pool" type="boolean">
+        <helpText>Select an option to determine when to test if a connection is still valid.</helpText>
+        <defaultValue>false</defaultValue>
+        <visibilityCondition>
+			<valueCondition fieldId="enablePooling">
+				<value>true</value>
+			</valueCondition>
+		</visibilityCondition>
+    </field>
+    <field id="testWhileIdle" label="Test Idle Connections" type="boolean">
+        <helpText>Select an option to determine when to test if a connection is still valid.</helpText>
+        <defaultValue>false</defaultValue>
+        <visibilityCondition>
+			<valueCondition fieldId="enablePooling">
+				<value>true</value>
+			</valueCondition>
+		</visibilityCondition>
+    </field>
+    <field id="validationQuery" label="Validation Query" type="string">
+        <helpText>Enter a simple SQL Statement to return a single row of data that indicates if the connection is valid.</helpText>
+        <visibilityCondition>
+			<valueCondition fieldId="enablePooling">
+				<value>true</value>
+			</valueCondition>
+		</visibilityCondition>
+    </field>
+
+    <testConnection method="CUSTOM" />
+    
+    <operation types="GET">
+   		<field id="documentBatching" label="Document Batching" type="boolean" scope="browseOnly">
+            <helpText>The records retrieved from database are batched in the output.</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="batchSize" label="Batch Size" type="integer">
+            <helpText>The number of records retrieved per output document for document batching. Batch Size will be ignored unless the document batching check box is enabled in the import page.</helpText>
+            <defaultValue>1</defaultValue>
+        </field>
+        <field id="enableConnectionOverride" label="Override Connection Settings" type="boolean" scope="browseOnly">
+            <helpText>Override Database and Schema</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="db" label="Database Name" type="string" scope="browseOnly">
+            <helpText>Database name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="schema" label="Schema Name" type="string"  scope="browseOnly">
+            <helpText>Schema name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+    </operation>
+    
+    <operation types="QUERY" allowFieldSelection="true">
+    	<field id="documentBatching" label="Document Batching" type="boolean" scope="browseOnly">
+            <helpText>The records retrieved from database are batched in the output.</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="enableConnectionOverride" label="Override Connection Settings" type="boolean" scope="browseOnly">
+            <helpText>Override Database and Schema</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="db" label="Database Name" type="string" scope="browseOnly">
+            <helpText>Database name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="schema" label="Schema Name" type="string"  scope="browseOnly">
+            <helpText>Schema name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="batchSize" label="Batch Size" type="integer">
+            <helpText>The number of records retrieved per output document for document batching. Batch Size will be ignored unless the document batching check box is enabled in the import page.</helpText>
+            <defaultValue>1</defaultValue>
+        </field>
+        <queryFilter grouping="noNestingImplicitAnd" sorting="unbounded">
+            <operator id="LIKE" label="Like"/>
+            <operator id="EQUALS" label="Equal To"/>
+            <operator id="NOT_EQUALS" label="Not Equal To"/>
+            <operator id="GREATER_THAN" label="Greater Than"/>
+            <operator id="LESS_THAN" label="Less Than"/>
+            <operator id="GREATER_THAN_OR_EQUALS" label="Greater Than Or Equal"/>
+            <operator id="LESS_THAN_OR_EQUALS" label="Less Than Or Equal"/>
+            <sortOrder id="asc" label="Ascending">
+                <supportedType type="string" />
+                <supportedType type="number" />
+            </sortOrder>
+            <sortOrder id="desc" label="Descending">
+                <supportedType type="string" />
+                <supportedType type="number" />
+            </sortOrder>
+            <sortOrder id="asc_nulls_first" label="Ascending - Nulls sorted first">
+                <supportedType type="string" />
+            </sortOrder>
+            <sortOrder id="asc_nulls_Last" label="Ascending - Nulls sorted last">
+                <supportedType type="string" />
+            </sortOrder>
+            <sortOrder id="desc_nulls_first" label="Descending - Nulls sorted first">
+                <supportedType type="string" />
+            </sortOrder>
+            <sortOrder id="desc_nulls_Last" label="Descending - Nulls sorted last">
+                <supportedType type="string" />
+            </sortOrder>
+        </queryFilter>
+    </operation>
+    <operation types="CREATE">
+        <field id="truncate" label="Truncate before loading" type="boolean">
+            <helpText>Empty snowflake table before loading data into it.</helpText>
+        </field>
+        <field id="batchSize" label="Batch Size" type="integer">
+            <helpText>The number of records sent per database query</helpText>
+            <defaultValue>1</defaultValue>
+        </field>
+        <field id="returnResults" label="Return Results" type="boolean">
+            <helpText>Returns the Result in array format if checked.</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+		<field id="inputOptionsForMissingFields" label="Input Options for Missing Fields" displayType="list" type="string">
+			<helpText>Allow the customer to choose from empty value input behavior.</helpText>
+			<defaultValue>AUTO</defaultValue>
+			<allowedValue label="NULL for empty fields">
+			<value>SELECT_NULL</value>
+			</allowedValue>
+			<allowedValue label="Snowflake defaults for empty fields">
+			<value>SELECT_DEFAULT</value>
+			</allowedValue>
+		</field>
+        <field id="enableConnectionOverride" label="Override Connection Settings" type="boolean" scope="browseOnly">
+            <helpText>Override Database and Schema</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="db" label="Database Name" type="string" scope="browseOnly">
+            <helpText>Database name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="schema" label="Schema Name" type="string"  scope="browseOnly">
+            <helpText>Schema name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+		</field>
+    </operation>
+    
+    <operation types="UPDATE">
+        <field id="batchSize" label="Batch Size" type="integer">
+            <helpText>The number of update operations per database query.</helpText>
+            <defaultValue>1</defaultValue>
+        </field>
+        <field id="columns" label="Unique Key(s) (comma separated)" type="string">
+            <helpText>Used as a primary key.</helpText>
+        </field>
+        <field id="enableConnectionOverride" label="Override Connection Settings" type="boolean" scope="browseOnly">
+            <helpText>Override Database and Schema</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="db" label="Database Name" type="string" scope="browseOnly">
+            <helpText>Database name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="schema" label="Schema Name" type="string"  scope="browseOnly">
+            <helpText>Schema name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+    </operation>
+    <operation types="DELETE">
+        <field id="batchSize" label="Batch Size" type="integer">
+            <helpText>The number of delete operations per database query.</helpText>
+            <defaultValue>1</defaultValue>
+        </field>
+        <field id="columns" label="Unique Key(s) (comma separated)" type="string">
+            <helpText>Used as a primary key.</helpText>
+        </field>
+        <field id="enableConnectionOverride" label="Override Connection Settings" type="boolean" scope="browseOnly">
+            <helpText>Override Database and Schema</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="db" label="Database Name" type="string" scope="browseOnly">
+            <helpText>Database name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="schema" label="Schema Name" type="string"  scope="browseOnly">
+            <helpText>Schema name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+    </operation>
+    <operation types="EXECUTE" customTypeId="EXECUTE" customTypeLabel="EXECUTE">
+        <field id="batchSize" label="Batch Size" type="integer">
+            <helpText>The number of parameter values per database call.</helpText>
+            <defaultValue>1</defaultValue>
+        </field>
+        <field id="enableConnectionOverride" label="Override Connection Settings" type="boolean" scope="browseOnly">
+            <helpText>Override Database and Schema</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="db" label="Database Name" type="string" scope="browseOnly">
+            <helpText>Database name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="schema" label="Schema Name" type="string"  scope="browseOnly">
+            <helpText>Schema name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+    </operation>
+    <operation types="EXECUTE" customTypeId="snowSQL" customTypeLabel="Snow SQL">
+        <field id="sqlScript" label="SQL Script" type="string" displayType = "textarea">
+            <helpText>
+                Snow SQL script to be executed.
+            </helpText>
+        </field>
+        <field id="numberOfScriptsNonZero" label="Number of SnowSQL Statements" type="integer">
+	<helpText>The number of SnowSQL statements per database call for Multi-Statement support. Ensure you enter the exact number of statements in your SQL Script for successful execution. The default value is set to 1.</helpText>
+	<defaultValue>1</defaultValue>
+        </field>
+        <field id="returnResults" label="Return Results" type="boolean">
+            <helpText>Batch Size must be set to 1 in order to get return results from the SnowSQL operation.</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="batchSize" label="Batch Size" type="integer">
+            <helpText>Represents the number of requests per database call. SnowSQL operation returns results of the Query executed in SQL script if batch size is equal to 1.</helpText>
+            <defaultValue>1</defaultValue>
+        </field>
+    </operation>
+    <operation types="EXECUTE" customTypeId="bulkLoad" customTypeLabel="Bulk Load">
+        <field id="enableConnectionOverride" label="Override Connection Settings" type="boolean" scope="browseOnly">
+            <helpText>Override Database and Schema</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="db" label="Database Name" type="string" scope="browseOnly">
+            <helpText>Database name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="schema" label="Schema Name" type="string"  scope="browseOnly">
+            <helpText>Schema name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="truncate" label="Truncate before loading" type="boolean">
+            <helpText>Empty snowflake table before loading data into it.</helpText>
+        </field>
+        <field id="awsBucketName" label="S3 Bucket Name" type="string" overrideable="true">
+            <helpText>AWS S3 bucket name.</helpText>
+        </field>
+        <field type="string" id="awsRegion" label="AWS Region" displayType="list" overrideable="true">
+            <helpText>Select the name of the AWS Region in which your account resides.</helpText>
+            <defaultValue> </defaultValue>
+            <allowedValue label="">
+                <value></value>
+            </allowedValue>
+            <allowedValue label="ap-east-1">
+                <value>ap-east-1</value>
+            </allowedValue>
+            <allowedValue label="ap-northeast-1">
+                <value>ap-northeast-1</value>
+            </allowedValue>
+            <allowedValue label="ap-northeast-2">
+                <value>ap-northeast-2</value>
+            </allowedValue>
+            <allowedValue label="ap-northeast-3">
+                <value>ap-northeast-3</value>
+            </allowedValue>
+            <allowedValue label="ap-south-1">
+                <value>ap-south-1</value>
+            </allowedValue>
+            <allowedValue label="ap-southeast-1">
+                <value>ap-southeast-1</value>
+            </allowedValue>
+            <allowedValue label="ap-southeast-2">
+                <value>ap-southeast-2</value>
+            </allowedValue>
+            <allowedValue label="ca-central-1">
+                <value>ca-central-1</value>
+            </allowedValue>
+            <allowedValue label="cn-north-1cn">
+                <value>cn-north-1cn</value>
+            </allowedValue>
+            <allowedValue label="cn-northwest-1cn">
+                <value>cn-northwest-1cn</value>
+            </allowedValue>
+            <allowedValue label="eu-central-1">
+                <value>eu-central-1</value>
+            </allowedValue>
+            <allowedValue label="eu-north-1">
+                <value>eu-north-1</value>
+            </allowedValue>
+            <allowedValue label="eu-west-1">
+                <value>eu-west-1</value>
+            </allowedValue>
+            <allowedValue label="eu-west-2">
+                <value>eu-west-2</value>
+            </allowedValue>
+            <allowedValue label="eu-west-3">
+                <value>eu-west-3</value>
+            </allowedValue>
+            <allowedValue label="sa-east-1">
+                <value>sa-east-1</value>
+            </allowedValue>
+            <allowedValue label="us-east-1">
+                <value>us-east-1</value>
+            </allowedValue>
+            <allowedValue label="us-east-2">
+                <value>us-east-2</value>
+            </allowedValue>
+            <allowedValue label="us-west-1">
+                <value>us-west-1</value>
+            </allowedValue>
+            <allowedValue label="us-west-2">
+                <value>us-west-2</value>
+            </allowedValue>
+        </field>
+        <field id="stageName" label="Internal Stage Name" type="string" overrideable="true">
+            <helpText>Snowflake internal stage name. Leave the field empty to not use internal staging. Case-sensitive if written between double quotation marks.</helpText>
+        </field>
+        <field id="filePath" label="Internal Source Files Path" type="string" overrideable="true">
+            <helpText>File path in this format: [path_to_file]/[filename].
+                Path and name of the file(s) to upload. Wildcard characters (*, ?) are supported to enable uploading multiple files in a directory. Leave the field empty if not using internal staging.</helpText>
+        </field>
+        <field type="integer" id="parallelUpload" label="Parallelism">
+            <helpText>
+                Specifies the number of threads to use for uploading files.
+                Supported values: Any integer value from 1 (no parallelism) to 99 (use 99 threads for uploading files).
+            </helpText>
+            <defaultValue>4</defaultValue>
+        </field>
+        <field id="sourceCompression" label="PUT Compression" displayType="list" type="string">
+            <helpText>Specifies the method of compression used on already-compressed files that are being staged.</helpText>
+            <defaultValue>AUTO</defaultValue>
+            <allowedValue label="AUTO_DETECT">
+                <value>AUTO</value>
+            </allowedValue>
+            <allowedValue label="GZIP">
+                <value>GZIP</value>
+            </allowedValue>
+            <allowedValue label="BZ2">
+                <value>BZ2</value>
+            </allowedValue>
+            <allowedValue label="BROTLI">
+                <value>BROTLI</value>
+            </allowedValue>
+            <allowedValue label="ZSTD">
+                <value>ZSTD</value>
+            </allowedValue>
+            <allowedValue label="DEFLATE">
+                <value>DEFLATE</value>
+            </allowedValue>
+            <allowedValue label="RAW_DEFLATE">
+                <value>RAW_DEFLATE</value>
+            </allowedValue>
+            <allowedValue label="NONE">
+                <value>NONE</value>
+            </allowedValue>
+        </field>
+        <field id="overwrite" label="Overwrite" type="boolean">
+            <helpText>
+                When checked Snowflake overwrites any existing file with the same name during upload.
+            </helpText>
+        </field>
+        <field id="columns" label="Column Names" type="string">
+            <helpText>Specifies an explicit set of fields/columns (separated by commas) to load from the staged data files.</helpText>
+        </field>
+        <field id="fileFormatName" label="File Format Name" type="string">
+            <helpText>File Format Name already predefined in snowflake. Leave empty if you don't want to use a predifined file format</helpText>
+        </field>
+        <field id="fileFormatType" label="File Format Type" displayType="list" type="string">
+            <helpText>Specifies source file format.</helpText>
+            <defaultValue>CSV</defaultValue>
+            <allowedValue label="CSV">
+                <value>CSV</value>
+            </allowedValue>
+            <allowedValue label="JSON">
+                <value>JSON</value>
+            </allowedValue>
+            <allowedValue label="AVRO">
+                <value>AVRO</value>
+            </allowedValue>
+            <allowedValue label="XML">
+                <value>XML</value>
+            </allowedValue>
+        </field>
+        <field id="compression" label="COPY INTO Compression" displayType="list" type="string">
+            <helpText>Specifies the method of compression used on already-compressed files that are being staged.</helpText>
+            <defaultValue>AUTO</defaultValue>
+            <allowedValue label="AUTO">
+                <value>AUTO</value>
+            </allowedValue>
+            <allowedValue label="GZIP">
+                <value>GZIP</value>
+            </allowedValue>
+            <allowedValue label="BZ2">
+                <value>BZ2</value>
+            </allowedValue>
+            <allowedValue label="BROTLI">
+                <value>BROTLI</value>
+            </allowedValue>
+            <allowedValue label="ZSTD">
+                <value>ZSTD</value>
+            </allowedValue>
+            <allowedValue label="DEFLATE">
+                <value>DEFLATE</value>
+            </allowedValue>
+            <allowedValue label="RAW_DEFLATE">
+                <value>RAW_DEFLATE</value>
+            </allowedValue>
+            <allowedValue label="NONE">
+                <value>NONE</value>
+            </allowedValue>
+        </field>
+        <field id="otherFormatOptions" label="Other Format Options (space separated)" type="string">
+            <helpText>Leave the field empty if no other format option needs to be provided, e.g. snowflake_parameterName_0 = value snowflake_parameterName_1 = value  (space separated)</helpText>
+        </field>
+
+        <field id="copyOptions" label="Copy Options" type="string">
+            <helpText>Leave the field empty if no copy option needs to be provided, e.g. snowflake_parameterName_0 = value snowflake_parameterName_1 = value  (space separated)</helpText>
+        </field>
+        <field id="autoCompress" label="Auto Compress" type="boolean">
+            <helpText>
+                When checked Snowflake uses gzip to compress files during upload.
+            </helpText>
+        </field>
+        <field id="chunkSize" label="Chunk Size (MB)" type="integer">
+            <helpText>Chunking is only available for CSV and JSON file formats (MB), -1 to disable chunking</helpText>
+            <defaultValue>250</defaultValue>
+        </field>
+        <field type="string" id="stageTempPath" label="Stage Path">
+            <helpText>This path will be used as the target location for staging the data prior to copying into Snowflake table. If left empty, an internal default path will be used.</helpText>
+            <defaultValue>boomi/$OPERATION/$DATE/$TIME/$UUID/</defaultValue>
+        </field>
+    </operation>
+    <operation types="EXECUTE" customTypeId="bulkUnload" customTypeLabel="Bulk Unload" trackedDocument="response">
+        <field id="enableConnectionOverride" label="Override Connection Settings" type="boolean" scope="browseOnly">
+            <helpText>Override Database and Schema</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="db" label="Database Name" type="string" scope="browseOnly">
+            <helpText>Database name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="schema" label="Schema Name" type="string"  scope="browseOnly">
+            <helpText>Schema name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="awsBucketName" label="S3 Bucket Name" type="string" overrideable="true">
+               <helpText>AWS S3 bucket name.</helpText>
+           </field>
+           <field type="string" id="awsRegion" label="AWS Region" displayType="list" overrideable="true">
+               <helpText>Select the name of the AWS Region in which your account resides</helpText>
+               <defaultValue> </defaultValue>
+               <allowedValue label="">
+                   <value></value>
+               </allowedValue>
+               <allowedValue label="ap-east-1">
+                   <value>ap-east-1</value>
+               </allowedValue>
+               <allowedValue label="ap-northeast-1">
+                   <value>ap-northeast-1</value>
+               </allowedValue>
+               <allowedValue label="ap-northeast-2">
+                   <value>ap-northeast-2</value>
+               </allowedValue>
+               <allowedValue label="ap-northeast-3">
+                   <value>ap-northeast-3</value>
+               </allowedValue>
+               <allowedValue label="ap-south-1">
+                   <value>ap-south-1</value>
+               </allowedValue>
+               <allowedValue label="ap-southeast-1">
+                   <value>ap-southeast-1</value>
+               </allowedValue>
+               <allowedValue label="ap-southeast-2">
+                   <value>ap-southeast-2</value>
+               </allowedValue>
+               <allowedValue label="ca-central-1">
+                   <value>ca-central-1</value>
+               </allowedValue>
+               <allowedValue label="cn-north-1cn">
+                   <value>cn-north-1cn</value>
+               </allowedValue>
+               <allowedValue label="cn-northwest-1cn">
+                   <value>cn-northwest-1cn</value>
+               </allowedValue>
+               <allowedValue label="eu-central-1">
+                   <value>eu-central-1</value>
+               </allowedValue>
+               <allowedValue label="eu-north-1">
+                   <value>eu-north-1</value>
+               </allowedValue>
+               <allowedValue label="eu-west-1">
+                   <value>eu-west-1</value>
+               </allowedValue>
+               <allowedValue label="eu-west-2">
+                   <value>eu-west-2</value>
+               </allowedValue>
+               <allowedValue label="eu-west-3">
+                   <value>eu-west-3</value>
+               </allowedValue>
+               <allowedValue label="sa-east-1">
+                   <value>sa-east-1</value>
+               </allowedValue>
+               <allowedValue label="us-east-1">
+                   <value>us-east-1</value>
+               </allowedValue>
+               <allowedValue label="us-east-2">
+                   <value>us-east-2</value>
+               </allowedValue>
+               <allowedValue label="us-west-1">
+                   <value>us-west-1</value>
+               </allowedValue>
+               <allowedValue label="us-west-2">
+                   <value>us-west-2</value>
+               </allowedValue>
+           </field>
+           <field id="stageName" label="Internal Stage Name" type="string" overrideable="true">
+               <helpText>Snowflake internal stage name. Leave the field empty to not use internal staging. Case-sensitive if written between double quotation marks.</helpText>
+           </field>
+           <field id="fileFormatName" label="File Format Name" type="string">
+               <helpText>File Format Name already predefined in snowflake. Leave empty if you don't want to use a predefined file format</helpText>
+           </field>
+           <field id="fileFormatType" label="File Format Type" displayType="list" type="string">
+               <helpText>Specifies source file format.</helpText>
+               <defaultValue>CSV</defaultValue>
+               <allowedValue label="CSV">
+                   <value>CSV</value>
+               </allowedValue>
+               <allowedValue label="JSON">
+                   <value>JSON</value>
+               </allowedValue>
+           </field>
+           <field id="compression" label="COPY INTO Compression" displayType="list" type="string">
+               <helpText>Specifies the method of compression used on already-compressed files that are being staged.</helpText>
+               <defaultValue>AUTO</defaultValue>
+               <allowedValue label="AUTO">
+                   <value>AUTO</value>
+               </allowedValue>
+               <allowedValue label="GZIP">
+                   <value>GZIP</value>
+               </allowedValue>
+               <allowedValue label="BZ2">
+                   <value>BZ2</value>
+               </allowedValue>
+               <allowedValue label="DEFLATE">
+                   <value>DEFLATE</value>
+               </allowedValue>
+               <allowedValue label="RAW_DEFLATE">
+                   <value>RAW_DEFLATE</value>
+               </allowedValue>
+               <allowedValue label="NONE">
+                   <value>NONE</value>
+               </allowedValue>
+           </field>
+           <field id="otherFormatOptions" label="Other Format Options (space separated)" type="string">
+               <helpText>Leave the field empty if no other format option needs to be provided, e.g. snowflake_parameterName_0 = value snowflake_parameterName_1 = value  (space separated)</helpText>
+           </field>
+
+           <field id="copyOptions" label="Copy Options" type="string">
+               <helpText>Leave the field empty if no copy option needs to be provided, e.g. snowflake_parameterName_0 = value snowflake_parameterName_1 = value  (space separated)</helpText>
+           </field>
+           <field id="header" label="Include Column Header" type="boolean">
+               <helpText>Set this option to TRUE to include the table column headings in the output files.</helpText>
+           </field>
+           <field type="string" id="stageTempPath" label="Stage Path">
+               <helpText>This path will be used as the target location for staging the data prior to copying into Snowflake table. If left empty, an internal default path will be used.</helpText>
+               <defaultValue>boomi/$OPERATION/$DATE/$TIME/$UUID/</defaultValue>
+           </field>
+       </operation>
+    <operation types="EXECUTE" customTypeId="copyIntoLocation" customTypeLabel="Copy Into Location">
+        <field id="enableConnectionOverride" label="Override Connection Settings" type="boolean" scope="browseOnly">
+            <helpText>Override Database and Schema</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="db" label="Database Name" type="string" scope="browseOnly">
+            <helpText>Database name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="schema" label="Schema Name" type="string"  scope="browseOnly">
+            <helpText>Schema name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="destination" label="Destination" type="string">
+            <helpText>Unloads data from a table (or query) into one or more files in one of the following locations: Named internalStage | Named externalStage (Amazon S3, Google Cloud Storage, or Microsoft Azure) | externalLocation (Amazon S3, Google Cloud Storage, or Microsoft Azure).</helpText>
+        </field>
+        <field id="externalLocationCredentials" label="External Location Credentials" type="password">
+            <helpText>Amazon S3, Google Cloud Storage or Microsoft Azure</helpText>
+        </field>
+        <field id="fileFormatName" label="File Format Name" type="string">
+            <helpText>File Format Name already predefined in snowflake. Leave empty if you don't want to use a predefined file format</helpText>
+        </field>
+        <field id="fileFormatType" label="File Format Type" displayType="list" type="string">
+            <helpText>Specifies source file format.</helpText>
+            <defaultValue>CSV</defaultValue>
+            <allowedValue label="CSV">
+                <value>CSV</value>
+            </allowedValue>
+            <allowedValue label="JSON">
+                <value>JSON</value>
+            </allowedValue>
+            <allowedValue label="PARQUET">
+                <value>PARQUET</value>
+            </allowedValue>
+        </field>
+        <field id="formatCompression" label="Format Compression" displayType="list" type="string">
+            <helpText>Specifies the method of compression used on already-compressed files that are being staged.</helpText>
+            <defaultValue>AUTO</defaultValue>
+            <allowedValue label="AUTO">
+                <value>AUTO</value>
+            </allowedValue>
+            <allowedValue label="GZIP">
+                <value>GZIP</value>
+            </allowedValue>
+            <allowedValue label="BZ2">
+                <value>BZ2</value>
+            </allowedValue>
+            <allowedValue label="DEFLATE">
+                <value>DEFLATE</value>
+            </allowedValue>
+            <allowedValue label="RAW_DEFLATE">
+                <value>RAW_DEFLATE</value>
+            </allowedValue>
+            <allowedValue label="NONE">
+                <value>NONE</value>
+            </allowedValue>
+        </field>
+        <field id="otherFormatOptions" label="Other Format Options (space separated)" type="string">
+            <helpText>Leave the field empty if no other format option needs to be provided, e.g. snowflake_parameterName_0 = value snowflake_parameterName_1 = value  (space separated)</helpText>
+        </field>
+
+        <field id="copyOptions" label="Copy Options" type="string">
+            <helpText>Leave the field empty if no copy option needs to be provided, e.g. snowflake_parameterName_0 = value snowflake_parameterName_1 = value  (space separated)</helpText>
+        </field>
+        <field id="header" label="Include Column Header" type="boolean">
+            <helpText>Set this option to TRUE to include the table column headings in the output files.</helpText>
+        </field>
+    </operation>
+    <operation types="EXECUTE" customTypeId="copyIntoTable" customTypeLabel="Copy Into Table">
+        <field id="enableConnectionOverride" label="Override Connection Settings" type="boolean" scope="browseOnly">
+            <helpText>Override Database and Schema</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="db" label="Database Name" type="string" scope="browseOnly">
+            <helpText>Database name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="schema" label="Schema Name" type="string"  scope="browseOnly">
+            <helpText>Schema name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="columns" label="Column Names" type="string">
+            <helpText>Specifies an explicit set of fields/columns (separated by commas) to load from the staged data files.</helpText>
+        </field>
+        <field id="source" label="Source" type="string">
+            <helpText> internalStage | externalStage | externalLocation </helpText>
+        </field>
+        <field id="externalLocationCredentials" label="External Location Credentials" type="password">
+            <helpText>Amazon S3, Google Cloud Storage or Microsoft Azure</helpText>
+        </field>
+        <field id="files" label="Files" type="string">
+            <helpText> Specifies a list of one or more files names (separated by commas) to be loaded. The files must already have been staged in either the Snowflake internal location or external location specified in the command. </helpText>
+        </field>
+        <field id="pattern" label="PATTERN" type="string">
+            <helpText>A regular expression pattern string, specifying the file names and/or paths to match</helpText>
+        </field>
+        <field id="fileFormatName" label="File Format Name" type="string">
+            <helpText>File Format Name already predefined in snowflake. Leave empty if you don't want to use a predefined file format</helpText>
+        </field>
+        <field id="fileFormatType" label="File Format Type" displayType="list" type="string">
+            <helpText>Specifies source file format.</helpText>
+            <defaultValue>CSV</defaultValue>
+            <allowedValue label="CSV">
+                <value>CSV</value>
+            </allowedValue>
+            <allowedValue label="JSON">
+                <value>JSON</value>
+            </allowedValue>
+            <allowedValue label="AVRO">
+                <value>AVRO</value>
+            </allowedValue>
+            <allowedValue label="ORC">
+                <value>ORC</value>
+            </allowedValue>
+            <allowedValue label="PARQUET">
+                <value>PARQUET</value>
+            </allowedValue>
+            <allowedValue label="XML">
+                <value>XML</value>
+            </allowedValue>
+        </field>
+        <field id="formatCompression" label="Format Compression" displayType="list" type="string">
+            <helpText>Specifies the method of compression used on already-compressed files that are being staged.</helpText>
+            <defaultValue>AUTO</defaultValue>
+            <allowedValue label="AUTO">
+                <value>AUTO</value>
+            </allowedValue>
+            <allowedValue label="GZIP">
+                <value>GZIP</value>
+            </allowedValue>
+            <allowedValue label="BZ2">
+                <value>BZ2</value>
+            </allowedValue>
+            <allowedValue label="DEFLATE">
+                <value>DEFLATE</value>
+            </allowedValue>
+            <allowedValue label="RAW_DEFLATE">
+                <value>RAW_DEFLATE</value>
+            </allowedValue>
+            <allowedValue label="NONE">
+                <value>NONE</value>
+            </allowedValue>
+        </field>
+        <field id="otherFormatOptions" label="Other Format Options (space separated)" type="string">
+            <helpText>Leave the field empty if no other format option needs to be provided, e.g. snowflake_parameterName_0 = value snowflake_parameterName_1 = value  (space separated)</helpText>
+        </field>
+
+        <field id="copyOptions" label="Copy Options" type="string">
+            <helpText>Leave the field empty if no copy option needs to be provided, e.g. snowflake_parameterName_0 = value snowflake_parameterName_1 = value  (space separated)</helpText>
+        </field>
+    </operation>
+    <operation types="EXECUTE" customTypeId="GET" customTypeLabel="Bulk Get">
+        <field id="enableConnectionOverride" label="Override Connection Settings" type="boolean" scope="browseOnly">
+            <helpText>Override Database and Schema</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="db" label="Database Name" type="string" scope="browseOnly">
+            <helpText>Database name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="schema" label="Schema Name" type="string"  scope="browseOnly">
+            <helpText>Schema name, Case-sensitive if written between double quotation marks.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="enableConnectionOverride">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="internalStage" label="Internal Stage" type="string">
+            <helpText>Specifies the location in Snowflake from which to download the files</helpText>
+        </field>
+        <field id="fileName" label="File Name" type="string">
+            <helpText>Specifies the URI for the data file(s) downloaded to the client machine</helpText>
+        </field>
+        <field type="integer" id="parallelUpload" label="Parallelism">
+            <helpText>
+                Specifies the number of threads to use for uploading files.
+                Supported values: Any integer value from 1 (no parallelism) to 99 (use 99 threads for uploading files).
+            </helpText>
+            <defaultValue>10</defaultValue>
+        </field>
+        <field type="string" id="pattern" label="PATTERN">
+            <helpText>
+Specifies a regular expression pattern for filtering files to download. The command lists all files in the specified path and applies the regular expression pattern on each of the files found.
+            </helpText>
+        </field>
+    </operation>
+        <operation types="EXECUTE" customTypeId="PUT" customTypeLabel="Bulk Put">
+            <field id="enableConnectionOverride" label="Override Connection Settings" type="boolean" scope="browseOnly">
+                <helpText>Override Database and Schema</helpText>
+                <defaultValue>false</defaultValue>
+            </field>
+            <field id="db" label="Database Name" type="string" scope="browseOnly">
+                <helpText>Database name, Case-sensitive if written between double quotation marks.</helpText>
+                <visibilityCondition>
+                    <valueCondition fieldId="enableConnectionOverride">
+                        <value>true</value>
+                    </valueCondition>
+                </visibilityCondition>
+            </field>
+            <field id="schema" label="Schema Name" type="string"  scope="browseOnly">
+                <helpText>Schema name, Case-sensitive if written between double quotation marks.</helpText>
+                <visibilityCondition>
+                    <valueCondition fieldId="enableConnectionOverride">
+                        <value>true</value>
+                    </valueCondition>
+                </visibilityCondition>
+            </field>
+            <field id="fileName" label="File Name" type="string">
+                <helpText>Specifies the URI for the data file(s) downloaded to the Snowflake internal stage</helpText>
+            </field>
+            <field id="internalStage" label="Internal Stage" type="string">
+                <helpText>Specifies the location in Snowflake to which to upload the files</helpText>
+            </field>
+            <field type="integer" id="parallelUpload" label="Parallelism">
+                <helpText>
+                    Specifies the number of threads to use for uploading files.
+                    Supported values: Any integer value from 1 (no parallelism) to 99 (use 99 threads for uploading files).
+                </helpText>
+                <defaultValue>4</defaultValue>
+            </field>
+            <field id="autoCompress" label="Auto Compress" type="boolean">
+                <helpText>
+                    When checked Snowflake uses gzip to compress files during upload.
+                </helpText>
+            </field>
+            <field id="sourceCompression" label="Source Compression" displayType="list" type="string">
+                     <helpText>Specifies the method of compression used on already-compressed files that are being staged.</helpText>
+                     <defaultValue>AUTO_DETECT</defaultValue>
+                     <allowedValue label="AUTO_DETECT">
+                         <value>AUTO_DETECT</value>
+                     </allowedValue>
+                     <allowedValue label="GZIP">
+                         <value>GZIP</value>
+                     </allowedValue>
+                     <allowedValue label="BZ2">
+                         <value>BZ2</value>
+                     </allowedValue>
+                     <allowedValue label="BROTLI">
+                         <value>BROTLI</value>
+                     </allowedValue>
+                     <allowedValue label="ZSTD">
+                         <value>ZSTD</value>
+                     </allowedValue>
+                     <allowedValue label="DEFLATE">
+                         <value>DEFLATE</value>
+                     </allowedValue>
+                     <allowedValue label="RAW_DEFLATE">
+                         <value>RAW_DEFLATE</value>
+                     </allowedValue>
+                     <allowedValue label="NONE">
+                         <value>NONE</value>
+                     </allowedValue>
+                 </field>
+            <field id="overwrite" label="Overwrite" type="boolean">
+                 <helpText>
+                     When checked Snowflake overwrites any existing file with the same name during upload.
+                 </helpText>
+             </field>
+        </operation>
+    <dynamicProperty type="string" id="sqlScript" label="SQL Script" />
+    <dynamicProperty type="string" id="stageTempPath" label="Stage Path" />
+</GenericConnectorDescriptor>

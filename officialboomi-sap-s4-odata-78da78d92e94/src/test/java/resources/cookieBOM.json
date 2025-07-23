@@ -1,0 +1,255 @@
+{
+	"properties": {
+		"/to_BillOfMaterialItem/to_BOMItemCategory/BillOfMaterialItemCategory": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/EngineeringChangeDocument": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem/ComponentScrapInPercent": {
+			"scale": 3,
+			"type": "Decimal"
+		},
+		"/to_BillOfMaterialItem/to_BillOfMaterial/HeaderValidityStartDate": {
+			"type": "DateTime"
+		},
+		"/BOMHeaderQuantityInBaseUnit": {
+			"type": "Decimal"
+		},
+		"/to_BillOfMaterialItem/ValidityStartDate": {
+			"type": "DateTime"
+		},
+		"/to_BillOfMaterialItem/to_BillOfMaterial/BillOfMaterialCategory": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem/OperationLeadTimeOffset": {
+			"scale": 3,
+			"type": "Decimal"
+		},
+		"/to_BillOfMaterialItem/Plant": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem/to_BillOfMaterial/RecordCreationDate": {
+			"type": "DateTime"
+		},
+		"/to_BillOfMaterialItem/LeadTimeOffset": {
+			"scale": 3,
+			"type": "Decimal"
+		},
+		"/to_BillOfMaterialUsage": {
+			"odata.type": "API_BILL_OF_MATERIAL_SRV.A_BillOfMaterialUsageType",
+			"numChildren": 2
+		},
+		"/to_BillOfMaterialItem/HeaderChangeDocument": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem/BillOfMaterialItemQuantity": {
+			"scale": 3,
+			"type": "Decimal"
+		},
+		"/to_BillOfMaterialUsage/BillOfMaterialVariantUsage": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem/BOMItemLastChangeDate": {
+			"type": "DateTime"
+		},
+		"/to_BillOfMaterialItem/to_BillOfMaterial": {
+			"odata.type": "API_BILL_OF_MATERIAL_SRV.MaterialBOMType",
+			"numChildren": 42
+		},
+		"/to_BillOfMaterialItem/to_BOMItemCategory": {
+			"odata.type": "API_BILL_OF_MATERIAL_SRV.A_BOMItemCategoryType",
+			"numChildren": 3
+		},
+		"/BillOfMaterial": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem/Size2": {
+			"scale": 3,
+			"type": "Decimal"
+		},
+		"/to_BillOfMaterialItem/Size1": {
+			"scale": 3,
+			"type": "Decimal"
+		},
+		"/to_BillOfMaterialUsage/to_BillOfMaterialUsageText/Language": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem/to_BillOfMaterial/BillOfMaterialVariant": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/LastChangeDate": {
+			"type": "DateTime"
+		},
+		"/": {
+			"odata.type": "API_BILL_OF_MATERIAL_SRV.MaterialBOMType",
+			"numChildren": 42
+		},
+		"/to_BillOfMaterialItem/BillOfMaterialItemNodeNumber": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/Plant": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/LastChangeDateTime": {
+			"type": "DateTimeOffset"
+		},
+		"/to_BillOfMaterialItem/BillOfMaterial": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem": {
+			"odata.type": "API_BILL_OF_MATERIAL_SRV.MaterialBOMItemType",
+			"numChildren": 97,
+			"isArray": true
+		},
+		"/to_BillOfMaterialItem/Size3": {
+			"scale": 3,
+			"type": "Decimal"
+		},
+		"/to_BillOfMaterialItem/NumberOfVariableSizeItem": {
+			"scale": 3,
+			"type": "Decimal"
+		},
+		"/to_BillOfMaterialItem/to_BillOfMaterial/BOMHeaderQuantityInBaseUnit": {
+			"scale": 3,
+			"type": "Decimal"
+		},
+		"/to_BillOfMaterialUsage/to_BillOfMaterialUsageText": {
+			"odata.type": "API_BILL_OF_MATERIAL_SRV.A_BillOfMaterialUsageTextType",
+			"numChildren": 3
+		},
+		"/to_BillOfMaterialItem/BillOfMaterialItemUUID": {
+			"type": "Guid"
+		},
+		"/BillOfMaterialHeaderUUID": {
+			"type": "Guid"
+		},
+		"/to_BillOfMaterialItem/BillOfMaterialVersion": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem/ValidityEndDate": {
+			"type": "DateTime"
+		},
+		"/to_BillOfMaterialUsage/to_BillOfMaterialUsageText/BillOfMaterialVariantUsage": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem/BillOfMaterialCategory": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem/to_BillOfMaterial/EngineeringChangeDocument": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/HeaderValidityEndDate": {
+			"type": "DateTime"
+		},
+		"/BillOfMaterialVersion": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/Material": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem/to_BillOfMaterial/LastChangeDate": {
+			"type": "DateTime"
+		},
+		"/to_BillOfMaterialItem/to_BillOfMaterial/BillOfMaterial": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem/to_BillOfMaterial/LastChangeDateTime": {
+			"type": "DateTimeOffset"
+		},
+		"/to_BillOfMaterialItem/QuantityVariableSizeItem": {
+			"scale": 3,
+			"type": "Decimal"
+		},
+		"/BillOfMaterialVariant": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem/MaterialPriceUnitQty": {
+			"scale": 3,
+			"type": "Decimal"
+		},
+		"/to_BillOfMaterialItem/MaterialComponentPrice": {
+			"scale": 3,
+			"type": "Decimal"
+		},
+		"/to_BillOfMaterialItem/to_BillOfMaterial/BillOfMaterialVersion": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem/to_BillOfMaterial/Plant": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/BillOfMaterialCategory": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem/DeliveryDurationInDays": {
+			"scale": 3,
+			"type": "Decimal"
+		},
+		"/to_BillOfMaterialItem/BillOfMaterialVariant": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem/to_BillOfMaterial/BillOfMaterialHeaderUUID": {
+			"type": "Guid"
+		},
+		"/to_BillOfMaterialItem/to_BillOfMaterial/HeaderValidityEndDate": {
+			"type": "DateTime"
+		},
+		"/to_BillOfMaterialItem/to_BillOfMaterial/Material": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BillOfMaterialItem/BOMItemRecordCreationDate": {
+			"type": "DateTime"
+		},
+		"/to_BillOfMaterialItem/OperationScrapInPercent": {
+			"scale": 3,
+			"type": "Decimal"
+		},
+		"/to_BillOfMaterialItem/UsageProbabilityPercent": {
+			"scale": 3,
+			"type": "Decimal"
+		},
+		"/to_BillOfMaterialItem/LastChangeDateTime": {
+			"type": "DateTimeOffset"
+		},
+		"/to_BillOfMaterialItem/GoodsReceiptDuration": {
+			"scale": 3,
+			"type": "Decimal"
+		},
+		"/RecordCreationDate": {
+			"type": "DateTime"
+		},
+		"/HeaderValidityStartDate": {
+			"type": "DateTime"
+		},
+		"/to_BillOfMaterialItem/Material": {
+			"isKey": true,
+			"type": "String"
+		}
+	}
+}
+

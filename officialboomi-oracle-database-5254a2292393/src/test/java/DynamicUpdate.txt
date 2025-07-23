@@ -1,0 +1,11 @@
+{
+  "SET": [{
+      "column": "DATE_FORMAT_COLUMN", 
+      "value": ["2022-04-29 20:30:55"]
+   }], 
+   "WHERE": [{ 
+      "column": "ROW_NO", 
+      "value": 10, 
+      "operator": "=" 
+   }]
+}

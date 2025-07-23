@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenericConnectorDescriptor browsingType="any" requireConnectionForBrowse="true" disableDefaultObjectTypeFilter="true">
+    <description>Workday Prism Analytics Connector</description>
+
+    <field id="endpoint" label="API Service Endpoint" type="string">
+        <helpText>
+            Enter the URL for the Workday REST API service endpoint. For example, the URL to your data center and
+            production service may be https://wd2-impl-services1.workday.com/ccx/api/v1/{tenant_id}. The URL is
+            analyzed to determine and set the base host API and tenant account. You can find the endpoint in Workday
+            using the View API Client Report.
+        </helpText>
+    </field>
+    <field id="clientId" label="Client ID" type="string">
+        <helpText>
+            Enter the unique identifier to request authorized access to client data. The Client ID is generated for
+            you in Workday when you register the API client in your tenant using the Register API Client for
+            Integrations task. Copy the Client ID and keep it in a safe place.
+        </helpText>
+    </field>
+    <field id="clientSecret" label="Client Secret" type="password">
+        <helpText>
+            Click and enter the alphanumeric client secret that is associated with the Client ID. The Client Secret is
+            generated for you in Workday when you register the API client in your tenant using the Register API Client
+            for Integrations task. Copy the Client Secret and keep it in a safe place.
+        </helpText>
+    </field>
+    <field id="refreshToken" label="Refresh Token" type="password">
+        <helpText>
+            Click and enter the refresh token allowing access to Workday. You can generate a refresh token in Workday
+            when you register the API client in your tenant using the Register API Client for Integration task. Provide
+            this token when the access token is requested.
+        </helpText>
+    </field>
+
+    <testConnection method="CUSTOM"/>
+
+    <operation types="GET"/>
+
+    <operation types="CREATE">
+        <field id="entity_type" label="Object Type" type="string" scope="browseOnly">
+            <helpText>
+                Select an option in the drop-down list to determine if this operation will create a dataset, or a
+                bucket.
+            </helpText>
+            <defaultValue>dataset</defaultValue>
+            <allowedValue label="Table">
+                <value>dataset</value>
+            </allowedValue>
+            <allowedValue label="Bucket">
+                <value>bucket</value>
+            </allowedValue>
+        </field>
+        <field id="entity_filter" label="Filter" type="string" scope="browseOnly">
+            <helpText>You can reduce the number of returned objects in your query by using filters with wildcard
+                characters (* or ?).
+            </helpText>
+        </field>
+        <field id="use_existing_schema" label="Use existing schema" type="boolean" scope="browseOnly">
+            <helpText>
+                (Bucket only) Select to retrieve the schema fields from the dataset and use them in the new bucket.
+                If the dataset does not have a schema, or this option is not selected, define the schema in an input
+                document.
+            </helpText>
+        </field>
+        <field id="random_bucket_name" label="Automatically generate bucket name" type="boolean">
+            <helpText>
+                (Bucket only) Select to automatically generate the bucket name. The bucket name must be unique across
+                all datasets in the catalog. You can override the generated bucket name with a profile field.
+            </helpText>
+        </field>
+    </operation>
+
+    <operation types="EXECUTE" customTypeId="complete_bucket" customTypeLabel="COMPLETE BUCKET" supportsBrowse="true">
+    
+         <field id="entity_type" label="Object Type" type="string" scope="browseOnly">
+            <helpText>
+                Select an option in the drop-down list to determine the type of entity this operation will act upon.
+            </helpText>
+            <defaultValue>bucket</defaultValue>
+            <allowedValue label="Bucket">
+                <value>bucket</value>
+            </allowedValue>
+        </field>
+        
+        <field id="wait_for_completion" label="Wait for Process to Complete" type="boolean">
+            <helpText>
+                Select to have the process wait for the service to finish processing the bucket to return the final
+                state. When successful, the bucket is assigned to the table.
+            </helpText>
+        </field>
+        <field id="timeout" label="Wait Timeout (seconds)" type="integer">
+            <helpText>
+                (Optional) Enter the maximum number of seconds to wait for the service to finish processing the bucket.
+                This timeout is used when the Wait for Process to Complete check box is selected.
+            </helpText>
+        </field>
+    </operation>
+
+    <operation types="UPSERT" customTypeLabel="UPLOAD" customTypeId="upload" supportsBrowse="false" inputType="binary"
+               outputType="none">
+        <field id="header_lines" label="Header lines to ignore" type="integer">
+            <helpText>
+                Enter the number of header rows to ignore from the data in the upload file.
+            </helpText>
+            <defaultValue>1</defaultValue>
+        </field>
+        <field id="max_file_size" label="Maximum chunk size" type="integer">
+            <helpText>
+                Enter the maximum size (in megabytes) for each chunk to upload. The maximum upload
+                limit for a single file that the Prism Data API supports is 256 MB. 
+            </helpText>
+            <defaultValue>256</defaultValue>
+        </field>
+    </operation>
+    
+    <operation types="EXECUTE" customTypeLabel="IMPORT" customTypeId="import" inputType="binary"
+               outputType="none">
+        <field id="wait_for_completion" label="Wait for Process to Complete" type="boolean">
+            <helpText>
+                Select to have the process wait for the service to finish processing the bucket to return the final
+                state. When successful, the bucket is assigned to the table.
+            </helpText>
+        </field>
+        <field id="timeout" label="Wait Timeout (seconds)" type="integer">
+            <helpText>
+                (Optional) Enter the maximum number of seconds to wait for the service to finish processing the bucket.
+                This timeout is used when the Wait for Process to Complete check box is selected.
+            </helpText>
+        </field>
+         <field id="header_lines" label="Header lines to ignore" type="integer">
+            <helpText>
+                Enter the number of header rows to ignore from the data in the upload file.
+            </helpText>
+            <defaultValue>1</defaultValue>
+        </field>
+        <field id="max_file_size" label="Maximum chunk size" type="integer">
+            <helpText>
+                Enter the maximum size (in megabytes) for each chunk to upload. The maximum upload
+                limit for a single file that the Prism Data API supports is 256 MB.
+            </helpText>
+            <defaultValue>256</defaultValue>
+        </field>
+        <field id="random_bucket_name" label="Automatically generate bucket name" type="boolean">
+            <helpText>
+                Please select to automatically generate the bucket name. The bucket name can not be blank and must be unique across
+                all tables in the catalog. You can override the generated bucket name with a profile field (Bucket only).
+            </helpText>
+        </field>
+                <field id="entity_type" label="Object Type" type="string" scope="browseOnly">
+            <helpText>
+                Select an option in the drop-down list to determine the bucket that needs to be created as per the selection.
+            </helpText>
+            <defaultValue>bucket</defaultValue>
+            <allowedValue label="Bucket">
+                <value>bucket</value>
+            </allowedValue>
+        </field>
+        
+        <field id="use_existing_schema" label="Use existing schema" type="boolean" scope="browseOnly">
+            <helpText>
+                Select to retrieve the schema fields from the table and use them in the new bucket.
+                If the table does not have a schema, or this option is not selected, define the schema in an input
+                document (Table only).
+            </helpText>
+        </field>
+        
+    </operation>
+
+    <dynamicProperty id="bucket_id" label="Bucket ID" type="string"/>
+    <dynamicProperty id="header_lines" label="Header lines to ignore" type="integer"/>
+    <dynamicProperty id="filename" label="Filename" type="string"/>
+
+</GenericConnectorDescriptor>

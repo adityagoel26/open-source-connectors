@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0">
+
+    <!--
+        Copyright (c) 2008
+        Boomi, Inc.
+    -->
+
+    <xs:complexType name="GenericField">
+        <xs:sequence minOccurs="0" maxOccurs="1">
+            <xs:any>
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jxb:property name="objectValue"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:any>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" use="required"/>
+        <xs:attribute name="value" type="xs:string"/>
+        <xs:attribute name="type" type="DataTypeConfig" use="required"/>
+    </xs:complexType>
+
+    <xs:simpleType name="DataTypeConfig">
+        <xs:annotation>
+            <xs:appinfo>
+                <jxb:typesafeEnumClass>
+                    <jxb:javadoc>
+                        The types of data supported for connector field values. All of these types correspond to
+                        their XML Schema conterparts (except for password, which is basically just a string).
+                    </jxb:javadoc>
+                    <jxb:typesafeEnumMember name="STRING" value="string">
+                        <jxb:javadoc>
+                            Any arbitrary text string. Data will be of type String.
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                    <jxb:typesafeEnumMember name="PASSWORD" value="password">
+                        <jxb:javadoc>
+                            Any arbitrary text string (but UI may treat differently). Data will be of type String.
+                            Also, all password values will be stored encrypted throughout the system, so this type is
+                            useful for any sensitive information.
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                    <jxb:typesafeEnumMember name="BOOLEAN" value="boolean">
+                        <jxb:javadoc>
+                            A boolean value. Data will be of type Boolean.
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                    <jxb:typesafeEnumMember name="INTEGER" value="integer">
+                        <jxb:javadoc>
+                            An integral value. Data will be of type Long.
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                    <jxb:typesafeEnumMember name="COMPONENT" value="component">
+                        <jxb:javadoc>
+                            An ID for a component override.
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                    <jxb:typesafeEnumMember name="PRIVATE_CERTIFICATE" value="privatecertificate">
+                        <jxb:javadoc>
+                            An ID for a private certificate.
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                    <jxb:typesafeEnumMember name="PUBLIC_CERTIFICATE" value="publiccertificate">
+                        <jxb:javadoc>
+                            An ID for a public certificate.
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                    <jxb:typesafeEnumMember name="WSSECURITY" value="wssecurity">
+                        <jxb:javadoc>
+                            WS-Security configuration
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                    <jxb:typesafeEnumMember name="OAUTH" value="oauth">
+                        <jxb:javadoc>
+                            OAuth 2.0 configuration
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                    <jxb:typesafeEnumMember name="CUSTOM_PROPERTIES" value="customproperties">
+                        <jxb:javadoc>
+                            Custom properties that a connector may use in different ways.
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                </jxb:typesafeEnumClass>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="string"/>
+            <xs:enumeration value="password"/>
+            <xs:enumeration value="boolean"/>
+            <xs:enumeration value="integer"/>
+            <xs:enumeration value="component"/>
+            <xs:enumeration value="privatecertificate"/>
+            <xs:enumeration value="publiccertificate"/>
+            <xs:enumeration value="wssecurity"/>
+            <xs:enumeration value="oauth"/>
+            <xs:enumeration value="customproperties"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="DisplayTypeConfig">
+        <xs:annotation>
+            <xs:appinfo>
+                <jxb:typesafeEnumClass>
+                    <jxb:javadoc>
+                        UI Element types supported for connection and operation fields
+                    </jxb:javadoc>
+                    <jxb:typesafeEnumMember name="LIST" value="list">
+                        <jxb:javadoc>
+                            Displays the list of allowed values as a Drop Down Box
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                    <jxb:typesafeEnumMember name="RADIO" value="radio">
+                        <jxb:javadoc>
+                            Displays the list of allowed values as radio buttons
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                    <jxb:typesafeEnumMember name="TEXTAREA" value="textarea">
+                        <jxb:javadoc>
+                            Displays a textarea field for longer string inputs with greater text visibility than text
+                            fields. Usage of allowedValue element isn't required for textarea attribute value.
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                </jxb:typesafeEnumClass>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="list"/>
+            <xs:enumeration value="radio"/>
+            <xs:enumeration value="textarea"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="FieldPropertyValue" abstract="true">
+        <xs:attribute name="id" type="xs:string" use="required"/>
+        <xs:attribute name="dataType" type="DataTypeConfig" use="required"/>
+    </xs:complexType>
+
+    <xs:element name="StringPropertyValue">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="FieldPropertyValue">
+                    <xs:sequence>
+                        <xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="1">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="IntegerPropertyValue">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="FieldPropertyValue">
+                    <xs:sequence>
+                        <xs:element name="value" type="xs:int" minOccurs="0" maxOccurs="1">
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="BooleanPropertyValue">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="FieldPropertyValue">
+                    <xs:attribute name="value" type="xs:boolean" default="false"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ObjectPropertyValue">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="FieldPropertyValue">
+                    <xs:sequence minOccurs="0" maxOccurs="1">
+                        <xs:any>
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <jxb:property name="value"/>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:any>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:complexType name="GenericFieldConfig">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+                Common specification for a field of information necessary in when working with a connector.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="helpText" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jxb:property>
+                            <jxb:javadoc>
+                                Optional help text displayed for the field in the GUI.
+                            </jxb:javadoc>
+                        </jxb:property>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="defaultValue" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jxb:property>
+                            <jxb:javadoc>
+                                Optional default value for this field presented to the user in the GUI. This value must
+                                be valid for the data type and optional format regular expression.
+                            </jxb:javadoc>
+                        </jxb:property>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="allowedValue" type="AllowedValueConfig" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jxb:property name="allowedValues">
+                            <jxb:javadoc>
+                                Optional set of allowed values for this field. If specified, GUI selection will be
+                                restricted to one of these values. These values must be valid for the data type and
+                                optional format regular expression.&lt;p&gt;
+                            </jxb:javadoc>
+                        </jxb:property>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="customPropertiesConfiguration" type="CustomPropertiesFieldConfig" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jxb:property>
+                            <jxb:javadoc>
+                                Configuration of the key value pairs for a field.
+                            </jxb:javadoc>
+                        </jxb:property>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="visibilityCondition" type="VisibilityCondition" minOccurs="0" maxOccurs="10">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jxb:property name="visibilityConditions">
+                            <jxb:javadoc>Configuration of a rule that controls the visibility of the current field based on the value of another field within the same screen. Currently there is a limit of 1 visibility condition.</jxb:javadoc>
+                        </jxb:property>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:NCName" use="required">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property>
+                        <jxb:javadoc>
+                            The actual name of the field which will be passed as the property key to the connector.
+                        </jxb:javadoc>
+                    </jxb:property>
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="label" type="xs:normalizedString">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property>
+                        <jxb:javadoc>
+                            Optional text string which will be displayed in the GUI for this field. If not defined, the
+                            id will be used.
+                        </jxb:javadoc>
+                    </jxb:property>
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" type="DataTypeConfig" use="required">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property>
+                        <jxb:javadoc>
+                            The type of the property value which will be passed to the connector. This will also
+                            restrict
+                            what values may be entered in the GUI.
+                        </jxb:javadoc>
+                    </jxb:property>
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="formatRegex" type="xs:normalizedString">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property>
+                        <jxb:javadoc>
+                            Optional Java regular expression which must match any valid value for this field.
+                        </jxb:javadoc>
+                    </jxb:property>
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="componentType" type="xs:string">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property>
+                        <jxb:javadoc>
+                            Optional string describing the component type, if the DataTypeConfig is component.
+                        </jxb:javadoc>
+                    </jxb:property>
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="componentProperties" type="xs:string">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property>
+                        <jxb:javadoc>
+                            Optional string describing any additional properties for the chooser, if the DataTypeConfig
+                            is
+                            component.
+                        </jxb:javadoc>
+                    </jxb:property>
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="displayType" type="DisplayTypeConfig" default="list">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property>
+                        <jxb:javadoc>
+                            The type of UI element to use when displaying the field
+                        </jxb:javadoc>
+                    </jxb:property>
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="BaseOperationFieldConfig">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+                Common specification for Operation Fields
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="GenericFieldConfig">
+                <xs:attribute name="overrideable" type="xs:boolean" default="false">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jxb:property>
+                                <jxb:javadoc>
+                                    Defines whether a field can be overridden on a per document basis
+                                </jxb:javadoc>
+                            </jxb:property>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AllowedValueConfig">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+                Specification for an allowed value in a field.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="value" type="xs:string">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jxb:property>
+                            <jxb:javadoc>
+                                The allowed value, which must be valid for the data type of the owning
+                                GenericFieldConfig.
+                            </jxb:javadoc>
+                        </jxb:property>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="label" type="xs:normalizedString">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property>
+                        <jxb:javadoc>
+                            Optional text string which will be displayed in the GUI for this value. If not defined, the
+                            value itself will be used.
+                        </jxb:javadoc>
+                    </jxb:property>
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="CustomPropertiesFieldConfig">
+        <xs:sequence>
+            <xs:element name="blacklistedKey" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jxb:property name="blacklistedKeys">
+                            <jxb:javadoc>
+                                This has been deprecated in favor of restrictedKeys.
+                                Optional set of restricted keys for this field. The keys listed here are case
+                                insensitive.
+                            </jxb:javadoc>
+                        </jxb:property>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="restrictedKey" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jxb:property name="restrictedKeys">
+                            <jxb:javadoc>
+                                Optional set of restricted keys for this field. The keys listed here are case
+                                insensitive.
+                            </jxb:javadoc>
+                        </jxb:property>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ConditionalFieldConfiguration" abstract="true">
+        <xs:annotation>
+            <xs:documentation>Conditions based on the state of another field.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="valueCondition" type="ValueCondition" minOccurs="1" maxOccurs="10">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jxb:property name="valueConditions">
+                            <jxb:javadoc>Condition that is based on the value of another field. Currently there is a limit of 1 value condition.</jxb:javadoc>
+                        </jxb:property>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ValueCondition">
+        <xs:annotation>
+            <xs:documentation>A condition based on the value(s) of another field.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="FieldCondition">
+                <xs:sequence>
+                    <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="100">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <jxb:property name="values">
+                                    <jxb:javadoc>Set of values that will drive the action defined. Values are case insensitive.</jxb:javadoc>
+                                </jxb:property>
+                            </xs:appinfo>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FieldCondition" abstract="true">
+        <xs:annotation>
+            <xs:documentation>A condition based on the state of another field identified by the field's ID.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="fieldId" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="VisibilityCondition">
+        <xs:annotation>
+            <xs:documentation>A condition that will drive the visibility of a field if the value(s) match. Otherwise the field is not visible.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ConditionalFieldConfiguration"/>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ObjectDefinitions>
+    <definition elementName="/documents" outputType="json">
+        <jsonSchema>
+            {"$schema":"http://json-schema.org/schema#","documents":{"type":"object","properties":{"payment_request__c":{"description":"Payment
+            Request","type":"string"},"document_version__c":{"description":"Document
+            Version","type":"string","maxLength":20},"name__v":{"description":"Name - Displayed throughout application
+            for the document, including in Library, Reporting, Notifications and
+            Workflows.","type":"string","maxLength":100},"study_startup_budget__c":{"description":"Study Startup Budget
+            - Reference only: used to drive lifecycle and workflow
+            options.","type":"boolean"},"escalated_to_legal__c":{"format":"date","description":"Escalated to Legal -
+            Date sent to contracts and/or budgets lead for assistance or
+            guidance.","type":"string"},"expiration_date__c":{"format":"date","description":"Expiration
+            Date","type":"string"},"qc_start_date__c":{"format":"date","description":"QC Start Date - The most recent
+            date on which this document was submitted for
+            QC.","type":"string"},"ir_check_completion_date__c":{"format":"date","description":"IR Check Completion
+            Date","type":"string"},"returned_from_contracts_lead__c":{"format":"date","description":"Returned from
+            Contracts Lead - Date contracts and/or budgets lead passed on to next
+            step.","type":"string"},"file_created_date__v":{"format":"date-time","description":"File Created
+            Date","type":"string"},"require_certified_copy__c":{"description":"Require Certified Copy? - Required if
+            this Vault document will replace a paper, sponsor-owned clinical trial record. Not required for copies of
+            paper records from an investigator
+            site.","type":"boolean"},"informed_consent_tracking__c":{"description":"Informed Consent
+            Tracking","type":"string"},"id":{"type":"string","maxLength":20},"qc_complete_date__c":{"format":"date","description":"QC
+            Complete Date - The most recent date on which this document passed
+            QC.","type":"string"},"signature_format__c":{"description":"Signature
+            Format","type":"array","items":{"type":"string"}},"approval_cycles_started__c":{"description":"Approval
+            Cycles Started - The number of times in the history of this document that it has been sent for
+            approval.","type":"number"},"created_by__v":{"description":"Created
+            By","type":"string"},"major_version_number__v":{"description":"Major Version
+            Number","type":"number"},"certified_copy_complete__c":{"description":"Certified Copy Complete - Yes
+            indicates this digitalization (i.e. scan) is an exact replicate of the paper for the purpose of destruction
+            of the paper.","type":"boolean"},"certified_copy_complete_date__c":{"format":"date","description":"Certified
+            Copy Complete Date - The most recent date on which this document passed Certified Copy
+            Review.","type":"string"},"approval_complete_date__c":{"format":"date","description":"Approval Complete Date
+            - The most recent date on which this document was
+            approved.","type":"string"},"qc_passes_granted__c":{"description":"QC Passes Granted - The number of times
+            in the history of this document that it has passed
+            QC.","type":"number"},"review_cycles_started__c":{"description":"Review Cycles
+            Started","type":"number"},"file_modified_by__v":{"description":"File Last Modified
+            By","type":"string","maxLength":255},"filename__v":{"description":"File
+            Name","type":"string","maxLength":1000},"version_created_by__v":{"description":"Version Created
+            By","type":"string"},"type__v":{"description":"Type","type":"string"},"version_modified_date__v":{"format":"date-time","description":"Last
+            Modified Date","type":"string"},"fully_executed_date__c":{"format":"date","description":"Fully Executed
+            Date","type":"string"},"ip_release_approved_date__c":{"format":"date","description":"Greenlight Approved
+            Date - Date when content was approved as part of IP Release Approval
+            process.","type":"string"},"subtype__v":{"description":"Subtype","type":"string"},"initial_sent_to_site_date__c":{"format":"date","description":"Initial
+            Sent to Site Date - Date first sent to site.","type":"string"},"global_id__sys":{"description":"Global ID -
+            This value is unique to this document in this vault. This is useful for
+            integrations.","type":"string","maxLength":50},"in_progress_location__c":{"description":"In Progress
+            Location - Indicates the party who currently has responsibility to act on the document. Is automatically
+            updated by workflows as the document is
+            processed.","type":"array","items":{"type":"string"}},"format__v":{"description":"Format","type":"string","maxLength":255},"certified_copy_passes_granted__c":{"description":"Certified
+            Copy Passes Granted - The number of times in the history of this document that it has passed Certified Copy
+            Review.","type":"number"},"file_created_by__v":{"description":"File Created
+            By","type":"string","maxLength":255},"qc_cycles_started__c":{"description":"QC Cycles Started - The number
+            of times in the history of this document that it has been sent for
+            QC.","type":"number"},"sent_to_site_cycles_started__c":{"description":"Sent to Site Cycles Started - The
+            number of times in the history of this document that it has been sent to the site for revision or
+            confirmation.","type":"number"},"returned_from_legal__c":{"format":"date","description":"Returned from Legal
+            - Date legal passed on to next step.","type":"string"},"minor_version_number__v":{"description":"Minor
+            Version Number","type":"number"},"inspection_ready__c":{"description":"Inspection Ready (IR)? - The
+            inspection readiness status of the content; blank until an inspection readiness check is
+            conducted.","type":"boolean"},"informed_consent_site_effective_tracking__c":{"description":"Informed Consent
+            Site Effective Tracking","type":"string"},"sent_to_site_date__c":{"format":"date","description":"Sent to
+            Site Date - The most recent date on which this document was sent to the site for revision or
+            confirmation.","type":"string"},"study_startup_cta__c":{"description":"Study Startup CTA - Reference only:
+            used by lifecycle and
+            workflow.","type":"boolean"},"internal_signatures_complete__c":{"format":"date","description":"Internal
+            Signatures Complete","type":"string"},"file_modified_date__v":{"format":"date-time","description":"File Last
+            Modified Date","type":"string"},"external_id__v":{"description":"External
+            ID","type":"string","maxLength":255},"escalated_to_contracts_lead__c":{"format":"date","description":"Escalated
+            to Contracts Lead - Date sent to contracts and/or budgets lead for assistance or
+            guidance.","type":"string"},"study_risk_assessment__c":{"description":"Study Risk
+            Assessment","type":"string"},"internal_version_number__c":{"description":"Internal Version Number - The
+            version number for a document as it is tracked outside of Vault, independent of the Vault
+            Version.","type":"string","maxLength":500},"certified_copy_cycles_started__c":{"description":"Certified Copy
+            Cycles Started - The number of times in the history of this document that it has been sent for Certified
+            Copy
+            Review.","type":"number"},"version_id":{"type":"string","maxLength":20},"latest_version__v":{"description":"Is
+            Latest Version","type":"number"},"returned_from_site_date__c":{"format":"date","description":"Returned From
+            Site Date - Date on which the document was most recently returned from the
+            site","type":"string"},"terms_accepted__c":{"format":"date","description":"Terms Accepted - Date the
+            contract terms were accepted by all parties. Budget consolidation, signatures and other post-acceptance
+            activity occur after this
+            date.","type":"string"},"size__v":{"description":"Size","type":"number"},"ip_release_issue_cycles_started__c":{"description":"Greenlight
+            Review Issue Cycles Started - The number of times in the history of this document that it has been rejected
+            during the IP Release Approval
+            process.","type":"number"},"approval_start_date__c":{"format":"date","description":"Approval Start Date -
+            The most recent date on which this document was submitted for
+            approval.","type":"string"},"certified_copy_start_date__c":{"format":"date","description":"Certified Copy
+            Start Date - The most recent date on which this document was submitted for Certified
+            Copy.","type":"string"},"classification__v":{"description":"Classification","type":"string"},"rationale__c":{"description":"Rationale
+            for Requested Changes - Summarize the justification for the requested changes. Whenever possible, please
+            drag and drop documentation supporting your justification into the Attachments
+            section.","type":"string","maxLength":1000},"status__v":{"description":"Status - The state of a document
+            within its assigned lifecycle.","type":"string"}}}}
+        </jsonSchema>
+        <fieldSpecFields name="approval_complete_date__c" filterable="true" sortable="true" selectable="true"
+                         type="date" selected="false"/>
+        <fieldSpecFields name="approval_cycles_started__c" filterable="true" sortable="true" selectable="true"
+                         type="number" selected="false"/>
+        <fieldSpecFields name="approval_start_date__c" filterable="true" sortable="true" selectable="true" type="date"
+                         selected="false"/>
+        <fieldSpecFields name="certified_copy_complete__c" filterable="true" sortable="true" selectable="true"
+                         type="boolean" selected="false"/>
+        <fieldSpecFields name="certified_copy_complete_date__c" filterable="true" sortable="true" selectable="true"
+                         type="date" selected="false"/>
+        <fieldSpecFields name="certified_copy_cycles_started__c" filterable="true" sortable="true" selectable="true"
+                         type="number" selected="false"/>
+        <fieldSpecFields name="certified_copy_passes_granted__c" filterable="true" sortable="true" selectable="true"
+                         type="number" selected="false"/>
+        <fieldSpecFields name="certified_copy_start_date__c" filterable="true" sortable="true" selectable="true"
+                         type="date" selected="false"/>
+        <fieldSpecFields name="classification__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="created_by__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="document_version__c" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="escalated_to_contracts_lead__c" filterable="true" sortable="true" selectable="true"
+                         type="date" selected="false"/>
+        <fieldSpecFields name="escalated_to_legal__c" filterable="true" sortable="true" selectable="true" type="date"
+                         selected="false"/>
+        <fieldSpecFields name="expiration_date__c" filterable="true" sortable="true" selectable="true" type="date"
+                         selected="false"/>
+        <fieldSpecFields name="external_id__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="file_created_by__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="file_created_date__v" filterable="true" sortable="true" selectable="true" type="date"
+                         selected="false"/>
+        <fieldSpecFields name="file_modified_by__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="file_modified_date__v" filterable="true" sortable="true" selectable="true" type="date"
+                         selected="false"/>
+        <fieldSpecFields name="filename__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="format__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="fully_executed_date__c" filterable="true" sortable="true" selectable="true" type="date"
+                         selected="false"/>
+        <fieldSpecFields name="global_id__sys" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="id" filterable="true" sortable="true" selectable="true" type="string" selected="false"/>
+        <fieldSpecFields name="in_progress_location__c" filterable="true" sortable="true" selectable="true"
+                         type="string" selected="false"/>
+        <fieldSpecFields name="informed_consent_site_effective_tracking__c" filterable="true" sortable="true"
+                         selectable="true" type="string" selected="false"/>
+        <fieldSpecFields name="informed_consent_tracking__c" filterable="true" sortable="true" selectable="true"
+                         type="string" selected="false"/>
+        <fieldSpecFields name="initial_sent_to_site_date__c" filterable="true" sortable="true" selectable="true"
+                         type="date" selected="false"/>
+        <fieldSpecFields name="inspection_ready__c" filterable="true" sortable="true" selectable="true" type="boolean"
+                         selected="false"/>
+        <fieldSpecFields name="internal_signatures_complete__c" filterable="true" sortable="true" selectable="true"
+                         type="date" selected="false"/>
+        <fieldSpecFields name="internal_version_number__c" filterable="true" sortable="true" selectable="true"
+                         type="string" selected="false"/>
+        <fieldSpecFields name="ip_release_approved_date__c" filterable="true" sortable="true" selectable="true"
+                         type="date" selected="false"/>
+        <fieldSpecFields name="ip_release_issue_cycles_started__c" filterable="true" sortable="true" selectable="true"
+                         type="number" selected="false"/>
+        <fieldSpecFields name="ir_check_completion_date__c" filterable="true" sortable="true" selectable="true"
+                         type="date" selected="false"/>
+        <fieldSpecFields name="latest_version__v" filterable="true" sortable="true" selectable="true" type="number"
+                         selected="false"/>
+        <fieldSpecFields name="major_version_number__v" filterable="true" sortable="true" selectable="true"
+                         type="number" selected="false"/>
+        <fieldSpecFields name="minor_version_number__v" filterable="true" sortable="true" selectable="true"
+                         type="number" selected="false"/>
+        <fieldSpecFields name="name__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="payment_request__c" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="qc_complete_date__c" filterable="true" sortable="true" selectable="true" type="date"
+                         selected="false"/>
+        <fieldSpecFields name="qc_cycles_started__c" filterable="true" sortable="true" selectable="true" type="number"
+                         selected="false"/>
+        <fieldSpecFields name="qc_passes_granted__c" filterable="true" sortable="true" selectable="true" type="number"
+                         selected="false"/>
+        <fieldSpecFields name="qc_start_date__c" filterable="true" sortable="true" selectable="true" type="date"
+                         selected="false"/>
+        <fieldSpecFields name="rationale__c" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="require_certified_copy__c" filterable="true" sortable="true" selectable="true"
+                         type="boolean" selected="false"/>
+        <fieldSpecFields name="returned_from_contracts_lead__c" filterable="true" sortable="true" selectable="true"
+                         type="date" selected="false"/>
+        <fieldSpecFields name="returned_from_legal__c" filterable="true" sortable="true" selectable="true" type="date"
+                         selected="false"/>
+        <fieldSpecFields name="returned_from_site_date__c" filterable="true" sortable="true" selectable="true"
+                         type="date" selected="false"/>
+        <fieldSpecFields name="review_cycles_started__c" filterable="true" sortable="true" selectable="true"
+                         type="number" selected="false"/>
+        <fieldSpecFields name="sent_to_site_cycles_started__c" filterable="true" sortable="true" selectable="true"
+                         type="number" selected="false"/>
+        <fieldSpecFields name="sent_to_site_date__c" filterable="true" sortable="true" selectable="true" type="date"
+                         selected="false"/>
+        <fieldSpecFields name="signature_format__c" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="size__v" filterable="true" sortable="true" selectable="true" type="number"
+                         selected="false"/>
+        <fieldSpecFields name="status__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="study_risk_assessment__c" filterable="true" sortable="true" selectable="true"
+                         type="string" selected="false"/>
+        <fieldSpecFields name="study_startup_budget__c" filterable="true" sortable="true" selectable="true"
+                         type="boolean" selected="false"/>
+        <fieldSpecFields name="study_startup_cta__c" filterable="true" sortable="true" selectable="true" type="boolean"
+                         selected="false"/>
+        <fieldSpecFields name="subtype__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="terms_accepted__c" filterable="true" sortable="true" selectable="true" type="date"
+                         selected="false"/>
+        <fieldSpecFields name="type__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="version_created_by__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="version_id" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="version_modified_date__v" filterable="true" sortable="true" selectable="true" type="date"
+                         selected="false"/>
+    </definition>
+</ObjectDefinitions>

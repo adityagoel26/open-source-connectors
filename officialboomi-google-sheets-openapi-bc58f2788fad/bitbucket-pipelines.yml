@@ -1,0 +1,87 @@
+image: amazoncorretto:8-al2-jdk
+
+definitions:
+  caches:
+    mavenwrapper: ~/.m2/wrapper
+  steps:
+
+    - step: &git-secrets-scan # Scan your files for hardcoded sensitive data and create a security report.
+        name: Security Scan Git Secrets
+        script:
+          - pipe: atlassian/git-secrets-scan:0.6.1
+
+    - step: &build-maven # Use this to build a maven project
+        name: Build Maven
+        caches:
+          - maven
+          - mavenwrapper
+        script:
+          - ./mvnw clean verify
+        artifacts:
+          - target/**.zip # This is intended to look for the connector archive file
+
+    - step: &build-release-maven # Use this to build and cut a release of the project
+        name: Build and Release Maven
+        image: atlassian/default-image:2
+        caches:
+          - maven
+          - mavenwrapper
+        script:
+          - ./mvnw -B clean release:prepare
+          - git push
+          - git push --tags
+        artifacts:
+          download: false # Do not download artifacts in this step
+          paths:
+            - target/** # This is intended to retrieve build artifacts
+
+    - step: &connector-scan # Use this to scan your connector for issues and security vulnerabilities
+        name: Connector Scan
+        script:
+          - pipe: docker://boomi/connector-scan:release
+            variables:
+              PROJECT: $BITBUCKET_WORKSPACE:$BITBUCKET_REPO_SLUG # (Required) name of the project
+              VERSION: '1.0' # (Required) version of the project (should match with the version that will be uploaded)
+              BOOMI_TOKEN: $BOOMI_TOKEN # (Required) token needed to run this automation
+              # DEBUG: 'true' # (Optional) show debug information (default: 'false')
+              # SOURCES: 'src' # (Optional) directory where your source code is located (default: 'src')
+        services:
+          - docker
+
+    - step: &connector-approval # Use this to automatically approve your connector version
+        name: Connector Approval
+        script:
+          - pipe: docker://boomi/connector-approval:release
+            variables:
+              BOOMI_TOKEN: $BOOMI_TOKEN # (Required) token needed to run this automation
+              CAR_PATH: target/**/*.zip # (Required) Either path to directory containing the CAR zip, path to the CAR zip file, or wild card designation for CAR zip file
+              CONNECTOR_GROUP_TYPE: $CONNECTOR_GROUP_TYPE # (Required) Valid connector group type
+              # CHANGE_LOG: '<description>' # (Optional) If provided, will be used in the change log description for the CAR upload (default: URL of the pipeline)
+              # DEBUG: 'true' # (Optional) show debug information (default: 'false')
+              # SOURCES: 'src' # (Optional) directory where your source code is located (default: 'src')
+        after-script:
+          - pipe: docker://boomi/upload-artifact:release
+            variables:
+              BOOMI_TOKEN: $BOOMI_TOKEN # (Required) token needed to run this automation
+              ARTIFACT_NAME: "target/**/*.zip" # (Required) Path to connector archive file or other artifacts to upload
+              # DEBUG: 'true' # (Optional) show debug information (default: 'false')
+        services:
+          - docker
+
+pipelines:
+  default:
+    - parallel:
+        - step: *build-maven
+        - step: *git-secrets-scan
+  pull-requests:
+    '**':
+      - step: *connector-scan
+  branches:
+    '{main,master}':
+      - step: *git-secrets-scan
+      - step: *connector-scan
+      - step: *build-release-maven
+  tags:
+    '*':
+      - step: *build-maven
+      - step: *connector-approval

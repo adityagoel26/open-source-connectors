@@ -1,0 +1,136 @@
+<GenericConnectorDescriptor requireConnectionForBrowse="true" browsingType="any">
+    <description>This connector provides access to the Hubspot CRM API. For more information, click here:
+        https://developers.hubspot.com/docs/api/crm/understanding-the-crm
+    </description>
+    <field id="url" label="Server" type="string">
+        <defaultValue>https://api.hubapi.com</defaultValue>
+    </field>
+
+    <field id="apiKey" label="Private App Access Token" type="password">
+        <visibilityCondition>
+            <valueCondition fieldId="auth">
+                <value>NONE</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+
+    <field id="auth" label="Authentication Type" type="string">
+        <helpText>Identifies the authentication type for the connection. &lt;boomi-help
+            id="ATOMSPHERE:9BB88920-7DB1-45EA-B650-F9C1244C24E2"&gt;Learn more&lt;/boomi-help&gt; about authentication.
+        </helpText>
+        <allowedValue label="OAuth 2.0">
+            <value>OAUTH2</value>
+        </allowedValue>
+        <allowedValue label="Private App Access Token">
+            <value>NONE</value>
+        </allowedValue>
+    </field>
+
+    <field id="oauthContext" label="OAuth 2.0" type="oauth">
+        <oauth2FieldConfig>
+            <authorizationTokenEndpoint>
+                <url access="hidden">
+                    <defaultValue>https://app.hubspot.com/oauth/authorize</defaultValue>
+                </url>
+            </authorizationTokenEndpoint>
+            <authorizationParameters access="hidden"/>
+            <accessTokenEndpoint>
+                <url access="hidden">
+                    <defaultValue>https://api.hubapi.com/oauth/v1/token</defaultValue>
+                </url>
+            </accessTokenEndpoint>
+            <accessTokenParameters access="hidden"/>
+            <grantType>
+                <allowedValue label="Authorization Code">
+                    <value>code</value>
+                </allowedValue>
+            </grantType>
+        </oauth2FieldConfig>
+    </field>
+
+    <field type="customproperties" label="Request Headers" id="customHeaders"/>
+
+    <testConnection method="CUSTOM"/>
+
+    <operation customTypeId="POST" supportsBrowse="true" types="EXECUTE" customTypeLabel="Create">
+        <!--This field has been introduced to support multiple HubSpot API versions in the future. The
+            available objects will vary based on the API version selected during browse.-->
+        <field id="version" label="Version" type="string" scope="browseOnly">
+            <helpText>select the version of Hubspot API to be used.</helpText>
+            <defaultValue>V3</defaultValue>
+            <allowedValue label="V3">
+                <value>v3</value>
+            </allowedValue>
+        </field>
+    </operation>
+
+    <operation customTypeId="DELETE" types="DELETE" supportsBrowse="true" customTypeLabel="Archive">
+        <!--This field has been introduced to support multiple HubSpot API versions in the future. The
+            available objects will vary based on the API version selected during browse.-->
+        <field id="version" label="Version" type="string" scope="browseOnly">
+            <helpText>select the version of Hubspot API to be used.</helpText>
+            <defaultValue>V3</defaultValue>
+            <allowedValue label="V3">
+                <value>v3</value>
+            </allowedValue>
+        </field>
+    </operation>
+
+    <operation customTypeId="PATCH" supportsBrowse="true" types="UPDATE" customTypeLabel="Update"
+               trackedDocument="user">
+        <!--This field has been introduced to support multiple HubSpot API versions in the future. The
+            available objects will vary based on the API version selected during browse.-->
+        <field id="version" label="Version" type="string" scope="browseOnly">
+            <helpText>select the version of Hubspot API to be used.</helpText>
+            <defaultValue>V3</defaultValue>
+            <allowedValue label="V3">
+                <value>v3</value>
+            </allowedValue>
+        </field>
+        <field id="id" type="string" label="ID" overrideable="true"/>
+    </operation>
+
+    <operation customTypeId="GET" types="GET" supportsBrowse="true" customTypeLabel="Retrieve">
+        <!--This field has been introduced to support multiple HubSpot API versions in the future. The
+            available objects will vary based on the API version selected during browse.-->
+        <field id="version" label="Version" type="string" scope="browseOnly">
+            <helpText>select the version of Hubspot API to be used.</helpText>
+            <defaultValue>V3</defaultValue>
+            <allowedValue label="V3">
+                <value>v3</value>
+            </allowedValue>
+        </field>
+    </operation>
+
+    <operation customTypeId="QUERY" types="QUERY" allowFieldSelection="true"
+               customTypeLabel="Search">
+        <!--This field has been introduced to support multiple HubSpot API versions in the future. The
+            available objects will vary based on the API version selected during browse.-->
+        <field id="version" label="Version" type="string" scope="browseOnly">
+            <helpText>select the version of Hubspot API to be used.</helpText>
+            <defaultValue>V3</defaultValue>
+            <allowedValue label="V3">
+                <value>v3</value>
+            </allowedValue>
+        </field>
+        <field id="limit" label="Maximum Number of Documents" type="integer" overrideable="true">
+            <helpText>Enter the maximum number of documents to process. Must be between 1 and 10000.</helpText>
+            <defaultValue>-1</defaultValue>
+        </field>
+        <queryFilter grouping="singleNestingImplicitOr" sorting="unbounded">
+            <operator id="EQ" label="Equal To"/>
+            <operator id="NEQ" label="Not Equal To"/>
+            <operator id="LT" label="Less Than"/>
+            <operator id="LTE" label="Less Than Or Equal"/>
+            <operator id="GT" label="Greater Than"/>
+            <operator id="GTE" label="Greater Than Or Equal"/>
+            <operator id="BETWEEN" label="Between" numArguments="2"/>
+            <operator id="IN" label="In"/>
+            <operator id="NOT_IN" label="Not In"/>
+            <operator id="HAS_PROPERTY" label="Has Property"/>
+            <operator id="NOT_HAS_PROPERTY" label="Not Has Property"/>
+            <sortOrder id="ASCENDING" label="Ascending"/>
+            <sortOrder id="DESCENDING" label="Descending"/>
+        </queryFilter>
+    </operation>
+</GenericConnectorDescriptor>

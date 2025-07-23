@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<batchResults>
+    <hasErrors>true</hasErrors>
+    <results>
+        <batchResult>
+            <statusCode>404</statusCode>
+            <result>
+                <Errors>
+                    <Error>
+                        <errorCode>INVALID_CROSS_REFERENCE_KEY</errorCode>
+                        <message>invalid cross reference id</message>
+                    </Error>
+                </Errors>
+            </result>
+        </batchResult>
+        <batchResult>
+            <statusCode>412</statusCode>
+            <result>
+                <Errors>
+                    <Error>
+                        <errorCode>NOT_FOUND</errorCode>
+                        <message>Provided external ID field does not exist or is not accessible: 001220000IEWy7
+                        </message>
+                    </Error>
+                </Errors>
+            </result>
+        </batchResult>
+    </results>
+</batchResults>

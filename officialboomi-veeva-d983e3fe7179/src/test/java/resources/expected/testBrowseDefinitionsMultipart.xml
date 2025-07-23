@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ObjectDefinitions>
+    <operationField id="cXVlcnlfa2luZA" label="Query kind" type="string" overrideable="true">
+        <helpText>The kind of item to create. This can be either file or folder.</helpText>
+        <allowedValue label="">
+            <value></value>
+        </allowedValue>
+        <allowedValue label="file">
+            <value>file</value>
+        </allowedValue>
+        <allowedValue label="folder">
+            <value>folder</value>
+        </allowedValue>
+    </operationField>
+    <operationField id="cXVlcnlfcGF0aA" label="Query path" type="string" overrideable="true">
+        <helpText>The absolute path, including file or folder name, to place the item in the file staging server. This
+            path is specific to the authenticated user. Admin users can access the root directory. All other users can
+            only access their own user directory.
+        </helpText>
+    </operationField>
+    <operationField id="cXVlcnlfb3ZlcndyaXRl" label="Query overwrite" type="boolean" overrideable="true">
+        <helpText>If set to true, Vault will overwrite any existing files with the same name at the specified
+            destination. For folders, this is always false.
+        </helpText>
+    </operationField>
+    <operationField id="cXVlcnlfc2l6ZQ" label="Query size" type="integer" overrideable="true">
+        <helpText>TODO size needed but not per documentation!</helpText>
+    </operationField>
+    <definition inputType="binary" outputType="none">
+        <cookie>
+            {"requestBodyRequired":false,"requestContentType":null,"pathParameters":[],"queryParameters":[{"id":"cXVlcnlfa2luZA","parameterType":"QUERY","style":"FORM","explode":false,"dataType":"STRING"},{"id":"cXVlcnlfcGF0aA","parameterType":"QUERY","style":"FORM","explode":false,"dataType":"STRING"},{"id":"cXVlcnlfb3ZlcndyaXRl","parameterType":"QUERY","style":"FORM","explode":false,"dataType":"BOOLEAN"},{"id":"cXVlcnlfc2l6ZQ","parameterType":"QUERY","style":"FORM","explode":false,"dataType":"INTEGER"}],"headerParameters":[]}
+        </cookie>
+    </definition>
+    <definition elementName="" inputType="none" outputType="json">
+        <jsonSchema>
+            {"type":"object","properties":{"responseStatus":{"type":"string","description":""},"data":{"type":"object","properties":{"kind":{"type":"string","description":""},"path":{"type":"string","description":""},"name":{"type":"string","description":""},"size":{"type":"integer","description":""},"file_content_md5":{"type":"string","description":""}}}},"$schema":"http://json-schema.org/draft-04/schema#"}
+        </jsonSchema>
+    </definition>
+</ObjectDefinitions>

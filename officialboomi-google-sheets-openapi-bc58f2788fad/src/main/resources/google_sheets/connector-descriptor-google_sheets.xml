@@ -1,0 +1,145 @@
+<GenericConnectorDescriptor requireConnectionForBrowse="true" browsingType="any" >
+    <description>This connector provides access to the Google Sheets API v4. For more information, click here: https://developers.google.com/sheets/</description>
+    <field id="url" label="Server" type="string">
+        <defaultValue>https://sheets.googleapis.com/</defaultValue>
+    </field>
+
+    <field id="overrideSpec" label="Override API specification" type="boolean">
+        <helpText>Checking this box will allow you to supply a URL for an updated OAS3 specification.</helpText>
+    </field>
+
+    <field id="spec" label="URL of OAS3 Specification" type="string">
+        <helpText>This will override the custom specification included with the connector.</helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="overrideSpec">
+                <value>true</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field id="auth" label="Authentication Type" type="string">
+        <helpText>Identifies the authentication type for the connection. &lt;boomi-help id="ATOMSPHERE:9BB88920-7DB1-45EA-B650-F9C1244C24E2"&gt;Learn more&lt;/boomi-help&gt; about authentication.</helpText>
+        <allowedValue label="OAuth 2.0">
+            <value>OAUTH2</value>
+        </allowedValue>
+        <allowedValue label="None">
+            <value>NONE</value>
+        </allowedValue>
+    </field>
+
+    <field id="oauthContext" label="OAuth 2.0" type="oauth">
+        <oauth2FieldConfig>
+            <authorizationTokenEndpoint>
+                <url access="hidden">
+                    <defaultValue>https://accounts.google.com/o/oauth2/v2/auth</defaultValue>
+                </url>
+            </authorizationTokenEndpoint>
+            <authorizationParameters access="hidden">
+                <parameter name="access_type">
+                    <value access="hidden">
+                        <defaultValue>offline</defaultValue>
+                    </value>
+                </parameter>
+                <parameter name="approval_prompt">
+                    <value access="hidden">
+                        <defaultValue>force</defaultValue>
+                    </value>
+                </parameter>
+            </authorizationParameters>
+            <accessTokenEndpoint>
+                <url access="hidden">
+                    <defaultValue>https://www.googleapis.com/oauth2/v4/token</defaultValue>
+                </url>
+            </accessTokenEndpoint>
+            <accessTokenParameters access="hidden"/>
+            <scope>
+                <helpText>
+                    Defines the extent and access range to protected cloud resources. When
+                    using the JWT Bearer Token grant type, leave this field blank. The
+                    scope must be set as an extended JWT
+                    claim.
+                    &lt;br/&gt;&lt;br/&gt;
+                    When using the Authorization Code grant type, enter any applicable scopes and
+                    verify that each entry is separated by a space.
+                    &lt;br/&gt;&lt;br/&gt;
+                    See applicable scopes here: https://developers.google.com/identity/protocols/oauth2/scopes
+                </helpText>
+                <defaultValue>https://www.googleapis.com/auth/drive</defaultValue>
+            </scope>
+            <grantType>
+                <helpText>
+                    Grant type refers to the way an application gets an OAuth 2.0 access
+                    token for client authentication to protected cloud resources.
+                    &lt;br/&gt;&lt;br/&gt;
+                    Authorization Code is the standard, 3-Legged OAuth 2.0 authorization
+                    where you grant the client an authorization code that can be exchanged
+                    for an access token.
+                    &lt;br/&gt;&lt;br/&gt;
+                    With JWT Bearer Token, the user provides claim information to generate an
+                    assertion, and the assertion is sent to the server to get the access
+                    token.
+                </helpText>
+                <allowedValue label="Authorization Code">
+                    <value>code</value>
+                </allowedValue>
+                <allowedValue label="JWT Bearer Token">
+                    <value>jwt-bearer</value>
+                </allowedValue>
+            </grantType>
+            <jwtParameters>
+                <signatureAlgorithms access="hidden">
+                    <defaultValue>SHA256withRSA</defaultValue>
+                    <allowedValue>
+                        <value>SHA256withRSA</value>
+                    </allowedValue>
+                </signatureAlgorithms>
+                <issuer>
+                    <helpText>
+                        Identifies the principal that creates, signs, and issues the claim to
+                        access the cloud resources. You can enter either the Email or Unique ID
+                        from the Google Cloud Platform console (Service account details page).
+                    </helpText>
+                </issuer>
+                <subject>
+                    <helpText>
+                        Identifies the principal that is the subject of the claim to access the
+                        cloud resources. Optionally enter either the Email or Unique ID from
+                        the Google Cloud Platform console (Service account details page).
+                    </helpText>
+                </subject>
+                <audience access="hidden">
+                    <defaultValue>https://www.googleapis.com/oauth2/v4/token</defaultValue>
+                </audience>
+                <expiration access="hidden">
+                    <defaultValue>3600</defaultValue>
+                </expiration>
+                <signatureKey>
+                    <helpText>
+                        Identifies the private key that is used to sign the JWT and allow
+                        access to the cloud resources. You create the key in the Google Cloud
+                        Platform console using the P12 key type (Service account details page,
+                        Key ID field) and then import the certificate into Boomi Integration.
+                    </helpText>
+                </signatureKey>
+                <extendedClaims>
+                    <claim name="scope">
+                        <value>
+                            <defaultValue>https://www.googleapis.com/auth/drive</defaultValue>
+                        </value>
+                    </claim>
+                </extendedClaims>
+                <idGeneratorMethods access="hidden">
+                    <allowedValue>
+                        <value>NONE</value>
+                    </allowedValue>
+                </idGeneratorMethods>
+            </jwtParameters>
+        </oauth2FieldConfig>
+    </field>
+
+    <field type="customproperties" label="Request Headers" id="customHeaders" />
+
+    <operation customTypeId="GET" supportsBrowse="true" types="EXECUTE"/>
+    <operation customTypeId="POST" supportsBrowse="true" types="EXECUTE"/>
+    <operation customTypeId="PUT" supportsBrowse="true" types="EXECUTE"/>
+
+</GenericConnectorDescriptor>

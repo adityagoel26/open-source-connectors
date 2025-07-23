@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ObjectDefinitions>
+    <operationField id="QUERYPARAM_idParam" label="Upsert ID Field - idParam" type="string" overrideable="false">
+        <helpText>If you�re identifying objects in your input by a unique field, add idParam={fieldname} to the request
+            endpoint. You can use any object field which has unique set to true in the object metadata, with the
+            exception of picklists. For example, idParam=external_id__vidParam
+        </helpText>
+    </operationField>
+    <definition elementName="/product__v" inputType="json">
+        <jsonSchema>
+            {"$schema":"http://json-schema.org/schema#","product__v":{"type":"array","items":{"type":"object","properties":{"name__v":{"description":"Product
+            Name","type":"string","maxLength":128},"status__v":{"description":"Status","type":"string"}}}}}
+        </jsonSchema>
+    </definition>
+    <definition elementName="/editResponse" outputType="json">
+        <jsonSchema>{
+            "$schema": "http://json-schema.org/schema#",
+            "editResponse": {
+            "type": "object",
+            "properties": {
+            "responseStatus": {
+            "type": "string"
+            },
+            "responseMessage": {
+            "type": "string"
+            },
+            "data": {
+            "type": "array",
+            "items": {
+            "type": "object",
+            "properties": {
+            "responseStatus": {
+            "type": "string"
+            },
+            "data": {
+            "type": "object",
+            "properties": {
+            "id": {
+            "type": "string"
+            },
+            "url": {
+            "type": "string"
+            }
+            }
+            },
+            "errors": {
+            "type": "array",
+            "items": {
+            "type": "object",
+            "properties": {
+            "type": {
+            "type": "string"
+            },
+            "message": {
+            "type": "string"
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        </jsonSchema>
+    </definition>
+</ObjectDefinitions>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ObjectDefinitions>
+    <definition inputType="binary" outputType="none">
+        <cookie>
+            {"requestBodyRequired":false,"requestContentType":null,"pathParameters":[],"queryParameters":[],"headerParameters":[]}
+        </cookie>
+    </definition>
+    <definition elementName="" inputType="none" outputType="json">
+        <jsonSchema>
+            {"type":"object","properties":{"responseStatus":{"type":"string","description":""},"responseMessage":{"type":"string","description":""},"errorCodes":{"type":"array","description":"","items":{"type":"object","properties":{"errorCode":{"type":"string","description":""}}}},"picklists":{"type":"array","description":"","items":{"type":"object","properties":{"name":{"type":"string","description":""},"label":{"type":"string","description":""},"kind":{"type":"string","description":""},"usedIn":{"type":"array","description":"","items":{"type":"object","properties":{"documentTypeName":{"type":"string","description":""},"propertyName":{"type":"string","description":""}}}}}}}},"$schema":"http://json-schema.org/draft-04/schema#"}
+        </jsonSchema>
+    </definition>
+</ObjectDefinitions>

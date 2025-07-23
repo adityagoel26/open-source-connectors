@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<GenericConnectorDescriptor
+	browsingType="any" requireConnectionForBrowse="true">
+	<field type="string" id="accessKey" label="Amazon AWS access key">
+		<helpText>Amazon AWS access key</helpText>
+	</field>
+	<field type="password" id="awsSecretKey"
+		label="Amazon AWS secret key" />
+	<field type="string" id="awsRegion" label="AWS Region">
+		<helpText>An AWS Region is a geographic location with a collection of
+			availability zones that are mapped to physical data centers in that
+			region. Every region is a separate geographic location, and is
+			physically isolated from and independent of every other region in
+			terms of location, power, etc. Select the name of the AWS Region in
+			which your account resides. For more information, see your AWS
+			documentation and search for Regions and Availability Zones.
+		</helpText>
+		<defaultValue>Custom-Region</defaultValue>
+		<allowedValue label="ap-east-1">
+			<value>ap-east-1</value>
+		</allowedValue>
+		<allowedValue label="ap-northeast-1">
+			<value>ap-northeast-1</value>
+		</allowedValue>
+		<allowedValue label="ap-northeast-2">
+			<value>ap-northeast-2</value>
+		</allowedValue>
+		<allowedValue label="ap-northeast-3">
+			<value>ap-northeast-3</value>
+		</allowedValue>
+		<allowedValue label="ap-south-1">
+			<value>ap-south-1</value>
+		</allowedValue>
+		<allowedValue label="ap-southeast-1">
+			<value>ap-southeast-1</value>
+		</allowedValue>
+		<allowedValue label="ap-southeast-2">
+			<value>ap-southeast-2</value>
+		</allowedValue>
+		<allowedValue label="ca-central-1">
+			<value>ca-central-1</value>
+		</allowedValue>
+		<allowedValue label="cn-north-1cn">
+			<value>cn-north-1cn</value>
+		</allowedValue>
+		<allowedValue label="cn-northwest-1cn">
+			<value>cn-northwest-1cn</value>
+		</allowedValue>
+		<allowedValue label="eu-central-1">
+			<value>eu-central-1</value>
+		</allowedValue>
+		<allowedValue label="eu-north-1">
+			<value>eu-north-1</value>
+		</allowedValue>
+		<allowedValue label="eu-west-1">
+			<value>eu-west-1</value>
+		</allowedValue>
+		<allowedValue label="eu-west-2">
+			<value>eu-west-2</value>
+		</allowedValue>
+		<allowedValue label="eu-west-3">
+			<value>eu-west-3</value>
+		</allowedValue>
+		<allowedValue label="sa-east-1">
+			<value>sa-east-1</value>
+		</allowedValue>
+		<allowedValue label="us-east-1">
+			<value>us-east-1</value>
+		</allowedValue>
+		<allowedValue label="us-east-2">
+			<value>us-east-2</value>
+		</allowedValue>
+		<allowedValue label="us-west-1">
+			<value>us-west-1</value>
+		</allowedValue>
+		<allowedValue label="us-west-2">
+			<value>us-west-2</value>
+		</allowedValue>
+		<allowedValue label="CUSTOM-REGION">
+			<value>Custom-Region</value>
+		</allowedValue>
+	</field>
+	<field type="string" id="customAwsRegion"
+		label="Custom AWS Region">
+		<helpText>Type the custom name of the AWS region in which your account
+			resides. For example, us-east-2. The
+			connection uses the custom region, instead of a region from the AWS Region
+			drop-down.
+		</helpText>
+	</field>
+	<field type="string" id="awsAccountID" label="AWS Account ID">
+		<helpText>AWS Account ID. Required for the Create Operation.
+		</helpText>
+	</field>
+	<operation types="CREATE" customTypeId="CREATE"
+		customTypeLabel="CREATE">
+	</operation>
+</GenericConnectorDescriptor>

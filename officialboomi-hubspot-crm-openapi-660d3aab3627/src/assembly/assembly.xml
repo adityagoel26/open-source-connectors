@@ -1,0 +1,45 @@
+<assembly>
+    <id>car</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <files>
+        <file>
+            <source>src/main/resources/hubspot_crm/connector-config-hubspot_crm.xml</source>
+            <destName>connector-config.xml</destName>
+            <outputDirectory>/META-INF</outputDirectory>
+        </file>
+        <file>
+            <source>src/main/resources/hubspot_crm/connector-descriptor-hubspot_crm.xml</source>
+            <destName>connector-descriptor.xml</destName>
+            <outputDirectory>/META-INF</outputDirectory>
+        </file>
+
+    </files>
+    <fileSets>
+        <fileSet>
+            <outputDirectory>conf</outputDirectory>
+            <includes>
+                <include>*.txt</include>
+            </includes>
+            <directory>target/conf</directory>
+        </fileSet>
+        <fileSet>
+            <outputDirectory>META-INF</outputDirectory>
+            <includes>
+                <include>MANIFEST.MF</include>
+            </includes>
+            <directory>${remote.resource.filtered.directory}</directory>
+        </fileSet>
+    </fileSets>
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>/lib</outputDirectory>
+            <excludes>
+                <exclude>com.boomi.connsdk:connector-sdk-api</exclude>
+            </excludes>
+            <useTransitiveFiltering>true</useTransitiveFiltering>
+        </dependencySet>
+    </dependencySets>
+</assembly>

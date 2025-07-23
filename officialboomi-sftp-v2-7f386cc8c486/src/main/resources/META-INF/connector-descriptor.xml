@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<GenericConnectorDescriptor
+	browsingType="any" requireConnectionForBrowse="false"
+	disableDefaultObjectTypeFilter="true">
+	<field id="authType" label="Authentication Type" type="string">
+		<allowedValue label="Username and Password">
+			<value>Username and Password</value>
+		</allowedValue>
+		<allowedValue label="Using Public Key">
+			<value>Using public Key</value>
+		</allowedValue>
+	</field>
+	<field id="remoteDirectory" label="Remote Directory"
+		type="string">
+		<helpText>
+			Optionally enter the directory (relative or absolute
+			directory path) on the
+			SFTP server where the connector
+			reads files
+			from, or writes files to. If you leave this field blank or
+			specify a
+			relative directory path,
+			the connector uses the default working
+			directory configured as the base
+			folder on the SFTP server. You can
+			override this value using the Remote Directory input document
+			property.
+		</helpText>
+	</field>
+	<field id="host" label="Host" type="string">
+		<helpText>The hostname of server hosting SFTP server</helpText>
+	</field>
+	<field id="username" label="User Name" type="string">
+		<helpText>The username for SFTP Server</helpText>
+	</field>
+	<field id="password" label="Password" type="password">
+		<helpText>The password for SFTP user</helpText>
+	</field>
+	<field id="port" label="Port" type="integer">
+		<helpText>Port at which SFTP server is listening</helpText>
+	</field>
+	<field id="keyPath" label="Client SSH Key File Path"
+		type="string">
+		<helpText>The file system path that specifies the location of the
+			client key file on the running atom.
+		</helpText>
+	</field>
+	<field id="keyPswrd" label="Key File Password" type="password">
+		<helpText>Password for the key file</helpText>
+	</field>
+	<field id="hostEntry" label="Known Host Entry" type="string">
+	</field>
+	<field id="isMaxExchange"
+		label="Use Max Key Exchange size of 1024" type="boolean">
+		<helpText>The value should only be checked in cases where the SFTP
+			server does not support key sizes greater than 1024 bits
+		</helpText>
+	</field>
+
+	<field id="prvkeyContent" label="Private Key Content"
+		type="password">
+		<helpText>Private Key Content</helpText>
+	</field>
+	<field id="pubkeyContent" label="Public Key Content"
+		type="password">
+		<helpText>Public Key Content</helpText>
+	</field>
+	<field id="keyPairName" label="Key Pair Name" type="string">
+		<helpText>Key Pair Name</helpText>
+	</field>
+	<field id="useKeyContent"
+		label="Use Keys' content for authentication" type="boolean">
+		<helpText>Select to use private and public key's content for
+			authentication
+		</helpText>
+	</field>
+	<field id="enablePooling" label="Use Connection Pooling"
+	type="boolean">
+	<helpText>Select to enable connection pooling and make other fields
+		active. If this is not enabled, then values for the other fields which
+		are invisible are not saved including the defaults. Connection pooling
+		may increase performance by using resources more efficiently.</helpText>
+	<defaultValue>false</defaultValue>
+</field>
+	<field id="proxyEnable" type="boolean" label="Use Proxy">
+		<helpText>
+			Select if you want to use a proxy for connecting to the SFTP
+			server.
+		</helpText>
+		<defaultValue>false</defaultValue>
+	</field>
+	<field type="string" id="proxyType" label="Choose Proxy Type">
+		<defaultValue>atom</defaultValue>
+		<allowedValue label="ATOM">
+			<value>atom</value>
+		</allowedValue>
+		<allowedValue label="HTTP">
+			<value>http</value>
+		</allowedValue>
+		<allowedValue label="SOCKS4">
+			<value>socks4</value>
+		</allowedValue>
+		<allowedValue label="SOCKS5">
+			<value>socks5</value>
+		</allowedValue>
+	</field>
+	<field type="string" id="proxyHost" label="Proxy Host">
+	</field>
+	<field type="integer" id="proxyPort" label="Proxy Port">
+	</field>
+	<field type="string" id="proxyuserName" label="Proxy Username">
+	</field>
+	<field type="password" id="proxyPassword" label="Proxy Password">
+	</field>
+
+	<field id="connectionTimeout" label="Connection Timeout (ms)"
+		type="integer">
+		<helpText>
+			Optionally enter the number of milliseconds that the
+			connector waits to
+			complete the connection handshake
+			until it times
+			out. If you leave this field blank, the connection uses the
+			network
+			timeout settings for the
+			Atom or operating system.
+			NOTE: If the SFTP
+			server configuration includes connection timeout value, then it
+			overrides the value provided here.
+		</helpText>
+	</field>
+
+	<field id="readTimeout" label="Read Timeout (ms)" type="integer">
+		<helpText>Optionally enter the number of milliseconds that the
+			connector waits to
+			complete the FTP data transfer until
+			it times out.
+			If you leave this field blank, the connection uses the
+			network timeout
+			settings for the Atom
+			or operating system.
+			NOTE: If the SFTP server
+			configuration includes connection timeout value, then it overrides
+			the value provided here.
+		</helpText>
+	</field>
+	<testConnection method="CUSTOM" />
+	<operation types="CREATE">
+		<field id="actionIfFileExists" type="string"
+			label="Action if File Exists">
+			<helpText>
+				Specify how the operation behaves if the file name already
+				exists in the
+				Remote Directory on the SFTP
+				server. Select "Create
+				unique name" to have the connector append a number
+				to the file name
+				and make it
+				unique. Select "Overwrite" to replace the existing
+				content with the new
+				one. Select "Append" to
+				concatenate the new
+				content at the end of the existing one. Select "Generate
+				error" to
+				generate an
+				error.
+			</helpText>
+			<defaultValue>ERROR</defaultValue>
+			<allowedValue label="Create unique name">
+				<value>FORCE_UNIQUE_NAMES</value>
+			</allowedValue>
+			<allowedValue label="Overwrite">
+				<value>OVERWRITE</value>
+			</allowedValue>
+			<allowedValue label="Append">
+				<value>APPEND</value>
+			</allowedValue>
+			<allowedValue label="Generate error">
+				<value>ERROR</value>
+			</allowedValue>
+		</field>
+		<field id="stagingDirectory" type="string"
+			label="Staging Directory">
+			<helpText>
+				Optionally enter the directory (absolute or relative
+				directory path) to
+				temporarily put a file, before
+				being moved to the
+				Remote Directory. If you specify a relative directory
+				path, the
+				connector uses the
+				default working directory configured as the base
+				folder on the FTP server.
+				If you do not specify a
+				Staging Directory,
+				the file is immediately created in the Remote
+				Directory.
+			</helpText>
+		</field>
+		<field id="tempExtension" type="string"
+			label="Temporary Extension">
+			<helpText>
+				Optionally enter a temporary extension (for example, .tmp
+				or tmp) to append
+				to the file name until the
+				file is created in the
+				Remote Directory. To avoid overwriting existing
+				files, the connector
+				guarantees
+				that the temporary file name is unique when creating
+				files.
+			</helpText>
+		</field>
+		<field id="targetFileName" type="string"
+			label="Target File Name">
+			<helpText>
+				If Create unique name is selected under "Action if File
+				Exists" and if
+				this field is not empty, it will be used to create the
+				target
+				filename once the file transfer has completed. It can be a
+				combination of one or all of the following variables. 1)
+				Alphanumeric string 2) $BASE, the base filename of the input file 3)
+				$EXTENSION, the extension of the input file 4) $DATE, today's date
+				in MMDDYYYY format and 5) $TIME, current time in HHMMSS.SSS format.
+				6) $UUID, a randomly generated unique id. For example, specifying
+				$BASE_$DATE.$EXTENSION will generate a target filename,
+				example_09142020.csv, where input document may be example.csv. If
+				left empty the target filename will be the same as the source
+				filename.
+			</helpText>
+		</field>
+		<field id="tempFileName" type="string"
+			label="Temporary File Name">
+			<helpText>
+				If Create unique name is selected under "Action if File
+				Exists", you
+				can customize the temporary filename while the file
+				transfer is in
+				progress, using a combination of one or all of the
+				following
+				variables. 1) Alphanumeric string 2) $BASE, the base
+				filename of the
+				input file 3) $EXTENSION, the extension of the input
+				file 4) $DATE,
+				today's date in MMDDYYYY format and 5) $TIME, current
+				time in
+				HHMMSS.SSS format 6) $UUID, a randomly generated unique id.
+				For
+				example, specifying $BASE_$DATE.$EXTENSION will generate a
+				temporary
+				filename, example_09142020.csv, where input document may be
+				example.csv.
+			</helpText>
+		</field>
+		<field id="includeAllMetadata" type="boolean"
+			label="Include all metadata" scope="browseOnly">
+			<helpText>
+				Select to have the response profile and output documents
+				include all
+				metadata with JSON objects
+				including the File Name,
+				Remote
+				Directory, and Timestamp. If cleared, only
+				the File Name and
+				Remote
+				Directory are included.
+			</helpText>
+			<defaultValue>false</defaultValue>
+		</field>
+	</operation>
+	<operation types="GET">
+		<field id="deleteAfter" type="boolean"
+			label="Delete files after reading">
+			<helpText>Select to delete files after they are read into the
+				process. If the file cannot be deleted due to insufficient access
+				rights, a warning message is logged. Dell Boomi recommends
+				selecting
+				this option when executing in production mode to prevent
+				data from
+				being processed twice, and clearing this option when
+				testing.
+			</helpText>
+			<defaultValue>false</defaultValue>
+		</field>
+		<field id="failDeleteAfter" type="boolean"
+			label="Fail if unable to delete">
+			<helpText>Select to fail a process with an error, if an attempt to
+				delete files after reading them into the process is unsuccessful
+				due
+				to insufficient access rights.
+			</helpText>
+			<defaultValue>false</defaultValue>
+		</field>
+		<field id="includeAllMetadata" type="boolean"
+			label="Include all metadata">
+			<helpText>
+				Select to have the output document include all metadata as
+				tracked
+				properties including the File Name,
+				File content, and
+				Timestamp. If cleared, only the File Content is
+				included.
+			</helpText>
+			<defaultValue>false</defaultValue>
+		</field>
+	</operation>
+
+	<operation types="QUERY" customTypeId="QUERY">
+		<field id="count" type="integer"
+			label="Maximum Number of Files to Return">
+			<helpText>Enter the maximum number of files to return in a query.
+				Enter -1 to return as many files as possible.
+			</helpText>
+			<defaultValue>-1</defaultValue>
+		</field>
+		<field id="includeAllMetadata" type="boolean"
+			label="Include all metadata">
+			<helpText>
+				Select to have the output document include all metadata as
+				tracked
+				properties including the File Name,
+				File content, and
+				Timestamp. If
+				cleared, only the File Content is
+				included.
+			</helpText>
+			<defaultValue>false</defaultValue>
+		</field>
+		<queryFilter grouping="any">
+			<operator id="REGEX" label="Regex Match" numArguments="1">
+				<helpText>Matches filenames based on regular expression</helpText>
+				<supportedType type="FilePath" />
+			</operator>
+			<operator id="WILDCARD" label="Wildcard Match"
+				numArguments="1">
+				<helpText>Matches filenames based on wildcard patterns</helpText>
+				<supportedType type="FilePath" />
+			</operator>
+			<operator id="EQUALS" label="Equals" numArguments="1">
+				<helpText>Matches exactly</helpText>
+				<supportedType type="FilePath" />
+				<supportedType type="Comparable" />
+			</operator>
+			<operator id="NOT_EQUALS" label="Does not Equal"
+				numArguments="1">
+				<helpText>Does not match exactly</helpText>
+				<supportedType type="FilePath" />
+				<supportedType type="Comparable" />
+			</operator>
+			<operator id="LESS_THAN" label="Less Than" numArguments="1">
+				<!--Not sure what to put for help text -->
+				<supportedType type="FilePath" />
+				<supportedType type="Comparable" />
+			</operator>
+			<operator id="GREATER_THAN" label="Greater Than"
+				numArguments="1">
+				<!--Not sure what to put for help text -->
+				<supportedType type="FilePath" />
+				<supportedType type="Comparable" />
+			</operator>
+		</queryFilter>
+	</operation>
+
+	<operation types="QUERY" customTypeId="LIST">
+		<field id="count" type="integer"
+			label="Maximum Number of Files to Return">
+			<helpText>Enter the maximum number of files to return in a query.
+				Enter -1 to return as many files as possible.
+			</helpText>
+			<defaultValue>-1</defaultValue>
+		</field>
+		<field id="recursiveList" type="boolean"
+			label="Recursive Listing of Directory">
+			<helpText>The default behavior is to list the files and directories
+				of the root level. If selected, it will list root level as well as
+				files one level deeper.
+			</helpText>
+			<defaultValue>false</defaultValue>
+			<allowedValue label="True">
+				<value>true</value>
+			</allowedValue>
+			<allowedValue label="False">
+				<value>false</value>
+			</allowedValue>
+		</field>
+		<queryFilter grouping="any">
+			<operator id="REGEX" label="Regex Match" numArguments="1">
+				<helpText>Matches filenames based on regular expression</helpText>
+				<supportedType type="FilePath" />
+			</operator>
+			<operator id="WILDCARD" label="Wildcard Match"
+				numArguments="1">
+				<helpText>Matches filenames based on wildcard patterns</helpText>
+				<supportedType type="FilePath" />
+			</operator>
+			<operator id="EQUALS" label="Equals" numArguments="1">
+				<helpText>Matches exactly</helpText>
+				<supportedType type="Boolean" />
+				<supportedType type="FilePath" />
+				<supportedType type="Comparable" />
+			</operator>
+			<operator id="NOT_EQUALS" label="Does not Equal"
+				numArguments="1">
+				<helpText>Does not match exactly</helpText>
+				<supportedType type="Boolean" />
+				<supportedType type="FilePath" />
+				<supportedType type="Comparable" />
+			</operator>
+			<operator id="LESS_THAN" label="Less Than" numArguments="1">
+				<supportedType type="FilePath" />
+				<supportedType type="Comparable" />
+			</operator>
+			<operator id="GREATER_THAN" label="Greater Than"
+				numArguments="1">
+				<supportedType type="FilePath" />
+				<supportedType type="Comparable" />
+			</operator>
+		</queryFilter>
+	</operation>
+
+	<operation types="UPSERT">
+		<field id="append" type="boolean" label="Append">
+			<helpText>Select to update existing data to include new data. Clear
+				to overwrite old data.
+			</helpText>
+			<defaultValue>false</defaultValue>
+		</field>
+		<field id="createDir" type="boolean"
+			label="Create directory if it doesn't exist">
+			<helpText>If selected, the connector creates a directory (if it does
+				not already exist) according to what is specified in the connection
+				or document property
+			</helpText>
+			<defaultValue>false</defaultValue>
+		</field>
+		<field id="includeAll" type="boolean"
+			label="Include all metadata">
+			<helpText>Select to have the response include all metadata with JSON
+				objects. Clear to only return File Name and Directory properties.
+			</helpText>
+			<defaultValue>false</defaultValue>
+		</field>
+	</operation>
+	<operation types="LISTEN" customTypeId="LISTEN"
+		customTypeLabel="LISTEN">
+
+		<field id="pollingInterval" label="Polling Interval"
+			type="integer">
+			<helpText>
+				Set the interval between each poll cycle (in milliseconds) on the directory.
+			</helpText>
+		</field>
+		<field id="isSingleton" type="boolean" label="Is Singleton"></field>
+	</operation>
+
+	<operation types="DELETE" />
+
+	<dynamicProperty type="string" id="fileName"
+		label="File Name" />
+	<dynamicProperty type="string" id="remoteDirectory"
+		label="Remote Directory" />
+
+	<trackedProperty id="fileName" label="File Name" />
+	<trackedProperty id="remoteDirectory"
+		label="Remote Directory" />
+
+
+
+</GenericConnectorDescriptor>

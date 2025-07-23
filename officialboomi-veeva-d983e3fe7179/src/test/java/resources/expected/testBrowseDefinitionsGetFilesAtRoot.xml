@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ObjectDefinitions>
+    <operationField id="cXVlcnlfcmVjdXJzaXZl" label="Query recursive" type="boolean" overrideable="true">
+        <helpText>If true, the response will contain the contents of all subfolders. If not specified, the default value
+            is false.
+        </helpText>
+    </operationField>
+    <operationField id="cXVlcnlfbGltaXQ" label="Query limit" type="integer" overrideable="true">
+        <helpText>Optional, The maximum number of items per page in the response. This can be any value between 1 and
+            1000. If omitted, the default value is 1000.
+        </helpText>
+    </operationField>
+    <definition inputType="binary" outputType="none">
+        <cookie>
+            {"requestBodyRequired":false,"requestContentType":null,"pathParameters":[],"queryParameters":[{"id":"cXVlcnlfcmVjdXJzaXZl","parameterType":"QUERY","style":"FORM","explode":false,"dataType":"BOOLEAN"},{"id":"cXVlcnlfbGltaXQ","parameterType":"QUERY","style":"FORM","explode":false,"dataType":"INTEGER"}],"headerParameters":[]}
+        </cookie>
+    </definition>
+    <definition elementName="" inputType="none" outputType="json">
+        <jsonSchema>
+            {"type":"object","properties":{"responseStatus":{"type":"string","description":""},"data":{"type":"array","description":"","items":{"type":"object","properties":{"kind":{"type":"string","description":""},"path":{"type":"string","description":""},"name":{"type":"string","description":""},"size":{"type":"integer","description":""},"modified_date":{"type":"string","description":""}}}}},"$schema":"http://json-schema.org/draft-04/schema#"}
+        </jsonSchema>
+    </definition>
+</ObjectDefinitions>

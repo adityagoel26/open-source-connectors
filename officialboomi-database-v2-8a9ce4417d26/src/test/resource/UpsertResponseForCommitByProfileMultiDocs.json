@@ -1,0 +1,5 @@
+{
+  "Query": "Insert into CUSTOMER(name,isqualified) values (?,?) ON DUPLICATE KEY UPDATE name=?,isqualified=?",
+  "Rows Effected": 0,
+  "Status": "Executed Successfully"
+}

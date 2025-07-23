@@ -1,0 +1,20 @@
+/bin/*
+Snowflake.zip
+.settings/org.eclipse.core.resources.prefs
+.classpath
+/bin/
+/jars/*
+
+target/
+node/
+!.mvn/wrapper/maven-wrapper.jar
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+# Ignore Gradle directories
+.gradle
+build

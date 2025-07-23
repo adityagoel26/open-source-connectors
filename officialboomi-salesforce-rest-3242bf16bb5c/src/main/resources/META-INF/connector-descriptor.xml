@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenericConnectorDescriptor browsingType="any" requireConnectionForBrowse="true">
+    <field id="authenticationType" label="Authentication Type" type="string" displayType="radio">
+        <helpText>
+            Select the authentication type to connect with the service. When using User Credentials, provide the User
+            Name and Password on this tab. When using OAuth 2.0, provide the Client ID and Client Secret on the OAuth
+            2.0 tab.
+        </helpText>
+        <defaultValue>USER_CREDENTIALS</defaultValue>
+        <allowedValue label="User Credentials">
+            <value>USER_CREDENTIALS</value>
+        </allowedValue>
+        <allowedValue label="OAuth 2.0">
+            <value>OAUTH_2</value>
+        </allowedValue>
+    </field>
+
+    <field id="url" label="Service URL" type="string">
+        <helpText>URL to REST APIs, you can change the instance name [na7] and version [v50.0]</helpText>
+        <defaultValue>https://na7.salesforce.com/services/data/v50.0</defaultValue>
+    </field>
+    <field id="username" label="User Name" type="string">
+        <helpText>
+            Enter the Salesforce User Name.
+        </helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="authenticationType">
+                <value>USER_CREDENTIALS</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field id="password" label="Password" type="password">
+        <helpText>
+            Enter the combination of the Salesforce password and the security token. For example, if your password
+            is "MyPassword" and your security token is "Token", you would enter "MyPasswordToken".
+        </helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="authenticationType">
+                <value>USER_CREDENTIALS</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field id="authenticationUrl" label="Authentication URL" type="string">
+        <helpText>
+            URL for Salesforce Authentication.
+        </helpText>
+        <defaultValue>https://login.salesforce.com/services/Soap/u/48.0</defaultValue>
+        <visibilityCondition>
+            <valueCondition fieldId="authenticationType">
+                <value>USER_CREDENTIALS</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field id="salesforceOauth" label="OAuth 2.0" type="oauth">
+        <oauth2FieldConfig>
+            <authorizationTokenEndpoint>
+                <url>
+                    <defaultValue>https://login.salesforce.com/services/oauth2/authorize</defaultValue>
+                </url>
+            </authorizationTokenEndpoint>
+            <authorizationParameters access="hidden"/>
+
+            <accessTokenEndpoint>
+                <url>
+                    <defaultValue>https://login.salesforce.com/services/oauth2/token</defaultValue>
+                </url>
+            </accessTokenEndpoint>
+            <accessTokenParameters access="hidden"/>
+
+            <scope access="hidden"/>
+            <grantType>
+                <defaultValue>code</defaultValue>
+                <allowedValue label="Authorization Code">
+                    <value>code</value>
+                </allowedValue>
+                <allowedValue label="Client Credentials">
+                    <value>client_credentials</value>
+                </allowedValue>
+            </grantType>
+        </oauth2FieldConfig>
+    </field>
+
+    <testConnection method="CUSTOM"/>
+
+    <operation types="QUERY" customTypeId="QUERY" customTypeLabel="Query" allowFieldSelection="true"
+               fieldSelectionLevels="6" fieldSelectionNone="true">
+        <field id="parentsDepth" label="Level of Parents" type="integer" scope="browseOnly">
+            <helpText>
+                The level of depth of parent relationships, choose an integer between 0 and 5.
+                0 means do not import any parents, 5 means import up to 5 levels of parents. REST API supports Query up
+                to 5 levels of parents, but Bulk API V2.0 supports 1 level of parents
+            </helpText>
+            <defaultValue>1</defaultValue>
+            <allowedValue label="0">
+                <value>0</value>
+            </allowedValue>
+            <allowedValue label="1">
+                <value>1</value>
+            </allowedValue>
+            <allowedValue label="2">
+                <value>2</value>
+            </allowedValue>
+            <allowedValue label="3">
+                <value>3</value>
+            </allowedValue>
+            <allowedValue label="4">
+                <value>4</value>
+            </allowedValue>
+            <allowedValue label="5">
+                <value>5</value>
+            </allowedValue>
+        </field>
+        <field id="childrenDepth" label="Import Children" type="integer" scope="browseOnly">
+            <helpText>
+                The level of depth of children relationships.
+                None means do not import any children, Without Parents means import only children without their parents,
+                With Parents means import children and their direct parents
+            </helpText>
+            <defaultValue>0</defaultValue>
+            <allowedValue label="None">
+                <value>0</value>
+            </allowedValue>
+            <allowedValue label="Without Parents">
+                <value>1</value>
+            </allowedValue>
+            <allowedValue label="With Parents">
+                <value>2</value>
+            </allowedValue>
+        </field>
+        <field id="OperationAPI" label="Operation API" type="string" displayType="list">
+            <helpText>The API to be used in the operations.</helpText>
+            <defaultValue>RESTAPI</defaultValue>
+            <allowedValue label="Bulk API V2.0">
+                <value>BulkAPI2.0</value>
+            </allowedValue>
+            <allowedValue label="REST API">
+                <value>RESTAPI</value>
+            </allowedValue>
+        </field>
+        <field id="limitNumberOfDocuments" label="Limit Number of Documents" type="boolean">
+            <helpText>Select to limit the number of documents to return</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="limit" label="Number of Documents" type="integer" overrideable="true">
+            <helpText>Number of documents to return</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="limitNumberOfDocuments">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="queryAll" label="Include Deleted" type="boolean">
+            <helpText>If checked, deleted records will also be returned in results (QueryAll)
+            </helpText>
+        </field>
+        <field id="logSoql" label="Log SOQL" type="boolean">
+            <helpText>If checked, the full SOQL appears in process logs after a process is executed. The SOQL includes
+                both the SOQL and the input parameters. Having the full SOQL is useful when troubleshooting process
+                issues, such as when a request in your SOQL fails.
+            </helpText>
+        </field>
+        <field id="pageSize" label="Query Page Size" type="integer">
+            <helpText>Specifies the number of records returned in a single request. The minimum is 200, and the maximum
+                is 2000 for REST APIs, no limit for Bulk APIs.
+                If you don’t provide a value for this parameter, the server uses a default value based on the service.
+            </helpText>
+            <defaultValue>2000</defaultValue>
+        </field>
+
+        <field id="restHeaders" label="REST Request Headers" type="customproperties" scope="both" overrideable="true">
+            <helpText>Optional, additional headers added to each request</helpText>
+        </field>
+
+        <queryFilter grouping="any" sorting="unbounded">
+            <operator id="LIKE" label="Like"/>
+            <operator id="EQUALS" label="Equal To"/>
+            <operator id="NOT_EQUALS" label="Not Equal To"/>
+            <operator id="GREATER_THAN" label="Greater Than"/>
+            <operator id="GREATER_THAN_OR_EQUALS" label="Greater Than Or Equal To"/>
+            <operator id="LESS_THAN" label="Less Than"/>
+            <operator id="LESS_THAN_OR_EQUALS" label="Less Than Or Equal To"/>
+            <operator id="IN_LIST" label="In (comma-separated list)"/>
+            <operator id="NOT_IN_LIST" label="Not In (comma-separated list)"/>
+            <operator id="INCLUDES_LIST" label="Includes (comma-separated list)"/>
+            <operator id="EXCLUDES_LIST" label="Excludes (comma-separated list)"/>
+            <sortOrder id="asc_nulls_first" label="Ascending (Nulls first)"/>
+            <sortOrder id="asc_nulls_last" label="Ascending (Nulls last)"/>
+            <sortOrder id="desc_nulls_first" label="Descending (Nulls first)"/>
+            <sortOrder id="desc_nulls_last" label="Descending (Nulls last)"/>
+        </queryFilter>
+    </operation>
+
+    <operation types="EXECUTE" customTypeId="customSoqlQuery" customTypeLabel="Custom SOQL Query" supportsBrowse="false"
+               trackedDocument="response">
+        <field id="OperationAPI" label="Operation API" type="string" displayType="list">
+            <helpText>The API to be used in the operations.</helpText>
+            <defaultValue>RESTAPI</defaultValue>
+            <allowedValue label="Bulk API V2.0">
+                <value>BulkAPI2.0</value>
+            </allowedValue>
+            <allowedValue label="REST API">
+                <value>RESTAPI</value>
+            </allowedValue>
+        </field>
+        <field id="queryAll" label="Include Deleted" type="boolean">
+            <helpText>If checked, deleted records will also be returned in results (QueryAll)
+            </helpText>
+        </field>
+        <field id="logSoql" label="Log SOQL" type="boolean">
+            <helpText>If checked, the full SOQL appears in process logs after a process is executed. The SOQL includes
+                both the SOQL query and the input parameters. Having the full SOQL is useful when troubleshooting
+                process issues, such as when a request in your SOQL fails.
+            </helpText>
+        </field>
+        <field id="pageSize" label="Query Page Size" type="integer">
+            <helpText>Specifies the number of records returned in a single request. The minimum is 200, and the maximum
+                is 2000 for REST APIs, no known limit for Bulk APIs.
+                If you don’t provide a value for this parameter, the server uses a default value based on the service.
+            </helpText>
+            <defaultValue>2000</defaultValue>
+        </field>
+        <field id="restHeaders" label="REST Request Headers" type="customproperties" scope="both" overrideable="true">
+            <helpText>Optional, additional headers added to each request</helpText>
+        </field>
+
+    </operation>
+
+    <operation types="CREATE" customTypeId="CREATE" customTypeLabel="Create">
+        <field id="OperationAPI" label="Operation API" type="string" displayType="list">
+            <helpText>The API to be used in the operations.</helpText>
+            <defaultValue>COMPOSITEAPI</defaultValue>
+            <allowedValue label="Bulk API V2.0">
+                <value>BulkAPI2.0</value>
+            </allowedValue>
+            <allowedValue label="REST API">
+                <value>RESTAPI</value>
+            </allowedValue>
+            <allowedValue label="Composite REST API">
+                <value>COMPOSITEAPI</value>
+            </allowedValue>
+        </field>
+        <field id="batchCount" label="Batch Count" type="integer">
+            <helpText>Use this field to adjust the count of data (documents) to send to Salesforce in one batch.
+                The range of valid values is 1–200 documents.
+            </helpText>
+            <defaultValue>200</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="OperationAPI">
+                    <value>COMPOSITEAPI</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="allOrNone" label="All Or None" type="boolean">
+            <helpText>This field is only applicable when Batch Count is greater than 1.
+                If checked, the allOrNone header will be added to each batch separately.
+            </helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="OperationAPI">
+                    <value>COMPOSITEAPI</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+
+        <field id="batchSize" label="Batch Size" type="integer">
+            <helpText>Use this field to adjust the amount of data (documents) to send to Salesforce in one batch. The
+                range of valid values, in MB, is 1–150. The default is 100 MB.
+            </helpText>
+            <defaultValue>100</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="OperationAPI">
+                    <value>BulkAPI2.0</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="bulkHeader" label="CSV Field Names" type="string">
+            <helpText>Comma separated header values, leave empty to use the all the fields as header, with no External
+                Reference Fields
+            </helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="OperationAPI">
+                    <value>BulkAPI2.0</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="assignmentRuleId" label="Assignment Rule ID (Optional)" type="string" overrideable="true">
+            <helpText>The ID of an assignment rule to run for a Case or a Lead. The assignment rule can be active or
+                inactive. The ID can be retrieved by querying the AssignmentRule object.
+
+                • TRUE. Active assignment rules are applied for created or updated Accounts, Cases, or Leads.
+
+                • FALSE. Active assignment rules are not applied for created or updated Accounts, Cases, or Leads.
+
+                • Valid AssignmentRule ID. The given AssignmentRule is applied for created Accounts, Cases, or Leads.
+
+                • TRUE and FALSE are not case-sensitive.
+            </helpText>
+        </field>
+        <field id="restHeaders" label="REST Request Headers" type="customproperties" scope="both" overrideable="true">
+            <helpText>Optional, additional headers added to each request</helpText>
+        </field>
+    </operation>
+
+    <operation types="CREATE" customTypeId="CREATE_TREE" customTypeLabel="Create Tree">
+        <field id="childrenDepth" label="Level of Children" type="integer" scope="browseOnly">
+            <helpText>
+                The level of depth of children relationships, choose an integer between 0 and 5.
+                0 means do not import any children, 5 means import up to 5 levels of children.
+            </helpText>
+            <defaultValue>1</defaultValue>
+            <allowedValue label="0">
+                <value>0</value>
+            </allowedValue>
+            <allowedValue label="1">
+                <value>1</value>
+            </allowedValue>
+            <allowedValue label="2">
+                <value>2</value>
+            </allowedValue>
+            <allowedValue label="3">
+                <value>3</value>
+            </allowedValue>
+            <allowedValue label="4">
+                <value>4</value>
+            </allowedValue>
+            <allowedValue label="5">
+                <value>5</value>
+            </allowedValue>
+        </field>
+        <field id="assignmentRuleId" label="Assignment Rule ID (Optional)" type="string" overrideable="true">
+            <helpText>The ID of an assignment rule to run for a Case or a Lead. The assignment rule can be active or
+                inactive. The ID can be retrieved by querying the AssignmentRule object.
+
+                • TRUE. Active assignment rules are applied for created or updated Accounts, Cases, or Leads.
+
+                • FALSE. Active assignment rules are not applied for created or updated Accounts, Cases, or Leads.
+
+                • Valid AssignmentRule ID. The given AssignmentRule is applied for created Accounts, Cases, or Leads.
+
+                • TRUE and FALSE are not case-sensitive.
+            </helpText>
+        </field>
+        <field id="restHeaders" label="REST Request Headers" type="customproperties" scope="both" overrideable="true">
+            <helpText>Optional, additional headers added to each request</helpText>
+        </field>
+    </operation>
+
+    <operation types="UPDATE" customTypeId="UPDATE" customTypeLabel="Update">
+        <field id="OperationAPI" label="Operation API" type="string" displayType="list">
+            <helpText>The API to be used in the operations.</helpText>
+            <defaultValue>COMPOSITEAPI</defaultValue>
+            <allowedValue label="Bulk API V2.0">
+                <value>BulkAPI2.0</value>
+            </allowedValue>
+            <allowedValue label="REST API">
+                <value>RESTAPI</value>
+            </allowedValue>
+            <allowedValue label="Composite REST API">
+                <value>COMPOSITEAPI</value>
+            </allowedValue>
+        </field>
+        <field id="batchCount" label="Batch Count" type="integer">
+            <helpText>Use this field to adjust the count of data (documents) to send to Salesforce in one batch.
+                The range of valid values is 1–200 documents.
+            </helpText>
+            <defaultValue>200</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="OperationAPI">
+                    <value>COMPOSITEAPI</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="allOrNone" label="All Or None" type="boolean">
+            <helpText>This field is only applicable when Batch Count is greater than 1.
+                If checked, the allOrNone header will be added to each batch separately.
+            </helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="OperationAPI">
+                    <value>COMPOSITEAPI</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="returnUpdatedRecord" label="Return Updated Record" type="boolean">
+            <helpText>Return Updated Document is only applicable when Batch Count equals 1.
+                If checked, will execute Composite request to return the updated record after successfully updating.
+            </helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="OperationAPI">
+                    <value>RESTAPI</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="batchSize" label="Batch Size" type="integer">
+            <helpText>Use this field to adjust the amount of data (documents) to send to Salesforce in one batch. The
+                range of valid values, in MB, is 1–150. The default is 100 MB.
+            </helpText>
+            <defaultValue>100</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="OperationAPI">
+                    <value>BulkAPI2.0</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="bulkHeader" label="CSV Field Names" type="string">
+            <helpText>Comma separated header values, leave empty to use the all the fields as header, with no External
+                Reference Fields
+            </helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="OperationAPI">
+                    <value>BulkAPI2.0</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="assignmentRuleId" label="Assignment Rule ID (Optional)" type="string" overrideable="true">
+            <helpText>The ID of an assignment rule to run for a Case or a Lead. The assignment rule can be active or
+                inactive. The ID can be retrieved by querying the AssignmentRule object.
+
+                • TRUE. Active assignment rules are applied for created or updated Accounts, Cases, or Leads.
+
+                • FALSE. Active assignment rules are not applied for created or updated Accounts, Cases, or Leads.
+
+                • Valid AssignmentRule ID. The given AssignmentRule is applied for created Accounts, Cases, or Leads.
+
+                • TRUE and FALSE are not case-sensitive.
+            </helpText>
+        </field>
+        <field id="restHeaders" label="REST Request Headers" type="customproperties" scope="both" overrideable="true">
+            <helpText>Optional, additional headers added to each request</helpText>
+        </field>
+    </operation>
+
+    <operation types="DELETE" customTypeId="DELETE" customTypeLabel="Delete" supportsBrowse="true">
+        <field id="OperationAPI" label="Operation API" type="string" displayType="list">
+            <helpText>The API to be used in the operations.</helpText>
+            <defaultValue>COMPOSITEAPI</defaultValue>
+            <allowedValue label="Bulk API V2.0">
+                <value>BulkAPI2.0</value>
+            </allowedValue>
+            <allowedValue label="REST API">
+                <value>RESTAPI</value>
+            </allowedValue>
+            <allowedValue label="Composite REST API">
+                <value>COMPOSITEAPI</value>
+            </allowedValue>
+        </field>
+        <field id="batchCount" label="Batch Count" type="integer">
+            <helpText>Use this field to adjust the count of data (documents) to send to Salesforce in one batch.
+                The range of valid values is 1–200 documents.
+            </helpText>
+            <defaultValue>200</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="OperationAPI">
+                    <value>COMPOSITEAPI</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="allOrNone" label="All Or None" type="boolean">
+            <helpText>This field is only applicable when Batch Count is greater than 1.
+                If checked, the allOrNone header will be added to each batch separately.
+            </helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="OperationAPI">
+                    <value>COMPOSITEAPI</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="batchSize" label="Batch Size" type="integer">
+            <helpText>Use this field to adjust the amount of data (documents) to send to Salesforce in one batch. The
+                range of valid values, in MB, is 1–150. The default is 100 MB.
+            </helpText>
+            <defaultValue>100</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="OperationAPI">
+                    <value>BulkAPI2.0</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="restHeaders" label="REST Request Headers" type="customproperties" scope="both" overrideable="true">
+            <helpText>Optional, additional headers added to each request</helpText>
+        </field>
+    </operation>
+
+    <operation types="UPSERT" customTypeId="UPSERT" customTypeLabel="Upsert">
+        <field id="OperationAPI" label="Operation API" type="string" displayType="list">
+            <helpText>The API to be used in the operations.</helpText>
+            <defaultValue>COMPOSITEAPI</defaultValue>
+            <allowedValue label="Bulk API V2.0">
+                <value>BulkAPI2.0</value>
+            </allowedValue>
+            <allowedValue label="REST API">
+                <value>RESTAPI</value>
+            </allowedValue>
+            <allowedValue label="Composite REST API">
+                <value>COMPOSITEAPI</value>
+            </allowedValue>
+        </field>
+        <field id="externalIdFieldName" label="External ID Name" type="string">
+            <helpText>The external ID Name for the object being updated. The Id field is allowed as External ID Field.
+            </helpText>
+        </field>
+        <field id="externalIdValue" label="External ID Value" type="string" overrideable="true">
+            <helpText>The external ID value for the object being updated. Leave this field blank to create a new object.
+            </helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="OperationAPI">
+                    <value>RESTAPI</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="batchCount" label="Batch Count" type="integer">
+            <helpText>Use this field to adjust the count of data (documents) to send to Salesforce in one batch.
+                The range of valid values is 1–200 documents.
+            </helpText>
+            <defaultValue>200</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="OperationAPI">
+                    <value>COMPOSITEAPI</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="allOrNone" label="All Or None" type="boolean">
+            <helpText>This field is only applicable when Batch Count is greater than 1.
+                If checked, the allOrNone header will be added to each batch separately.
+            </helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="OperationAPI">
+                    <value>COMPOSITEAPI</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="batchSize" label="Batch Size" type="integer">
+            <helpText>Use this field to adjust the amount of data (documents) to send to Salesforce in one batch. The
+                range of valid values, in MB, is 1–150. The default is 100 MB.
+            </helpText>
+            <defaultValue>100</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="OperationAPI">
+                    <value>BulkAPI2.0</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="bulkHeader" label="CSV Field Names" type="string">
+            <helpText>Comma separated header values, leave empty to use the all the fields as header, with no External
+                Reference Fields
+            </helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="OperationAPI">
+                    <value>BulkAPI2.0</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="assignmentRuleId" label="Assignment Rule ID (Optional)" type="string" overrideable="true">
+            <helpText>The ID of an assignment rule to run for a Case or a Lead. The assignment rule can be active or
+                inactive. The ID can be retrieved by querying the AssignmentRule object.
+
+                • TRUE. Active assignment rules are applied for created or updated Accounts, Cases, or Leads.
+
+                • FALSE. Active assignment rules are not applied for created or updated Accounts, Cases, or Leads.
+
+                • Valid AssignmentRule ID. The given AssignmentRule is applied for created Accounts, Cases, or Leads.
+
+                • TRUE and FALSE are not case-sensitive.
+            </helpText>
+        </field>
+        <field id="restHeaders" label="REST Request Headers" type="customproperties" scope="both" overrideable="true">
+            <helpText>Optional, additional headers added to each request</helpText>
+        </field>
+    </operation>
+
+    <operation types="EXECUTE" customTypeId="csvBulkApiV2" customTypeLabel="CSV Bulk API v2.0" supportsBrowse="false">
+        <field id="operation" label="Operation" type="string" displayType="list">
+            <helpText>The processing operation for the job.
+            </helpText>
+            <defaultValue>insert</defaultValue>
+            <allowedValue label="Insert">
+                <value>insert</value>
+            </allowedValue>
+            <allowedValue label="Delete">
+                <value>delete</value>
+            </allowedValue>
+            <allowedValue label="Update">
+                <value>update</value>
+            </allowedValue>
+            <allowedValue label="Upsert">
+                <value>upsert</value>
+            </allowedValue>
+            <allowedValue label="Query">
+                <value>query</value>
+            </allowedValue>
+            <allowedValue label="QueryAll">
+                <value>queryAll</value>
+            </allowedValue>
+        </field>
+        <field id="assignmentRuleId" label="Assignment Rule ID (Optional)" type="string" overrideable="true">
+            <helpText>The ID of an assignment rule to run for a Case or a Lead. The assignment rule can be active or
+                inactive. The ID can be retrieved by using the Lightning Platform SOAP API or the Lightning Platform
+                REST API to query the AssignmentRule object.
+                This property is available in API version 49.0 and later.
+            </helpText>
+        </field>
+        <field id="columnDelimiter" label="Column Delimiter" type="string" displayType="list">
+            <helpText>The column delimiter used for CSV job data</helpText>
+            <defaultValue>COMMA</defaultValue>
+            <allowedValue label="Comma (,)">
+                <value>COMMA</value>
+            </allowedValue>
+            <allowedValue label="Backquote character (`)">
+                <value>BACKQUOTE</value>
+            </allowedValue>
+            <allowedValue label="Caret character (^)">
+                <value>CARET</value>
+            </allowedValue>
+            <allowedValue label="Pipe character (|)">
+                <value>PIPE</value>
+            </allowedValue>
+            <allowedValue label="Semicolon character (;)">
+                <value>SEMICOLON</value>
+            </allowedValue>
+            <allowedValue label="Tab character">
+                <value>TAB</value>
+            </allowedValue>
+        </field>
+        <field id="externalIdFieldName" label="External ID Field Name" type="string">
+            <helpText>The external ID field in the object being updated. Field values must also exist in CSV job data.
+            </helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="operation">
+                    <value>upsert</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="lineEnding" label="Line Ending" type="string" displayType="list">
+            <helpText>The line ending used for CSV job data, marking the end of a data row.
+            </helpText>
+            <defaultValue>LF</defaultValue>
+            <allowedValue label="LF — Linefeed character">
+                <value>LF</value>
+            </allowedValue>
+            <allowedValue label="CRLF — Carriage return character followed by a linefeed character">
+                <value>CRLF</value>
+            </allowedValue>
+        </field>
+        <field id="object" label="Object" type="string">
+            <helpText>The object type for the data being processed. Use only a single object type per job.
+            </helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="operation">
+                    <value>insert</value>
+                    <value>delete</value>
+                    <value>update</value>
+                    <value>upsert</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="pageSize" label="Page Size" type="integer">
+            <helpText>Specifies the number of records returned in a single request. If you don’t provide a value for
+                this parameter, the server uses a default value based on the service.
+            </helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="operation">
+                    <value>query</value>
+                    <value>queryAll</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="restHeaders" label="REST Request Headers" type="customproperties" scope="both" overrideable="true">
+            <helpText>Optional, additional headers added to each request</helpText>
+        </field>
+    </operation>
+</GenericConnectorDescriptor>

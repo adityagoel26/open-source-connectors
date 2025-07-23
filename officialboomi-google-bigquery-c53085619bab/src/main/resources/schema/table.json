@@ -1,0 +1,321 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "tableReference": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string"
+        },
+        "datasetId": {
+          "type": "string"
+        },
+        "tableId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "projectId",
+        "datasetId",
+        "tableId"
+      ]
+    },
+    "friendlyName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "labels": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "key"
+      ]
+    },
+    "schema": {
+      "type": "object",
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "mode": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "type",
+                "mode",
+                "description"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "fields"
+      ]
+    },
+    "timePartitioning": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "expirationMs": {
+          "type": "integer"
+        },
+        "field": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "expirationMs",
+        "field"
+      ]
+    },
+    "expirationTime": {
+      "type": "integer"
+    },
+    "externalDataConfiguration": {
+      "type": "object",
+      "properties": {
+        "sourceUris": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "schema": {
+          "type": "object",
+          "properties": {
+            "fields": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "mode": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "type",
+                    "mode",
+                    "description"
+                  ]
+                }
+              ]
+            }
+          },
+          "required": [
+            "fields"
+          ]
+        },
+        "sourceFormat": {
+          "type": "string"
+        },
+        "maxBadRecords": {
+          "type": "string"
+        },
+        "autodetect": {
+          "type": "boolean"
+        },
+        "ignoreUnknownValues": {
+          "type": "boolean"
+        },
+        "compression": {
+          "type": "string"
+        },
+        "csvOptions": {
+          "type": "object",
+          "properties": {
+            "fieldDelimiter": {
+              "type": "string"
+            },
+            "skipLeadingRows": {
+              "type": "integer"
+            },
+            "quote": {
+              "type": "string"
+            },
+            "allowQuotedNewlines": {
+              "type": "boolean"
+            },
+            "allowJaggedRows": {
+              "type": "boolean"
+            },
+            "encoding": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "fieldDelimiter",
+            "skipLeadingRows",
+            "quote",
+            "allowQuotedNewlines",
+            "allowJaggedRows",
+            "encoding"
+          ]
+        },
+        "bigtableOptions": {
+          "type": "object",
+          "properties": {
+            "columnFamilies": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "familyId": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "encoding": {
+                      "type": "string"
+                    },
+                    "columns": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "qualifierEncoded": {
+                              "type": "integer"
+                            },
+                            "qualifierString": {
+                              "type": "string"
+                            },
+                            "fieldName": {
+                              "type": "string"
+                            },
+                            "type": {
+                              "type": "string"
+                            },
+                            "encoding": {
+                              "type": "string"
+                            },
+                            "onlyReadLatest": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "qualifierEncoded",
+                            "qualifierString",
+                            "fieldName",
+                            "type",
+                            "encoding",
+                            "onlyReadLatest"
+                          ]
+                        }
+                      ]
+                    },
+                    "onlyReadLatest": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "familyId",
+                    "type",
+                    "encoding",
+                    "columns",
+                    "onlyReadLatest"
+                  ]
+                }
+              ]
+            },
+            "ignoreUnspecifiedColumnFamilies": {
+              "type": "boolean"
+            },
+            "readRowkeyAsString": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "columnFamilies",
+            "ignoreUnspecifiedColumnFamilies",
+            "readRowkeyAsString"
+          ]
+        },
+        "googleSheetsOptions": {
+          "type": "object",
+          "properties": {
+            "skipLeadingRows": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "skipLeadingRows"
+          ]
+        }
+      },
+      "required": [
+        "sourceUris",
+        "schema",
+        "sourceFormat",
+        "maxBadRecords",
+        "autodetect",
+        "ignoreUnknownValues",
+        "compression",
+        "csvOptions",
+        "bigtableOptions",
+        "googleSheetsOptions"
+      ]
+    },
+    "encryptionConfiguration": {
+      "type": "object",
+      "properties": {
+        "kmsKeyName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kmsKeyName"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "friendlyName",
+    "description",
+    "labels",
+    "schema",
+    "timePartitioning",
+    "expirationTime",
+    "externalDataConfiguration",
+    "encryptionConfiguration"
+  ]
+}

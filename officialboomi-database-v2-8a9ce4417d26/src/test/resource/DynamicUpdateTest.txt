@@ -1,0 +1,5 @@
+{"SET": [{ "column": "name", "value": "XYZ" }], "WHERE": [{ "column": "id", "value": 191, "operator": "=" }]}
+{"SET": [{"column": "name", "value": "PQR"}], "WHERE": [{ "column": "id", "value": 173, "operator": "=" }]}
+{"SET": [{"column": "name", "value": "PQR"}], "WHERE": [{ "column": "id", "value": 173, "operator": "=" }]}
+{"SET": [{"column": "name", "value": "PQR"}], "WHERE": [{ "column": "id", "value": 173, "operator": "=" }]}
+{"SET": [{"column": "name", "value": "PQR"}], "WHERE": [{ "column": "id", "value": 173, "operator": "=" }]}

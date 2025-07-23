@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<batchResults>
+    <hasErrors>false</hasErrors>
+    <results>
+        <batchResult>
+            <statusCode>204</statusCode>
+            <result/>
+        </batchResult>
+        <batchResult>
+            <statusCode>200</statusCode>
+            <result>
+                <Account type="Account" url="/services/data/v50.0/sobjects/Account/0014K00000IEWy7QAH">
+                    <Id>0014K00000IEWy7QAH</Id>
+                    <IsDeleted>false</IsDeleted>
+                    <Name>test batch 1</Name>
+                    <ParentId>0014K00000IEWy6QAH</ParentId>
+                    <PhotoUrl>/services/images/photo/0014K00000IEWy7QAH</PhotoUrl>
+                    <OwnerId>0054K000000mfx4QAA</OwnerId>
+                    <CreatedDate>2021-02-28T11:57:01.000Z</CreatedDate>
+                    <CreatedById>0054K000000mfx4QAA</CreatedById>
+                    <LastModifiedDate>2021-03-01T09:26:59.000Z</LastModifiedDate>
+                    <LastModifiedById>0054K000000mfx4QAA</LastModifiedById>
+                    <SystemModstamp>2021-03-01T09:26:59.000Z</SystemModstamp>
+                    <LastViewedDate>2021-03-01T09:26:59.000Z</LastViewedDate>
+                    <LastReferencedDate>2021-03-01T09:26:59.000Z</LastReferencedDate>
+                    <CleanStatus>Pending</CleanStatus>
+                </Account>
+            </result>
+        </batchResult>
+    </results>
+</batchResults>
+

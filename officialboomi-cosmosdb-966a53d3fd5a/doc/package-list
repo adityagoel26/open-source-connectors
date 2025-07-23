@@ -1,0 +1,5 @@
+com.boomi.connector.cosmosdb
+com.boomi.connector.cosmosdb.action
+com.boomi.connector.cosmosdb.bean
+com.boomi.connector.cosmosdb.util
+com.boomi.connector.exception

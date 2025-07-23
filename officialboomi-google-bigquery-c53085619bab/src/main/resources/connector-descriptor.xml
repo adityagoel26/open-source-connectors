@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenericConnectorDescriptor requireConnectionForBrowse="true" browsingType="any">
+    <field id="projectId" label="Project Id" type="string">
+        <helpText>Enter the Project ID for making requests. This ID is a unique identifier for your project and will be
+            billed for any jobs you create.
+        </helpText>
+    </field>
+    <field id="oauthOptions" label="OAuth 2.0" type="oauth">
+        <helpText>OAuth 2.0 Options</helpText>
+        <oauth2FieldConfig>
+            <authorizationTokenEndpoint>
+                <url access="hidden">
+                    <defaultValue>https://accounts.google.com/o/oauth2/v2/auth</defaultValue>
+                </url>
+            </authorizationTokenEndpoint>
+            <authorizationParameters access="hidden">
+                <parameter name="access_type">
+                    <value access="hidden">
+                        <defaultValue>offline</defaultValue>
+                    </value>
+                </parameter>
+                <parameter name="prompt">
+                    <value access="hidden">
+                        <defaultValue>consent</defaultValue>
+                    </value>
+                </parameter>
+            </authorizationParameters>
+            <accessTokenEndpoint>
+                <url access="hidden">
+                    <defaultValue>https://www.googleapis.com/oauth2/v4/token</defaultValue>
+                </url>
+            </accessTokenEndpoint>
+            <accessTokenParameters access="hidden"/>
+            <scope>
+                <!-- Previously defaulted but doesn't apply to JWT so must be cleared or the UI will repopulate on every load.
+                <defaultValue>https://www.googleapis.com/auth/bigquery https://www.googleapis.com/auth/bigquery.insertdata https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloud-platform.read-only https://www.googleapis.com/auth/devstorage.full_control https://www.googleapis.com/auth/devstorage.read_only https://www.googleapis.com/auth/devstorage.read_write</defaultValue>
+                  -->
+                <helpText>
+                    Defines the extent and access range to protected cloud resources. When
+                    using the JWT Bearer Token grant type, leave this field blank. The
+                    scope is automatically set as a claim, and appears as an extended JWT
+                    claim.
+                    &lt;br/&gt;&lt;br/&gt;
+                    When using the Authorization Code grant type, enter the following and
+                    verify that each entry is separated by a space:
+                    &lt;br/&gt;&lt;br/&gt;
+                    https://www.googleapis.com/auth/bigquery
+                    https://www.googleapis.com/auth/bigquery.insertdata
+                    https://www.googleapis.com/auth/cloud-platform
+                    https://www.googleapis.com/auth/cloud-platform.read-only
+                    https://www.googleapis.com/auth/devstorage.full_control
+                    https://www.googleapis.com/auth/devstorage.read_only
+                    https://www.googleapis.com/auth/devstorage.read_write
+                </helpText>
+            </scope>
+            <grantType>
+                <helpText>
+                    Grant type refers to the way an application gets an OAuth 2.0 access
+                    token for client authentication to protected cloud resources.
+                    &lt;br/&gt;&lt;br/&gt;
+                    Authorization Code is the standard, 3-Legged OAuth 2.0 authorization
+                    where you grant the client an authorization code that can be exchanged
+                    for an access token.
+                    &lt;br/&gt;&lt;br/&gt;
+                    With JWT Bearer Token, the user provides claim information to generate an
+                    assertion, and the assertion is sent to the server to get the access
+                    token.
+                </helpText>
+                <defaultValue>jwt-bearer</defaultValue>
+                <allowedValue>
+                    <value>code</value>
+                </allowedValue>
+                <allowedValue>
+                    <value>jwt-bearer</value>
+                </allowedValue>
+            </grantType>
+            <jwtParameters>
+                <signatureAlgorithms access="hidden">
+                    <defaultValue>SHA256withRSA</defaultValue>
+                    <allowedValue>
+                        <value>SHA256withRSA</value>
+                    </allowedValue>
+                </signatureAlgorithms>
+                <issuer>
+                    <helpText>
+                        Identifies the principal that creates, signs, and issues the claim to
+                        access the cloud resources. You can enter either the Email or Unique ID
+                        from the Google Cloud Platform console (Service account details page).
+                    </helpText>
+                </issuer>
+                <subject>
+                    <helpText>
+                        Identifies the principal that is the subject of the claim to access the
+                        cloud resources. Optionally enter either the Email or Unique ID from
+                        the Google Cloud Platform console (Service account details page).
+                    </helpText>
+                </subject>
+                <audience access="hidden">
+                    <defaultValue>https://www.googleapis.com/oauth2/v4/token</defaultValue>
+                </audience>
+                <expiration access="hidden">
+                    <defaultValue>3600</defaultValue>
+                </expiration>
+                <signatureKey>
+                    <helpText>
+                        Identifies the private key that is used to sign the JWT and allow
+                        access to the cloud resources. You create the key in the Google Cloud
+                        Platform console using the P12 key type (Service account details page,
+                        Key ID field) and then import the certificate into Boomi Integration.
+                    </helpText>
+                </signatureKey>
+                <extendedClaims access="readOnly">
+                    <claim name="scope">
+                        <value>
+                            <defaultValue>https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/bigquery https://www.googleapis.com/auth/bigquery.insertdata https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloud-platform.read-only https://www.googleapis.com/auth/devstorage.full_control https://www.googleapis.com/auth/devstorage.read_only https://www.googleapis.com/auth/devstorage.read_write</defaultValue>
+                        </value>
+                    </claim>
+                </extendedClaims>
+                <idGeneratorMethods access="hidden">
+                    <allowedValue>
+                        <value>NONE</value>
+                    </allowedValue>
+                </idGeneratorMethods>
+            </jwtParameters>
+        </oauth2FieldConfig>
+    </field>
+
+    <testConnection method="CUSTOM" customOperationType="TEST"/>
+
+    <operation types="CREATE" customTypeId="STREAMING" customTypeLabel="Streaming Insert">
+        <field id="datasetId" label="Dataset Id" type="string" scope="browseOnly">
+            <helpText>Dataset Id of the tables to list as object types.</helpText>
+        </field>
+
+        <field id="batchCount" label="Batch Count" type="integer">
+            <helpText>Maximum number of table records to include in each batch in a single HTTP request and stream/insert.</helpText>
+            <defaultValue>500</defaultValue>
+        </field>
+
+        <field id="skipInvalidRows" label="Skip Invalid Rows" type="boolean">
+            <helpText>
+                Controls whether valid table rows are inserted, even if invalid rows exist. Clear to fail the entire
+                request if there are any invalid rows. Select to proceed with the request and insert only valid rows.
+            </helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+
+        <field id="ignoreUnknownValues" label="Ignore Unknown Values" type="boolean">
+            <helpText>
+                Controls whether table rows containing values that do not match the table schema are allowed and
+                inserted. Clear to treat unknown values as errors and not insert the rows. Select to ignore unknown
+                values and insert the rows.
+            </helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+
+        <field id="templateSuffix" label="Template Suffix" type="string">
+            <helpText>
+                If specified, the destination table is treated as a base template and table rows are inserted into an
+                instance table named "{destination}{templateSuffix}". Google BigQuery manages the creation of the
+                instance table using the schema of the base template table.
+            </helpText>
+        </field>
+
+        <field id="generateInsertId" label="Generate Insert Id" type="boolean">
+            <helpText>
+                Controls the addition of the insertId field to the inserted rows in the request body that is sent to
+                BigQuery. If selected, an auto-generated insertId field (rows[].insertId) is added to the request body.
+                BigQuery uses this ID to support best effort de-duplication for up to one minute. If you attempt to
+                stream the same row with the same insertId more than once within that time period into the same table,
+                BigQuery may de-duplicate the multiple occurrences of that row, retaining only one of those occurrences.
+                When retrying the insert due to a connectivity issue, the connector will use the same insertId as in the
+                original request. If cleared, the insertId field (rows[].insertId) is not added to the request body.
+            </helpText>
+            <defaultValue>true</defaultValue>
+        </field>
+    </operation>
+
+    <operation types="EXECUTE" customTypeId="RUN_JOB" customTypeLabel="Run Job">
+        <field id="requestTimeout" label="Request Timeout" type="integer">
+            <helpText>
+                Controls when the connector stops checking the job status, in milliseconds and returns an
+                application error if the job does not finish processing in the specified timeout value. The default
+                is 1 hour. The timeout does not stop Google BigQuery from processing the job. When set to -1, the
+                connector monitors the job indefinitely.
+            </helpText>
+            <defaultValue>3600000</defaultValue>
+        </field>
+    </operation>
+
+    <operation types="UPDATE" customTypeId="UPDATE" customTypeLabel="Update">
+        <field id="datasetId" label="Dataset Id" type="string" scope="browseOnly">
+            <helpText>Dataset Id of the tables to list as object types</helpText>
+        </field>
+
+        <field id="resourceType" label="Resource Type" type="string" scope="browseOnly">
+            <helpText>Resource Type</helpText>
+            <defaultValue>TABLE</defaultValue>
+            <allowedValue label="Table"><value>TABLE</value></allowedValue>
+            <allowedValue label="View"><value>VIEW</value></allowedValue>
+        </field>
+
+        <field id="update" label="Full Update" type="boolean">
+            <helpText>
+                Controls the method that is used to update information in an existing Google BigQuery table. Select to
+                have the update replace the entire table resource (a full table update). Clear to have the update only
+                replace fields that are provided in the submitted table resource (a table patch update).
+            </helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+
+    </operation>
+
+    <operation types="EXECUTE" customTypeId="QUERY_RESULTS" customTypeLabel="Get Query Results">
+
+        <field id="timeoutMs" label="Timeout (ms)" type="integer">
+            <helpText>
+                Controls how long to wait for the query to complete before returning the results. The default is
+                10000 milliseconds, or 10 seconds. If the query takes longer to run than this value, no results return
+                and the "jobComplete" field in the response is set to false.
+            </helpText>
+            <defaultValue>10000</defaultValue>
+        </field>
+
+        <field id="maxResults" label="Max Results" type="integer">
+            <helpText>
+                Controls the maximum number of query results to return for each page request. The default is
+                1,000. Max Results helps return shorter sets of records for each request.
+            </helpText>
+            <defaultValue>1000</defaultValue>
+        </field>
+
+    </operation>
+
+    <operation types="UPSERT" customTypeId="UPSERT" customTypeLabel="Upsert data">
+        <field id="requestTimeout" label="Request Timeout" type="integer">
+            <helpText>
+                Controls when the connector stops checking the job status, in milliseconds and returns an
+                application error if the job does not finish processing in the specified timeout value. The default
+                is 1 hour. The timeout does not stop Google BigQuery from processing the job. When set to -1, the
+                connector monitors the job indefinitely.
+            </helpText>
+            <defaultValue>3600000</defaultValue>
+        </field>
+
+        <field id="writeDisposition" label="Write Disposition" type="string" displayType="list">
+            <helpText>Controls the action that occurs if the destination table already exists in Google BigQuery. When
+                Truncate is selected and if the table already exists, BigQuery overwrites the table data and uses the
+                schema from the source data. When Append is selected and if the table already exists, BigQuery appends
+                the data to the table. When Fail if not empty is selected and if table already exists and contains data,
+                the operation returns an error.
+            </helpText>
+            <defaultValue>WRITE_TRUNCATE</defaultValue>
+            <allowedValue label="Truncate">
+                <value>WRITE_TRUNCATE</value>
+            </allowedValue>
+            <allowedValue label="Append">
+                <value>WRITE_APPEND</value>
+            </allowedValue>
+            <allowedValue label="Fail if not empty">
+                <value>WRITE_EMPTY</value>
+            </allowedValue>
+        </field>
+
+        <field id="createDisposition" label="Create Disposition" type="string" displayType="list">
+            <helpText>Controls whether the destination table should be created if it does not exist. When Create if does
+                not exist is selected and if the table does not exist, BigQuery creates the table. When Fail if does not
+                exist is selected and if the table does not exist, the operation returns an error.
+            </helpText>
+            <defaultValue>CREATE_IF_NEEDED</defaultValue>
+            <allowedValue label="Create if does not exist">
+                <value>CREATE_IF_NEEDED</value>
+            </allowedValue>
+            <allowedValue label="Fail if does not exist">
+                <value>CREATE_NEVER</value>
+            </allowedValue>
+        </field>
+
+        <field id="encoding" label="Encoding" type="string" displayType="list">
+            <helpText>Controls the character encoding of the data, either UTF-8 or ISO-8859-1. BigQuery decodes the data
+                after the raw, binary data has been split using the values specified for Quote and Field Delimiter.
+            </helpText>
+            <defaultValue>UTF-8</defaultValue>
+            <allowedValue label="UTF-8">
+                <value>UTF-8</value>
+            </allowedValue>
+            <allowedValue label="ISO-8859-1">
+                <value>ISO-8859-1</value>
+            </allowedValue>
+        </field>
+
+        <field id="sourceFormat" label="Source Format" type="string" displayType="list">
+            <helpText>Controls the format of the input data provided to the connector. Choose CSV, JSON, PARQUET, AVRO,
+                or ORC. When you provide a data file using one of these formats as input to the operation, with the
+                corresponding data type specified in the JobConfiguration file, the data is successfully imported into
+                BigQuery.
+            </helpText>
+            <defaultValue>CSV</defaultValue>
+            <allowedValue label="CSV">
+                <value>CSV</value>
+            </allowedValue>
+            <allowedValue label="JSON">
+                <value>NEWLINE_DELIMITED_JSON</value>
+            </allowedValue>
+            <allowedValue label="PARQUET">
+                <value>PARQUET</value>
+            </allowedValue>
+            <allowedValue label="AVRO">
+                <value>AVRO</value>
+            </allowedValue>
+            <allowedValue label="ORC">
+                <value>ORC</value>
+            </allowedValue>
+        </field>
+
+        <field id="fieldDelimiter" label="Field Delimiter" type="string">
+            <helpText>Controls the separator character for fields in a CSV file, and the separator is interpreted as a
+                single byte. Files encoded in ISO-8859-1 can use any single character as a separator. Files encoded in
+                UTF-8 can use characters represented in decimal range 1-127 (U0001-U007F) without modification. UTF-8
+                characters encoded with multiple bytes (U0080 and above) only have the first byte used for separating
+                fields. The remaining bytes is treated as a part of the field.
+            </helpText>
+            <defaultValue>,</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="sourceFormat">
+                    <value>CSV</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+
+        <field id="skipLeadingRows" label="Skip Leading Rows" type="string">
+            <helpText>Controls the number of rows at the top of a CSV file that BigQuery skips when loading data. This
+                setting is useful if you have header rows in the file that should be skipped. When Autodetect Schema
+                from Input Data is selected, the behavior is as follows: If Skip Leading Rows is empty, autodetect
+                attempts to detect headers in the first row. If not detected, the row is read as data. Otherwise, data
+                is read starting from the second row. If Skip Leading Rows is 0, autodetect knows that there are no
+                headers and data should be read starting from the first row. If Skip Leading Rows is N>0, autodetect
+                skips N-1 rows and attempts to detect headers in row N. If headers are not detected, row N is skipped.
+                Otherwise, row N is used to extract column names for the detected schema.
+            </helpText>
+            <defaultValue>0</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="sourceFormat">
+                    <value>CSV</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+
+        <field id="quote" label="Quote" type="string">
+            <helpText>Controls the value that is used to quote data sections in a CSV file. BigQuery converts the string
+                to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data into its
+                raw, binary state. If your data does not contain quoted sections, set the value to an empty string. If
+                your data contains quoted newline characters, you must also select Allow Quoted Newlines. To include the
+                specific quote character within a quoted value, precede it with an additional matching quote character.
+                For example, to escape the default character ' " ', use ' "" '.
+            </helpText>
+            <defaultValue>"</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="sourceFormat">
+                    <value>CSV</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+
+        <field id="nullMarker" label="Null Marker" type="string">
+            <helpText>Specify a string to represent a null value in a CSV file. For example, if you specify "\N",
+                BigQuery interprets "\N" as a null value when loading a CSV file.
+            </helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="sourceFormat">
+                    <value>CSV</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+
+        <field id="allowQuotedNewlines" label="Allow Quoted Newlines" type="boolean">
+            <helpText>Indicates if BigQuery should allow quoted data sections containing newline characters in a file.
+            </helpText>
+            <defaultValue>false</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="sourceFormat">
+                    <value>CSV</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+
+        <field id="allowJaggedRows" label="Allow Jagged Rows" type="boolean">
+            <helpText>Indicates how BigQuery manages rows missing trailing optional columns. If selected, BigQuery
+                accepts rows missing trailing optional columns. Missing values are treated as nulls. If cleared, records
+                with missing trailing columns are treated as bad records. If there are too many bad records, the
+                operation produces an error.
+            </helpText>
+            <defaultValue>false</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="sourceFormat">
+                    <value>CSV</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+
+        <field id="autodetectCSV" label="Autodetect Schema From Input Data" type="boolean">
+            <helpText>Indicates if the options and schema should be automatically inferred from the input data.
+            </helpText>
+            <defaultValue>false</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="sourceFormat">
+                    <value>CSV</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+
+        <field id="maxBadRecordsCSV" label="Maximum Bad Records" type="string">
+            <helpText>Controls the maximum number of bad records that BigQuery can ignore when running a job. If the
+                number of bad records exceeds this value, the operation produces an error.
+            </helpText>
+            <defaultValue>0</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="sourceFormat">
+                    <value>CSV</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+
+        <field id="autodetectJSON" label="Autodetect Schema From Input Data" type="boolean">
+            <helpText>Indicates if the options and schema should be automatically inferred from the input data.
+            </helpText>
+            <defaultValue>false</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="sourceFormat">
+                    <value>NEWLINE_DELIMITED_JSON</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="maxBadRecordsJSON" label="Maximum Bad Records" type="string">
+            <helpText>Controls the maximum number of bad records that BigQuery can ignore when running a job. If the
+                number of bad records exceeds this value, the operation produces an error.
+            </helpText>
+            <defaultValue>0</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="sourceFormat">
+                    <value>NEWLINE_DELIMITED_JSON</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+
+        <field id="enumAsString" label="Enum As String" type="boolean">
+            <helpText>Indicates whether to infer Parquet ENUM logical type as STRING instead of BYTES (the default).
+            </helpText>
+            <defaultValue>false</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="sourceFormat">
+                    <value>PARQUET</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+
+        <field id="enableListInference" label="Enable List Inference" type="boolean">
+            <helpText>Indicates whether to use schema inference, specifically for the Parquet LIST logical type.
+            </helpText>
+            <defaultValue>false</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="sourceFormat">
+                    <value>PARQUET</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+
+        <field id="useAvroLogicalTypes" label="Use Logical Types" type="boolean">
+            <helpText>Indicates whether to interpret logical types as the corresponding BigQuery data type (for example,
+                TIMESTAMP), instead of using the raw type (for example, INTEGER).
+            </helpText>
+            <defaultValue>false</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="sourceFormat">
+                    <value>AVRO</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+
+        <field id="datasetId" label="Dataset Id" type="string" scope="both">
+            <helpText>Dataset Id of the tables to list as object types.</helpText>
+        </field>
+
+    </operation>
+
+    <dynamicProperty id="templateSuffix" label="Template Suffix" type="string"/>
+</GenericConnectorDescriptor>

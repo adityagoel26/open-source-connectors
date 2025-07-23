@@ -1,0 +1,17 @@
+{
+	"INPUT_ID": "7",
+	"VRY_TAB_INPUT": {
+		"element 1": {
+			"A": 7,
+			"B": "g"
+		},
+		"element 2": {
+			"A": 8,
+			"B": "h"
+		},
+		"element 3": {
+			"A": 9,
+			"B": "i"
+		}
+	}
+}

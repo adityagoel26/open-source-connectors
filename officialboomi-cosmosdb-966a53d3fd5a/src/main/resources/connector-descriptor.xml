@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenericConnectorDescriptor browsingType="any" requireConnectionForBrowse="true">
+
+	<field id="hostUrl" label="Host URL" type="string">
+		<helpText>Host URL for Azure Cosmos DB Connection.</helpText>
+	</field>
+	<field id="masterKey" label="Master Key" type="password">
+		<helpText>Master key for Azure Cosmos DB Connection.</helpText>
+	</field>
+	<field id="databaseName" label="Database" type="string">
+		<helpText>Database name for Azure Cosmos DB Connection.</helpText>
+	</field>
+	<testConnection method="CUSTOM" />
+	 <operation types="EXECUTE" customTypeLabel="GET" customTypeId="GET">
+	<field type="boolean" id="structureData" label="Structured Data" scope="browseOnly">
+		<helpText>On selection of this check box, a JSON schema will be created else no JSON schema is created. To create JSON schema, provide the ID and Partition Key(if applicable)</helpText>
+	</field>
+  	<field type="string" id="objectId" label="Id" scope="browseOnly">
+		<helpText>The connector will retrieve the document with this ID.</helpText>
+	</field>
+	<field type="string" id="partitionKey" label="Partition Key" scope="browseOnly">
+		<helpText>The connector will retrieve the document from the partition of data, as per the Partition Key provided.</helpText>
+	</field>
+	</operation>
+	<operation types="UPDATE">
+	<field type="boolean" id="structureData" label="Structured Data" scope="browseOnly">
+		<helpText>On selection of this check box, a JSON schema will be created. To create a JSON schema, provide the ID and Partition Key(if applicable)</helpText>
+	</field>
+  	<field type="string" id="objectId" label="Id" scope="browseOnly">
+		<helpText>The connector will retrieve the document with this ID.</helpText>
+	</field>
+	<field type="string" id="partitionKey" label="Partition Key" scope="browseOnly">
+		<helpText>The connector will retrieve the document from the partition of data, as per the Partition Key provided.</helpText>
+	</field>
+	</operation>
+	<operation types="EXECUTE" customTypeLabel="DELETE"
+		customTypeId="DELETE">
+	</operation>
+	<operation types="CREATE">
+		<field type="boolean" id="structureData" label="Structured Data"
+			scope="browseOnly">
+			<helpText>On selection of this check box, a JSON schema will be created. To create a JSON schema, provide the ID and Partition Key(if applicable)</helpText>
+		</field>
+		<field type="string" id="objectId" label="Id" scope="browseOnly">
+			<helpText>The connector will retrieve the document with this ID.</helpText>
+		</field>
+		<field type="string" id="partitionKey" label="Partition Key"
+			scope="browseOnly">
+			<helpText>The connector will retrieve the document from the partition of data, as per the Partition Key provided.</helpText>
+		</field>
+	</operation>
+	<operation types="UPSERT">
+        <field type="boolean" id="structureData" label="Structured Data"
+            scope="browseOnly">
+            <helpText>On selection of this check box, a JSON schema will be created. To create JSON schema, provide the ID and Partition Key(if applicable)</helpText>
+        </field>
+        <field type="string" id="objectId" label="Id" scope="browseOnly">
+            <helpText>The connector will retrieve the document with this ID.</helpText>
+        </field>
+        <field type="string" id="partitionKey" label="Partition Key"
+            scope="browseOnly">
+            <helpText>The connector will retrieve the document from the partition of data, as per the Partition Key provided.</helpText>
+        </field>
+	</operation>
+	<operation types="QUERY" allowFieldSelection="true">
+  	<field type="boolean" id="structureData" label="Structured Data" scope="browseOnly">
+		<helpText>On selection of this check box, a JSON schema will be created. To create a JSON schema, provide the ID</helpText>
+	</field>
+		<field type="string" id="objectId" label="Id" scope="browseOnly">
+		<helpText>The connector will retrieve the document with this ID.</helpText>
+	</field>
+	<field type="string" id="partitionKey" label="Partition Key" scope="browseOnly">
+		<helpText>The connector will retrieve the document from the partition of data, as per the Partition Key provided.</helpText>
+	</field>
+	<queryFilter grouping="any" sorting="one">
+		<operator id="EQUALS" label="Equal To" />
+		<operator id="NOT_EQUALS" label="Not Equal To" />
+		<operator id="GREATER_THAN" label="Greater Than" />
+		<operator id="LESS_THAN" label="Less Than" />
+		<operator id="GREATER_THAN_OR_EQUALS" label="Greater Than Or Equal" />
+		<operator id="LESS_THAN_OR_EQUALS" label="Less Than Or Equal" />
+		<operator id="IN_LIST" label="In">
+			<helpText>Comma separated list of values</helpText>
+		</operator>
+		<sortOrder id="asc" label="Ascending">
+			<supportedType type="string" />
+			<supportedType type="number" />
+		</sortOrder>
+		<sortOrder id="desc" label="Descending">
+			<supportedType type="string" />
+			<supportedType type="number" />
+		</sortOrder>
+	</queryFilter>
+ </operation> 
+</GenericConnectorDescriptor>

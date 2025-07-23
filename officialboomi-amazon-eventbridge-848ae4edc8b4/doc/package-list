@@ -1,0 +1,5 @@
+com.boomi.connector.auth
+com.boomi.connector.awsmodel
+com.boomi.connector.eventbridge
+com.boomi.connector.model
+com.boomi.connector.util

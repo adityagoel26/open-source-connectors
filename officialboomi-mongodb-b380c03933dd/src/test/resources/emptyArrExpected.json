@@ -1,0 +1,1 @@
+{"type": "object", "properties": {"_id": { "type": "object", "properties": {"$oid": { "type": "string" }}},"CompSalary": { "type": "object", "properties": {"value": { "type": "null" },"notes": { "type": "string" }}},"LeaderNotes": { "type": "array"}}}

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"  xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0">
+
+    <!--
+        Copyright (c) 2018
+        Boomi, Inc.
+    -->
+    
+    <xs:simpleType name="OAuth2GrantType">
+        <xs:annotation>
+            <xs:appinfo>
+                <jxb:typesafeEnumClass>
+                    <jxb:javadoc>
+                        Enum defining supported OAuth 2 Authorization Grant Types.
+                    </jxb:javadoc>
+                    <jxb:typesafeEnumMember name="AUTHORIZATION_CODE" value="code">
+                        <jxb:javadoc>
+                            Use the OAuth 2 Authorization Code authorization grant.
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                    <jxb:typesafeEnumMember name="CLIENT_CREDENTIALS" value="client_credentials">
+                        <jxb:javadoc>
+                            Use the OAuth 2 Client Credentials authorization grant.
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                    <jxb:typesafeEnumMember name="RESOURCE_OWNER_CREDENTIALS" value="password">
+                        <jxb:javadoc>
+                            Use the OAuth 2 Resource Owner Password Credentials authorization grant.
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                    <jxb:typesafeEnumMember name="IMPLICIT" value="implicit">
+                        <jxb:javadoc>
+                            Use the OAuth 2 Implicit authorization grant.
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                    <jxb:typesafeEnumMember name="JWT_BEARER" value="jwt-bearer">
+                        <jxb:javadoc>
+                            Use the OAuth 2 JWT Bearer Token extension authorization grant.
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                </jxb:typesafeEnumClass>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="code"/>
+            <xs:enumeration value="client_credentials"/>
+            <xs:enumeration value="password" />
+            <xs:enumeration value="implicit" />
+            <xs:enumeration value="jwt-bearer" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="JwtSignatureAlgorithm">
+        <xs:annotation>
+            <xs:appinfo>
+                <jxb:typesafeEnumClass>
+                    <jxb:javadoc>
+                        Enum defining supported signature algorithms.
+                    </jxb:javadoc>
+                    <jxb:typesafeEnumMember name="NONE" value="NONE">
+                        <jxb:javadoc>
+                            No digital signature or MAC performed.
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                    <jxb:typesafeEnumMember name="RS256" value="SHA256withRSA">
+                        <jxb:javadoc>
+                            RSASSA-PKCS-v1_5 using SHA-256
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                </jxb:typesafeEnumClass>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="SHA256withRSA"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="JwtIdGeneratorMethod">
+        <xs:annotation>
+            <xs:appinfo>
+                <jxb:typesafeEnumClass>
+                    <jxb:javadoc>
+                        Enum defining supported methods for generating JWT IDs.
+                    </jxb:javadoc>
+                    <jxb:typesafeEnumMember name="NONE" value="NONE">
+                        <jxb:javadoc>
+                            Do not include a JWT ID in the assertion.
+                        </jxb:javadoc>
+                    </jxb:typesafeEnumMember>
+                </jxb:typesafeEnumClass>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NONE"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

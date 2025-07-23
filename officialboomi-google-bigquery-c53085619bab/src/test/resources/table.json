@@ -1,0 +1,13 @@
+{
+  "schema": {
+    "fields": [{
+      "name": "Testing1",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }, {
+      "name": "field2",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }]
+  }
+}

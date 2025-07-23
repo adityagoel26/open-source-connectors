@@ -1,0 +1,8 @@
+<xs:simpleType name="dtt">
+    <xs:annotation>
+        <xs:appinfo>
+            <b:dataFormat dataType="datetime" format="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"/>
+        </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string"/>
+</xs:simpleType>

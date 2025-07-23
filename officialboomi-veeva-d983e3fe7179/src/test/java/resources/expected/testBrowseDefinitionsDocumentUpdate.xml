@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ObjectDefinitions>
+    <definition elementName="/documents" inputType="json">
+        <jsonSchema>
+            {"$schema":"http://json-schema.org/schema#","documents":{"type":"array","items":{"type":"object","properties":{"global_version_id__sys":{"description":"Global
+            Version ID - This value is unique to this document version in this vault. This is useful for
+            integrations.","type":"string","maxLength":50},"file_meta_display_resolution__v":{"description":"Display
+            Resolution","type":"string","maxLength":255},"file_meta_color_space__v":{"description":"Color
+            Space","type":"string","maxLength":255},"locked_date__v":{"format":"date-time","description":"Checked Out
+            Date","type":"string"},"file_meta_iso_speed__v":{"description":"ISO
+            Speed","type":"string","maxLength":255},"escalated_to_legal__c":{"format":"date","description":"Escalated to
+            Legal - Date sent to contracts and/or budgets lead for assistance or
+            guidance.","type":"string"},"expiration_date__c":{"format":"date","description":"Expiration
+            Date","type":"string"},"annotations_resolved__v":{"description":"Annotations
+            (Resolved)","type":"number"},"lifecycle__v":{"description":"Lifecycle - A configurable series of states
+            (Draft, Under Review, Approved) through which a document progresses during its
+            life.","type":"string"},"file_meta_lens__v":{"description":"Lens","type":"string","maxLength":255},"link__sys":{"description":"Document
+            Link - This field is intended to store a value that uniquely identifies the source of this document\u2019s
+            content, such as a vault document\u2019s Global
+            ID.","type":"string","maxLength":200},"dt_global_id__v":{"description":"Clinical Global
+            ID","type":"string","maxLength":200},"tmf_bot_qc__v":{"description":"TMF Bot QC - This field displays the
+            current status of the TMF Bot QC.","type":"string"},"stage__sys":{"description":"Lifecycle
+            Stage","type":"string"},"country__v":{"description":"Country","type":"string"},"file_meta_white_balance__v":{"description":"White
+            Balance","type":"string","maxLength":255},"major_version_number__v":{"description":"Major Version
+            Number","type":"number"},"annotations_lines__v":{"description":"Annotations
+            (Lines)","type":"number"},"owner__v":{"description":"Owner","type":"string"},"cdn_content__v":{"description":"Digital
+            Publishing","type":"boolean"},"source_created_by__v":{"description":"Source Created By - This field stores
+            the Name of the user who created the document in the source Vault as a string
+            field.","type":"string","maxLength":1500},"annotations_claim__v":{"description":"Annotations (Claim
+            Links)","type":"number"},"approval_complete_date__c":{"format":"date","description":"Approval Complete Date
+            - The most recent date on which this document was
+            approved.","type":"string"},"qc_passes_granted__c":{"description":"QC Passes Granted - The number of times
+            in the history of this document that it has passed
+            QC.","type":"number"},"location__v":{"description":"Location - The name of the site institution to which
+            this document is
+            related.","type":"string"},"file_meta_resolution__v":{"description":"Resolution","type":"string","maxLength":255},"rendition_profile__v":{"description":"Rendition
+            Profile - Defines the rendition settings used to create the viewable rendition. Changing the selection does
+            not re-render the document, but Vault will apply the new settings on the next rendering event (manual
+            re-render, upload new source file,
+            etc.).","type":"string"},"suppress_rendition__v":{"description":"Rendition
+            Suppressed","type":"boolean"},"process_name__v":{"description":"Process
+            Name","type":"string"},"file_meta_light__v":{"description":"Light","type":"string","maxLength":255},"type__v":{"description":"Type","type":"string"},"version_modified_date__v":{"format":"date-time","description":"Last
+            Modified
+            Date","type":"string"},"approver__v.users":{"description":"Approver","type":"string"},"disable_vault_overlays__v":{"description":"Disable
+            Vault Overlays - This field indicates whether or not Vault will apply compliance overlays to the content of
+            this document. In general, all content should be overlayed. A Value of 'No' or Blank will indicate that
+            content should be overlayed.","type":"boolean"},"tmf_bot_qc_viewed__v":{"description":"TMF Bot QC Viewed -
+            This field displays the current viewed status of QC
+            Suggestions.","type":"boolean"},"binder__v":{"description":"Binder","type":"boolean"},"link_status__v":{"description":"Link
+            Status - Indicates status of link to source
+            document.","type":"string"},"file_meta_metering_mode__v":{"description":"Metering
+            Mode","type":"string","maxLength":255},"dt_remote_version_id__v":{"description":"Clinical Remote Version
+            ID","type":"string","maxLength":200},"sent_to_site_cycles_started__c":{"description":"Sent to Site Cycles
+            Started - The number of times in the history of this document that it has been sent to the site for revision
+            or confirmation.","type":"number"},"returned_from_legal__c":{"format":"date","description":"Returned from
+            Legal - Date legal passed on to next step.","type":"string"},"minor_version_number__v":{"description":"Minor
+            Version Number","type":"number"},"milestone_type__v":{"description":"Milestone
+            Type","type":"string"},"informed_consent_site_effective_tracking__c":{"description":"Informed Consent Site
+            Effective
+            Tracking","type":"string"},"viewer__v.users":{"description":"Viewer","type":"string"},"monitoring_visit_actual_start_date__v":{"format":"date","description":"Monitoring
+            Visit Actual Start Date - First day on site for a monitoring visit. Populated automatically from the
+            monitoring event's actual start date on its milestone. Used in calculating monitoring compliance
+            metrics.","type":"string"},"file_meta_alpha_channel__v":{"description":"Alpha
+            Channel","type":"string","maxLength":255},"source_product__v":{"description":"Source Product - This field
+            stores the Name of the Product on the Source Document as a string
+            field.","type":"string","maxLength":1500},"coordinator__v.users":{"description":"Coordinator","type":"string"},"file_modified_date__v":{"format":"date-time","description":"File
+            Last Modified Date","type":"string"},"binder_last_autofiled_by__v":{"description":"Last Auto-Filed
+            By","type":"string"},"external_id__v":{"description":"External
+            ID","type":"string","maxLength":255},"bookmarks_edited__sys":{"description":"Bookmarks Edited - This field
+            indicates whether the document's bookmarks have been
+            edited.","type":"boolean"},"level__v":{"description":"Level","type":"string"},"initial_sent_to_sites_date__v":{"format":"date","description":"Initial
+            Sent to Site(s) Date - Standard system-managed field to indicate the initial date on which this document was
+            sent to the site.","type":"string"},"quality_issue__v":{"description":"Quality
+            Issue","type":"string"},"editor__v.users":{"description":"Editor","type":"string"},"tags__v":{"description":"Tags","type":"string"},"primary_qc_status__v":{"description":"Primary
+            QC Status","type":"string"},"filing_level__v":{"description":"Filing
+            Level","type":"string"},"file_meta_focal_length__v":{"description":"Focal
+            Length","type":"string","maxLength":255},"latest_version__v":{"description":"Is Latest
+            Version","type":"number"},"source_vault_name__v":{"description":"Source Vault Name - Name of the document's
+            source vault","type":"string","maxLength":250},"num_of_open_issues__v":{"description":"# of Open
+            Issues","type":"number"},"file_meta_gps__v":{"description":"GPS","type":"string","maxLength":255},"checkout_type__sys":{"description":"Check
+            Out Type","type":"string"},"file_meta_audio_codec__v":{"description":"Audio
+            Codec","type":"string","maxLength":255},"file_meta_image_size__v":{"description":"Image
+            Size","type":"string","maxLength":255},"secondary_qc_status__v":{"description":"Secondary QC
+            Status","type":"string"},"certified_copy__v":{"description":"Certified Copy - This field defines whether
+            this version of the document file has gone through a copy certification process and has been deemed to meet
+            that
+            criteria","type":"boolean"},"notes__v":{"description":"Notes","type":"string","maxLength":255},"approval_start_date__c":{"format":"date","description":"Approval
+            Start Date - The most recent date on which this document was submitted for
+            approval.","type":"string"},"source_document_connection__v":{"description":"Source Document Connection - The
+            name of the connection through which this document was
+            transferred.","type":"string","maxLength":1500},"file_meta_fields_of_view__v":{"description":"Field of
+            View","type":"string","maxLength":255},"file_meta_light_source__v":{"description":"Light
+            Source","type":"string","maxLength":255},"file_meta_album__v":{"description":"Album","type":"string","maxLength":255},"classification__v":{"description":"Classification","type":"string"},"file_meta_disc_number__v":{"description":"Disc
+            Number","type":"string","maxLength":255},"rationale__c":{"description":"Rationale for Requested Changes -
+            Summarize the justification for the requested changes. Whenever possible, please drag and drop documentation
+            supporting your justification into the Attachments
+            section.","type":"string","maxLength":1000},"staging_cdn_url__v":{"description":"Staging CDN
+            URL","type":"string"},"study_communication_log__v":{"description":"Study Communication
+            Log","type":"string"},"created_by_clinical_network__v":{"description":"Clinical Transfer Document -
+            Indicates whether this document is created by an automated transfer from another Customer's
+            Vault.","type":"boolean"},"related_claims__v":{"description":"Claims","type":"string"},"name__v":{"description":"Name
+            - Displayed throughout application for the document, including in Library, Reporting, Notifications and
+            Workflows.","type":"string","maxLength":100},"document_number__v":{"description":"Document Number - The
+            unique identifier for each document in Vault. Once created, it cannot be modified (except when document is
+            reclassified).","type":"number"},"file_meta_device__v":{"description":"Device","type":"string","maxLength":255},"ir_check_completion_date__c":{"format":"date","description":"IR
+            Check Completion
+            Date","type":"string"},"returned_from_contracts_lead__c":{"format":"date","description":"Returned from
+            Contracts Lead - Date contracts and/or budgets lead passed on to next
+            step.","type":"string"},"file_created_date__v":{"format":"date-time","description":"File Created
+            Date","type":"string"},"distribution_contacts__v":{"description":"Distribution
+            Contacts","type":"string"},"source_person__v":{"description":"Source Person - This field stores the Name of
+            the Person on the Source Document as a string
+            field.","type":"string","maxLength":1500},"informed_consent_tracking__c":{"description":"Informed Consent
+            Tracking","type":"string"},"file_meta_location__v":{"description":"Media
+            Location","type":"string","maxLength":255},"created_by__v":{"description":"Created
+            By","type":"string"},"version_creation_date__v":{"format":"date-time","description":"Version Creation
+            Date","type":"string"},"template_doctype__v":{"description":"Template Document
+            Type","type":"string"},"certified_copy_complete_date__c":{"format":"date","description":"Certified Copy
+            Complete Date - The most recent date on which this document passed Certified Copy
+            Review.","type":"string"},"file_meta_brightness__v":{"description":"Brightness","type":"string","maxLength":255},"coordinator__v.groups":{"description":"Coordinator","type":"string"},"binder_locked__v":{"description":"Binder
+            Locked","type":"boolean"},"review_cycles_started__c":{"description":"Review Cycles
+            Started","type":"number"},"latest_source_minor_version__v":{"description":"Latest Source Minor Version -
+            Latest available version of the source
+            document","type":"number"},"binder_created_from__v":{"description":"Created From - References the object
+            used to create the binder.","type":"string"},"file_meta_comments__v":{"description":"Media
+            Comments","type":"string","maxLength":1500},"annotations_suggested__v":{"description":"Suggested
+            Links","type":"number"},"source_document_name__v":{"description":"Source Document Name - Name of the source
+            document","type":"string","maxLength":100},"annotations_links__v":{"description":"Annotations
+            (Links)","type":"number"},"global_id__sys":{"description":"Global ID - This value is unique to this document
+            in this vault. This is useful for
+            integrations.","type":"string","maxLength":50},"site__v":{"description":"Study
+            Site","type":"string"},"in_progress_location__c":{"description":"In Progress Location - Indicates the party
+            who currently has responsibility to act on the document. Is automatically updated by workflows as the
+            document is
+            processed.","type":"string"},"format__v":{"description":"Format","type":"string","maxLength":255},"certified_copy_passes_granted__c":{"description":"Certified
+            Copy Passes Granted - The number of times in the history of this document that it has passed Certified Copy
+            Review.","type":"number"},"annotations_auto__v":{"description":"Annotations (Auto
+            Links)","type":"number"},"crosslink__v":{"description":"CrossLink - Indicates if this is a
+            CrossLink","type":"boolean"},"file_meta_publisher__v":{"description":"Publisher","type":"string","maxLength":255},"file_meta_gain_control__v":{"description":"Gain
+            Control","type":"string","maxLength":255},"qc_cycles_started__c":{"description":"QC Cycles Started - The
+            number of times in the history of this document that it has been sent for
+            QC.","type":"number"},"file_meta_title__v":{"description":"Media
+            Title","type":"string","maxLength":255},"document_date__v":{"format":"date","description":"Document
+            Date","type":"string"},"file_meta_flash__v":{"description":"Flash","type":"string","maxLength":255},"contributor_organization__v":{"description":"Contributor's
+            Organization","type":"string"},"file_meta_megapixel__v":{"description":"Megapixel","type":"string","maxLength":255},"annotations_all__v":{"description":"Annotations
+            (All)","type":"number"},"sent_to_site_date__c":{"format":"date","description":"Sent to Site Date - The most
+            recent date on which this document was sent to the site for revision or
+            confirmation.","type":"string"},"ocr_requested__sys":{"description":"OCR Requested - Indicates that OCR was
+            requested","type":"boolean"},"rendition_black_list_flag__v":{"description":"Rendition Black
+            Listed","type":"boolean"},"ctn__v":{"description":"Clinical Trial Notification /
+            治験届","type":"string"},"file_meta_video_codecs__v":{"description":"Video
+            Codecs","type":"string","maxLength":255},"editor__v.groups":{"description":"Editor","type":"string"},"num_of_closed_issues__v":{"description":"#
+            of Closed Issues","type":"number"},"production_cdn_url__v":{"description":"Production CDN
+            URL","type":"string"},"document_version_cdx_id__v":{"description":"Document Version CDX
+            ID","type":"string","maxLength":50},"file_meta_exposure_mode__v":{"description":"Exposure
+            Mode","type":"string","maxLength":255},"file_meta_keywords__v":{"description":"Keywords","type":"string","maxLength":1500},"ftp_source_location__v":{"description":"FTP
+            Source Location","type":"string","maxLength":1000},"monitoring_event__v":{"description":"Monitoring
+            Event","type":"string"},"certified_copy_cycles_started__c":{"description":"Certified Copy Cycles Started -
+            The number of times in the history of this document that it has been sent for Certified Copy
+            Review.","type":"number"},"reviewer__v.users":{"description":"Reviewer","type":"string"},"last_modified_by__v":{"description":"Last
+            Modified By","type":"string"},"terms_accepted__c":{"format":"date","description":"Terms Accepted - Date the
+            contract terms were accepted by all parties. Budget consolidation, signatures and other post-acceptance
+            activity occur after this date.","type":"string"},"source_vault_id__v":{"description":"Source Vault ID - ID
+            of the document's source
+            vault","type":"number"},"consumer__v.users":{"description":"Consumer","type":"string"},"sent_to_sites__v":{"description":"Sent
+            to Site(s) - Standard system-managed field to indicate if a Document has successfully been sent to one or
+            more sites.","type":"boolean"},"document_creation_date__v":{"format":"date-time","description":"Created
+            Date","type":"string"},"file_meta_channels__v":{"description":"Channels","type":"string","maxLength":255},"source_binding_rule__v":{"description":"Source
+            Binding Rule - Version binding rule currently applied to the
+            CrossLink","type":"string"},"source_owner__v":{"description":"Source Owner - Owner of the document in the
+            source vault","type":"string"},"dt_global_version_id__v":{"description":"Clinical Global Version
+            ID","type":"string","maxLength":200},"safety_distribution__v":{"description":"Safety
+            Distribution","type":"string"},"file_meta_component_configuration__v":{"description":"Component
+            Configuration","type":"string","maxLength":255},"qc_start_date__c":{"format":"date","description":"QC Start
+            Date - The most recent date on which this document was submitted for
+            QC.","type":"string"},"version_link__sys":{"description":"Document Version Link - This field is intended to
+            store a value that uniquely identifies the source of this document version\u2019s content, such as a vault
+            document\u2019s Global
+            ID.","type":"string","maxLength":200},"file_meta_language__v":{"description":"Language","type":"string","maxLength":255},"require_certified_copy__c":{"description":"Require
+            Certified Copy? - Required if this Vault document will replace a paper, sponsor-owned clinical trial record.
+            Not required for copies of paper records from an investigator
+            site.","type":"boolean"},"approver__v.groups":{"description":"Approver","type":"string"},"pages__v":{"description":"Pages","type":"number"},"id":{"type":"string","maxLength":20},"sponsor_template__v":{"description":"Sponsor
+            Template for Site - Indicates that the document is a template document to be used by the Site. This
+            indication will be transferred to SiteVault when the document is sent to the
+            Site.","type":"boolean"},"signature_format__c":{"description":"Signature
+            Format","type":"string"},"viewer__v.groups":{"description":"Viewer","type":"string"},"certified_copy_complete__c":{"description":"Certified
+            Copy Complete - Yes indicates this digitalization (i.e. scan) is an exact replicate of the paper for the
+            purpose of destruction of the paper.","type":"boolean"},"copy_depth__v":{"description":"Copy
+            Depth","type":"number"},"file_meta_orientation__v":{"description":"Orientation","type":"string","maxLength":255},"etmf_department__v":{"description":"Department
+            - Name of department that is accountable for this
+            document.","type":"string"},"file_meta_aperture__v":{"description":"Aperture","type":"string","maxLength":255},"source_document_date__v":{"format":"date","description":"Source
+            Document Date - This field stores the Document Date of the Source Document as a date
+            field.","type":"string"},"file_meta_genre__v":{"description":"Genre","type":"string","maxLength":255},"timeliness__v":{"description":"Timeliness
+            - Number of days it takes to file content in
+            TMF.","type":"number"},"version_created_by__v":{"description":"Version Created
+            By","type":"string"},"preprocessed__v":{"description":"Preprocessed","type":"boolean"},"product__v":{"description":"Product","type":"string"},"file_meta_red_eye__v":{"description":"Red
+            Eye","type":"string","maxLength":255},"file_meta_copyright__v":{"description":"Copyright","type":"string","maxLength":255},"fully_executed_date__c":{"format":"date","description":"Fully
+            Executed Date","type":"string"},"archived_date__sys":{"format":"date-time","description":"Archived Date -
+            The date and time this document was most recently
+            archived","type":"string"},"redacted__v":{"description":"Redacted - Indicates that this document contains
+            redacted
+            content.","type":"boolean"},"subtype__v":{"description":"Subtype","type":"string"},"initial_sent_to_site_date__c":{"format":"date","description":"Initial
+            Sent to Site Date - Date first sent to
+            site.","type":"string"},"file_meta_author__v":{"description":"Author","type":"string","maxLength":255},"merge_fields__v":{"description":"Merge
+            Fields - The presence of this field on a document will enable word document field
+            merging.","type":"boolean"},"compliant_mvr__v":{"description":"Compliant
+            MVR?","type":"boolean"},"file_meta_track__v":{"description":"Track","type":"string","maxLength":255},"annotations_unresolved__v":{"description":"Annotations
+            (Unresolved)","type":"number"},"annotations_anchors__v":{"description":"Annotations
+            (Anchors)","type":"number"},"file_meta_exposure_compensation__v":{"description":"Exposure
+            Compensation","type":"string","maxLength":255},"archive__v":{"description":"Archive","type":"boolean"},"bound_source_major_version__v":{"description":"Bound
+            Source Major Version - Version of the source document that is currently bound; for dynamic binding, this is
+            the version number to which the binding rule currently
+            resolves.","type":"number"},"file_meta_media_description__v":{"description":"Media
+            Description","type":"string","maxLength":1500},"file_meta_sharpness__v":{"description":"Sharpness","type":"string","maxLength":255},"bound_source_minor_version__v":{"description":"Bound
+            Source Minor Version - Version of the source document that is currently bound; for dynamic binding, this is
+            the version number to which the binding rule currently
+            resolves.","type":"number"},"pages_ocred_percent__sys":{"description":"Pages OCR'ed (%) - Indicates the
+            percentage of pages with content extracted by
+            OCR","type":"number"},"escalated_to_contracts_lead__c":{"format":"date","description":"Escalated to
+            Contracts Lead - Date sent to contracts and/or budgets lead for assistance or
+            guidance.","type":"string"},"source_document_id__v":{"description":"Source Document ID - ID of the source
+            document","type":"number"},"hierarchy__v":{"description":"Artifacts","type":"string"},"reviewer__v.groups":{"description":"Reviewer","type":"string"},"internal_version_number__c":{"description":"Internal
+            Version Number - The version number for a document as it is tracked outside of Vault, independent of the
+            Vault
+            Version.","type":"string","maxLength":500},"file_meta_year__v":{"description":"Year","type":"number"},"returned_from_site_date__c":{"format":"date","description":"Returned
+            From Site Date - Date on which the document was most recently returned from the
+            site","type":"string"},"batch_number__v":{"description":"Batch Number - Contains the batch numbers for where
+            this document was included in a multi-document
+            workflow.","type":"string"},"size__v":{"description":"Size","type":"number"},"annotations_approved__v":{"description":"Annotations
+            (Approved Links)","type":"number"},"latest_source_major_version__v":{"description":"Latest Source Major
+            Version - Latest available version of the source
+            document","type":"number"},"myveeva_econsent__v":{"description":"Veeva eConsent - Indicates whether this
+            document is an eConsent document for use with Veeva's eConsent
+            editor.","type":"boolean"},"document_cdx_id__v":{"description":"Document CDX
+            ID","type":"string","maxLength":50},"file_meta_artist__v":{"description":"Artist","type":"string","maxLength":255},"source_document_version__v":{"description":"Source
+            Document Version - This field stores the Major and Minor version of the document in the source
+            vault.","type":"string","maxLength":1500},"connect_to_vault_study_training__v":{"description":"Connect to
+            Vault Study Training","type":"boolean"},"enable_pdfa_rendition__v":{"description":"Enable PDF/A
+            Rendition","type":"boolean"},"payment_request__c":{"description":"Payment
+            Request","type":"string"},"file_meta_circle_of_confusion__v":{"description":"Circle of
+            Confusion","type":"string","maxLength":255},"file_meta_frame_rate__v":{"description":"Frame
+            Rate","type":"string","maxLength":255},"document_version__c":{"description":"Document
+            Version","type":"string","maxLength":20},"file_meta_ycbcr_positioning__v":{"description":"Y Cb Cr
+            Positioning","type":"string","maxLength":255},"file_meta_shutter_speed__v":{"description":"Shutter
+            Speed","type":"string","maxLength":255},"study_startup_budget__c":{"description":"Study Startup Budget -
+            Reference only: used to drive lifecycle and workflow
+            options.","type":"boolean"},"locked__v":{"description":"Checked
+            Out","type":"boolean"},"organization__v":{"description":"Organization","type":"string"},"monitoring_visit_actual_end_date__v":{"format":"date","description":"Monitoring
+            Visit Actual End Date - Last day on site for a monitoring visit. Populated automatically from the monitoring
+            event's actual finish date on its milestone. Used in calculating monitoring compliance
+            metrics.","type":"string"},"qc_complete_date__c":{"format":"date","description":"QC Complete Date - The most
+            recent date on which this document passed
+            QC.","type":"string"},"approval_cycles_started__c":{"description":"Approval Cycles Started - The number of
+            times in the history of this document that it has been sent for
+            approval.","type":"number"},"person_old__v":{"description":"Personnel Name
+            (deprecated)","type":"string"},"file_meta_duration__v":{"description":"Duration","type":"string","maxLength":255},"annotations_notes__v":{"description":"Annotations
+            (Notes)","type":"number"},"file_meta_contrast__v":{"description":"Contrast","type":"string","maxLength":255},"milestone__v":{"description":"Milestones","type":"string"},"file_modified_by__v":{"description":"File
+            Last Modified By","type":"string","maxLength":255},"template_document__v":{"description":"Template
+            Document","type":"boolean"},"description__v":{"description":"Description","type":"string","maxLength":255},"title__v":{"description":"Additional
+            Information - Optional secondary identifier for the document. Can be more detailed than the Name, and is an
+            optional attribute in searching and
+            reporting.","type":"string","maxLength":255},"file_meta_saturation__v":{"description":"Saturation","type":"string","maxLength":255},"filename__v":{"description":"File
+            Name","type":"string","maxLength":1000},"blinding__v":{"description":"Content - Denotes whether a document
+            is blinded (unrestricted) or unblinded (restricted). This field is set based on the Create Content field on
+            the User object for the user creating the
+            document.","type":"string"},"source_doc_type__v":{"description":"Source Doc Type - This field stores the Doc
+            Type, Sub Type and Classification of the Source Document as a \\\".\\\" separated
+            string.","type":"string","maxLength":1500},"dt_remote_id__v":{"description":"Clinical Remote
+            ID","type":"string","maxLength":200},"ip_release_approved_date__c":{"format":"date","description":"Greenlight
+            Approved Date - Date when content was approved as part of IP Release Approval
+            process.","type":"string"},"file_meta_encoding_process__v":{"description":"Encoding
+            Process","type":"string","maxLength":255},"file_meta_bit_rate__v":{"description":"Bit
+            Rate","type":"string","maxLength":255},"file_created_by__v":{"description":"File Created
+            By","type":"string","maxLength":255},"annotations_permalink__v":{"description":"Annotations
+            (Permalinks)","type":"number"},"filing_model__v":{"description":"Filing
+            Model","type":"string"},"inspection_ready__c":{"description":"Inspection Ready (IR)? - The inspection
+            readiness status of the content; blank until an inspection readiness check is
+            conducted.","type":"boolean"},"state_stage_id__sys":{"description":"Lifecycle State Stage
+            ID","type":"string"},"consumer__v.groups":{"description":"Consumer","type":"string"},"file_meta_software__v":{"description":"Software","type":"string","maxLength":255},"signatory_role__v":{"description":"Signatory
+            Roles","type":"string"},"model__v":{"description":"Reference Model
+            Versions","type":"string"},"study_country__v":{"description":"Study
+            Country","type":"string"},"binder_last_autofiled_date__v":{"format":"date-time","description":"Last
+            Auto-Filed Date","type":"string"},"owning_milestone__v":{"description":"Owning Milestone - Specific
+            milestone(s) to which a given document applies. This is distinct from milestones with which a document has
+            been associated via EDL matching.","type":"string"},"study_startup_cta__c":{"description":"Study Startup CTA
+            - Reference only: used by lifecycle and
+            workflow.","type":"boolean"},"internal_signatures_complete__c":{"format":"date","description":"Internal
+            Signatures Complete","type":"string"},"source_tmf_document_number__v":{"description":"Source Document Number
+            - This field stores the Document Number of the Source Document as a string
+            field.","type":"string","maxLength":1500},"study_risk_assessment__c":{"description":"Study Risk
+            Assessment","type":"string"},"version_id":{"type":"string","maxLength":20},"last_sent_to_sites_date__v":{"format":"date","description":"Last
+            Sent to Site(s) Date - Standard system-managed field to indicate the most recent date on which this document
+            was sent to the site.","type":"string"},"export_filename__v":{"description":"Export File
+            Name","type":"string","maxLength":64},"md5checksum__v":{"description":"Checksum","type":"string","maxLength":40},"investigator_initiated_study__v":{"description":"Investigator
+            Initiated Study","type":"string"},"received_from_site_date__v":{"format":"date","description":"Received from
+            Site Date - Standard system-managed field to indicate the most recent date on which this document was
+            received from a site.","type":"string"},"source_created_date__v":{"format":"date-time","description":"Source
+            Created Date - This field stores the Created Date of the Source Document as a date time
+            field.","type":"string"},"locked_by__v":{"description":"Checked Out
+            By","type":"string"},"num_of_total_issues__v":{"description":"# of Total
+            Issues","type":"number"},"source_artifact__v":{"description":"Source Artifact - The TMF Reference Model
+            Value of the source Vault document, for Clinical Network
+            Documents.","type":"string"},"study__v":{"description":"Study","type":"string"},"file_meta_sample_rate__v":{"description":"Sample
+            Rate","type":"string","maxLength":255},"source_document_number__v":{"description":"Source Number - Document
+            Number of the source
+            document","type":"string","maxLength":250},"ip_release_issue_cycles_started__c":{"description":"Greenlight
+            Review Issue Cycles Started - The number of times in the history of this document that it has been rejected
+            during the IP Release Approval
+            process.","type":"number"},"certified_copy_start_date__c":{"format":"date","description":"Certified Copy
+            Start Date - The most recent date on which this document was submitted for Certified
+            Copy.","type":"string"},"person__v":{"description":"Personnel
+            Name","type":"string"},"tmf_bot__v":{"description":"TMF Bot - This field displays the current status of the
+            TMF Bot.","type":"string"},"file_meta_original_date__v":{"description":"Original
+            Date","type":"string","maxLength":255},"status__v":{"description":"Status - The state of a document within
+            its assigned lifecycle.","type":"string"}}}}}
+        </jsonSchema>
+    </definition>
+    <definition elementName="/editResponse" outputType="json">
+        <jsonSchema>{
+            "$schema": "http://json-schema.org/schema#",
+            "editResponse": {
+            "type": "object",
+            "properties": {
+            "responseStatus": {
+            "type": "string"
+            },
+            "data": {
+            "type": "array",
+            "items": {
+            "type": "object",
+            "properties": {
+            "responseStatus": {
+            "type": "string"
+            },
+            "id": {
+            "type": "integer"
+            },
+            "external_id__v": {
+            "type": "string"
+            },
+            "major_version_number__v": {
+            "type": "integer"
+            },
+            "minor_version_number__v": {
+            "type": "integer"
+            },
+            "rendition_type__c": {
+            "type": "string"
+            },
+            "errors": {
+            "type": "array",
+            "items": {
+            "type": "object",
+            "properties": {
+            "type": {
+            "type": "string"
+            },
+            "message": {
+            "type": "string"
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        </jsonSchema>
+    </definition>
+</ObjectDefinitions>

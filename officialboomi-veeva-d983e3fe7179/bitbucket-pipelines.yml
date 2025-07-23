@@ -1,0 +1,191 @@
+image: amazoncorretto:8-al2-jdk
+
+# IMPORT -----------------------------------
+# Below are some starter tasks that can be incorporated into your pipelines by referencing the anchors
+definitions:
+  caches:
+    mavenwrapper: ~/.m2/wrapper
+    yum-cache: /var/lib
+  steps:
+
+    - step: &git-secrets-scan # Scan your files for hardcoded sensitive data and create a security report.
+        name: Security Scan Git Secrets
+        script:
+          - pipe: atlassian/git-secrets-scan:0.6.1
+            variables:
+              FILES: 'src/main/**/*'
+
+    - step: &build-connector # Use this to build the project
+        name: Build Connector
+        caches:
+          - maven
+          - mavenwrapper
+        script:
+          - export JUNIT_USERNAME=$JUNIT_USERNAME
+          - export JUNIT_PASSWORD=$JUNIT_PASSWORD
+          - ./mvnw -B clean
+          - ./mvnw -B verify
+        artifacts:
+          download: false # Do not download artifacts in this step
+          paths:
+            - target/** # This is intended to retrieve build artifacts
+        after-script:
+          - pipe: atlassian/checkstyle-report:0.3.2
+
+    - step: &build-connector-no-test # Use this to build the project
+        name: Build Connector (skip tests)
+        caches:
+          - maven
+          - mavenwrapper
+        script:
+          - export JUNIT_USERNAME=$JUNIT_USERNAME
+          - export JUNIT_PASSWORD=$JUNIT_PASSWORD
+          - ./mvnw -B clean
+          - ./mvnw -B verify -DskipTests
+        artifacts:
+          download: false # Do not download artifacts in this step
+          paths:
+            - target/** # This is intended to retrieve build artifacts
+        after-script:
+          - pipe: atlassian/checkstyle-report:0.3.2
+
+    - step: &build-release-connector # Use this to build and cut a release of the project
+        name: Build and Release Maven
+        caches:
+          - maven
+          - mavenwrapper
+          - yum-cache
+        script:
+          - export JUNIT_USERNAME=$JUNIT_USERNAME
+          - export JUNIT_PASSWORD=$JUNIT_PASSWORD
+          - yum install git -y
+          - ./mvnw -B clean
+          - ./mvnw -B release:prepare
+          - git push
+          - git push --tags
+        artifacts:
+          download: false # Do not download artifacts in this step
+          paths:
+            - target/** # This is intended to retrieve build artifacts
+
+    - step: &upload-to-bitbucket # Use this to upload artifacts to Bitbucket
+        name: Upload to Bitbucket
+        script: &upload-to-bitbucket-script # to reuse as a script
+          - pipe: docker://boomi/upload-artifact:release
+            variables:
+              BOOMI_TOKEN: $BOOMI_TOKEN # (Required) token needed to run this automation
+              ARTIFACT_NAME: "target/**/*-car.zip" # (Required) Path to connector archive file or other artifacts to upload
+              DEBUG: 'true' # (Optional) show debug information (default: 'false')
+        services:
+          - docker
+
+    - step: &connector-scan # Use this to scan your connector for issues and security vulnerabilities
+        name: Connector Scan
+        caches:
+          - maven
+          - mavenwrapper
+        script:
+          - pipe: docker://boomi/connector-scan:release
+            variables:
+              BOOMI_TOKEN: $BOOMI_TOKEN # (Required) token needed to run this automation
+              DEBUG: 'true' # (Optional) show debug information (default: 'false')
+              # SOURCES: 'src' # (Optional) directory where your source code is located (default: 'src')
+        services:
+          - docker
+
+    - step: &connector-deploy-qa # Anchor to reference this step
+        name: Connector Deployment # Display name in the pipeline
+        runs-on:
+          - 'self.hosted'
+          - 'qa'
+        script:
+          - pipe: docker://boomi/connector-deployment:release
+            variables:
+              PLATFORM_USERNAME: $PLATFORM_USERNAME # (Required) Platform username
+              PLATFORM_PASSWORD: $PLATFORM_PASSWORD # (Required) Platform password
+              PLATFORM_HOST: $PLATFORM_HOST # (Optional) Platform host URL (defaults to production environment)
+              PLATFORM_ACCOUNT_ID: $PLATFORM_ACCOUNT_ID # (Required) The account ID associated with the username
+              CONNECTOR_GROUP_TYPE: $CONNECTOR_GROUP_TYPE # (Required) Valid connector group type
+              CONNECTOR_CLASSIFICATION_TYPE: $CONNECTOR_CLASSIFICATION_TYPE # (Optional) If a valid type is provided, sets the new version as 'active'
+              CAR_PATH: "target/**/*-car.zip" # (Required) Either path to directory containing the CAR zip or path to the CAR zip file
+              # CHANGE_LOG: <description> # (Optional, has no effect when run through bitbucket pipeline) If provided, will be used in the change log description for the CAR upload (default: URL of the pipeline)
+              DEBUG: 'true' # (Optional) show debug logs (default: 'false')
+        services:
+          - docker
+
+    - step: &connector-approval # Use this to automatically approve your connector version
+        name: Connector Approval
+        caches:
+          - maven
+          - mavenwrapper
+        script:
+          - pipe: docker://boomi/connector-approval:release
+            variables:
+              BOOMI_TOKEN: $BOOMI_TOKEN # (Required) token needed to run this automation
+              CAR_PATH: "target/**/*-car.zip" # (Required) Either path to directory containing the CAR zip, path to the CAR zip file, or wild card designation for CAR zip file
+              CONNECTOR_GROUP_TYPE: $CONNECTOR_GROUP_TYPE # (Required) Valid connector group type
+              # CHANGE_LOG: '<description>' # (Optional) If provided, will be used in the change log description for the CAR upload (default: URL of the pipeline)
+              DEBUG: 'true' # (Optional) show debug information (default: 'false')
+              # SOURCES: 'src' # (Optional) directory where your source code is located (default: 'src')
+        after-script: *upload-to-bitbucket-script
+        services:
+          - docker
+
+# IMPORT -----------------------------------
+
+# Configure your pipelines below (for help, see https://support.atlassian.com/bitbucket-cloud/docs/configure-bitbucket-pipelinesyml/)
+
+pipelines:
+  custom:
+    upload-to-bitbucket:
+      - step: *build-connector-no-test
+      - step: *upload-to-bitbucket
+    connector-build-and-scan: &custom-connector-build-and-scan
+      - step: *build-connector
+      - step: *connector-scan
+    connector-release:
+      - step: *build-release-connector
+    connector-deploy-to-qa:
+      - step: *build-connector
+      - step: &custom-deploy-to-qa-step
+          <<: *connector-deploy-qa
+          name: Deploy to QA
+          deployment: QA
+    connector-approval-and-deploy-to-prod:
+      - step: *build-connector
+      - step: &custom-approval-and-deploy-to-prod
+          <<: *connector-approval
+          name: Approval Scan and Deploy to Production
+          deployment: Production
+    connector-deploy-to-qa-and-prod: &custom-connector-deploy-to-qa-and-prod
+      - step: *build-connector
+      - parallel:
+          - step: *custom-deploy-to-qa-step
+          - step: *custom-approval-and-deploy-to-prod
+  default:
+      - step: *git-secrets-scan
+      - step: *build-connector
+      - step: *connector-scan
+  pull-requests:
+    '**':
+      - step: *connector-scan
+  branches:
+    '{development}':
+      - parallel:
+          - step: *build-connector
+          - step: *git-secrets-scan
+      - parallel:
+          - step: *connector-scan
+          - step: *custom-deploy-to-qa-step
+    '{main,master}':
+      - parallel:
+          - step: *git-secrets-scan
+          - step: *build-connector
+      - parallel:
+          - step: *connector-scan
+          - step: *custom-deploy-to-qa-step
+          - step:
+              <<: *build-release-connector
+              trigger: manual
+  tags:
+    '*': *custom-connector-deploy-to-qa-and-prod

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<GenericConnectorDescriptor
+	browsingType="onpremise" requireConnectionForBrowse="true"
+	disableDefaultObjectTypeFilter="true">
+	<description>Settings</description>
+	<field type="string" id="connectionType" label="Connection type">
+		<allowedValue label="Application Server Host">
+			<value>AHOST</value>
+		</allowedValue>
+		<allowedValue label="Message Server Host">
+			<value>MHOST</value>
+		</allowedValue>
+	</field>
+	<field type="string" id="server" label="Application or Message Server">
+	<helpText>include SAProuter string</helpText>
+	</field>
+	<field type="string" id="systemNumber" label="SAP System Number"></field>
+	<field type="string" id="systemName" label="SAP SID">
+		<helpText>Required for Message Server Host Option.</helpText>	
+	</field>
+	<field type="string" id="groupName" label="SAP Logon Group Name">
+	 	<helpText>Required if selecting Message Server Host.</helpText>
+	</field>
+	
+	<field type="string" id="client" label="SAP Client"></field>
+	<field type="string" id="userName" label="User Name"></field>
+	<field type="password" id="password" label="Password"></field>
+	
+	<field type="string" id="languageCode" label="Language Code">
+	<helpText>This is the two letter language code in SAP</helpText>
+		<defaultValue>EN</defaultValue>
+	</field>
+	
+	<field type="string" id="listenerGatewayHost"
+		label="Listener Gateway Host">
+		<helpText>Required for SAP JCo 3.0</helpText>
+	</field>
+	<field type="string" id="listenerGatewayService"
+		label="Listener Gateway Service">
+		<helpText>Required for SAP JCo 3.0</helpText>
+	</field>
+	<field type="integer" id="listenerConnectionCount"
+		label="Listener Connection Count">
+	<helpText>Number of server connections for Listen operation.</helpText>	
+	</field>
+	<field type="integer" id="maximumIdleConnections"
+		label="SAP Maximum Idle Connections"></field>
+	<field type="integer" id="maximumActiveConnections"
+		label="SAP Maximum Active Connections"></field>
+	<field type="string" id="idleTime" label="SAP Idle Time"></field>
+	<field type="integer" id="traceLevel" label="JCo Trace Level">
+	<helpText>The valid trace levels range from 0 to 10.</helpText>	
+	</field>
+	<field type="string" id="additionalConnectionSettings" label="JCo Properties Setting"> 
+	<helpText>Specify a jar file containing the properties associated with additional JCO parameters to be used by the connection.</helpText> 
+	</field>
+		
+	<field type="string" id="tidManagementOptions" label="TID Management options">
+	<helpText>None: TID disabled, Minimum: TID enabled, Full: TID enabled with IDoc logging.</helpText>
+		<allowedValue label="Minimum">
+			<value>Minimum</value>
+		</allowedValue>
+		<allowedValue label="Full">
+			<value>Full</value>
+		</allowedValue>
+		<allowedValue label="None">
+			<value>None</value>
+		</allowedValue>
+	</field>
+	<field type="string" id="databaseUserName"
+		label="Database User Name"></field>
+	<field type="password" id="databasePassword"
+		label="Database Password"></field>
+	<field type="string" id="databaseDriverType"
+		label="Database Driver Type">
+		<helpText>Select the Driver Type used to connect to the database</helpText>
+		<allowedValue label="Custom">
+			<value>CUSTOM</value>
+		</allowedValue>
+		<allowedValue label="MySQL">
+			<value>MYSQL</value>
+		</allowedValue>
+		<allowedValue label="Oracle">
+			<value>ORACLE</value>
+		</allowedValue>
+		<allowedValue label="SAP HANA">
+			<value>SAP_HANA</value>
+		</allowedValue>
+		<allowedValue label="SQL Server (jTDS)">
+			<value>SQL_SERVER_JTDS</value>
+		</allowedValue>
+		<allowedValue label="SQL Server (Microsoft)">
+			<value>SQL_SERVER_MICROSOFT</value>
+		</allowedValue>
+	</field>
+	<field type="string" id="customDriverClassName"
+		label="Custom Driver Class Name">
+		<helpText>Enter the fully-qualified Java class name of the JDBC driver, which you can get from the JDBC vendor's documentation. (Required if Database Driver Type is Custom)
+</helpText>
+	</field>
+	<field type="string" id="customConnectionURL"
+		label="Custom Connection URL">
+		<helpText>Refer to the JDBC vendor's documentation for the connection URL syntax (Required if Database Driver Type is Custom)</helpText>
+	</field>
+	<field type="string" id="databaseHost" label="Database Host">
+		<helpText>Not Required if included in the Custom Connection URL</helpText>
+	</field>
+	<field type="string" id="databasePort" label="Database Port">
+		<helpText>Not Required if included in the Custom Connection URL</helpText>
+	</field>
+	<field type="string" id="databaseName" label="Database Name">
+		<helpText>Not Required if included in the Custom Connection URL</helpText>
+	</field>
+	<field type="string" id="additionalOptions"
+		label="Database Additional Options">
+		<helpText>Enter any additional configurable options. These options are appended to the end of the connection URL according to your database vendor.</helpText>
+	</field>
+	<field type="integer" id="minimumConnections"
+		label="Database Minimum Connections">
+		<helpText>Transaction Storage Pooling</helpText>
+	</field>
+	<field type="integer" id="maximumConnections"
+		label="Database Maximum Connections">
+		<helpText>Transaction Storage Pooling (-1 for unlimited)</helpText>
+	</field>
+	<testConnection method="CUSTOM"></testConnection>
+	<operation types="EXECUTE" supportsBrowse="true"
+		customTypeId="EXECUTE" customTypeLabel="EXECUTE">
+		<field type="boolean" id="commitTransaction"
+			label="Commit Transaction?"></field>
+		<field type="string" id="functionType" label="Function Type"
+			scope="browseOnly">
+			<allowedValue label="Business Object">
+				<value>BUSINESS_OBJECT</value>
+			</allowedValue>
+			<allowedValue label="BAPI/RFM">
+				<value>BAPI</value>
+			</allowedValue>
+		</field>
+		<field type="string" id="functionName" label="Function Filter"
+			scope="browseOnly"></field>
+	</operation>
+	<operation types="EXECUTE" supportsBrowse="true"
+		customTypeId="SEND" customTypeLabel="SEND" trackedDocument="response">
+		<field type="string" id="functionType" label="Function Type"
+			scope="browseOnly">
+			<allowedValue label="IDoc">
+				<value>IDoc</value>
+			</allowedValue>
+		</field>
+		<field type="string" id="basetype" label="Base Type"
+			scope="browseOnly"></field>
+		<field type="string" id="extension" label="Extension"
+			scope="browseOnly"></field>
+		<field type="string" id="segmentRelease" label="Segment Release"
+			scope="browseOnly"></field>
+		<field type="string" id="applicationRelease"
+			label="Application Release" scope="browseOnly"></field>
+		<field type="boolean" id="consolidateOutput" label="Consolidate Outbound Documents?"></field>
+	</operation>
+	<operation types="LISTEN" supportsBrowse="true" customTypeId="LISTEN"
+		customTypeLabel="LISTEN">
+		<field type="string" id="functionType" label="Function Type"
+			scope="browseOnly">
+			<allowedValue label="IDoc">
+				<value>IDoc</value>
+			</allowedValue>
+		</field>
+		<field type="string" id="basetype" label="Base Type"
+			scope="browseOnly"></field>
+		<field type="string" id="extension" label="Extension"
+			scope="browseOnly"></field>
+		<field type="string" id="segmentRelease" label="Segment Release"
+			scope="browseOnly"></field>
+		<field type="string" id="applicationRelease"
+			label="Application Release" scope="browseOnly">
+			</field>
+		<field type="string" id="programId" label="Program ID">
+		</field>
+	</operation>
+		<trackedProperty id="tid" label="Transaction Id" />
+		<trackedProperty id="idocNumber" label="IDoc number" />
+		<trackedProperty id="status" label="Status" />
+		<trackedProperty id="testFlag" label="Test Flag" />
+		<trackedProperty id="basicType" label="Basic type" />
+		<trackedProperty id="extension" label="Extension" />
+		<trackedProperty id="messageType" label="Message Type" />
+		<trackedProperty id="logicalMessageVariant" label="Logical Message Variant" />
+		<trackedProperty id="senderPort" label="Sender Port" />
+		<trackedProperty id="partnerType" label="Partner Type" />
+		<trackedProperty id="partnerNumber" label="Partner Number" />
+		<trackedProperty id="receiverPort" label="Receiver Port" />
+		<trackedProperty id="partnerReceiver" label="Partner No of Receiver" />
+		<trackedProperty id="createdDate" label="Created Date" />
+		<trackedProperty id="createdTime" label="Created Time" />
+		<trackedProperty id="idocType" label="Idoc Type" />
+</GenericConnectorDescriptor>

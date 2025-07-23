@@ -1,0 +1,1 @@
+{"$schema":"http://json-schema.org/schema#","browse_integration_test_parent_object__c":{"type":"array","items":{"type":"object","properties":{"link__sys":{"description":"Link","type":"string","maxLength":255},"name__v":{"description":"Name","type":"string","maxLength":128},"id":{"description":"ID","type":"string"},"status__v":{"description":"Status","type":"string"}}}}}

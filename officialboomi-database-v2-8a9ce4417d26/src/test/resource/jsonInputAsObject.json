@@ -1,0 +1,16 @@
+{
+  "id": {
+    "trading_partner_code": "Dynamic insert with direct json",
+    "tp_bottler_code": "3",
+    "tp_outlet_code": "981",
+    "tp_po_number": "4567189",
+    "JSONRequest": {
+      "invoice_req": {
+        "trading_partner_code": "ABC",
+        "tp_bottler_code": "123",
+        "tp_outlet_code": "987",
+        "tp_po_number": "456789"
+      }
+    }
+  }
+}

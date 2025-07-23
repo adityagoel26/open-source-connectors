@@ -1,0 +1,20 @@
+{
+  "idType": {
+    "helpText": "Select the ID type",
+    "id": "idType",
+    "label": "ID Type",
+    "overrideable": false,
+    "type": "STRING",
+    "displayType": "RADIO",
+    "defaultValue": "id",
+    "allowedValues": [
+      {
+        "label": "ID",
+        "value": "id"
+      }, {
+        "label": "Email ID",
+        "value": "emailId"
+      }
+    ]
+  }
+}

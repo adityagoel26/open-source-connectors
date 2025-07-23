@@ -1,0 +1,13 @@
+{
+  "title": "File",
+  "type": "object",
+  "properties": {
+    "fileName": {
+      "type": "string"
+    },
+    "remoteDirectory": {
+      "type": "string"
+    }
+  },
+  "required": ["fileName", "remoteDirectory"]
+}

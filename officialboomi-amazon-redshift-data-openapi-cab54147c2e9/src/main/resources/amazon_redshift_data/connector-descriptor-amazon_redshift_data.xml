@@ -1,0 +1,86 @@
+<GenericConnectorDescriptor requireConnectionForBrowse="true" browsingType="any">
+    <description>This connector provides access to the Amazon Redshift Data API. See documentation here: https://docs.aws.amazon.com/redshift-data/latest/APIReference/Welcome.html</description>
+    <field id="url" label="Server" type="string">
+        <defaultValue>https://redshift-data.us-east-1.amazonaws.com</defaultValue>
+    </field>
+
+    <field id="overrideSpec" label="Override API specification" type="boolean">
+        <helpText>Checking this box will allow you to supply a URL for an updated OAS3 specification.</helpText>
+    </field>
+
+    <field id="spec" label="URL of OAS3 Specification" type="string">
+        <helpText>This will override the custom specification included with the connector.</helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="overrideSpec">
+                <value>true</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field type="string" id="awsAccessKey" label="Amazon AWS Access Key"/>
+    <field type="password" id="awsSecretKey" label="Amazon AWS Secret Key"/>
+
+    <field type="string" id="awsRegion" label="Amazon AWS Region">
+        <allowedValue label="ap-northeast-1">
+            <value>ap-northeast-1</value>
+        </allowedValue>
+        <allowedValue label="ap-northeast-2">
+            <value>ap-northeast-2</value>
+        </allowedValue>
+        <allowedValue label="ap-south-1">
+            <value>ap-south-1</value>
+        </allowedValue>
+        <allowedValue label="ap-southeast-1">
+            <value>ap-southeast-1</value>
+        </allowedValue>
+        <allowedValue label="ap-southeast-2">
+            <value>ap-southeast-2</value>
+        </allowedValue>
+        <allowedValue label="ca-central-1">
+            <value>ca-central-1</value>
+        </allowedValue>
+        <allowedValue label="cn-north-1">
+            <value>cn-north-1</value>
+        </allowedValue>
+        <allowedValue label="eu-central-1">
+            <value>eu-central-1</value>
+        </allowedValue>
+        <allowedValue label="eu-west-1">
+            <value>eu-west-1</value>
+        </allowedValue>
+        <allowedValue label="eu-west-2">
+            <value>eu-west-2</value>
+        </allowedValue>
+        <allowedValue label="sa-east-1">
+            <value>sa-east-1</value>
+        </allowedValue>
+        <allowedValue label="us-east-1">
+            <value>us-east-1</value>
+        </allowedValue>
+        <allowedValue label="us-east-2">
+            <value>us-east-2</value>
+        </allowedValue>
+        <allowedValue label="us-west-1">
+            <value>us-west-1</value>
+        </allowedValue>
+        <allowedValue label="us-west-2">
+            <value>us-west-2</value>
+        </allowedValue>
+        <allowedValue label="Custom">
+            <value>Custom</value>
+        </allowedValue>
+    </field>
+
+    <field type="string" id="customAwsRegion" label="Custom AWS Region">
+        <visibilityCondition>
+            <valueCondition fieldId="awsRegion">
+                <value>Custom</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+
+    <field type="customproperties" label="Request Headers" id="customHeaders"/>
+    <testConnection method="GET_OBJECT_TYPES" customOperationType="POST"/>
+
+    <operation customTypeId="POST" supportsBrowse="true" types="EXECUTE"/>
+
+</GenericConnectorDescriptor>

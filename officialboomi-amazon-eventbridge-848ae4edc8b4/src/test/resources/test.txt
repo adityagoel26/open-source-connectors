@@ -1,0 +1,19 @@
+{
+    "Entries": [
+        {
+			
+			"EventBusName": "Biswajeet",
+            "Source": "boogger",
+            "DetailType": "DetailType",
+            "Detail": "{ \"Email\": \"alok.samantaray@gmail.com\", \"Name\": \"Alok\" }"
+        },
+		
+        {
+       
+           "EventBusName": "Biswajeet",
+            "Source": "boogger",
+            "DetailType": "DetailType",
+            "Detail": "{ \"Email\": \"abhijit22@gmail.com\", \"Name\": \"Abhijit\" }"
+        }
+    ]
+}

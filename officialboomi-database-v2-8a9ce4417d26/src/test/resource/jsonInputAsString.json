@@ -1,0 +1,5 @@
+{
+  "name": "Test",
+  "id": "{\n  \"invoice_req\": {\n    \"trading_partner_code\": \"JSON as string input\",\n    \"tp_bottler_code\": \"123\",\n    \"tp_outlet_code\": \"987\",\n    \"tp_po_number\": \"456789\"\n  }\n}",
+  "date": "2023-03-29"
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ObjectDefinitions>
+    <definition elementName="/product__v" outputType="json">
+        <jsonSchema>
+            {"$schema":"http://json-schema.org/schema#","product__v":{"type":"object","properties":{"external_id__v":{"description":"External
+            ID","type":"string","maxLength":50},"abbreviation__c":{"description":"Product
+            Abbreviation","type":"string","maxLength":10},"global_id__sys":{"description":"Global
+            ID","type":"string","maxLength":200},"name__v":{"description":"Product
+            Name","type":"string","maxLength":128},"modified_by__v":{"description":"Last Modified
+            By","type":"string"},"modified_date__v":{"format":"date-time","description":"Last Modified
+            Date","type":"string"},"ctn_flag__v":{"description":"CTN Product for
+            Japan","type":"boolean"},"link__sys":{"description":"Link","type":"string","maxLength":255},"cdx_id__v":{"description":"CDX
+            ID","type":"string","maxLength":50},"created_date__v":{"format":"date-time","description":"Created
+            Date","type":"string"},"id":{"description":"ID","type":"string"},"status__v":{"description":"Status","type":"array","items":{"type":"string"}},"created_by__v":{"description":"Created
+            By","type":"string"},"ctn_data__v":{"description":"CTN Related Information / 治験届関連情報","type":"string"}}}}
+        </jsonSchema>
+        <fieldSpecFields name="abbreviation__c" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="cdx_id__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="created_by__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="created_date__v" filterable="true" sortable="true" selectable="true" type="date"
+                         selected="false"/>
+        <fieldSpecFields name="ctn_data__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="ctn_flag__v" filterable="true" sortable="true" selectable="true" type="boolean"
+                         selected="false"/>
+        <fieldSpecFields name="external_id__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="global_id__sys" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="id" filterable="true" sortable="true" selectable="true" type="string" selected="false"/>
+        <fieldSpecFields name="link__sys" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="modified_by__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="modified_date__v" filterable="true" sortable="true" selectable="true" type="date"
+                         selected="false"/>
+        <fieldSpecFields name="name__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+        <fieldSpecFields name="status__v" filterable="true" sortable="true" selectable="true" type="string"
+                         selected="false"/>
+    </definition>
+</ObjectDefinitions>

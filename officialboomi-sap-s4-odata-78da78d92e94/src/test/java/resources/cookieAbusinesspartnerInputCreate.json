@@ -1,0 +1,638 @@
+{
+	"properties": {
+		"/to_Customer/to_CustomerCompany/CustomerSupplierClearingIsUsed": {
+			"type": "Boolean"
+		},
+		"/to_Supplier/PostingIsBlocked": {
+			"type": "Boolean"
+		},
+		"/OrganizationFoundationDate": {
+			"type": "DateTime"
+		},
+		"/to_BusinessPartnerBank/CollectionAuthInd": {
+			"type": "Boolean"
+		},
+		"/IsFemale": {
+			"type": "Boolean"
+		},
+		"/to_Customer/to_CustomerSalesArea/DistributionChannel": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier/Supplier": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/LastChangeTime": {
+			"type": "Time"
+		},
+		"/to_Supplier/BR_TaxIsSplit": {
+			"type": "Boolean"
+		},
+		"/to_BusinessPartnerContact/to_ContactAddress": {
+			"entitySetName": "A_BPContactToAddress",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_BPContactToAddressType"
+		},
+		"/to_BusinessPartnerAddress/to_URLAddress": {
+			"entitySetName": "A_AddressHomePageURL",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_AddressHomePageURLType"
+		},
+		"/to_Supplier/to_SupplierCompany": {
+			"entitySetName": "A_SupplierCompany",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_SupplierCompanyType"
+		},
+		"/to_BuPaIdentification/ValidityEndDate": {
+			"type": "DateTime"
+		},
+		"/to_BusinessPartnerContact/BusinessPartnerPerson": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier/to_SupplierPurchasingOrg/DeletionIndicator": {
+			"type": "Boolean"
+		},
+		"/to_Supplier/to_SupplierCompany/SupplierCertificationDate": {
+			"type": "DateTime"
+		},
+		"/to_BusinessPartnerAddress/to_MobilePhoneNumber/IsDefaultPhoneNumber": {
+			"type": "Boolean"
+		},
+		"/to_Customer/to_CustomerText": {
+			"entitySetName": "A_CustomerText",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_CustomerTextType"
+		},
+		"/to_Customer/to_CustomerText/Customer": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerAddress/to_AddressUsage/StandardUsage": {
+			"type": "Boolean"
+		},
+		"/IsMale": {
+			"type": "Boolean"
+		},
+		"/to_BuPaIndustry/BusinessPartner": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Customer/to_CustomerCompany/PaytAdviceIsSentbyEDI": {
+			"type": "Boolean"
+		},
+		"/LastChangeDate": {
+			"type": "DateTime"
+		},
+		"/to_BusinessPartnerAddress/to_AddressUsage/BusinessPartner": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Customer/to_CustomerTaxGrouping/CustTaxGroupSubjectedStartDate": {
+			"type": "DateTime"
+		},
+		"/to_Supplier/to_SupplierCompany/IsToBeLocallyProcessed": {
+			"type": "Boolean"
+		},
+		"/to_Customer/to_CustomerCompany/CompanyCode": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier/PurchasingIsBlocked": {
+			"type": "Boolean"
+		},
+		"/to_Supplier/to_SupplierPurchasingOrg/PurchasingIsBlockedForSupplier": {
+			"type": "Boolean"
+		},
+		"/to_Customer/to_CustomerTaxGrouping/Customer": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier/CreationDate": {
+			"type": "DateTime"
+		},
+		"/to_Supplier/to_SupplierCompany/ItemIsToBePaidSeparately": {
+			"type": "Boolean"
+		},
+		"/to_Supplier/DeletionIndicator": {
+			"type": "Boolean"
+		},
+		"/to_BusinessPartnerAddress/to_AddressUsage/AddressUsage": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerAddress/to_URLAddress/Person": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Customer/to_CustomerTaxGrouping/CustTaxGroupExemptionStartDate": {
+			"type": "DateTime"
+		},
+		"/to_BuPaIdentification": {
+			"entitySetName": "A_BuPaIdentification",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_BuPaIdentificationType"
+		},
+		"/to_Customer/PostingIsBlocked": {
+			"type": "Boolean"
+		},
+		"/to_Customer/to_CustomerTaxGrouping/CustTaxGroupExemptionRate": {
+			"type": "Decimal"
+		},
+		"/to_BusinessPartnerContact": {
+			"entitySetName": "A_BusinessPartnerContact",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_BusinessPartnerContactType"
+		},
+		"/to_BusinessPartnerAddress/to_EmailAddress/Person": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Customer/to_CustomerSalesArea/SalesOrganization": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/BusinessPartner": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier/PaymentIsBlockedForSupplier": {
+			"type": "Boolean"
+		},
+		"/to_Supplier/to_SupplierPurchasingOrg/MaterialPlannedDeliveryDurn": {
+			"type": "Decimal"
+		},
+		"/to_BusinessPartnerAddress/ValidityStartDate": {
+			"type": "DateTimeOffset"
+		},
+		"/to_BuPaIdentification/BusinessPartner": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier/SuplrQltyInProcmtCertfnValidTo": {
+			"type": "DateTime"
+		},
+		"/to_Supplier/to_SupplierCompany/SupplierIsBlockedForPosting": {
+			"type": "Boolean"
+		},
+		"/to_BusinessPartnerContact/to_ContactRelationship/ValidityEndDate": {
+			"type": "DateTime"
+		},
+		"/to_BusinessPartnerRole": {
+			"entitySetName": "A_BusinessPartnerRole",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_BusinessPartnerRoleType"
+		},
+		"/BirthDate": {
+			"type": "DateTime"
+		},
+		"/to_BusinessPartnerContact/ValidityStartDate": {
+			"type": "DateTime"
+		},
+		"/to_BusinessPartnerTax/BusinessPartner": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Customer/Customer": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerAddress/to_FaxNumber/AddressID": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerAddress/to_MobilePhoneNumber/OrdinalNumber": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Customer/to_CustomerCompany": {
+			"entitySetName": "A_CustomerCompany",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_CustomerCompanyType"
+		},
+		"/to_Supplier/to_SupplierPurchasingOrg/IsOrderAcknRqd": {
+			"type": "Boolean"
+		},
+		"/to_BusinessPartnerContact/to_ContactRelationship/BusinessPartnerPerson": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Customer/to_CustomerSalesArea/OrderCombinationIsAllowed": {
+			"type": "Boolean"
+		},
+		"/to_BuPaIndustry": {
+			"entitySetName": "A_BuPaIndustry",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_BuPaIndustryType"
+		},
+		"/to_BusinessPartnerAddress/AddressUUID": {
+			"type": "Guid"
+		},
+		"/to_BusinessPartnerBank/ValidityEndDate": {
+			"type": "DateTimeOffset"
+		},
+		"/to_BusinessPartnerBank/ValidityStartDate": {
+			"type": "DateTimeOffset"
+		},
+		"/to_Customer/to_CustomerCompany/RecordPaymentHistoryIndicator": {
+			"type": "Boolean"
+		},
+		"/to_BusinessPartnerRole/ValidFrom": {
+			"type": "DateTimeOffset"
+		},
+		"/to_Supplier/to_SupplierPurchasingOrg/InvoiceIsGoodsReceiptBased": {
+			"type": "Boolean"
+		},
+		"/to_BusinessPartnerRole/BusinessPartnerRole": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerContact/to_ContactAddress/RelationshipNumber": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier/to_SupplierCompany/Supplier": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier/to_SupplierText/LongTextID": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerAddress/to_URLAddress/OrdinalNumber": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier/to_SupplierCompany/ClearCustomerSupplier": {
+			"type": "Boolean"
+		},
+		"/to_BuPaIdentification/BPIdentificationNumber": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerTax/BPTaxType": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Customer/to_CustomerText/LongTextID": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Customer/DeletionIndicator": {
+			"type": "Boolean"
+		},
+		"/to_Customer/to_CustomerCompany/InterestCalculationDate": {
+			"type": "DateTime"
+		},
+		"/to_BusinessPartnerAddress/to_AddressUsage/ValidityEndDate": {
+			"type": "DateTimeOffset"
+		},
+		"/to_BusinessPartnerAddress/to_EmailAddress/AddressID": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier/to_SupplierCompany/IsToBeCheckedForDuplicates": {
+			"type": "Boolean"
+		},
+		"/to_BusinessPartnerContact/to_ContactAddress/AddressID": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier/to_SupplierText/Language": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/CreationTime": {
+			"type": "Time"
+		},
+		"/to_BuPaIndustry/IndustrySystemType": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerBank/BusinessPartner": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerContact/ValidityEndDate": {
+			"type": "DateTime"
+		},
+		"/to_Supplier/to_SupplierPurchasingOrg": {
+			"entitySetName": "A_SupplierPurchasingOrg",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_SupplierPurchasingOrgType"
+		},
+		"/to_BusinessPartnerContact/to_ContactRelationship/BusinessPartnerCompany": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerAddress/BusinessPartner": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerRole/BusinessPartner": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerAddress/to_EmailAddress/IsDefaultEmailAddress": {
+			"type": "Boolean"
+		},
+		"/to_Supplier/to_SupplierCompany/BillOfExchLmtAmtInCoCodeCrcy": {
+			"type": "Decimal"
+		},
+		"/to_BusinessPartnerContact/to_ContactAddress/ValidityEndDate": {
+			"type": "DateTime"
+		},
+		"/to_BusinessPartnerContact/to_ContactAddress/BusinessPartnerPerson": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Customer/to_CustomerSalesArea": {
+			"entitySetName": "A_CustomerSalesArea",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_CustomerSalesAreaType"
+		},
+		"/to_BuPaIdentification/ValidityStartDate": {
+			"type": "DateTime"
+		},
+		"/IsSexUnknown": {
+			"type": "Boolean"
+		},
+		"/to_BusinessPartnerAddress/to_FaxNumber/Person": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier": {
+			"entitySetName": "A_Supplier",
+			"isNavigationProperty": true,
+			"type": "API_BUSINESS_PARTNER.A_SupplierType"
+		},
+		"/BusinessPartnerUUID": {
+			"type": "Guid"
+		},
+		"/to_BusinessPartnerAddress/to_FaxNumber": {
+			"entitySetName": "A_AddressFaxNumber",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_AddressFaxNumberType"
+		},
+		"/to_Supplier/to_SupplierText": {
+			"entitySetName": "A_SupplierText",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_SupplierTextType"
+		},
+		"/to_Customer/to_CustomerTaxGrouping": {
+			"entitySetName": "A_CustomerTaxGrouping",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_CustomerTaxGroupingType"
+		},
+		"/to_Supplier/to_SupplierCompany/PaymentIsToBeSentByEDI": {
+			"type": "Boolean"
+		},
+		"/to_Supplier/to_SupplierCompany/InterestCalculationDate": {
+			"type": "DateTime"
+		},
+		"/to_Customer/to_CustomerCompany/ItemIsToBePaidSeparately": {
+			"type": "Boolean"
+		},
+		"/to_Supplier/to_SupplierPurchasingOrg/PurOrdAutoGenerationIsAllowed": {
+			"type": "Boolean"
+		},
+		"/to_BusinessPartnerBank/BankIdentification": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerContact/to_ContactAddress/BusinessPartnerCompany": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerAddress/to_MobilePhoneNumber": {
+			"entitySetName": "A_AddressPhoneNumber",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_AddressPhoneNumberType"
+		},
+		"/to_Supplier/to_SupplierPurchasingOrg/Supplier": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier/to_SupplierPurchasingOrg/MinimumOrderAmount": {
+			"type": "Decimal"
+		},
+		"/to_BusinessPartnerContact/BusinessPartnerCompany": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Customer/to_CustomerCompany/Customer": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/CreationDate": {
+			"type": "DateTime"
+		},
+		"/to_BusinessPartnerAddress/to_URLAddress/URLFieldLength": {
+			"type": "Int16"
+		},
+		"/OrganizationLiquidationDate": {
+			"type": "DateTime"
+		},
+		"/to_BusinessPartnerAddress/to_EmailAddress": {
+			"entitySetName": "A_AddressEmailAddress",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_AddressEmailAddressType"
+		},
+		"/to_BusinessPartnerAddress/to_MobilePhoneNumber/AddressID": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerAddress/to_EmailAddress/OrdinalNumber": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Customer/to_CustomerSalesArea/Customer": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier/to_SupplierPurchasingOrg/PurchasingOrganization": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier/to_SupplierCompany/CompanyCode": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerAddress/to_MobilePhoneNumber/Person": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerTax": {
+			"entitySetName": "A_BusinessPartnerTaxNumber",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_BusinessPartnerTaxNumberType"
+		},
+		"/to_Customer/to_CustomerSalesArea/Division": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerContact/to_ContactAddress/POBoxIsWithoutNumber": {
+			"type": "Boolean"
+		},
+		"/BusinessPartnerIsBlocked": {
+			"type": "Boolean"
+		},
+		"/to_BuPaIndustry/IndustrySector": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier/to_SupplierCompany/CheckPaidDurationInDays": {
+			"type": "Decimal"
+		},
+		"/to_BusinessPartnerAddress/POBoxIsWithoutNumber": {
+			"type": "Boolean"
+		},
+		"/to_Customer": {
+			"entitySetName": "A_Customer",
+			"isNavigationProperty": true,
+			"type": "API_BUSINESS_PARTNER.A_CustomerType"
+		},
+		"/to_Customer/to_CustomerCompany/IsToBeLocallyProcessed": {
+			"type": "Boolean"
+		},
+		"/to_BuPaIdentification/BPIdentificationEntryDate": {
+			"type": "DateTime"
+		},
+		"/to_BusinessPartnerAddress/AddressID": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerAddress/to_AddressUsage": {
+			"entitySetName": "A_BuPaAddressUsage",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_BuPaAddressUsageType"
+		},
+		"/to_BusinessPartnerAddress/ValidityEndDate": {
+			"type": "DateTimeOffset"
+		},
+		"/to_BusinessPartnerAddress/to_AddressUsage/AddressID": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier/to_SupplierCompany/DeletionIndicator": {
+			"type": "Boolean"
+		},
+		"/to_BusinessPartnerContact/IsStandardRelationship": {
+			"type": "Boolean"
+		},
+		"/to_BusinessPartnerAddress/to_URLAddress/ValidityStartDate": {
+			"type": "DateTime"
+		},
+		"/to_Customer/to_CustomerTaxGrouping/CustTaxGroupSubjectedEndDate": {
+			"type": "DateTime"
+		},
+		"/to_BusinessPartnerAddress/to_URLAddress/IsDefaultURLAddress": {
+			"type": "Boolean"
+		},
+		"/to_BusinessPartnerBank/IBANValidityStartDate": {
+			"type": "DateTime"
+		},
+		"/to_Customer/to_CustomerSalesArea/DeletionIndicator": {
+			"type": "Boolean"
+		},
+		"/to_Customer/CreationDate": {
+			"type": "DateTime"
+		},
+		"/to_Customer/to_CustomerCompany/DeletionIndicator": {
+			"type": "Boolean"
+		},
+		"/to_Customer/to_CustomerText/Language": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerContact/RelationshipNumber": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/IsMarkedForArchiving": {
+			"type": "Boolean"
+		},
+		"/to_BusinessPartnerAddress/to_FaxNumber/OrdinalNumber": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Customer/to_CustomerCompany/PhysicalInventoryBlockInd": {
+			"type": "Boolean"
+		},
+		"/to_BusinessPartnerAddress/to_FaxNumber/IsDefaultFaxNumber": {
+			"type": "Boolean"
+		},
+		"/to_BusinessPartnerRole/ValidTo": {
+			"type": "DateTimeOffset"
+		},
+		"/to_BusinessPartnerAddress/to_AddressUsage/ValidityStartDate": {
+			"type": "DateTimeOffset"
+		},
+		"/to_BusinessPartnerBank": {
+			"entitySetName": "A_BusinessPartnerBank",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_BusinessPartnerBankType"
+		},
+		"/to_Customer/to_CustomerTaxGrouping/CustomerTaxGroupingCode": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Supplier/BirthDate": {
+			"type": "DateTime"
+		},
+		"/to_Supplier/to_SupplierText/Supplier": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerAddress": {
+			"entitySetName": "A_BusinessPartnerAddress",
+			"isNavigationProperty": true,
+			"isArray": true,
+			"type": "API_BUSINESS_PARTNER.A_BusinessPartnerAddressType"
+		},
+		"/to_Customer/to_CustomerSalesArea/CompleteDeliveryIsDefined": {
+			"type": "Boolean"
+		},
+		"/to_BuPaIdentification/BPIdentificationType": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerContact/to_ContactRelationship/RelationshipNumber": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_BusinessPartnerAddress/to_URLAddress/AddressID": {
+			"isKey": true,
+			"type": "String"
+		},
+		"/to_Customer/to_CustomerTaxGrouping/CustTaxGroupExemptionEndDate": {
+			"type": "DateTime"
+		},
+		"/to_BusinessPartnerContact/to_ContactRelationship": {
+			"entitySetName": "A_BPContactToFuncAndDept",
+			"isNavigationProperty": true,
+			"type": "API_BUSINESS_PARTNER.A_BPContactToFuncAndDeptType"
+		}
+	},
+	"deepCreateMode": "DEEPCREATE"
+}

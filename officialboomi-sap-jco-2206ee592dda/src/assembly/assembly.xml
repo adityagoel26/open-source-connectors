@@ -1,0 +1,44 @@
+<assembly>
+	<id>car</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>src/main/resources</directory>
+			<outputDirectory>META-INF</outputDirectory>
+			<includes>
+				<include>connector-config.xml</include>
+				<include>com.boomi.Overrides</include>
+			</includes>
+		</fileSet>
+
+	</fileSets>
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>/lib</outputDirectory>
+			<excludes>
+				<exclude>com.boomi.connsdk:connector-sdk-api</exclude>
+				<exclude>com.boomi.connsdk:connector-sdk-test-util</exclude>
+				<exclude>commons-codec*</exclude>
+				<exclude>com.boomi.util:boomi-util</exclude>
+				<exclude>com.boomi.commonsdk:common-sdk</exclude>
+				<exclude>*common*lang*</exclude>
+				
+				<exclude>com.sun.xml.fastinfoset:FastInfoset</exclude>
+				<exclude>com.sun.xml.bind:jaxb-impl</exclude>
+				<exclude>com.sun.xml.bind:jaxb-xjc</exclude>
+				<exclude>org.json:json</exclude>
+				<exclude>javax.xml.bind:jsr173_api</exclude>
+				<exclude>org.apache.oltu.oauth2:org.apache.oltu.oauth2.client</exclude>
+				<exclude>org.apache.oltu.oauth2:org.apache.oltu.oauth2.common</exclude>
+				<exclude>org.slf4j:slf4j-api</exclude>
+				<exclude>junit:junit</exclude>
+				<exclude>org.hamcrest:hamcrest-core</exclude>
+			</excludes>
+		</dependencySet>
+	</dependencySets>
+
+
+</assembly>

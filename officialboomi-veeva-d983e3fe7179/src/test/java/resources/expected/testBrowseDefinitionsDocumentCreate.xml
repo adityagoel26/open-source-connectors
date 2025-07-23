@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ObjectDefinitions>
+    <definition elementName="/documents" inputType="json">
+        <jsonSchema>
+            {"$schema":"http://json-schema.org/schema#","documents":{"type":"array","items":{"type":"object","properties":{"subtype__v":{"description":"Subtype","type":"string"},"name__v":{"description":"Name
+            - Displayed throughout application for the document, including in Library, Reporting, Notifications and
+            Workflows.","type":"string","maxLength":100},"version_id":{"type":"string","maxLength":20},"minor_version_number__v":{"description":"Minor
+            Version Number","type":"number"},"file":{"type":"string"},"lifecycle__v":{"description":"Lifecycle - A
+            configurable series of states (Draft, Under Review, Approved) through which a document progresses during its
+            life.","type":"string"},"require_certified_copy__c":{"description":"Require Certified Copy? - Required if
+            this Vault document will replace a paper, sponsor-owned clinical trial record. Not required for copies of
+            paper records from an investigator
+            site.","type":"boolean"},"study__v":{"description":"Study","type":"string"},"notes__v":{"description":"Notes","type":"string","maxLength":255},"type__v":{"description":"Type","type":"string"},"id":{"type":"string","maxLength":20},"classification__v":{"description":"Classification","type":"string"},"major_version_number__v":{"description":"Major
+            Version Number","type":"number"}}}}}
+        </jsonSchema>
+    </definition>
+    <definition elementName="/editResponse" outputType="json">
+        <jsonSchema>{
+            "$schema": "http://json-schema.org/schema#",
+            "editResponse": {
+            "type": "object",
+            "properties": {
+            "responseStatus": {
+            "type": "string"
+            },
+            "data": {
+            "type": "array",
+            "items": {
+            "type": "object",
+            "properties": {
+            "responseStatus": {
+            "type": "string"
+            },
+            "id": {
+            "type": "integer"
+            },
+            "external_id__v": {
+            "type": "string"
+            },
+            "major_version_number__v": {
+            "type": "integer"
+            },
+            "minor_version_number__v": {
+            "type": "integer"
+            },
+            "rendition_type__c": {
+            "type": "string"
+            },
+            "errors": {
+            "type": "array",
+            "items": {
+            "type": "object",
+            "properties": {
+            "type": {
+            "type": "string"
+            },
+            "message": {
+            "type": "string"
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+            }
+        </jsonSchema>
+    </definition>
+</ObjectDefinitions>

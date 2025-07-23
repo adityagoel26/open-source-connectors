@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<GenericConnectorDescriptor browsingType="any" requireConnectionForBrowse="true" >
+
+	<field type="string" id="host" label="Host">
+		<helpText>Host name to connect</helpText>
+  	</field>
+	
+	<field type="string" id="sapUser" label="SAP User ID"></field>
+	
+	<field type="password" id="sapPassword" label="SAP Password"></field>
+	
+	
+	<field type="string" id="apikey" label="APIKey">
+		<helpText>apikey value</helpText>
+  	</field>
+	<field type="string" id="businessHubUserName" label="SAP API Business Hub UserName">
+		<helpText>SAP API Business Hub Useraname</helpText>
+  	</field>
+	<field type="password" id="businessHubPassword" label="SAP API Business Hub Password">
+		<helpText>SAP API Business Hub password</helpText>
+  	</field>
+    
+  <operation types="QUERY" fieldSelectionLevels="1" allowFieldSelection="true">
+  	
+  
+  	<field type="string" id="url" label="Url" scope="both" >
+		<helpText>url to connect</helpText>
+		<allowedValue label="API for Product Allocation Object"><value>/sap/opu/odata/sap/API_PRODUCT_ALLOCATION_OBJECT_SRV</value></allowedValue>
+		<allowedValue label="API for Product Allocation Sequence"><value>/sap/opu/odata/sap/API_PRODUCT_ALLOC_SEQUENCE_SRV</value></allowedValue>
+		<allowedValue label="API for Raw Substance"><value>/sap/opu/odata/sap/API_RAWSUBSTANCE</value></allowedValue>
+		<allowedValue label="API for Real Substance"><value>/sap/opu/odata/sap/API_REALSUBSTANCE</value></allowedValue>
+		<allowedValue label="Accounting Document - Read"><value>/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV</value></allowedValue>
+		<allowedValue label="Activity Type - Read"><value>/sap/opu/odata/sap/API_COSTCENTERACTIVITYTYPE_SRV</value></allowedValue>
+		<allowedValue label="Attachment - Create, Read, Rename, Delete"><value>/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV</value></allowedValue>
+		<allowedValue label="Bank - Read"><value>/sap/opu/odata/sap/API_BANKDETAIL_SRV</value></allowedValue>
+		<allowedValue label="Basic Product Availability Information API"><value>/sap/opu/odata/sap/API_PRODUCT_AVAILY_INFO_BASIC</value></allowedValue>
+		<allowedValue label="Batch - Read, Write"><value>/sap/opu/odata/sap/API_BATCH_SRV</value></allowedValue>
+		<allowedValue label="Bill of Material Comparison"><value>/sap/opu/odata/sap/API_BILLOFMATERIAL_COMPARISON_SRV</value></allowedValue>
+		<allowedValue label="Billing Document - Read, Cancel, GetPDF"><value>/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Billing Document Request - Read, Reject, Delete"><value>/sap/opu/odata/sap/API_BILLING_DOCUMENT_REQUEST_SRV</value></allowedValue>
+		<allowedValue label="Bills of Material - Read, Create, Update, Delete (Version 2)"><value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Bills of Material - Read,Create,Update"><value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV</value></allowedValue>
+		<allowedValue label="Bills of Material Where-Used List - Read"><value>/sap/opu/odata/sap/API_BOM_WHERE_USED_SRV</value></allowedValue>
+		<allowedValue label="Buffer Profile - Read"><value>/sap/opu/odata/sap/API_BUFFER_PROFILE_SRV</value></allowedValue>
+		<allowedValue label="Buffer Sizing - Read, Create, Update"><value>/sap/opu/odata/sap/API_BUFFERSIZING_SRV</value></allowedValue>
+		<allowedValue label="Business Event Queue"><value>/sap/opu/odata/sap/C_BEHQUEUEDATA_CDS</value></allowedValue>
+		<allowedValue label="Business Events - Subscription Service"><value>/sap/opu/odata/sap/CA_BEH_SUBSCRIPTION_SRV</value></allowedValue>
+		<allowedValue label="Business Situation - Read"><value>/sap/opu/odata/sap/API_BUSINESS_SITUATION_SRV</value></allowedValue>
+		<allowedValue label="Central Purchase Contract – Read, Create"><value>/sap/opu/odata/sap/API_CENTRAL_PURCHASECONTRACT_SRV</value></allowedValue>
+		<allowedValue label="Change Master – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CHANGEMASTER;v=0002</value></allowedValue>
+		<allowedValue label="Change Master – Read(Deprecated)"><value>/sap/opu/odata/sap/API_CHANGEMASTER</value></allowedValue>
+		<allowedValue label="Change Record - Read, Create, Update"><value>/sap/opu/odata/sap/API_CHANGE_RECORD</value></allowedValue>
+		<allowedValue label="Characteristic Attribute Catalog - Read"><value>/sap/opu/odata/sap/API_CHARCATTRIBUTECATALOG_SRV</value></allowedValue>
+		<allowedValue label="Characteristic Data for Classification – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CLFN_CHARACTERISTIC_SRV</value></allowedValue>
+		<allowedValue label="Class Data for Classification – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CLFN_CLASS_SRV</value></allowedValue>
+		<allowedValue label="Commercial Project - Create, Update"><value>/sap/opu/odata/cpd/SC_PROJ_ENGMT_CREATE_UPD_SRV</value></allowedValue>
+		<allowedValue label="Commercial Project - Read"><value>/sap/opu/odata/cpd/SC_EXTERNAL_SERVICES_SRV</value></allowedValue>
+		<allowedValue label="Condition Contract Type - Read"><value>/sap/opu/odata/sap/API_CONDITION_CONTRACT_TYPE</value></allowedValue>
+		<allowedValue label="Condition Record for Pricing in Purchasing – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PURGPRCGCONDITIONRECORD_SRV</value></allowedValue>
+		<allowedValue label="Condition Record for Pricing in Sales – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_SLSPRICINGCONDITIONRECORD_SRV</value></allowedValue>
+		<allowedValue label="Condition Type for Pricing in Purchasing – Read"><value>/sap/opu/odata/sap/API_PURGPRICINGCONDITIONTYPE_SRV</value></allowedValue>
+		<allowedValue label="Condition Type for Pricing in Sales – Read"><value>/sap/opu/odata/sap/API_SLSPRICINGCONDITIONTYPE_SRV</value></allowedValue>
+		<allowedValue label="Contract Accounting - SEPA Mandate Create, Read, Update"><value>/sap/opu/odata/sap/API_O2C_FICA_SEPA_MANDATE_SRV</value></allowedValue>
+		<allowedValue label="Controlling Area - Read"><value>/sap/opu/odata/sap/API_CONTROLLINGAREA_SRV</value></allowedValue>
+		<allowedValue label="Cost Center - Read"><value>/sap/opu/odata/sap/API_COSTCENTER_SRV</value></allowedValue>
+		<allowedValue label="Cost Rate - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_FCO_COST_RATE_SRV</value></allowedValue>
+		<allowedValue label="Credit Memo Request - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV</value></allowedValue>
+		<allowedValue label="Customer Material - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CUSTOMER_MATERIAL_SRV</value></allowedValue>
+		<allowedValue label="Customer Return - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_CUSTOMER_RETURN_SRV</value></allowedValue>
+		<allowedValue label="Customer Returns Deliveries – Read, Create, Update, and Delete"><value>/sap/opu/odata/sap/API_CUSTOMER_RETURNS_DELIVERY_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Debit Memo Request - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_DEBIT_MEMO_REQUEST_SRV</value></allowedValue>
+		<allowedValue label="Debit/Credit Indicator CO - Read"><value>/sap/opu/odata/sap/API_CONTROLLINGDEBITCREDITCODE_SRV</value></allowedValue>
+		<allowedValue label="Defect - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_DEFECT_SRV</value></allowedValue>
+		<allowedValue label="Defect Categories - Read"><value>/sap/opu/odata/sap/API_DEFECTCATEGORY_SRV</value></allowedValue>
+		<allowedValue label="Defect Classes - Read"><value>/sap/opu/odata/sap/API_DEFECTCLASS_SRV</value></allowedValue>
+		<allowedValue label="Defect Codes and Code Groups - Read"><value>/sap/opu/odata/sap/API_DEFECTCODE_SRV</value></allowedValue>
+		<allowedValue label="Delivery Documents with Credit Blocks – Read, Check, Release, Reject"><value>/sap/opu/odata/sap/API_DEL_DOC_WITH_CREDIT_BLOCK</value></allowedValue>
+		<allowedValue label="Distribution Channel - Read"><value>/sap/opu/odata/sap/API_DISTRIBUTIONCHANNEL_SRV</value></allowedValue>
+		<allowedValue label="Division - Read"><value>/sap/opu/odata/sap/API_DIVISION_SRV</value></allowedValue>
+		<allowedValue label="Document Info record – Create, Read, Update"><value>/sap/opu/odata/sap/API_DMS_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Enable External Job Scheduler Integration"><value>/sap/opu/odata/sap/BC_EXT_APPJOB_MANAGEMENT;v=0002</value></allowedValue>
+		<allowedValue label="Enterprise Project - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_ENTERPRISE_PROJECT_SRV</value></allowedValue>
+		<allowedValue label="Financial Planning Data - Write"><value>/sap/opu/odata/sap/API_FINPLANNINGDATA_SRV</value></allowedValue>
+		<allowedValue label="Functional Area - Read"><value>/sap/opu/odata/sap/API_FUNCTIONALAREA_SRV</value></allowedValue>
+		<allowedValue label="Inbound Deliveries – Read, Create, Update, and Delete"><value>/sap/opu/odata/sap/API_INBOUND_DELIVERY_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Inspection Lot – Read, Write"><value>/sap/opu/odata/sap/API_INSPECTIONLOT_SRV</value></allowedValue>
+		<allowedValue label="Inspection Methods - Read"><value>/sap/opu/odata/sap/API_INSPECTIONMETHOD_SRV</value></allowedValue>
+		<allowedValue label="Inspection Plan - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_INSPECTIONPLAN_SRV</value></allowedValue>
+		<allowedValue label="Kanban Control Cycle – Read, Write"><value>/sap/opu/odata/sap/API_KANBAN_CONTROL_CYCLE_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Legal Documents - Create, Read"><value>/sap/opu/odata/sap/API_LEGAL_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Legal Transaction"><value>/sap/opu/odata/sap/API_LEGAL_TRANSACTION_SRV</value></allowedValue>
+		<allowedValue label="Line Item of Treasury Posting Journal Entry – Read"><value>/sap/opu/odata/sap/A_TRSYPOSTGJRNLENTRITM_CDS</value></allowedValue>
+		<allowedValue label="Manage Workforce Availability"><value>/sap/opu/odata/shcm/API_MANAGE_WF_AVAILABILITY</value></allowedValue>
+		<allowedValue label="Manage Workforce Timesheet"><value>/sap/opu/odata/sap/API_MANAGE_WORKFORCE_TIMESHEET</value></allowedValue>
+		<allowedValue label="Master Data for Group Reporting – Read"><value>/sap/opu/odata/sap/API_GRMASTERDATA_SRV</value></allowedValue>
+		<allowedValue label="Master Inspection Characteristics - Read"><value>/sap/opu/odata/sap/API_MASTERINSPCHARACTERISTIC_SRV</value></allowedValue>
+		<allowedValue label="Material Planning Data - Read"><value>/sap/opu/odata/sap/API_MRP_MATERIALS_SRV_01</value></allowedValue>
+		<allowedValue label="Material Stock Display"><value>/sap/opu/odata/sap/API_MATERIAL_STOCK_SRV</value></allowedValue>
+		<allowedValue label="OData Service for Business Partner"><value>/sap/opu/odata/sap/API_BUSINESS_PARTNER</value></allowedValue>
+		<allowedValue label="Outbound Deliveries - Read, Write"><value>/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Payment Advice -- Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PAYMENT_ADVICE_SRV</value></allowedValue>
+		<allowedValue label="Personnel Settlement Document - Read"><value>/sap/opu/odata/sap/API_PERS_SETTLMT_DOC</value></allowedValue>
+		<allowedValue label="Plan Category - Read"><value>/sap/opu/odata/sap/API_PLANNINGCATEGORY_SRV</value></allowedValue>
+		<allowedValue label="Planned Independent Reqmts for Use with Change PIRs App - Create, Read, Update"><value>/sap/opu/odata/sap/API_PLND_INDEP_RQMT_SRV</value></allowedValue>
+		<allowedValue label="Planned Independent Reqmts for Use with Manage PIRs App - Read, Update"><value>/sap/opu/odata/sap/API_FORECAST_DEMAND_SRV</value></allowedValue>
+		<allowedValue label="Planned Orders – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PLANNED_ORDERS</value></allowedValue>
+		<allowedValue label="Pricing Procedure in Purchasing – Read"><value>/sap/opu/odata/sap/API_PURGPRICINGPROCEDURE_SRV</value></allowedValue>
+		<allowedValue label="Pricing Procedure in Sales - Read"><value>/sap/opu/odata/sap/API_SLSPRICINGPROCEDURE_SRV</value></allowedValue>
+		<allowedValue label="Process Material Documents"><value>/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Process Order Confirmation - Read, Create, Cancel"><value>/sap/opu/odata/sap/API_PROC_ORDER_CONFIRMATION_2_SRV</value></allowedValue>
+		<allowedValue label="Process Order Confirmations(Deprecated)"><value>/sap/opu/odata/sap/API_PROC_ORDER_CONFIRMATION</value></allowedValue>
+		<allowedValue label="Process Physical Inventory Documents"><value>/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV</value></allowedValue>
+		<allowedValue label="Process Purchasing Categories"><value>/sap/opu/odata/sap/API_PURCHASING_CATEGORY_SRV</value></allowedValue>
+		<allowedValue label="Process Purchasing InfoRecord"><value>/sap/opu/odata/sap/API_INFORECORD_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Process Purchasing Sources"><value>/sap/opu/odata/sap/API_PURCHASING_SOURCE_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Activities"><value>/sap/opu/odata/sap/API_SUPPLIER_ACTIVITY_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Activty Tasks"><value>/sap/opu/odata/sap/API_SUPPLIER_ACTIVITY_TASK_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Evaluation Responses"><value>/sap/opu/odata/sap/API_SUPLR_EVAL_RESPONSE_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Evaluation Scorecards"><value>/sap/opu/odata/sap/API_SUPLR_EVAL_SCORECARD_SRV</value></allowedValue>
+		<allowedValue label="Process Warehouse Tasks - Read, Update (A2X)"><value>/sap/opu/odata/sap/API_WAREHOUSE_ORDER_TASK</value></allowedValue>
+		<allowedValue label="Product Group - Read"><value>/sap/opu/odata/sap/API_PRODUCTGROUP_SRV</value></allowedValue>
+		<allowedValue label="Product Master - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PRODUCT_SRV</value></allowedValue>
+		<allowedValue label="Product Master Data Including Classification – Read"><value>/sap/opu/odata/sap/API_CLFN_PRODUCT_SRV</value></allowedValue>
+		<allowedValue label="Production Order - Read, Create, Update"><value>/sap/opu/odata/sap/API_PRODUCTION_ORDERS</value></allowedValue>
+		<allowedValue label="Production Order Confirmation - Read, Create, Cancel"><value>/sap/opu/odata/sap/API_PROD_ORDER_CONFIRMATION_2_SRV</value></allowedValue>
+		<allowedValue label="Production Order Confirmations(Deprecated)"><value>/sap/opu/odata/sap/API_PROD_ORDER_CONFIRMATION</value></allowedValue>
+		<allowedValue label="Production Supply Area – Read, Write"><value>/sap/opu/odata/sap/API_PRODUCTIONSUPPLYAREA_SRV</value></allowedValue>
+		<allowedValue label="Profit Center - Read"><value>/sap/opu/odata/sap/API_PROFITCENTER_SRV</value></allowedValue>
+		<allowedValue label="Purchase Contract - Read, Create"><value>/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Purchase Order – Create, Update, Delete"><value>/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Purchase Requisition - Read, Create, Update, Delete"><value>/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Quality Info Record - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_QUALITYINFORECORD_SRV</value></allowedValue>
+		<allowedValue label="Quota Arrangement - Read, Create, Update, Delete"><value>/sap/opu/odata/sap/API_PUR_QUOTA_ARRANGEMENT_SRV</value></allowedValue>
+		<allowedValue label="Read Business Area"><value>/sap/opu/odata/sap/API_BUSINESSAREA_SRV</value></allowedValue>
+		<allowedValue label="Read Chart of Accounts"><value>/sap/opu/odata/sap/API_CHARTOFACCOUNTS_SRV</value></allowedValue>
+		<allowedValue label="Read Company Code"><value>/sap/opu/odata/sap/API_COMPANYCODE_SRV</value></allowedValue>
+		<allowedValue label="Read Cost Center Data"><value>/sap/opu/odata/sap/FCO_PI_COST_CENTER</value></allowedValue>
+		<allowedValue label="Read Country"><value>/sap/opu/odata/sap/API_COUNTRY_SRV</value></allowedValue>
+		<allowedValue label="Read Customer Group"><value>/sap/opu/odata/sap/API_CUSTOMERGROUP_SRV</value></allowedValue>
+		<allowedValue label="Read Customer and Supplier Industry"><value>/sap/opu/odata/sap/API_CUSTOMERSUPPLIERINDUSTRY_SRV</value></allowedValue>
+		<allowedValue label="Read Financial Planning Entry Items"><value>/sap/opu/odata/sap/API_FINPLANNINGENTRYITEM_SRV</value></allowedValue>
+		<allowedValue label="Read G/L Account"><value>/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV</value></allowedValue>
+		<allowedValue label="Read Journal Entry Items"><value>/sap/opu/odata/sap/API_JOURNALENTRYITEMBASIC_SRV</value></allowedValue>
+		<allowedValue label="Read Ledger"><value>/sap/opu/odata/sap/API_LEDGER_SRV</value></allowedValue>
+		<allowedValue label="Read Process Orders"><value>/sap/opu/odata/sap/API_PROCESS_ORDERS</value></allowedValue>
+		<allowedValue label="Read Segment"><value>/sap/opu/odata/sap/API_SEGMENT_SRV</value></allowedValue>
+		<allowedValue label="Read Trading Partner"><value>/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV</value></allowedValue>
+		<allowedValue label="Read Trial Balance"><value>/sap/opu/odata/sap/C_TRIALBALANCE_CDS</value></allowedValue>
+		<allowedValue label="Recipe Header, Formula, and Process – Read, Write"><value>/sap/opu/odata/sap/API_RECIPE</value></allowedValue>
+		<allowedValue label="Request for Quotation - Create, Update, Delete"><value>/sap/opu/odata/sap/API_RFQ_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Reservation Document - Read, Create, Delete"><value>/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Sales Contract - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_CONTRACT_SRV</value></allowedValue>
+		<allowedValue label="Sales District - Read"><value>/sap/opu/odata/sap/API_SALESDISTRICT_SRV</value></allowedValue>
+		<allowedValue label="Sales Documents with Credit Blocks – Read, Check, Release, Reject"><value>/sap/opu/odata/sap/API_SLS_DOC_WITH_CREDIT_BLOCK</value></allowedValue>
+		<allowedValue label="Sales Inquiry - Read (A2X)"><value>/sap/opu/odata/sap/API_SALES_INQUIRY_SRV</value></allowedValue>
+		<allowedValue label="Sales Order - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_ORDER_SRV</value></allowedValue>
+		<allowedValue label="Sales Order - Simulate (A2X)"><value>/sap/opu/odata/sap/API_SALES_ORDER_SIMULATION_SRV</value></allowedValue>
+		<allowedValue label="Sales Order Without Charge - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_ORDER_WITHOUT_CHARGE_SRV</value></allowedValue>
+		<allowedValue label="Sales Organization - Read"><value>/sap/opu/odata/sap/API_SALESORGANIZATION_SRV</value></allowedValue>
+		<allowedValue label="Sales Quotation - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_QUOTATION_SRV</value></allowedValue>
+		<allowedValue label="Sales Scheduling Agreement - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_SCHEDULING_AGREEMENT</value></allowedValue>
+		<allowedValue label="Scheduling Agreements – Read, Create"><value>/sap/opu/odata/sap/API_SCHED_AGRMT_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Service Confirmation - Create, Read, Update (A2X)"><value>/sap/opu/odata/sap/API_SERVICE_CONFIRMATION_SRV</value></allowedValue>
+		<allowedValue label="Service Entry Sheets – Read, Write"><value>/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV</value></allowedValue>
+		<allowedValue label="Service Order - Create, Read, Update (A2X)"><value>/sap/opu/odata/sap/API_SERVICE_ORDER_SRV</value></allowedValue>
+		<allowedValue label="Statistical Key Figure - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_STATISTICALKEYFIGURE_SRV</value></allowedValue>
+		<allowedValue label="Supplier Evaluation Score - Read"><value>/sap/opu/odata/sap/A_SUPPLIEROPLSCORESAV_CDS</value></allowedValue>
+		<allowedValue label="Supplier Invoice – Create, Read, Release, Reverse"><value>/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Supplier Quotation - Create with Reference, Update, Delete"><value>/sap/opu/odata/sap/API_QTN_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Transaction Data for Group Reporting - Read"><value>/sap/opu/odata/sap/API_GRTRANSACTIONDATA_SRV</value></allowedValue>
+		<allowedValue label="Update of Material Price"><value>/sap/opu/odata/sap/API_MATERIAL_VALUATION_SRV</value></allowedValue>
+		<allowedValue label="Warehouse Resource - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_WAREHOUSE_RESOURCE</value></allowedValue>
+		<allowedValue label="Work Center - Create, Read, Update"><value>/sap/opu/odata/sap/API_WORK_CENTERS</value></allowedValue>
+		<allowedValue label="Workforce Person SkillTag – Create, Read and Delete"><value>/sap/opu/odata/shcm/API_MANAGE_SKILLTAGS_SRV</value></allowedValue>
+  	</field>
+  	<field type="string" id="top" label="top"><helpText>Show only the first n items</helpText></field>
+    <field type="string" id="skip" label="skip"><helpText>Skip the first n items</helpText></field>
+    <field type="string" id="inlinecount" label="inlinecount">
+    <helpText>Include count of items</helpText>
+    <allowedValue><value>--</value></allowedValue>
+    <allowedValue><value>allpages</value></allowedValue>
+    <allowedValue><value>none</value></allowedValue>
+    </field>
+  	<!-- <field type="string" id="select" label="select"><helpText>Select properties to be returned</helpText></field> -->
+  	<field type="string" id="expand" label="expand"><helpText>Expand related entities</helpText></field>
+  <queryFilter grouping="any" sorting="one" >
+            <operator id="EQUALS" label="Equal To"/>
+            <operator id="NOT_EQUALS" label="Not Equal To"/>
+            <operator id="GREATER_THAN" label="Greater Than"/>
+            <operator id="LESS_THAN" label="Less Than"/>
+            <operator id="GREATER_THAN_OR_EQUALS" label="Greater Than Or Equal"/>
+            <operator id="LESS_THAN_OR_EQUALS" label="Less Than Or Equal"/>
+            <operator id="IN" label="In">
+           		<helpText>Comma separated list of values</helpText>
+            </operator>
+            <operator id="HAS" label="Has"></operator>
+           	<sortOrder id="asc" label="Ascending">
+                <supportedType type="string" />
+                <supportedType type="number" />
+            </sortOrder>
+            <sortOrder id="desc" label="Descending">
+                <supportedType type="string" />
+                <supportedType type="number" />
+            </sortOrder>
+        </queryFilter>
+  </operation>
+  <operation types="CREATE">
+  <field type="string" id="url" label="Url" scope="both">
+		<helpText>url to connect</helpText>
+		<allowedValue label="API for Product Allocation Object"><value>/sap/opu/odata/sap/API_PRODUCT_ALLOCATION_OBJECT_SRV</value></allowedValue>
+		<allowedValue label="API for Product Allocation Sequence"><value>/sap/opu/odata/sap/API_PRODUCT_ALLOC_SEQUENCE_SRV</value></allowedValue>
+		<allowedValue label="API for Raw Substance"><value>/sap/opu/odata/sap/API_RAWSUBSTANCE</value></allowedValue>
+		<allowedValue label="API for Real Substance"><value>/sap/opu/odata/sap/API_REALSUBSTANCE</value></allowedValue>
+		<allowedValue label="Accounting Document - Read"><value>/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV</value></allowedValue>
+		<allowedValue label="Activity Type - Read"><value>/sap/opu/odata/sap/API_COSTCENTERACTIVITYTYPE_SRV</value></allowedValue>
+		<allowedValue label="Attachment - Create, Read, Rename, Delete"><value>/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV</value></allowedValue>
+		<allowedValue label="Bank - Read"><value>/sap/opu/odata/sap/API_BANKDETAIL_SRV</value></allowedValue>
+		<allowedValue label="Basic Product Availability Information API"><value>/sap/opu/odata/sap/API_PRODUCT_AVAILY_INFO_BASIC</value></allowedValue>
+		<allowedValue label="Batch - Read, Write"><value>/sap/opu/odata/sap/API_BATCH_SRV</value></allowedValue>
+		<allowedValue label="Bill of Material Comparison"><value>/sap/opu/odata/sap/API_BILLOFMATERIAL_COMPARISON_SRV</value></allowedValue>
+		<allowedValue label="Billing Document - Read, Cancel, GetPDF"><value>/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Billing Document Request - Read, Reject, Delete"><value>/sap/opu/odata/sap/API_BILLING_DOCUMENT_REQUEST_SRV</value></allowedValue>
+		<allowedValue label="Bills of Material - Read, Create, Update, Delete (Version 2)"><value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Bills of Material - Read,Create,Update"><value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV</value></allowedValue>
+		<allowedValue label="Bills of Material Where-Used List - Read"><value>/sap/opu/odata/sap/API_BOM_WHERE_USED_SRV</value></allowedValue>
+		<allowedValue label="Buffer Profile - Read"><value>/sap/opu/odata/sap/API_BUFFER_PROFILE_SRV</value></allowedValue>
+		<allowedValue label="Buffer Sizing - Read, Create, Update"><value>/sap/opu/odata/sap/API_BUFFERSIZING_SRV</value></allowedValue>
+		<allowedValue label="Business Event Queue"><value>/sap/opu/odata/sap/C_BEHQUEUEDATA_CDS</value></allowedValue>
+		<allowedValue label="Business Events - Subscription Service"><value>/sap/opu/odata/sap/CA_BEH_SUBSCRIPTION_SRV</value></allowedValue>
+		<allowedValue label="Business Situation - Read"><value>/sap/opu/odata/sap/API_BUSINESS_SITUATION_SRV</value></allowedValue>
+		<allowedValue label="Central Purchase Contract – Read, Create"><value>/sap/opu/odata/sap/API_CENTRAL_PURCHASECONTRACT_SRV</value></allowedValue>
+		<allowedValue label="Change Master – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CHANGEMASTER;v=0002</value></allowedValue>
+		<allowedValue label="Change Master – Read(Deprecated)"><value>/sap/opu/odata/sap/API_CHANGEMASTER</value></allowedValue>
+		<allowedValue label="Change Record - Read, Create, Update"><value>/sap/opu/odata/sap/API_CHANGE_RECORD</value></allowedValue>
+		<allowedValue label="Characteristic Attribute Catalog - Read"><value>/sap/opu/odata/sap/API_CHARCATTRIBUTECATALOG_SRV</value></allowedValue>
+		<allowedValue label="Characteristic Data for Classification – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CLFN_CHARACTERISTIC_SRV</value></allowedValue>
+		<allowedValue label="Class Data for Classification – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CLFN_CLASS_SRV</value></allowedValue>
+		<allowedValue label="Commercial Project - Create, Update"><value>/sap/opu/odata/cpd/SC_PROJ_ENGMT_CREATE_UPD_SRV</value></allowedValue>
+		<allowedValue label="Commercial Project - Read"><value>/sap/opu/odata/cpd/SC_EXTERNAL_SERVICES_SRV</value></allowedValue>
+		<allowedValue label="Condition Contract Type - Read"><value>/sap/opu/odata/sap/API_CONDITION_CONTRACT_TYPE</value></allowedValue>
+		<allowedValue label="Condition Record for Pricing in Purchasing – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PURGPRCGCONDITIONRECORD_SRV</value></allowedValue>
+		<allowedValue label="Condition Record for Pricing in Sales – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_SLSPRICINGCONDITIONRECORD_SRV</value></allowedValue>
+		<allowedValue label="Condition Type for Pricing in Purchasing – Read"><value>/sap/opu/odata/sap/API_PURGPRICINGCONDITIONTYPE_SRV</value></allowedValue>
+		<allowedValue label="Condition Type for Pricing in Sales – Read"><value>/sap/opu/odata/sap/API_SLSPRICINGCONDITIONTYPE_SRV</value></allowedValue>
+		<allowedValue label="Contract Accounting - SEPA Mandate Create, Read, Update"><value>/sap/opu/odata/sap/API_O2C_FICA_SEPA_MANDATE_SRV</value></allowedValue>
+		<allowedValue label="Controlling Area - Read"><value>/sap/opu/odata/sap/API_CONTROLLINGAREA_SRV</value></allowedValue>
+		<allowedValue label="Cost Center - Read"><value>/sap/opu/odata/sap/API_COSTCENTER_SRV</value></allowedValue>
+		<allowedValue label="Cost Rate - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_FCO_COST_RATE_SRV</value></allowedValue>
+		<allowedValue label="Credit Memo Request - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV</value></allowedValue>
+		<allowedValue label="Customer Material - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CUSTOMER_MATERIAL_SRV</value></allowedValue>
+		<allowedValue label="Customer Return - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_CUSTOMER_RETURN_SRV</value></allowedValue>
+		<allowedValue label="Customer Returns Deliveries – Read, Create, Update, and Delete"><value>/sap/opu/odata/sap/API_CUSTOMER_RETURNS_DELIVERY_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Debit Memo Request - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_DEBIT_MEMO_REQUEST_SRV</value></allowedValue>
+		<allowedValue label="Debit/Credit Indicator CO - Read"><value>/sap/opu/odata/sap/API_CONTROLLINGDEBITCREDITCODE_SRV</value></allowedValue>
+		<allowedValue label="Defect - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_DEFECT_SRV</value></allowedValue>
+		<allowedValue label="Defect Categories - Read"><value>/sap/opu/odata/sap/API_DEFECTCATEGORY_SRV</value></allowedValue>
+		<allowedValue label="Defect Classes - Read"><value>/sap/opu/odata/sap/API_DEFECTCLASS_SRV</value></allowedValue>
+		<allowedValue label="Defect Codes and Code Groups - Read"><value>/sap/opu/odata/sap/API_DEFECTCODE_SRV</value></allowedValue>
+		<allowedValue label="Delivery Documents with Credit Blocks – Read, Check, Release, Reject"><value>/sap/opu/odata/sap/API_DEL_DOC_WITH_CREDIT_BLOCK</value></allowedValue>
+		<allowedValue label="Distribution Channel - Read"><value>/sap/opu/odata/sap/API_DISTRIBUTIONCHANNEL_SRV</value></allowedValue>
+		<allowedValue label="Division - Read"><value>/sap/opu/odata/sap/API_DIVISION_SRV</value></allowedValue>
+		<allowedValue label="Document Info record – Create, Read, Update"><value>/sap/opu/odata/sap/API_DMS_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Enable External Job Scheduler Integration"><value>/sap/opu/odata/sap/BC_EXT_APPJOB_MANAGEMENT;v=0002</value></allowedValue>
+		<allowedValue label="Enterprise Project - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_ENTERPRISE_PROJECT_SRV</value></allowedValue>
+		<allowedValue label="Financial Planning Data - Write"><value>/sap/opu/odata/sap/API_FINPLANNINGDATA_SRV</value></allowedValue>
+		<allowedValue label="Functional Area - Read"><value>/sap/opu/odata/sap/API_FUNCTIONALAREA_SRV</value></allowedValue>
+		<allowedValue label="Inbound Deliveries – Read, Create, Update, and Delete"><value>/sap/opu/odata/sap/API_INBOUND_DELIVERY_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Inspection Lot – Read, Write"><value>/sap/opu/odata/sap/API_INSPECTIONLOT_SRV</value></allowedValue>
+		<allowedValue label="Inspection Methods - Read"><value>/sap/opu/odata/sap/API_INSPECTIONMETHOD_SRV</value></allowedValue>
+		<allowedValue label="Inspection Plan - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_INSPECTIONPLAN_SRV</value></allowedValue>
+		<allowedValue label="Kanban Control Cycle – Read, Write"><value>/sap/opu/odata/sap/API_KANBAN_CONTROL_CYCLE_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Legal Documents - Create, Read"><value>/sap/opu/odata/sap/API_LEGAL_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Legal Transaction"><value>/sap/opu/odata/sap/API_LEGAL_TRANSACTION_SRV</value></allowedValue>
+		<allowedValue label="Line Item of Treasury Posting Journal Entry – Read"><value>/sap/opu/odata/sap/A_TRSYPOSTGJRNLENTRITM_CDS</value></allowedValue>
+		<allowedValue label="Manage Workforce Availability"><value>/sap/opu/odata/shcm/API_MANAGE_WF_AVAILABILITY</value></allowedValue>
+		<allowedValue label="Manage Workforce Timesheet"><value>/sap/opu/odata/sap/API_MANAGE_WORKFORCE_TIMESHEET</value></allowedValue>
+		<allowedValue label="Master Data for Group Reporting – Read"><value>/sap/opu/odata/sap/API_GRMASTERDATA_SRV</value></allowedValue>
+		<allowedValue label="Master Inspection Characteristics - Read"><value>/sap/opu/odata/sap/API_MASTERINSPCHARACTERISTIC_SRV</value></allowedValue>
+		<allowedValue label="Material Planning Data - Read"><value>/sap/opu/odata/sap/API_MRP_MATERIALS_SRV_01</value></allowedValue>
+		<allowedValue label="Material Stock Display"><value>/sap/opu/odata/sap/API_MATERIAL_STOCK_SRV</value></allowedValue>
+		<allowedValue label="OData Service for Business Partner"><value>/sap/opu/odata/sap/API_BUSINESS_PARTNER</value></allowedValue>
+		<allowedValue label="Outbound Deliveries - Read, Write"><value>/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Payment Advice -- Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PAYMENT_ADVICE_SRV</value></allowedValue>
+		<allowedValue label="Personnel Settlement Document - Read"><value>/sap/opu/odata/sap/API_PERS_SETTLMT_DOC</value></allowedValue>
+		<allowedValue label="Plan Category - Read"><value>/sap/opu/odata/sap/API_PLANNINGCATEGORY_SRV</value></allowedValue>
+		<allowedValue label="Planned Independent Reqmts for Use with Change PIRs App - Create, Read, Update"><value>/sap/opu/odata/sap/API_PLND_INDEP_RQMT_SRV</value></allowedValue>
+		<allowedValue label="Planned Independent Reqmts for Use with Manage PIRs App - Read, Update"><value>/sap/opu/odata/sap/API_FORECAST_DEMAND_SRV</value></allowedValue>
+		<allowedValue label="Planned Orders – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PLANNED_ORDERS</value></allowedValue>
+		<allowedValue label="Pricing Procedure in Purchasing – Read"><value>/sap/opu/odata/sap/API_PURGPRICINGPROCEDURE_SRV</value></allowedValue>
+		<allowedValue label="Pricing Procedure in Sales - Read"><value>/sap/opu/odata/sap/API_SLSPRICINGPROCEDURE_SRV</value></allowedValue>
+		<allowedValue label="Process Material Documents"><value>/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Process Order Confirmation - Read, Create, Cancel"><value>/sap/opu/odata/sap/API_PROC_ORDER_CONFIRMATION_2_SRV</value></allowedValue>
+		<allowedValue label="Process Order Confirmations(Deprecated)"><value>/sap/opu/odata/sap/API_PROC_ORDER_CONFIRMATION</value></allowedValue>
+		<allowedValue label="Process Physical Inventory Documents"><value>/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV</value></allowedValue>
+		<allowedValue label="Process Purchasing Categories"><value>/sap/opu/odata/sap/API_PURCHASING_CATEGORY_SRV</value></allowedValue>
+		<allowedValue label="Process Purchasing InfoRecord"><value>/sap/opu/odata/sap/API_INFORECORD_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Process Purchasing Sources"><value>/sap/opu/odata/sap/API_PURCHASING_SOURCE_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Activities"><value>/sap/opu/odata/sap/API_SUPPLIER_ACTIVITY_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Activty Tasks"><value>/sap/opu/odata/sap/API_SUPPLIER_ACTIVITY_TASK_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Evaluation Responses"><value>/sap/opu/odata/sap/API_SUPLR_EVAL_RESPONSE_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Evaluation Scorecards"><value>/sap/opu/odata/sap/API_SUPLR_EVAL_SCORECARD_SRV</value></allowedValue>
+		<allowedValue label="Process Warehouse Tasks - Read, Update (A2X)"><value>/sap/opu/odata/sap/API_WAREHOUSE_ORDER_TASK</value></allowedValue>
+		<allowedValue label="Product Group - Read"><value>/sap/opu/odata/sap/API_PRODUCTGROUP_SRV</value></allowedValue>
+		<allowedValue label="Product Master - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PRODUCT_SRV</value></allowedValue>
+		<allowedValue label="Product Master Data Including Classification – Read"><value>/sap/opu/odata/sap/API_CLFN_PRODUCT_SRV</value></allowedValue>
+		<allowedValue label="Production Order - Read, Create, Update"><value>/sap/opu/odata/sap/API_PRODUCTION_ORDERS</value></allowedValue>
+		<allowedValue label="Production Order Confirmation - Read, Create, Cancel"><value>/sap/opu/odata/sap/API_PROD_ORDER_CONFIRMATION_2_SRV</value></allowedValue>
+		<allowedValue label="Production Order Confirmations(Deprecated)"><value>/sap/opu/odata/sap/API_PROD_ORDER_CONFIRMATION</value></allowedValue>
+		<allowedValue label="Production Supply Area – Read, Write"><value>/sap/opu/odata/sap/API_PRODUCTIONSUPPLYAREA_SRV</value></allowedValue>
+		<allowedValue label="Profit Center - Read"><value>/sap/opu/odata/sap/API_PROFITCENTER_SRV</value></allowedValue>
+		<allowedValue label="Purchase Contract - Read, Create"><value>/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Purchase Order – Create, Update, Delete"><value>/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Purchase Requisition - Read, Create, Update, Delete"><value>/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Quality Info Record - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_QUALITYINFORECORD_SRV</value></allowedValue>
+		<allowedValue label="Quota Arrangement - Read, Create, Update, Delete"><value>/sap/opu/odata/sap/API_PUR_QUOTA_ARRANGEMENT_SRV</value></allowedValue>
+		<allowedValue label="Read Business Area"><value>/sap/opu/odata/sap/API_BUSINESSAREA_SRV</value></allowedValue>
+		<allowedValue label="Read Chart of Accounts"><value>/sap/opu/odata/sap/API_CHARTOFACCOUNTS_SRV</value></allowedValue>
+		<allowedValue label="Read Company Code"><value>/sap/opu/odata/sap/API_COMPANYCODE_SRV</value></allowedValue>
+		<allowedValue label="Read Cost Center Data"><value>/sap/opu/odata/sap/FCO_PI_COST_CENTER</value></allowedValue>
+		<allowedValue label="Read Country"><value>/sap/opu/odata/sap/API_COUNTRY_SRV</value></allowedValue>
+		<allowedValue label="Read Customer Group"><value>/sap/opu/odata/sap/API_CUSTOMERGROUP_SRV</value></allowedValue>
+		<allowedValue label="Read Customer and Supplier Industry"><value>/sap/opu/odata/sap/API_CUSTOMERSUPPLIERINDUSTRY_SRV</value></allowedValue>
+		<allowedValue label="Read Financial Planning Entry Items"><value>/sap/opu/odata/sap/API_FINPLANNINGENTRYITEM_SRV</value></allowedValue>
+		<allowedValue label="Read G/L Account"><value>/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV</value></allowedValue>
+		<allowedValue label="Read Journal Entry Items"><value>/sap/opu/odata/sap/API_JOURNALENTRYITEMBASIC_SRV</value></allowedValue>
+		<allowedValue label="Read Ledger"><value>/sap/opu/odata/sap/API_LEDGER_SRV</value></allowedValue>
+		<allowedValue label="Read Process Orders"><value>/sap/opu/odata/sap/API_PROCESS_ORDERS</value></allowedValue>
+		<allowedValue label="Read Segment"><value>/sap/opu/odata/sap/API_SEGMENT_SRV</value></allowedValue>
+		<allowedValue label="Read Trading Partner"><value>/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV</value></allowedValue>
+		<allowedValue label="Read Trial Balance"><value>/sap/opu/odata/sap/C_TRIALBALANCE_CDS</value></allowedValue>
+		<allowedValue label="Recipe Header, Formula, and Process – Read, Write"><value>/sap/opu/odata/sap/API_RECIPE</value></allowedValue>
+		<allowedValue label="Request for Quotation - Create, Update, Delete"><value>/sap/opu/odata/sap/API_RFQ_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Reservation Document - Read, Create, Delete"><value>/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Sales Contract - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_CONTRACT_SRV</value></allowedValue>
+		<allowedValue label="Sales District - Read"><value>/sap/opu/odata/sap/API_SALESDISTRICT_SRV</value></allowedValue>
+		<allowedValue label="Sales Documents with Credit Blocks – Read, Check, Release, Reject"><value>/sap/opu/odata/sap/API_SLS_DOC_WITH_CREDIT_BLOCK</value></allowedValue>
+		<allowedValue label="Sales Inquiry - Read (A2X)"><value>/sap/opu/odata/sap/API_SALES_INQUIRY_SRV</value></allowedValue>
+		<allowedValue label="Sales Order - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_ORDER_SRV</value></allowedValue>
+		<allowedValue label="Sales Order - Simulate (A2X)"><value>/sap/opu/odata/sap/API_SALES_ORDER_SIMULATION_SRV</value></allowedValue>
+		<allowedValue label="Sales Order Without Charge - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_ORDER_WITHOUT_CHARGE_SRV</value></allowedValue>
+		<allowedValue label="Sales Organization - Read"><value>/sap/opu/odata/sap/API_SALESORGANIZATION_SRV</value></allowedValue>
+		<allowedValue label="Sales Quotation - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_QUOTATION_SRV</value></allowedValue>
+		<allowedValue label="Sales Scheduling Agreement - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_SCHEDULING_AGREEMENT</value></allowedValue>
+		<allowedValue label="Scheduling Agreements – Read, Create"><value>/sap/opu/odata/sap/API_SCHED_AGRMT_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Service Confirmation - Create, Read, Update (A2X)"><value>/sap/opu/odata/sap/API_SERVICE_CONFIRMATION_SRV</value></allowedValue>
+		<allowedValue label="Service Entry Sheets – Read, Write"><value>/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV</value></allowedValue>
+		<allowedValue label="Service Order - Create, Read, Update (A2X)"><value>/sap/opu/odata/sap/API_SERVICE_ORDER_SRV</value></allowedValue>
+		<allowedValue label="Statistical Key Figure - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_STATISTICALKEYFIGURE_SRV</value></allowedValue>
+		<allowedValue label="Supplier Evaluation Score - Read"><value>/sap/opu/odata/sap/A_SUPPLIEROPLSCORESAV_CDS</value></allowedValue>
+		<allowedValue label="Supplier Invoice – Create, Read, Release, Reverse"><value>/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Supplier Quotation - Create with Reference, Update, Delete"><value>/sap/opu/odata/sap/API_QTN_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Transaction Data for Group Reporting - Read"><value>/sap/opu/odata/sap/API_GRTRANSACTIONDATA_SRV</value></allowedValue>
+		<allowedValue label="Update of Material Price"><value>/sap/opu/odata/sap/API_MATERIAL_VALUATION_SRV</value></allowedValue>
+		<allowedValue label="Warehouse Resource - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_WAREHOUSE_RESOURCE</value></allowedValue>
+		<allowedValue label="Work Center - Create, Read, Update"><value>/sap/opu/odata/sap/API_WORK_CENTERS</value></allowedValue>
+		<allowedValue label="Workforce Person SkillTag – Create, Read and Delete"><value>/sap/opu/odata/shcm/API_MANAGE_SKILLTAGS_SRV</value></allowedValue>
+  	</field>
+  </operation>	
+  <operation types="UPDATE">
+  <field type="string" id="url" label="Url" scope="both">
+		<helpText>url to connect</helpText>
+		<allowedValue label="API for Product Allocation Object"><value>/sap/opu/odata/sap/API_PRODUCT_ALLOCATION_OBJECT_SRV</value></allowedValue>
+		<allowedValue label="API for Product Allocation Sequence"><value>/sap/opu/odata/sap/API_PRODUCT_ALLOC_SEQUENCE_SRV</value></allowedValue>
+		<allowedValue label="API for Raw Substance"><value>/sap/opu/odata/sap/API_RAWSUBSTANCE</value></allowedValue>
+		<allowedValue label="API for Real Substance"><value>/sap/opu/odata/sap/API_REALSUBSTANCE</value></allowedValue>
+		<allowedValue label="Accounting Document - Read"><value>/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV</value></allowedValue>
+		<allowedValue label="Activity Type - Read"><value>/sap/opu/odata/sap/API_COSTCENTERACTIVITYTYPE_SRV</value></allowedValue>
+		<allowedValue label="Attachment - Create, Read, Rename, Delete"><value>/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV</value></allowedValue>
+		<allowedValue label="Bank - Read"><value>/sap/opu/odata/sap/API_BANKDETAIL_SRV</value></allowedValue>
+		<allowedValue label="Basic Product Availability Information API"><value>/sap/opu/odata/sap/API_PRODUCT_AVAILY_INFO_BASIC</value></allowedValue>
+		<allowedValue label="Batch - Read, Write"><value>/sap/opu/odata/sap/API_BATCH_SRV</value></allowedValue>
+		<allowedValue label="Bill of Material Comparison"><value>/sap/opu/odata/sap/API_BILLOFMATERIAL_COMPARISON_SRV</value></allowedValue>
+		<allowedValue label="Billing Document - Read, Cancel, GetPDF"><value>/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Billing Document Request - Read, Reject, Delete"><value>/sap/opu/odata/sap/API_BILLING_DOCUMENT_REQUEST_SRV</value></allowedValue>
+		<allowedValue label="Bills of Material - Read, Create, Update, Delete (Version 2)"><value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Bills of Material - Read,Create,Update"><value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV</value></allowedValue>
+		<allowedValue label="Bills of Material Where-Used List - Read"><value>/sap/opu/odata/sap/API_BOM_WHERE_USED_SRV</value></allowedValue>
+		<allowedValue label="Buffer Profile - Read"><value>/sap/opu/odata/sap/API_BUFFER_PROFILE_SRV</value></allowedValue>
+		<allowedValue label="Buffer Sizing - Read, Create, Update"><value>/sap/opu/odata/sap/API_BUFFERSIZING_SRV</value></allowedValue>
+		<allowedValue label="Business Event Queue"><value>/sap/opu/odata/sap/C_BEHQUEUEDATA_CDS</value></allowedValue>
+		<allowedValue label="Business Events - Subscription Service"><value>/sap/opu/odata/sap/CA_BEH_SUBSCRIPTION_SRV</value></allowedValue>
+		<allowedValue label="Business Situation - Read"><value>/sap/opu/odata/sap/API_BUSINESS_SITUATION_SRV</value></allowedValue>
+		<allowedValue label="Central Purchase Contract – Read, Create"><value>/sap/opu/odata/sap/API_CENTRAL_PURCHASECONTRACT_SRV</value></allowedValue>
+		<allowedValue label="Change Master – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CHANGEMASTER;v=0002</value></allowedValue>
+		<allowedValue label="Change Master – Read(Deprecated)"><value>/sap/opu/odata/sap/API_CHANGEMASTER</value></allowedValue>
+		<allowedValue label="Change Record - Read, Create, Update"><value>/sap/opu/odata/sap/API_CHANGE_RECORD</value></allowedValue>
+		<allowedValue label="Characteristic Attribute Catalog - Read"><value>/sap/opu/odata/sap/API_CHARCATTRIBUTECATALOG_SRV</value></allowedValue>
+		<allowedValue label="Characteristic Data for Classification – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CLFN_CHARACTERISTIC_SRV</value></allowedValue>
+		<allowedValue label="Class Data for Classification – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CLFN_CLASS_SRV</value></allowedValue>
+		<allowedValue label="Commercial Project - Create, Update"><value>/sap/opu/odata/cpd/SC_PROJ_ENGMT_CREATE_UPD_SRV</value></allowedValue>
+		<allowedValue label="Commercial Project - Read"><value>/sap/opu/odata/cpd/SC_EXTERNAL_SERVICES_SRV</value></allowedValue>
+		<allowedValue label="Condition Contract Type - Read"><value>/sap/opu/odata/sap/API_CONDITION_CONTRACT_TYPE</value></allowedValue>
+		<allowedValue label="Condition Record for Pricing in Purchasing – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PURGPRCGCONDITIONRECORD_SRV</value></allowedValue>
+		<allowedValue label="Condition Record for Pricing in Sales – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_SLSPRICINGCONDITIONRECORD_SRV</value></allowedValue>
+		<allowedValue label="Condition Type for Pricing in Purchasing – Read"><value>/sap/opu/odata/sap/API_PURGPRICINGCONDITIONTYPE_SRV</value></allowedValue>
+		<allowedValue label="Condition Type for Pricing in Sales – Read"><value>/sap/opu/odata/sap/API_SLSPRICINGCONDITIONTYPE_SRV</value></allowedValue>
+		<allowedValue label="Contract Accounting - SEPA Mandate Create, Read, Update"><value>/sap/opu/odata/sap/API_O2C_FICA_SEPA_MANDATE_SRV</value></allowedValue>
+		<allowedValue label="Controlling Area - Read"><value>/sap/opu/odata/sap/API_CONTROLLINGAREA_SRV</value></allowedValue>
+		<allowedValue label="Cost Center - Read"><value>/sap/opu/odata/sap/API_COSTCENTER_SRV</value></allowedValue>
+		<allowedValue label="Cost Rate - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_FCO_COST_RATE_SRV</value></allowedValue>
+		<allowedValue label="Credit Memo Request - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV</value></allowedValue>
+		<allowedValue label="Customer Material - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CUSTOMER_MATERIAL_SRV</value></allowedValue>
+		<allowedValue label="Customer Return - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_CUSTOMER_RETURN_SRV</value></allowedValue>
+		<allowedValue label="Customer Returns Deliveries – Read, Create, Update, and Delete"><value>/sap/opu/odata/sap/API_CUSTOMER_RETURNS_DELIVERY_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Debit Memo Request - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_DEBIT_MEMO_REQUEST_SRV</value></allowedValue>
+		<allowedValue label="Debit/Credit Indicator CO - Read"><value>/sap/opu/odata/sap/API_CONTROLLINGDEBITCREDITCODE_SRV</value></allowedValue>
+		<allowedValue label="Defect - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_DEFECT_SRV</value></allowedValue>
+		<allowedValue label="Defect Categories - Read"><value>/sap/opu/odata/sap/API_DEFECTCATEGORY_SRV</value></allowedValue>
+		<allowedValue label="Defect Classes - Read"><value>/sap/opu/odata/sap/API_DEFECTCLASS_SRV</value></allowedValue>
+		<allowedValue label="Defect Codes and Code Groups - Read"><value>/sap/opu/odata/sap/API_DEFECTCODE_SRV</value></allowedValue>
+		<allowedValue label="Delivery Documents with Credit Blocks – Read, Check, Release, Reject"><value>/sap/opu/odata/sap/API_DEL_DOC_WITH_CREDIT_BLOCK</value></allowedValue>
+		<allowedValue label="Distribution Channel - Read"><value>/sap/opu/odata/sap/API_DISTRIBUTIONCHANNEL_SRV</value></allowedValue>
+		<allowedValue label="Division - Read"><value>/sap/opu/odata/sap/API_DIVISION_SRV</value></allowedValue>
+		<allowedValue label="Document Info record – Create, Read, Update"><value>/sap/opu/odata/sap/API_DMS_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Enable External Job Scheduler Integration"><value>/sap/opu/odata/sap/BC_EXT_APPJOB_MANAGEMENT;v=0002</value></allowedValue>
+		<allowedValue label="Enterprise Project - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_ENTERPRISE_PROJECT_SRV</value></allowedValue>
+		<allowedValue label="Financial Planning Data - Write"><value>/sap/opu/odata/sap/API_FINPLANNINGDATA_SRV</value></allowedValue>
+		<allowedValue label="Functional Area - Read"><value>/sap/opu/odata/sap/API_FUNCTIONALAREA_SRV</value></allowedValue>
+		<allowedValue label="Inbound Deliveries – Read, Create, Update, and Delete"><value>/sap/opu/odata/sap/API_INBOUND_DELIVERY_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Inspection Lot – Read, Write"><value>/sap/opu/odata/sap/API_INSPECTIONLOT_SRV</value></allowedValue>
+		<allowedValue label="Inspection Methods - Read"><value>/sap/opu/odata/sap/API_INSPECTIONMETHOD_SRV</value></allowedValue>
+		<allowedValue label="Inspection Plan - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_INSPECTIONPLAN_SRV</value></allowedValue>
+		<allowedValue label="Kanban Control Cycle – Read, Write"><value>/sap/opu/odata/sap/API_KANBAN_CONTROL_CYCLE_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Legal Documents - Create, Read"><value>/sap/opu/odata/sap/API_LEGAL_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Legal Transaction"><value>/sap/opu/odata/sap/API_LEGAL_TRANSACTION_SRV</value></allowedValue>
+		<allowedValue label="Line Item of Treasury Posting Journal Entry – Read"><value>/sap/opu/odata/sap/A_TRSYPOSTGJRNLENTRITM_CDS</value></allowedValue>
+		<allowedValue label="Manage Workforce Availability"><value>/sap/opu/odata/shcm/API_MANAGE_WF_AVAILABILITY</value></allowedValue>
+		<allowedValue label="Manage Workforce Timesheet"><value>/sap/opu/odata/sap/API_MANAGE_WORKFORCE_TIMESHEET</value></allowedValue>
+		<allowedValue label="Master Data for Group Reporting – Read"><value>/sap/opu/odata/sap/API_GRMASTERDATA_SRV</value></allowedValue>
+		<allowedValue label="Master Inspection Characteristics - Read"><value>/sap/opu/odata/sap/API_MASTERINSPCHARACTERISTIC_SRV</value></allowedValue>
+		<allowedValue label="Material Planning Data - Read"><value>/sap/opu/odata/sap/API_MRP_MATERIALS_SRV_01</value></allowedValue>
+		<allowedValue label="Material Stock Display"><value>/sap/opu/odata/sap/API_MATERIAL_STOCK_SRV</value></allowedValue>
+		<allowedValue label="OData Service for Business Partner"><value>/sap/opu/odata/sap/API_BUSINESS_PARTNER</value></allowedValue>
+		<allowedValue label="Outbound Deliveries - Read, Write"><value>/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Payment Advice -- Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PAYMENT_ADVICE_SRV</value></allowedValue>
+		<allowedValue label="Personnel Settlement Document - Read"><value>/sap/opu/odata/sap/API_PERS_SETTLMT_DOC</value></allowedValue>
+		<allowedValue label="Plan Category - Read"><value>/sap/opu/odata/sap/API_PLANNINGCATEGORY_SRV</value></allowedValue>
+		<allowedValue label="Planned Independent Reqmts for Use with Change PIRs App - Create, Read, Update"><value>/sap/opu/odata/sap/API_PLND_INDEP_RQMT_SRV</value></allowedValue>
+		<allowedValue label="Planned Independent Reqmts for Use with Manage PIRs App - Read, Update"><value>/sap/opu/odata/sap/API_FORECAST_DEMAND_SRV</value></allowedValue>
+		<allowedValue label="Planned Orders – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PLANNED_ORDERS</value></allowedValue>
+		<allowedValue label="Pricing Procedure in Purchasing – Read"><value>/sap/opu/odata/sap/API_PURGPRICINGPROCEDURE_SRV</value></allowedValue>
+		<allowedValue label="Pricing Procedure in Sales - Read"><value>/sap/opu/odata/sap/API_SLSPRICINGPROCEDURE_SRV</value></allowedValue>
+		<allowedValue label="Process Material Documents"><value>/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Process Order Confirmation - Read, Create, Cancel"><value>/sap/opu/odata/sap/API_PROC_ORDER_CONFIRMATION_2_SRV</value></allowedValue>
+		<allowedValue label="Process Order Confirmations(Deprecated)"><value>/sap/opu/odata/sap/API_PROC_ORDER_CONFIRMATION</value></allowedValue>
+		<allowedValue label="Process Physical Inventory Documents"><value>/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV</value></allowedValue>
+		<allowedValue label="Process Purchasing Categories"><value>/sap/opu/odata/sap/API_PURCHASING_CATEGORY_SRV</value></allowedValue>
+		<allowedValue label="Process Purchasing InfoRecord"><value>/sap/opu/odata/sap/API_INFORECORD_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Process Purchasing Sources"><value>/sap/opu/odata/sap/API_PURCHASING_SOURCE_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Activities"><value>/sap/opu/odata/sap/API_SUPPLIER_ACTIVITY_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Activty Tasks"><value>/sap/opu/odata/sap/API_SUPPLIER_ACTIVITY_TASK_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Evaluation Responses"><value>/sap/opu/odata/sap/API_SUPLR_EVAL_RESPONSE_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Evaluation Scorecards"><value>/sap/opu/odata/sap/API_SUPLR_EVAL_SCORECARD_SRV</value></allowedValue>
+		<allowedValue label="Process Warehouse Tasks - Read, Update (A2X)"><value>/sap/opu/odata/sap/API_WAREHOUSE_ORDER_TASK</value></allowedValue>
+		<allowedValue label="Product Group - Read"><value>/sap/opu/odata/sap/API_PRODUCTGROUP_SRV</value></allowedValue>
+		<allowedValue label="Product Master - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PRODUCT_SRV</value></allowedValue>
+		<allowedValue label="Product Master Data Including Classification – Read"><value>/sap/opu/odata/sap/API_CLFN_PRODUCT_SRV</value></allowedValue>
+		<allowedValue label="Production Order - Read, Create, Update"><value>/sap/opu/odata/sap/API_PRODUCTION_ORDERS</value></allowedValue>
+		<allowedValue label="Production Order Confirmation - Read, Create, Cancel"><value>/sap/opu/odata/sap/API_PROD_ORDER_CONFIRMATION_2_SRV</value></allowedValue>
+		<allowedValue label="Production Order Confirmations(Deprecated)"><value>/sap/opu/odata/sap/API_PROD_ORDER_CONFIRMATION</value></allowedValue>
+		<allowedValue label="Production Supply Area – Read, Write"><value>/sap/opu/odata/sap/API_PRODUCTIONSUPPLYAREA_SRV</value></allowedValue>
+		<allowedValue label="Profit Center - Read"><value>/sap/opu/odata/sap/API_PROFITCENTER_SRV</value></allowedValue>
+		<allowedValue label="Purchase Contract - Read, Create"><value>/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Purchase Order – Create, Update, Delete"><value>/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Purchase Requisition - Read, Create, Update, Delete"><value>/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Quality Info Record - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_QUALITYINFORECORD_SRV</value></allowedValue>
+		<allowedValue label="Quota Arrangement - Read, Create, Update, Delete"><value>/sap/opu/odata/sap/API_PUR_QUOTA_ARRANGEMENT_SRV</value></allowedValue>
+		<allowedValue label="Read Business Area"><value>/sap/opu/odata/sap/API_BUSINESSAREA_SRV</value></allowedValue>
+		<allowedValue label="Read Chart of Accounts"><value>/sap/opu/odata/sap/API_CHARTOFACCOUNTS_SRV</value></allowedValue>
+		<allowedValue label="Read Company Code"><value>/sap/opu/odata/sap/API_COMPANYCODE_SRV</value></allowedValue>
+		<allowedValue label="Read Cost Center Data"><value>/sap/opu/odata/sap/FCO_PI_COST_CENTER</value></allowedValue>
+		<allowedValue label="Read Country"><value>/sap/opu/odata/sap/API_COUNTRY_SRV</value></allowedValue>
+		<allowedValue label="Read Customer Group"><value>/sap/opu/odata/sap/API_CUSTOMERGROUP_SRV</value></allowedValue>
+		<allowedValue label="Read Customer and Supplier Industry"><value>/sap/opu/odata/sap/API_CUSTOMERSUPPLIERINDUSTRY_SRV</value></allowedValue>
+		<allowedValue label="Read Financial Planning Entry Items"><value>/sap/opu/odata/sap/API_FINPLANNINGENTRYITEM_SRV</value></allowedValue>
+		<allowedValue label="Read G/L Account"><value>/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV</value></allowedValue>
+		<allowedValue label="Read Journal Entry Items"><value>/sap/opu/odata/sap/API_JOURNALENTRYITEMBASIC_SRV</value></allowedValue>
+		<allowedValue label="Read Ledger"><value>/sap/opu/odata/sap/API_LEDGER_SRV</value></allowedValue>
+		<allowedValue label="Read Process Orders"><value>/sap/opu/odata/sap/API_PROCESS_ORDERS</value></allowedValue>
+		<allowedValue label="Read Segment"><value>/sap/opu/odata/sap/API_SEGMENT_SRV</value></allowedValue>
+		<allowedValue label="Read Trading Partner"><value>/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV</value></allowedValue>
+		<allowedValue label="Read Trial Balance"><value>/sap/opu/odata/sap/C_TRIALBALANCE_CDS</value></allowedValue>
+		<allowedValue label="Recipe Header, Formula, and Process – Read, Write"><value>/sap/opu/odata/sap/API_RECIPE</value></allowedValue>
+		<allowedValue label="Request for Quotation - Create, Update, Delete"><value>/sap/opu/odata/sap/API_RFQ_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Reservation Document - Read, Create, Delete"><value>/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Sales Contract - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_CONTRACT_SRV</value></allowedValue>
+		<allowedValue label="Sales District - Read"><value>/sap/opu/odata/sap/API_SALESDISTRICT_SRV</value></allowedValue>
+		<allowedValue label="Sales Documents with Credit Blocks – Read, Check, Release, Reject"><value>/sap/opu/odata/sap/API_SLS_DOC_WITH_CREDIT_BLOCK</value></allowedValue>
+		<allowedValue label="Sales Inquiry - Read (A2X)"><value>/sap/opu/odata/sap/API_SALES_INQUIRY_SRV</value></allowedValue>
+		<allowedValue label="Sales Order - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_ORDER_SRV</value></allowedValue>
+		<allowedValue label="Sales Order - Simulate (A2X)"><value>/sap/opu/odata/sap/API_SALES_ORDER_SIMULATION_SRV</value></allowedValue>
+		<allowedValue label="Sales Order Without Charge - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_ORDER_WITHOUT_CHARGE_SRV</value></allowedValue>
+		<allowedValue label="Sales Organization - Read"><value>/sap/opu/odata/sap/API_SALESORGANIZATION_SRV</value></allowedValue>
+		<allowedValue label="Sales Quotation - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_QUOTATION_SRV</value></allowedValue>
+		<allowedValue label="Sales Scheduling Agreement - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_SCHEDULING_AGREEMENT</value></allowedValue>
+		<allowedValue label="Scheduling Agreements – Read, Create"><value>/sap/opu/odata/sap/API_SCHED_AGRMT_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Service Confirmation - Create, Read, Update (A2X)"><value>/sap/opu/odata/sap/API_SERVICE_CONFIRMATION_SRV</value></allowedValue>
+		<allowedValue label="Service Entry Sheets – Read, Write"><value>/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV</value></allowedValue>
+		<allowedValue label="Service Order - Create, Read, Update (A2X)"><value>/sap/opu/odata/sap/API_SERVICE_ORDER_SRV</value></allowedValue>
+		<allowedValue label="Statistical Key Figure - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_STATISTICALKEYFIGURE_SRV</value></allowedValue>
+		<allowedValue label="Supplier Evaluation Score - Read"><value>/sap/opu/odata/sap/A_SUPPLIEROPLSCORESAV_CDS</value></allowedValue>
+		<allowedValue label="Supplier Invoice – Create, Read, Release, Reverse"><value>/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Supplier Quotation - Create with Reference, Update, Delete"><value>/sap/opu/odata/sap/API_QTN_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Transaction Data for Group Reporting - Read"><value>/sap/opu/odata/sap/API_GRTRANSACTIONDATA_SRV</value></allowedValue>
+		<allowedValue label="Update of Material Price"><value>/sap/opu/odata/sap/API_MATERIAL_VALUATION_SRV</value></allowedValue>
+		<allowedValue label="Warehouse Resource - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_WAREHOUSE_RESOURCE</value></allowedValue>
+		<allowedValue label="Work Center - Create, Read, Update"><value>/sap/opu/odata/sap/API_WORK_CENTERS</value></allowedValue>
+		<allowedValue label="Workforce Person SkillTag – Create, Read and Delete"><value>/sap/opu/odata/shcm/API_MANAGE_SKILLTAGS_SRV</value></allowedValue>
+  	</field>
+	</operation>
+	<operation types="EXECUTE" customTypeLabel="DELETE" customTypeId="DELETE_WITH_PARAMS">
+  	<field type="string" id="url" label="Url" scope="both">
+		<helpText>url to connect</helpText>
+		<allowedValue label="API for Product Allocation Object"><value>/sap/opu/odata/sap/API_PRODUCT_ALLOCATION_OBJECT_SRV</value></allowedValue>
+		<allowedValue label="API for Product Allocation Sequence"><value>/sap/opu/odata/sap/API_PRODUCT_ALLOC_SEQUENCE_SRV</value></allowedValue>
+		<allowedValue label="API for Raw Substance"><value>/sap/opu/odata/sap/API_RAWSUBSTANCE</value></allowedValue>
+		<allowedValue label="API for Real Substance"><value>/sap/opu/odata/sap/API_REALSUBSTANCE</value></allowedValue>
+		<allowedValue label="Accounting Document - Read"><value>/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV</value></allowedValue>
+		<allowedValue label="Activity Type - Read"><value>/sap/opu/odata/sap/API_COSTCENTERACTIVITYTYPE_SRV</value></allowedValue>
+		<allowedValue label="Attachment - Create, Read, Rename, Delete"><value>/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV</value></allowedValue>
+		<allowedValue label="Bank - Read"><value>/sap/opu/odata/sap/API_BANKDETAIL_SRV</value></allowedValue>
+		<allowedValue label="Basic Product Availability Information API"><value>/sap/opu/odata/sap/API_PRODUCT_AVAILY_INFO_BASIC</value></allowedValue>
+		<allowedValue label="Batch - Read, Write"><value>/sap/opu/odata/sap/API_BATCH_SRV</value></allowedValue>
+		<allowedValue label="Bill of Material Comparison"><value>/sap/opu/odata/sap/API_BILLOFMATERIAL_COMPARISON_SRV</value></allowedValue>
+		<allowedValue label="Billing Document - Read, Cancel, GetPDF"><value>/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Billing Document Request - Read, Reject, Delete"><value>/sap/opu/odata/sap/API_BILLING_DOCUMENT_REQUEST_SRV</value></allowedValue>
+		<allowedValue label="Bills of Material - Read, Create, Update, Delete (Version 2)"><value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Bills of Material - Read,Create,Update"><value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV</value></allowedValue>
+		<allowedValue label="Bills of Material Where-Used List - Read"><value>/sap/opu/odata/sap/API_BOM_WHERE_USED_SRV</value></allowedValue>
+		<allowedValue label="Buffer Profile - Read"><value>/sap/opu/odata/sap/API_BUFFER_PROFILE_SRV</value></allowedValue>
+		<allowedValue label="Buffer Sizing - Read, Create, Update"><value>/sap/opu/odata/sap/API_BUFFERSIZING_SRV</value></allowedValue>
+		<allowedValue label="Business Event Queue"><value>/sap/opu/odata/sap/C_BEHQUEUEDATA_CDS</value></allowedValue>
+		<allowedValue label="Business Events - Subscription Service"><value>/sap/opu/odata/sap/CA_BEH_SUBSCRIPTION_SRV</value></allowedValue>
+		<allowedValue label="Business Situation - Read"><value>/sap/opu/odata/sap/API_BUSINESS_SITUATION_SRV</value></allowedValue>
+		<allowedValue label="Central Purchase Contract – Read, Create"><value>/sap/opu/odata/sap/API_CENTRAL_PURCHASECONTRACT_SRV</value></allowedValue>
+		<allowedValue label="Change Master – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CHANGEMASTER;v=0002</value></allowedValue>
+		<allowedValue label="Change Master – Read(Deprecated)"><value>/sap/opu/odata/sap/API_CHANGEMASTER</value></allowedValue>
+		<allowedValue label="Change Record - Read, Create, Update"><value>/sap/opu/odata/sap/API_CHANGE_RECORD</value></allowedValue>
+		<allowedValue label="Characteristic Attribute Catalog - Read"><value>/sap/opu/odata/sap/API_CHARCATTRIBUTECATALOG_SRV</value></allowedValue>
+		<allowedValue label="Characteristic Data for Classification – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CLFN_CHARACTERISTIC_SRV</value></allowedValue>
+		<allowedValue label="Class Data for Classification – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CLFN_CLASS_SRV</value></allowedValue>
+		<allowedValue label="Commercial Project - Create, Update"><value>/sap/opu/odata/cpd/SC_PROJ_ENGMT_CREATE_UPD_SRV</value></allowedValue>
+		<allowedValue label="Commercial Project - Read"><value>/sap/opu/odata/cpd/SC_EXTERNAL_SERVICES_SRV</value></allowedValue>
+		<allowedValue label="Condition Contract Type - Read"><value>/sap/opu/odata/sap/API_CONDITION_CONTRACT_TYPE</value></allowedValue>
+		<allowedValue label="Condition Record for Pricing in Purchasing – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PURGPRCGCONDITIONRECORD_SRV</value></allowedValue>
+		<allowedValue label="Condition Record for Pricing in Sales – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_SLSPRICINGCONDITIONRECORD_SRV</value></allowedValue>
+		<allowedValue label="Condition Type for Pricing in Purchasing – Read"><value>/sap/opu/odata/sap/API_PURGPRICINGCONDITIONTYPE_SRV</value></allowedValue>
+		<allowedValue label="Condition Type for Pricing in Sales – Read"><value>/sap/opu/odata/sap/API_SLSPRICINGCONDITIONTYPE_SRV</value></allowedValue>
+		<allowedValue label="Contract Accounting - SEPA Mandate Create, Read, Update"><value>/sap/opu/odata/sap/API_O2C_FICA_SEPA_MANDATE_SRV</value></allowedValue>
+		<allowedValue label="Controlling Area - Read"><value>/sap/opu/odata/sap/API_CONTROLLINGAREA_SRV</value></allowedValue>
+		<allowedValue label="Cost Center - Read"><value>/sap/opu/odata/sap/API_COSTCENTER_SRV</value></allowedValue>
+		<allowedValue label="Cost Rate - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_FCO_COST_RATE_SRV</value></allowedValue>
+		<allowedValue label="Credit Memo Request - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV</value></allowedValue>
+		<allowedValue label="Customer Material - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CUSTOMER_MATERIAL_SRV</value></allowedValue>
+		<allowedValue label="Customer Return - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_CUSTOMER_RETURN_SRV</value></allowedValue>
+		<allowedValue label="Customer Returns Deliveries – Read, Create, Update, and Delete"><value>/sap/opu/odata/sap/API_CUSTOMER_RETURNS_DELIVERY_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Debit Memo Request - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_DEBIT_MEMO_REQUEST_SRV</value></allowedValue>
+		<allowedValue label="Debit/Credit Indicator CO - Read"><value>/sap/opu/odata/sap/API_CONTROLLINGDEBITCREDITCODE_SRV</value></allowedValue>
+		<allowedValue label="Defect - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_DEFECT_SRV</value></allowedValue>
+		<allowedValue label="Defect Categories - Read"><value>/sap/opu/odata/sap/API_DEFECTCATEGORY_SRV</value></allowedValue>
+		<allowedValue label="Defect Classes - Read"><value>/sap/opu/odata/sap/API_DEFECTCLASS_SRV</value></allowedValue>
+		<allowedValue label="Defect Codes and Code Groups - Read"><value>/sap/opu/odata/sap/API_DEFECTCODE_SRV</value></allowedValue>
+		<allowedValue label="Delivery Documents with Credit Blocks – Read, Check, Release, Reject"><value>/sap/opu/odata/sap/API_DEL_DOC_WITH_CREDIT_BLOCK</value></allowedValue>
+		<allowedValue label="Distribution Channel - Read"><value>/sap/opu/odata/sap/API_DISTRIBUTIONCHANNEL_SRV</value></allowedValue>
+		<allowedValue label="Division - Read"><value>/sap/opu/odata/sap/API_DIVISION_SRV</value></allowedValue>
+		<allowedValue label="Document Info record – Create, Read, Update"><value>/sap/opu/odata/sap/API_DMS_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Enable External Job Scheduler Integration"><value>/sap/opu/odata/sap/BC_EXT_APPJOB_MANAGEMENT;v=0002</value></allowedValue>
+		<allowedValue label="Enterprise Project - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_ENTERPRISE_PROJECT_SRV</value></allowedValue>
+		<allowedValue label="Financial Planning Data - Write"><value>/sap/opu/odata/sap/API_FINPLANNINGDATA_SRV</value></allowedValue>
+		<allowedValue label="Functional Area - Read"><value>/sap/opu/odata/sap/API_FUNCTIONALAREA_SRV</value></allowedValue>
+		<allowedValue label="Inbound Deliveries – Read, Create, Update, and Delete"><value>/sap/opu/odata/sap/API_INBOUND_DELIVERY_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Inspection Lot – Read, Write"><value>/sap/opu/odata/sap/API_INSPECTIONLOT_SRV</value></allowedValue>
+		<allowedValue label="Inspection Methods - Read"><value>/sap/opu/odata/sap/API_INSPECTIONMETHOD_SRV</value></allowedValue>
+		<allowedValue label="Inspection Plan - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_INSPECTIONPLAN_SRV</value></allowedValue>
+		<allowedValue label="Kanban Control Cycle – Read, Write"><value>/sap/opu/odata/sap/API_KANBAN_CONTROL_CYCLE_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Legal Documents - Create, Read"><value>/sap/opu/odata/sap/API_LEGAL_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Legal Transaction"><value>/sap/opu/odata/sap/API_LEGAL_TRANSACTION_SRV</value></allowedValue>
+		<allowedValue label="Line Item of Treasury Posting Journal Entry – Read"><value>/sap/opu/odata/sap/A_TRSYPOSTGJRNLENTRITM_CDS</value></allowedValue>
+		<allowedValue label="Manage Workforce Availability"><value>/sap/opu/odata/shcm/API_MANAGE_WF_AVAILABILITY</value></allowedValue>
+		<allowedValue label="Manage Workforce Timesheet"><value>/sap/opu/odata/sap/API_MANAGE_WORKFORCE_TIMESHEET</value></allowedValue>
+		<allowedValue label="Master Data for Group Reporting – Read"><value>/sap/opu/odata/sap/API_GRMASTERDATA_SRV</value></allowedValue>
+		<allowedValue label="Master Inspection Characteristics - Read"><value>/sap/opu/odata/sap/API_MASTERINSPCHARACTERISTIC_SRV</value></allowedValue>
+		<allowedValue label="Material Planning Data - Read"><value>/sap/opu/odata/sap/API_MRP_MATERIALS_SRV_01</value></allowedValue>
+		<allowedValue label="Material Stock Display"><value>/sap/opu/odata/sap/API_MATERIAL_STOCK_SRV</value></allowedValue>
+		<allowedValue label="OData Service for Business Partner"><value>/sap/opu/odata/sap/API_BUSINESS_PARTNER</value></allowedValue>
+		<allowedValue label="Outbound Deliveries - Read, Write"><value>/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Payment Advice -- Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PAYMENT_ADVICE_SRV</value></allowedValue>
+		<allowedValue label="Personnel Settlement Document - Read"><value>/sap/opu/odata/sap/API_PERS_SETTLMT_DOC</value></allowedValue>
+		<allowedValue label="Plan Category - Read"><value>/sap/opu/odata/sap/API_PLANNINGCATEGORY_SRV</value></allowedValue>
+		<allowedValue label="Planned Independent Reqmts for Use with Change PIRs App - Create, Read, Update"><value>/sap/opu/odata/sap/API_PLND_INDEP_RQMT_SRV</value></allowedValue>
+		<allowedValue label="Planned Independent Reqmts for Use with Manage PIRs App - Read, Update"><value>/sap/opu/odata/sap/API_FORECAST_DEMAND_SRV</value></allowedValue>
+		<allowedValue label="Planned Orders – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PLANNED_ORDERS</value></allowedValue>
+		<allowedValue label="Pricing Procedure in Purchasing – Read"><value>/sap/opu/odata/sap/API_PURGPRICINGPROCEDURE_SRV</value></allowedValue>
+		<allowedValue label="Pricing Procedure in Sales - Read"><value>/sap/opu/odata/sap/API_SLSPRICINGPROCEDURE_SRV</value></allowedValue>
+		<allowedValue label="Process Material Documents"><value>/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Process Order Confirmation - Read, Create, Cancel"><value>/sap/opu/odata/sap/API_PROC_ORDER_CONFIRMATION_2_SRV</value></allowedValue>
+		<allowedValue label="Process Order Confirmations(Deprecated)"><value>/sap/opu/odata/sap/API_PROC_ORDER_CONFIRMATION</value></allowedValue>
+		<allowedValue label="Process Physical Inventory Documents"><value>/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV</value></allowedValue>
+		<allowedValue label="Process Purchasing Categories"><value>/sap/opu/odata/sap/API_PURCHASING_CATEGORY_SRV</value></allowedValue>
+		<allowedValue label="Process Purchasing InfoRecord"><value>/sap/opu/odata/sap/API_INFORECORD_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Process Purchasing Sources"><value>/sap/opu/odata/sap/API_PURCHASING_SOURCE_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Activities"><value>/sap/opu/odata/sap/API_SUPPLIER_ACTIVITY_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Activty Tasks"><value>/sap/opu/odata/sap/API_SUPPLIER_ACTIVITY_TASK_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Evaluation Responses"><value>/sap/opu/odata/sap/API_SUPLR_EVAL_RESPONSE_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Evaluation Scorecards"><value>/sap/opu/odata/sap/API_SUPLR_EVAL_SCORECARD_SRV</value></allowedValue>
+		<allowedValue label="Process Warehouse Tasks - Read, Update (A2X)"><value>/sap/opu/odata/sap/API_WAREHOUSE_ORDER_TASK</value></allowedValue>
+		<allowedValue label="Product Group - Read"><value>/sap/opu/odata/sap/API_PRODUCTGROUP_SRV</value></allowedValue>
+		<allowedValue label="Product Master - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PRODUCT_SRV</value></allowedValue>
+		<allowedValue label="Product Master Data Including Classification – Read"><value>/sap/opu/odata/sap/API_CLFN_PRODUCT_SRV</value></allowedValue>
+		<allowedValue label="Production Order - Read, Create, Update"><value>/sap/opu/odata/sap/API_PRODUCTION_ORDERS</value></allowedValue>
+		<allowedValue label="Production Order Confirmation - Read, Create, Cancel"><value>/sap/opu/odata/sap/API_PROD_ORDER_CONFIRMATION_2_SRV</value></allowedValue>
+		<allowedValue label="Production Order Confirmations(Deprecated)"><value>/sap/opu/odata/sap/API_PROD_ORDER_CONFIRMATION</value></allowedValue>
+		<allowedValue label="Production Supply Area – Read, Write"><value>/sap/opu/odata/sap/API_PRODUCTIONSUPPLYAREA_SRV</value></allowedValue>
+		<allowedValue label="Profit Center - Read"><value>/sap/opu/odata/sap/API_PROFITCENTER_SRV</value></allowedValue>
+		<allowedValue label="Purchase Contract - Read, Create"><value>/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Purchase Order – Create, Update, Delete"><value>/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Purchase Requisition - Read, Create, Update, Delete"><value>/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Quality Info Record - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_QUALITYINFORECORD_SRV</value></allowedValue>
+		<allowedValue label="Quota Arrangement - Read, Create, Update, Delete"><value>/sap/opu/odata/sap/API_PUR_QUOTA_ARRANGEMENT_SRV</value></allowedValue>
+		<allowedValue label="Read Business Area"><value>/sap/opu/odata/sap/API_BUSINESSAREA_SRV</value></allowedValue>
+		<allowedValue label="Read Chart of Accounts"><value>/sap/opu/odata/sap/API_CHARTOFACCOUNTS_SRV</value></allowedValue>
+		<allowedValue label="Read Company Code"><value>/sap/opu/odata/sap/API_COMPANYCODE_SRV</value></allowedValue>
+		<allowedValue label="Read Cost Center Data"><value>/sap/opu/odata/sap/FCO_PI_COST_CENTER</value></allowedValue>
+		<allowedValue label="Read Country"><value>/sap/opu/odata/sap/API_COUNTRY_SRV</value></allowedValue>
+		<allowedValue label="Read Customer Group"><value>/sap/opu/odata/sap/API_CUSTOMERGROUP_SRV</value></allowedValue>
+		<allowedValue label="Read Customer and Supplier Industry"><value>/sap/opu/odata/sap/API_CUSTOMERSUPPLIERINDUSTRY_SRV</value></allowedValue>
+		<allowedValue label="Read Financial Planning Entry Items"><value>/sap/opu/odata/sap/API_FINPLANNINGENTRYITEM_SRV</value></allowedValue>
+		<allowedValue label="Read G/L Account"><value>/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV</value></allowedValue>
+		<allowedValue label="Read Journal Entry Items"><value>/sap/opu/odata/sap/API_JOURNALENTRYITEMBASIC_SRV</value></allowedValue>
+		<allowedValue label="Read Ledger"><value>/sap/opu/odata/sap/API_LEDGER_SRV</value></allowedValue>
+		<allowedValue label="Read Process Orders"><value>/sap/opu/odata/sap/API_PROCESS_ORDERS</value></allowedValue>
+		<allowedValue label="Read Segment"><value>/sap/opu/odata/sap/API_SEGMENT_SRV</value></allowedValue>
+		<allowedValue label="Read Trading Partner"><value>/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV</value></allowedValue>
+		<allowedValue label="Read Trial Balance"><value>/sap/opu/odata/sap/C_TRIALBALANCE_CDS</value></allowedValue>
+		<allowedValue label="Recipe Header, Formula, and Process – Read, Write"><value>/sap/opu/odata/sap/API_RECIPE</value></allowedValue>
+		<allowedValue label="Request for Quotation - Create, Update, Delete"><value>/sap/opu/odata/sap/API_RFQ_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Reservation Document - Read, Create, Delete"><value>/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Sales Contract - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_CONTRACT_SRV</value></allowedValue>
+		<allowedValue label="Sales District - Read"><value>/sap/opu/odata/sap/API_SALESDISTRICT_SRV</value></allowedValue>
+		<allowedValue label="Sales Documents with Credit Blocks – Read, Check, Release, Reject"><value>/sap/opu/odata/sap/API_SLS_DOC_WITH_CREDIT_BLOCK</value></allowedValue>
+		<allowedValue label="Sales Inquiry - Read (A2X)"><value>/sap/opu/odata/sap/API_SALES_INQUIRY_SRV</value></allowedValue>
+		<allowedValue label="Sales Order - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_ORDER_SRV</value></allowedValue>
+		<allowedValue label="Sales Order - Simulate (A2X)"><value>/sap/opu/odata/sap/API_SALES_ORDER_SIMULATION_SRV</value></allowedValue>
+		<allowedValue label="Sales Order Without Charge - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_ORDER_WITHOUT_CHARGE_SRV</value></allowedValue>
+		<allowedValue label="Sales Organization - Read"><value>/sap/opu/odata/sap/API_SALESORGANIZATION_SRV</value></allowedValue>
+		<allowedValue label="Sales Quotation - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_QUOTATION_SRV</value></allowedValue>
+		<allowedValue label="Sales Scheduling Agreement - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_SCHEDULING_AGREEMENT</value></allowedValue>
+		<allowedValue label="Scheduling Agreements – Read, Create"><value>/sap/opu/odata/sap/API_SCHED_AGRMT_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Service Confirmation - Create, Read, Update (A2X)"><value>/sap/opu/odata/sap/API_SERVICE_CONFIRMATION_SRV</value></allowedValue>
+		<allowedValue label="Service Entry Sheets – Read, Write"><value>/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV</value></allowedValue>
+		<allowedValue label="Service Order - Create, Read, Update (A2X)"><value>/sap/opu/odata/sap/API_SERVICE_ORDER_SRV</value></allowedValue>
+		<allowedValue label="Statistical Key Figure - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_STATISTICALKEYFIGURE_SRV</value></allowedValue>
+		<allowedValue label="Supplier Evaluation Score - Read"><value>/sap/opu/odata/sap/A_SUPPLIEROPLSCORESAV_CDS</value></allowedValue>
+		<allowedValue label="Supplier Invoice – Create, Read, Release, Reverse"><value>/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Supplier Quotation - Create with Reference, Update, Delete"><value>/sap/opu/odata/sap/API_QTN_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Transaction Data for Group Reporting - Read"><value>/sap/opu/odata/sap/API_GRTRANSACTIONDATA_SRV</value></allowedValue>
+		<allowedValue label="Update of Material Price"><value>/sap/opu/odata/sap/API_MATERIAL_VALUATION_SRV</value></allowedValue>
+		<allowedValue label="Warehouse Resource - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_WAREHOUSE_RESOURCE</value></allowedValue>
+		<allowedValue label="Work Center - Create, Read, Update"><value>/sap/opu/odata/sap/API_WORK_CENTERS</value></allowedValue>
+		<allowedValue label="Workforce Person SkillTag – Create, Read and Delete"><value>/sap/opu/odata/shcm/API_MANAGE_SKILLTAGS_SRV</value></allowedValue>
+	</field>
+	</operation>
+  <operation types="EXECUTE" customTypeLabel="GET" customTypeId="GET_WITH_PARAMS">
+  <field type="string" id="select" label="select"><helpText>Select properties to be returned</helpText></field>
+  <field type="string" id="expand" label="expand"><helpText>Expand related entities</helpText></field>
+  <field type="string" id="url" label="Url" scope="both">
+		<helpText>url to connect</helpText>
+		<allowedValue label="API for Product Allocation Object"><value>/sap/opu/odata/sap/API_PRODUCT_ALLOCATION_OBJECT_SRV</value></allowedValue>
+		<allowedValue label="API for Product Allocation Sequence"><value>/sap/opu/odata/sap/API_PRODUCT_ALLOC_SEQUENCE_SRV</value></allowedValue>
+		<allowedValue label="API for Raw Substance"><value>/sap/opu/odata/sap/API_RAWSUBSTANCE</value></allowedValue>
+		<allowedValue label="API for Real Substance"><value>/sap/opu/odata/sap/API_REALSUBSTANCE</value></allowedValue>
+		<allowedValue label="Accounting Document - Read"><value>/sap/opu/odata/sap/API_OPLACCTGDOCITEMCUBE_SRV</value></allowedValue>
+		<allowedValue label="Activity Type - Read"><value>/sap/opu/odata/sap/API_COSTCENTERACTIVITYTYPE_SRV</value></allowedValue>
+		<allowedValue label="Attachment - Create, Read, Rename, Delete"><value>/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV</value></allowedValue>
+		<allowedValue label="Bank - Read"><value>/sap/opu/odata/sap/API_BANKDETAIL_SRV</value></allowedValue>
+		<allowedValue label="Basic Product Availability Information API"><value>/sap/opu/odata/sap/API_PRODUCT_AVAILY_INFO_BASIC</value></allowedValue>
+		<allowedValue label="Batch - Read, Write"><value>/sap/opu/odata/sap/API_BATCH_SRV</value></allowedValue>
+		<allowedValue label="Bill of Material Comparison"><value>/sap/opu/odata/sap/API_BILLOFMATERIAL_COMPARISON_SRV</value></allowedValue>
+		<allowedValue label="Billing Document - Read, Cancel, GetPDF"><value>/sap/opu/odata/sap/API_BILLING_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Billing Document Request - Read, Reject, Delete"><value>/sap/opu/odata/sap/API_BILLING_DOCUMENT_REQUEST_SRV</value></allowedValue>
+		<allowedValue label="Bills of Material - Read, Create, Update, Delete (Version 2)"><value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Bills of Material - Read,Create,Update"><value>/sap/opu/odata/sap/API_BILL_OF_MATERIAL_SRV</value></allowedValue>
+		<allowedValue label="Bills of Material Where-Used List - Read"><value>/sap/opu/odata/sap/API_BOM_WHERE_USED_SRV</value></allowedValue>
+		<allowedValue label="Buffer Profile - Read"><value>/sap/opu/odata/sap/API_BUFFER_PROFILE_SRV</value></allowedValue>
+		<allowedValue label="Buffer Sizing - Read, Create, Update"><value>/sap/opu/odata/sap/API_BUFFERSIZING_SRV</value></allowedValue>
+		<allowedValue label="Business Event Queue"><value>/sap/opu/odata/sap/C_BEHQUEUEDATA_CDS</value></allowedValue>
+		<allowedValue label="Business Events - Subscription Service"><value>/sap/opu/odata/sap/CA_BEH_SUBSCRIPTION_SRV</value></allowedValue>
+		<allowedValue label="Business Situation - Read"><value>/sap/opu/odata/sap/API_BUSINESS_SITUATION_SRV</value></allowedValue>
+		<allowedValue label="Central Purchase Contract – Read, Create"><value>/sap/opu/odata/sap/API_CENTRAL_PURCHASECONTRACT_SRV</value></allowedValue>
+		<allowedValue label="Change Master – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CHANGEMASTER;v=0002</value></allowedValue>
+		<allowedValue label="Change Master – Read(Deprecated)"><value>/sap/opu/odata/sap/API_CHANGEMASTER</value></allowedValue>
+		<allowedValue label="Change Record - Read, Create, Update"><value>/sap/opu/odata/sap/API_CHANGE_RECORD</value></allowedValue>
+		<allowedValue label="Characteristic Attribute Catalog - Read"><value>/sap/opu/odata/sap/API_CHARCATTRIBUTECATALOG_SRV</value></allowedValue>
+		<allowedValue label="Characteristic Data for Classification – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CLFN_CHARACTERISTIC_SRV</value></allowedValue>
+		<allowedValue label="Class Data for Classification – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CLFN_CLASS_SRV</value></allowedValue>
+		<allowedValue label="Commercial Project - Create, Update"><value>/sap/opu/odata/cpd/SC_PROJ_ENGMT_CREATE_UPD_SRV</value></allowedValue>
+		<allowedValue label="Commercial Project - Read"><value>/sap/opu/odata/cpd/SC_EXTERNAL_SERVICES_SRV</value></allowedValue>
+		<allowedValue label="Condition Contract Type - Read"><value>/sap/opu/odata/sap/API_CONDITION_CONTRACT_TYPE</value></allowedValue>
+		<allowedValue label="Condition Record for Pricing in Purchasing – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PURGPRCGCONDITIONRECORD_SRV</value></allowedValue>
+		<allowedValue label="Condition Record for Pricing in Sales – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_SLSPRICINGCONDITIONRECORD_SRV</value></allowedValue>
+		<allowedValue label="Condition Type for Pricing in Purchasing – Read"><value>/sap/opu/odata/sap/API_PURGPRICINGCONDITIONTYPE_SRV</value></allowedValue>
+		<allowedValue label="Condition Type for Pricing in Sales – Read"><value>/sap/opu/odata/sap/API_SLSPRICINGCONDITIONTYPE_SRV</value></allowedValue>
+		<allowedValue label="Contract Accounting - SEPA Mandate Create, Read, Update"><value>/sap/opu/odata/sap/API_O2C_FICA_SEPA_MANDATE_SRV</value></allowedValue>
+		<allowedValue label="Controlling Area - Read"><value>/sap/opu/odata/sap/API_CONTROLLINGAREA_SRV</value></allowedValue>
+		<allowedValue label="Cost Center - Read"><value>/sap/opu/odata/sap/API_COSTCENTER_SRV</value></allowedValue>
+		<allowedValue label="Cost Rate - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_FCO_COST_RATE_SRV</value></allowedValue>
+		<allowedValue label="Credit Memo Request - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_CREDIT_MEMO_REQUEST_SRV</value></allowedValue>
+		<allowedValue label="Customer Material - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_CUSTOMER_MATERIAL_SRV</value></allowedValue>
+		<allowedValue label="Customer Return - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_CUSTOMER_RETURN_SRV</value></allowedValue>
+		<allowedValue label="Customer Returns Deliveries – Read, Create, Update, and Delete"><value>/sap/opu/odata/sap/API_CUSTOMER_RETURNS_DELIVERY_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Debit Memo Request - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_DEBIT_MEMO_REQUEST_SRV</value></allowedValue>
+		<allowedValue label="Debit/Credit Indicator CO - Read"><value>/sap/opu/odata/sap/API_CONTROLLINGDEBITCREDITCODE_SRV</value></allowedValue>
+		<allowedValue label="Defect - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_DEFECT_SRV</value></allowedValue>
+		<allowedValue label="Defect Categories - Read"><value>/sap/opu/odata/sap/API_DEFECTCATEGORY_SRV</value></allowedValue>
+		<allowedValue label="Defect Classes - Read"><value>/sap/opu/odata/sap/API_DEFECTCLASS_SRV</value></allowedValue>
+		<allowedValue label="Defect Codes and Code Groups - Read"><value>/sap/opu/odata/sap/API_DEFECTCODE_SRV</value></allowedValue>
+		<allowedValue label="Delivery Documents with Credit Blocks – Read, Check, Release, Reject"><value>/sap/opu/odata/sap/API_DEL_DOC_WITH_CREDIT_BLOCK</value></allowedValue>
+		<allowedValue label="Distribution Channel - Read"><value>/sap/opu/odata/sap/API_DISTRIBUTIONCHANNEL_SRV</value></allowedValue>
+		<allowedValue label="Division - Read"><value>/sap/opu/odata/sap/API_DIVISION_SRV</value></allowedValue>
+		<allowedValue label="Document Info record – Create, Read, Update"><value>/sap/opu/odata/sap/API_DMS_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Enable External Job Scheduler Integration"><value>/sap/opu/odata/sap/BC_EXT_APPJOB_MANAGEMENT;v=0002</value></allowedValue>
+		<allowedValue label="Enterprise Project - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_ENTERPRISE_PROJECT_SRV</value></allowedValue>
+		<allowedValue label="Financial Planning Data - Write"><value>/sap/opu/odata/sap/API_FINPLANNINGDATA_SRV</value></allowedValue>
+		<allowedValue label="Functional Area - Read"><value>/sap/opu/odata/sap/API_FUNCTIONALAREA_SRV</value></allowedValue>
+		<allowedValue label="Inbound Deliveries – Read, Create, Update, and Delete"><value>/sap/opu/odata/sap/API_INBOUND_DELIVERY_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Inspection Lot – Read, Write"><value>/sap/opu/odata/sap/API_INSPECTIONLOT_SRV</value></allowedValue>
+		<allowedValue label="Inspection Methods - Read"><value>/sap/opu/odata/sap/API_INSPECTIONMETHOD_SRV</value></allowedValue>
+		<allowedValue label="Inspection Plan - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_INSPECTIONPLAN_SRV</value></allowedValue>
+		<allowedValue label="Kanban Control Cycle – Read, Write"><value>/sap/opu/odata/sap/API_KANBAN_CONTROL_CYCLE_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Legal Documents - Create, Read"><value>/sap/opu/odata/sap/API_LEGAL_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Legal Transaction"><value>/sap/opu/odata/sap/API_LEGAL_TRANSACTION_SRV</value></allowedValue>
+		<allowedValue label="Line Item of Treasury Posting Journal Entry – Read"><value>/sap/opu/odata/sap/A_TRSYPOSTGJRNLENTRITM_CDS</value></allowedValue>
+		<allowedValue label="Manage Workforce Availability"><value>/sap/opu/odata/shcm/API_MANAGE_WF_AVAILABILITY</value></allowedValue>
+		<allowedValue label="Manage Workforce Timesheet"><value>/sap/opu/odata/sap/API_MANAGE_WORKFORCE_TIMESHEET</value></allowedValue>
+		<allowedValue label="Master Data for Group Reporting – Read"><value>/sap/opu/odata/sap/API_GRMASTERDATA_SRV</value></allowedValue>
+		<allowedValue label="Master Inspection Characteristics - Read"><value>/sap/opu/odata/sap/API_MASTERINSPCHARACTERISTIC_SRV</value></allowedValue>
+		<allowedValue label="Material Planning Data - Read"><value>/sap/opu/odata/sap/API_MRP_MATERIALS_SRV_01</value></allowedValue>
+		<allowedValue label="Material Stock Display"><value>/sap/opu/odata/sap/API_MATERIAL_STOCK_SRV</value></allowedValue>
+		<allowedValue label="OData Service for Business Partner"><value>/sap/opu/odata/sap/API_BUSINESS_PARTNER</value></allowedValue>
+		<allowedValue label="Outbound Deliveries - Read, Write"><value>/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=0002</value></allowedValue>
+		<allowedValue label="Payment Advice -- Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PAYMENT_ADVICE_SRV</value></allowedValue>
+		<allowedValue label="Personnel Settlement Document - Read"><value>/sap/opu/odata/sap/API_PERS_SETTLMT_DOC</value></allowedValue>
+		<allowedValue label="Plan Category - Read"><value>/sap/opu/odata/sap/API_PLANNINGCATEGORY_SRV</value></allowedValue>
+		<allowedValue label="Planned Independent Reqmts for Use with Change PIRs App - Create, Read, Update"><value>/sap/opu/odata/sap/API_PLND_INDEP_RQMT_SRV</value></allowedValue>
+		<allowedValue label="Planned Independent Reqmts for Use with Manage PIRs App - Read, Update"><value>/sap/opu/odata/sap/API_FORECAST_DEMAND_SRV</value></allowedValue>
+		<allowedValue label="Planned Orders – Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PLANNED_ORDERS</value></allowedValue>
+		<allowedValue label="Pricing Procedure in Purchasing – Read"><value>/sap/opu/odata/sap/API_PURGPRICINGPROCEDURE_SRV</value></allowedValue>
+		<allowedValue label="Pricing Procedure in Sales - Read"><value>/sap/opu/odata/sap/API_SLSPRICINGPROCEDURE_SRV</value></allowedValue>
+		<allowedValue label="Process Material Documents"><value>/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Process Order Confirmation - Read, Create, Cancel"><value>/sap/opu/odata/sap/API_PROC_ORDER_CONFIRMATION_2_SRV</value></allowedValue>
+		<allowedValue label="Process Order Confirmations(Deprecated)"><value>/sap/opu/odata/sap/API_PROC_ORDER_CONFIRMATION</value></allowedValue>
+		<allowedValue label="Process Physical Inventory Documents"><value>/sap/opu/odata/sap/API_PHYSICAL_INVENTORY_DOC_SRV</value></allowedValue>
+		<allowedValue label="Process Purchasing Categories"><value>/sap/opu/odata/sap/API_PURCHASING_CATEGORY_SRV</value></allowedValue>
+		<allowedValue label="Process Purchasing InfoRecord"><value>/sap/opu/odata/sap/API_INFORECORD_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Process Purchasing Sources"><value>/sap/opu/odata/sap/API_PURCHASING_SOURCE_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Activities"><value>/sap/opu/odata/sap/API_SUPPLIER_ACTIVITY_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Activty Tasks"><value>/sap/opu/odata/sap/API_SUPPLIER_ACTIVITY_TASK_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Evaluation Responses"><value>/sap/opu/odata/sap/API_SUPLR_EVAL_RESPONSE_SRV</value></allowedValue>
+		<allowedValue label="Process Supplier Evaluation Scorecards"><value>/sap/opu/odata/sap/API_SUPLR_EVAL_SCORECARD_SRV</value></allowedValue>
+		<allowedValue label="Process Warehouse Tasks - Read, Update (A2X)"><value>/sap/opu/odata/sap/API_WAREHOUSE_ORDER_TASK</value></allowedValue>
+		<allowedValue label="Product Group - Read"><value>/sap/opu/odata/sap/API_PRODUCTGROUP_SRV</value></allowedValue>
+		<allowedValue label="Product Master - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_PRODUCT_SRV</value></allowedValue>
+		<allowedValue label="Product Master Data Including Classification – Read"><value>/sap/opu/odata/sap/API_CLFN_PRODUCT_SRV</value></allowedValue>
+		<allowedValue label="Production Order - Read, Create, Update"><value>/sap/opu/odata/sap/API_PRODUCTION_ORDERS</value></allowedValue>
+		<allowedValue label="Production Order Confirmation - Read, Create, Cancel"><value>/sap/opu/odata/sap/API_PROD_ORDER_CONFIRMATION_2_SRV</value></allowedValue>
+		<allowedValue label="Production Order Confirmations(Deprecated)"><value>/sap/opu/odata/sap/API_PROD_ORDER_CONFIRMATION</value></allowedValue>
+		<allowedValue label="Production Supply Area – Read, Write"><value>/sap/opu/odata/sap/API_PRODUCTIONSUPPLYAREA_SRV</value></allowedValue>
+		<allowedValue label="Profit Center - Read"><value>/sap/opu/odata/sap/API_PROFITCENTER_SRV</value></allowedValue>
+		<allowedValue label="Purchase Contract - Read, Create"><value>/sap/opu/odata/sap/API_PURCHASECONTRACT_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Purchase Order – Create, Update, Delete"><value>/sap/opu/odata/sap/API_PURCHASEORDER_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Purchase Requisition - Read, Create, Update, Delete"><value>/sap/opu/odata/sap/API_PURCHASEREQ_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Quality Info Record - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_QUALITYINFORECORD_SRV</value></allowedValue>
+		<allowedValue label="Quota Arrangement - Read, Create, Update, Delete"><value>/sap/opu/odata/sap/API_PUR_QUOTA_ARRANGEMENT_SRV</value></allowedValue>
+		<allowedValue label="Read Business Area"><value>/sap/opu/odata/sap/API_BUSINESSAREA_SRV</value></allowedValue>
+		<allowedValue label="Read Chart of Accounts"><value>/sap/opu/odata/sap/API_CHARTOFACCOUNTS_SRV</value></allowedValue>
+		<allowedValue label="Read Company Code"><value>/sap/opu/odata/sap/API_COMPANYCODE_SRV</value></allowedValue>
+		<allowedValue label="Read Cost Center Data"><value>/sap/opu/odata/sap/FCO_PI_COST_CENTER</value></allowedValue>
+		<allowedValue label="Read Country"><value>/sap/opu/odata/sap/API_COUNTRY_SRV</value></allowedValue>
+		<allowedValue label="Read Customer Group"><value>/sap/opu/odata/sap/API_CUSTOMERGROUP_SRV</value></allowedValue>
+		<allowedValue label="Read Customer and Supplier Industry"><value>/sap/opu/odata/sap/API_CUSTOMERSUPPLIERINDUSTRY_SRV</value></allowedValue>
+		<allowedValue label="Read Financial Planning Entry Items"><value>/sap/opu/odata/sap/API_FINPLANNINGENTRYITEM_SRV</value></allowedValue>
+		<allowedValue label="Read G/L Account"><value>/sap/opu/odata/sap/API_GLACCOUNTINCHARTOFACCOUNTS_SRV</value></allowedValue>
+		<allowedValue label="Read Journal Entry Items"><value>/sap/opu/odata/sap/API_JOURNALENTRYITEMBASIC_SRV</value></allowedValue>
+		<allowedValue label="Read Ledger"><value>/sap/opu/odata/sap/API_LEDGER_SRV</value></allowedValue>
+		<allowedValue label="Read Process Orders"><value>/sap/opu/odata/sap/API_PROCESS_ORDERS</value></allowedValue>
+		<allowedValue label="Read Segment"><value>/sap/opu/odata/sap/API_SEGMENT_SRV</value></allowedValue>
+		<allowedValue label="Read Trading Partner"><value>/sap/opu/odata/sap/API_PARTNERCOMPANY_SRV</value></allowedValue>
+		<allowedValue label="Read Trial Balance"><value>/sap/opu/odata/sap/C_TRIALBALANCE_CDS</value></allowedValue>
+		<allowedValue label="Recipe Header, Formula, and Process – Read, Write"><value>/sap/opu/odata/sap/API_RECIPE</value></allowedValue>
+		<allowedValue label="Request for Quotation - Create, Update, Delete"><value>/sap/opu/odata/sap/API_RFQ_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Reservation Document - Read, Create, Delete"><value>/sap/opu/odata/sap/API_RESERVATION_DOCUMENT_SRV</value></allowedValue>
+		<allowedValue label="Sales Contract - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_CONTRACT_SRV</value></allowedValue>
+		<allowedValue label="Sales District - Read"><value>/sap/opu/odata/sap/API_SALESDISTRICT_SRV</value></allowedValue>
+		<allowedValue label="Sales Documents with Credit Blocks – Read, Check, Release, Reject"><value>/sap/opu/odata/sap/API_SLS_DOC_WITH_CREDIT_BLOCK</value></allowedValue>
+		<allowedValue label="Sales Inquiry - Read (A2X)"><value>/sap/opu/odata/sap/API_SALES_INQUIRY_SRV</value></allowedValue>
+		<allowedValue label="Sales Order - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_ORDER_SRV</value></allowedValue>
+		<allowedValue label="Sales Order - Simulate (A2X)"><value>/sap/opu/odata/sap/API_SALES_ORDER_SIMULATION_SRV</value></allowedValue>
+		<allowedValue label="Sales Order Without Charge - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_ORDER_WITHOUT_CHARGE_SRV</value></allowedValue>
+		<allowedValue label="Sales Organization - Read"><value>/sap/opu/odata/sap/API_SALESORGANIZATION_SRV</value></allowedValue>
+		<allowedValue label="Sales Quotation - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_QUOTATION_SRV</value></allowedValue>
+		<allowedValue label="Sales Scheduling Agreement - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_SALES_SCHEDULING_AGREEMENT</value></allowedValue>
+		<allowedValue label="Scheduling Agreements – Read, Create"><value>/sap/opu/odata/sap/API_SCHED_AGRMT_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Service Confirmation - Create, Read, Update (A2X)"><value>/sap/opu/odata/sap/API_SERVICE_CONFIRMATION_SRV</value></allowedValue>
+		<allowedValue label="Service Entry Sheets – Read, Write"><value>/sap/opu/odata/sap/API_SERVICE_ENTRY_SHEET_SRV</value></allowedValue>
+		<allowedValue label="Service Order - Create, Read, Update (A2X)"><value>/sap/opu/odata/sap/API_SERVICE_ORDER_SRV</value></allowedValue>
+		<allowedValue label="Statistical Key Figure - Create, Read, Update, Delete"><value>/sap/opu/odata/sap/API_STATISTICALKEYFIGURE_SRV</value></allowedValue>
+		<allowedValue label="Supplier Evaluation Score - Read"><value>/sap/opu/odata/sap/A_SUPPLIEROPLSCORESAV_CDS</value></allowedValue>
+		<allowedValue label="Supplier Invoice – Create, Read, Release, Reverse"><value>/sap/opu/odata/sap/API_SUPPLIERINVOICE_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Supplier Quotation - Create with Reference, Update, Delete"><value>/sap/opu/odata/sap/API_QTN_PROCESS_SRV</value></allowedValue>
+		<allowedValue label="Transaction Data for Group Reporting - Read"><value>/sap/opu/odata/sap/API_GRTRANSACTIONDATA_SRV</value></allowedValue>
+		<allowedValue label="Update of Material Price"><value>/sap/opu/odata/sap/API_MATERIAL_VALUATION_SRV</value></allowedValue>
+		<allowedValue label="Warehouse Resource - Create, Read, Update, Delete (A2X)"><value>/sap/opu/odata/sap/API_WAREHOUSE_RESOURCE</value></allowedValue>
+		<allowedValue label="Work Center - Create, Read, Update"><value>/sap/opu/odata/sap/API_WORK_CENTERS</value></allowedValue>
+		<allowedValue label="Workforce Person SkillTag – Create, Read and Delete"><value>/sap/opu/odata/shcm/API_MANAGE_SKILLTAGS_SRV</value></allowedValue>
+  	</field>
+  </operation>
+</GenericConnectorDescriptor>

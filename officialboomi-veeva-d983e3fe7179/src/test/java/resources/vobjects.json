@@ -1,0 +1,165 @@
+{
+  "responseStatus": "SUCCESS",
+  "objects": [
+    {
+      "url": "/api/v20.3/metadata/vobjects/product__v",
+      "label": "Product",
+      "name": "product__v",
+      "label_plural": "Products",
+      "prefix": "00P",
+      "order": 1,
+      "in_menu": true,
+      "source": "standard",
+      "status": [
+        "active__v"
+      ]
+    }, {
+      "url": "/api/v20.3/metadata/vobjects/country__v",
+      "label": "Country",
+      "name": "country__v",
+      "label_plural": "Countries",
+      "prefix": "00C",
+      "order": 2,
+      "in_menu": true,
+      "source": "standard",
+      "status": [
+        "active__v"
+      ]
+    }, {
+      "url": "/api/v20.3/metadata/vobjects/application_role__v",
+      "label": "Application Role",
+      "name": "application_role__v",
+      "label_plural": "Application Role",
+      "prefix": "0AR",
+      "in_menu": true,
+      "source": "standard",
+      "status": [
+        "active__v"
+      ]
+    }, {
+      "url": "/api/v20.3/metadata/vobjects/doc_type_group__v",
+      "label": "Document Type Group",
+      "name": "doc_type_group__v",
+      "label_plural": "Document Type Groups",
+      "prefix": "0DG",
+      "order": 3,
+      "in_menu": true,
+      "source": "standard",
+      "status": [
+        "active__v"
+      ]
+    }, {
+      "url": "/api/v20.3/metadata/vobjects/doc_type_detail__v",
+      "label": "Document Type Detail",
+      "name": "doc_type_detail__v",
+      "label_plural": "Document Type Details",
+      "prefix": "0DT",
+      "in_menu": false,
+      "source": "standard",
+      "status": [
+        "active__v"
+      ]
+    }, {
+      "url": "/api/v20.3/metadata/vobjects/user_role_setup__v",
+      "label": "User Role Setup",
+      "name": "user_role_setup__v",
+      "label_plural": "User Role Setup",
+      "prefix": "0MY",
+      "in_menu": true,
+      "source": "standard",
+      "status": [
+        "active__v"
+      ]
+    }, {
+      "url": "/api/v20.3/metadata/vobjects/binder_metadata__v",
+      "label": "Binder Section Metadata",
+      "name": "binder_metadata__v",
+      "label_plural": "Binder Sections Metadata",
+      "prefix": "OBD",
+      "in_menu": false,
+      "source": "standard",
+      "status": [
+        "active__v"
+      ]
+    }, {
+      "url": "/api/v20.3/metadata/vobjects/vault_component__v",
+      "label": "Vault Component",
+      "name": "vault_component__v",
+      "label_plural": "Vault Components",
+      "prefix": "0CD",
+      "in_menu": false,
+      "source": "standard",
+      "status": [
+        "active__v"
+      ]
+    }, {
+      "url": "/api/v20.3/metadata/vobjects/outbound_package__v",
+      "label": "Outbound Package",
+      "name": "outbound_package__v",
+      "label_plural": "Outbound Packages",
+      "prefix": "0PO",
+      "in_menu": false,
+      "source": "standard",
+      "status": [
+        "active__v"
+      ]
+    }, {
+      "url": "/api/v20.3/metadata/vobjects/package_component__v",
+      "label": "Package Component",
+      "name": "package_component__v",
+      "label_plural": "Package Components",
+      "prefix": "0CP",
+      "in_menu": false,
+      "source": "standard",
+      "status": [
+        "active__v"
+      ]
+    }, {
+      "url": "/api/v20.3/metadata/vobjects/directory__v",
+      "label": "Directory",
+      "name": "directory__v",
+      "label_plural": "Directories",
+      "prefix": "0DI",
+      "order": 4,
+      "in_menu": true,
+      "source": "standard",
+      "status": [
+        "active__v"
+      ]
+    }, {
+      "url": "/api/v20.3/metadata/vobjects/survey__v",
+      "label": "Survey",
+      "name": "survey__v",
+      "label_plural": "Surveys",
+      "prefix": "0SV",
+      "order": 5,
+      "in_menu": true,
+      "source": "standard",
+      "status": [
+        "active__v"
+      ]
+    }, {
+      "url": "/api/v20.3/metadata/vobjects/distribution__v",
+      "label": "Distribution",
+      "name": "distribution__v",
+      "label_plural": "Distributions",
+      "prefix": "0DS",
+      "in_menu": false,
+      "source": "standard",
+      "status": [
+        "active__v"
+      ]
+    }, {
+      "url": "/api/v20.3/metadata/vobjects/crm_org__v",
+      "label": "CRM Org",
+      "name": "crm_org__v",
+      "label_plural": "CRM Orgs",
+      "prefix": "0CO",
+      "in_menu": false,
+      "source": "standard",
+      "status": [
+        "active__v"
+      ]
+    }
+  ]
+}

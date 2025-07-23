@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0">
+
+    <xs:include schemaLocation="oauthtypes.xsd" />
+    
+    <xs:element name="OAuth2Config">
+        <xs:complexType>
+            <xs:sequence minOccurs="1" maxOccurs="1">
+                <xs:element name="credentials" type="OAuth2Credentials" maxOccurs="1" minOccurs="1"/>
+                <xs:element name="authorizationTokenEndpoint" type="OAuth2Endpoint" maxOccurs="1" minOccurs="1"/>
+                <xs:element name="authorizationParameters" type="OAuth2RequestParameters" maxOccurs="1" minOccurs="1"/>
+                <xs:element name="accessTokenEndpoint" type="OAuth2Endpoint" maxOccurs="1" minOccurs="1"/>
+                <xs:element name="accessTokenParameters" type="OAuth2RequestParameters" maxOccurs="1" minOccurs="1"/>
+                <xs:element name="scope" type="xs:string" maxOccurs="1" minOccurs="1"/>
+                <xs:element name="jwtParameters" type="JwtAssertionParameters" maxOccurs="1" minOccurs="0" />
+            </xs:sequence>
+            <xs:attribute name="allowRefresh" type="xs:boolean" default="true"/>
+            <xs:attribute name="grantType" type="xs:string"/>            
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:complexType name="OAuth2Endpoint">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="sslOptions" type="OAuth2SSLOptions" maxOccurs="1" minOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="url" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="OAuth2RequestParameters">
+        <xs:sequence>
+            <xs:element name="parameter" type="KeyValuePair" maxOccurs="unbounded" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jxb:property name="parameters"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OAuth2SSLOptions">
+        <xs:attribute name="clientauth" type="xs:boolean"/>
+        <xs:attribute name="clientsslalias" type="xs:string"/>
+        <xs:attribute name="trustServerCert" type="xs:boolean" default="false"/>
+        <xs:attribute name="trustedcertalias" type="xs:string"/>
+    </xs:complexType>
+
+    <xs:complexType name="OAuth2Credentials">
+        <xs:attribute name="clientId" type="xs:string"/>
+        <xs:attribute name="clientSecret" type="xs:string"/>
+        <xs:attribute name="accessTokenKey" type="xs:string"/>
+        <xs:attribute name="accessToken" type="xs:string"/>
+        <xs:attribute name="username" type="xs:string"/>
+        <xs:attribute name="password" type="xs:string"/>
+    </xs:complexType>
+    
+    <xs:complexType name="JwtAssertionParameters">
+        <xs:sequence>
+            <xs:element name="signatureAlgorithm" type="JwtSignatureAlgorithm" />
+            <xs:element name="issuer" type="xs:string" />
+            <xs:element name="subject" type="xs:string" />
+            <xs:element name="audience" type="xs:string" />
+            <xs:element name="expiration" type="xs:long" default="-1" />
+            <xs:element name="extendedClaims" type="JwtExtendedClaims" />
+            <xs:element name="signatureKey" type="JwtSignatureKey" />
+            <xs:element name="idGeneratorMethod" type="JwtIdGeneratorMethod" />
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="JwtSignatureKey">
+        <xs:sequence>
+            <xs:any minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jxb:property name="component" />
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:any>
+        </xs:sequence>
+        <xs:attribute name="componentId" type="xs:string" />
+    </xs:complexType>
+    
+    <xs:complexType name="JwtExtendedClaims">
+        <xs:sequence>
+            <xs:element name="claim" type="KeyValuePair" maxOccurs="unbounded" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jxb:property name="claims"/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="KeyValuePair">
+	    <xs:attribute name="name" type="xs:string"/>
+	    <xs:attribute name="value" type="xs:string"/>
+    </xs:complexType>
+    
+</xs:schema>

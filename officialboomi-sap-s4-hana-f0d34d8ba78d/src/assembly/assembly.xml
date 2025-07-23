@@ -1,0 +1,33 @@
+<assembly>
+	<id>car</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>src/main/resources</directory>
+			<outputDirectory>META-INF</outputDirectory>
+			<includes>
+				<include>connector-config.xml</include>
+                <include>com.boomi.Overrides</include>				
+			</includes>
+		</fileSet>
+	</fileSets>
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>/lib</outputDirectory>
+            <excludes>
+                <exclude>com.boomi.connsdk:connector-sdk-api</exclude>
+                <exclude>com.boomi.connsdk:connector-sdk-test-util</exclude>
+                <exclude>commons-codec*</exclude>
+                <exclude>commons-io*</exclude>
+                <exclude>commons-logging*</exclude>
+                <exclude>jackson-annotations*</exclude>
+                <exclude>jackson-core*</exclude>
+                <exclude>jackson-databind*</exclude>
+                <exclude>slf4j-api*</exclude>
+            </excludes>
+		</dependencySet>
+	</dependencySets>
+</assembly>

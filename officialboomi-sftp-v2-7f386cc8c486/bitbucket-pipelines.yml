@@ -1,0 +1,112 @@
+#  Template gradle-build
+
+#  This template allows you to test and build your Java project with gradle.
+#  The workflow allows running tests, code checkstyle and security scans on the default branch.
+
+# Prerequisites: build.gradle and appropriate project structure should exist in the repository.
+
+image: atlassian/default-image:2
+
+definitions:
+  caches:
+    gradlewrapper: ~/.gradle/wrapper
+  steps:
+    - step: &build-gradle
+        name: Gradle Build
+        image: amazoncorretto:8-al2-jdk
+        caches:
+          - gradle
+          - gradlewrapper
+        script:
+          - ./gradlew clean build
+        artifacts:
+          - build/distributions/*.zip
+    - step: &git-secrets-scan
+        name: Security Scan Git Secrets
+        script:
+          - pipe: atlassian/git-secrets-scan:0.6.1
+    - step: &connector-scan
+        name: Connector Scan
+        script:
+          - pipe: docker://boomi/connector-scan:release
+            variables:
+              PROJECT: $BITBUCKET_REPO_SLUG
+              VERSION: '1.0'
+              BOOMI_TOKEN: $BOOMI_TOKEN
+        services:
+          - docker
+    - step: &connector-deploy
+        runs-on:
+          - 'qa'
+          - 'rhel'
+          - 'self.hosted'
+          - 'linux'
+        name: Connector Deploy (Deploy to QA)
+        script:
+          - pipe: docker://boomi/connector-deployment:release
+            variables:
+              PLATFORM_USERNAME: $PLATFORM_USERNAME_QA
+              PLATFORM_PASSWORD: $PLATFORM_PASSWORD_QA
+              PLATFORM_HOST: $PLATFORM_HOST_QA
+              PLATFORM_ACCOUNT_ID: $PLATFORM_ACCOUNT_ID_QA
+              CONNECTOR_GROUP_TYPE: $CONNECTOR_GROUP_TYPE_QA
+              CONNECTOR_CLASSIFICATION_TYPE: $CONNECTOR_CLASSIFICATION_TYPE_QA
+              CAR_PATH: "build/**/*.zip"
+        services:
+          - docker
+    - step: &connector-approval
+        name: Connector Approval (Deploy to Prod)
+        script:
+          - pipe: docker://boomi/connector-approval:release
+            variables:
+              BOOMI_TOKEN: $BOOMI_TOKEN
+              CONNECTOR_GROUP_TYPE: $CONNECTOR_GROUP_TYPE_PROD
+              CAR_PATH: "build/**/*.zip"
+        after-script:
+          - pipe: docker://boomi/upload-artifact:release
+            variables:
+              BOOMI_TOKEN: $BOOMI_TOKEN # (Required) token needed to run this automation
+              ARTIFACT_NAME: "build/**/*.zip"
+        services:
+              - docker
+    - step: &build-release-gradle # Use this to build and cut a release of the project
+        name: Build and Release Gradle
+        image: atlassian/default-image:2
+        caches:
+          - gradle
+          - gradlewrapper
+        script:
+          - ./gradlew clean release
+          - git push
+          - git push --tags
+        artifacts:
+          download: false # Do not download artifacts in this step
+          paths:
+            - build/** # This is intended to retrieve build artifacts
+pipelines:
+  default:
+    - step: *build-gradle
+    - step: *connector-scan
+  branches:
+    master:
+      - step: *git-secrets-scan
+      - step: *build-release-gradle
+      - step: *connector-scan
+    development:
+      - step: *build-gradle
+      - parallel:
+          - step: *connector-scan
+          - step: *connector-deploy
+  tags:
+    '*':
+      - step: *build-gradle
+      - parallel:
+          - step: *connector-deploy
+          - step: *connector-approval
+  custom:
+    run-connector-scan:
+      - step: *build-gradle
+      - step: *connector-scan
+    run-connector-deploy:
+      - step: *build-gradle
+      - step: *connector-deploy

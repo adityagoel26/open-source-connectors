@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<GenericConnectorDescriptor browsingType="any" requireConnectionForBrowse="true">
+
+	<field type="string" id="url" label="Connection URL">
+		<helpText>Refer to the JDBC vendor's documentation for the connection
+			URL syntax.
+		</helpText>
+	</field>
+	<field type="string" id="className" label="Class Name">
+		<helpText>Enter the fully-qualified Java class name of the JDBC
+			driver, which you can get from the JDBC vendor's documentation. For
+			example, sun.jdbc.odbc.JdbcOdbcDriver.
+		</helpText>
+	</field>
+	<field type="string" id="username" label="User Name">
+		<helpText>Enter the user name to log into the database.</helpText>
+	</field>
+	<field type="password" id="password" label="Password">
+		<helpText>Enter the password to log into the database.</helpText>
+	</field>
+    <field type="string" id="schemaName" label="Schema Name">
+    </field>
+	<field id="connectTimeOut" type="integer"
+		label="Connection Timeout (ms)">
+		<helpText>Sets the timeout for the connection.
+		</helpText>
+	</field>
+
+	<field id="readTimeOut" type="integer" label="Read Timeout (ms)">
+		<helpText>Sets the Socket Read Timeout.
+		</helpText>
+	</field>
+
+        <field id="enablePooling" label="Enable Connection Pooling" type="boolean">
+            <helpText>Select to enable connection pooling and make other fields active. If this is not enabled, then values for the other fields which are invisible are not saved including the defaults. Connection pooling may increase performance by using resources more efficiently.
+            </helpText>
+            <defaultValue>false</defaultValue>
+    </field>
+	<field id="maximumConnections" label="Maximum Connections" type="integer">
+        <helpText>Enter the maximum number of connections allowed in the pool at any time. The default is -1, which indicates an unlimited number of connections. You will receive an error if you attempt to exceed the maximum.</helpText>
+        <defaultValue>-1</defaultValue>
+        <visibilityCondition>
+        <valueCondition  fieldId="enablePooling">
+            <value>true</value>
+        </valueCondition>
+    </visibilityCondition>
+    </field>
+    <field id="minimumConnections" label="Minimum Connections" type="integer">
+        <helpText>Enter the minimum number of connections allowed in the pool at all times. The default is 0.</helpText>
+        <defaultValue>0</defaultValue>
+        <visibilityCondition>
+        <valueCondition  fieldId="enablePooling">
+            <value>true</value>
+        </valueCondition>
+    </visibilityCondition>
+    </field>
+    <field id="maximumIdleTime" label="Maximum Idle Time" type="integer">
+        <helpText>Enter the length of time in seconds that a connection can remain open in an idle state.</helpText>
+        <defaultValue>0</defaultValue>
+        <visibilityCondition>
+        <valueCondition  fieldId="enablePooling">
+            <value>true</value>
+        </valueCondition>
+    </visibilityCondition>
+    </field>
+    <field id="whenExhaustedAction" label="When Exhausted Action" type="string" displayType="list">
+        <helpText>Indicate whether to wait for a connection or immediately fail when a connection pool becomes exhausted.</helpText>
+        <defaultValue>Wait for Connection</defaultValue>
+        <allowedValue label ="Wait for Connection">
+            <value>0</value>
+        </allowedValue>
+        <allowedValue label ="Immediately Fail">
+            <value>1</value>
+        </allowedValue>
+        <visibilityCondition>
+        <valueCondition  fieldId="enablePooling">
+            <value>true</value>
+        </valueCondition>
+    </visibilityCondition>
+    </field>
+    <field id="maximumWaitTime" label="Maximum Wait Time" type="integer">
+        <helpText>Enter the length of time in seconds to wait for a connection from the pool.</helpText>
+        <defaultValue>0</defaultValue>
+        <visibilityCondition>
+        <valueCondition  fieldId="enablePooling">
+            <value>true</value>
+        </valueCondition>
+    </visibilityCondition>
+    </field>
+    <field id="testOnBorrow" label="Test Connection When Borrowing From Pool" type="boolean">
+            <helpText>Select an option to determine when to test if a connection is still valid.</helpText>
+            <defaultValue>false</defaultValue>
+            <visibilityCondition>
+        <valueCondition  fieldId="enablePooling">
+            <value>true</value>
+        </valueCondition>
+    </visibilityCondition>
+    </field>
+    <field id="testOnReturn" label="Test Connection When Returning to Pool" type="boolean">
+            <helpText>Select an option to determine when to test if a connection is still valid.</helpText>
+            <defaultValue>false</defaultValue>
+            <visibilityCondition>
+        <valueCondition  fieldId="enablePooling">
+            <value>true</value>
+        </valueCondition>
+    </visibilityCondition>
+    </field>
+    <field id="testWhileIdle" label="Test Idle Connections" type="boolean">
+            <helpText>Select an option to determine when to test if a connection is still valid.</helpText>
+            <defaultValue>false</defaultValue>
+            <visibilityCondition>
+        <valueCondition  fieldId="enablePooling">
+            <value>true</value>
+        </valueCondition>
+    </visibilityCondition>
+    </field>
+    <field id="validationQuery" label="Validation Query" type="string">
+        <helpText>Enter a simple SQL Statement to return a single row of data that indicates if the connection is valid.</helpText>
+	<visibilityCondition>
+        <valueCondition  fieldId="enablePooling">
+            <value>true</value>
+        </valueCondition>
+    </visibilityCondition>		   
+    </field>
+
+	<field type="customproperties" id="CustomProperties"
+		label="Connection Properties">
+		<helpText>Enter any additional properties that need to be set on the
+			initial context.
+		</helpText>
+	</field>
+	<testConnection method="CUSTOM" />
+
+	<operation types="CREATE" customTypeId="CREATE"
+			   customTypeLabel="INSERT" trackedDocument="user">
+
+		<field type="string" id="InsertionType" label="Insertion Type"
+			   scope="both">
+			<helpText>Choose the Insertion Type for insert operation</helpText>
+			<defaultValue>Dynamic Insert</defaultValue>
+			<allowedValue label="Dynamic Insert">
+				<value>Dynamic Insert</value>
+			</allowedValue>
+			<allowedValue label="Standard Insert">
+				<value>Standard Insert</value>
+			</allowedValue>
+		</field>
+
+		<field type="string" id="schemaName" label="Schema Name"
+			   scope="both">
+		</field>
+
+		<field id="query" type="string" label="SQL Query"
+			   displayType="textarea">
+			<helpText>Type or paste a SQL prepared statement that is valid for the Insert statement.
+				For more than one statement, separate by semicolon and append a connection property
+				allowMultiQueries=true to the database url.
+			</helpText>
+		</field>
+
+		<field type="boolean" id="joinTransaction" label="Join Transaction?">
+			<helpText>Select to join an existing transaction. For detailed information, please refer to the Boomi Help page.
+				&lt;boomi-help id="GUID:36b0cb58-24e1-42b7-8e2d-7343edcc73ac"&gt;Learn more&lt;/boomi-help&gt;
+			</helpText>
+		</field>
+
+		<field type="string" id="CommitOption" label="Commit Option">
+			<helpText>Sets the commit behavior when the connector writes to the
+				database.
+			</helpText>
+			<defaultValue>Commit By Profile</defaultValue>
+			<allowedValue label="Commit By Profile">
+				<value>Commit By Profile</value>
+			</allowedValue>
+			<allowedValue label="Commit By Number of Rows">
+				<value>Commit By Rows</value>
+			</allowedValue>
+			<visibilityCondition>
+				<valueCondition fieldId="joinTransaction">
+					<value>false</value>
+				</valueCondition>
+			</visibilityCondition>
+		</field>
+
+
+		<field id="batchCount" type="integer" label="Batch Count">
+			<helpText>Sets the number of prepared statements to be batched.
+			</helpText>
+			<visibilityCondition>
+				<valueCondition fieldId="joinTransaction">
+					<value>false</value>
+				</valueCondition>
+			</visibilityCondition>
+		</field>
+
+		<field type="boolean" id="enableQuery" label="Enable Sql Query"
+			   scope="browseOnly">
+			<helpText>On selection of this check box, Request Profile will be
+				generated along with the SqlQuery Parameter. This will override the
+				SQL Query text box in the Operation UI (Applies only for Standard
+				Insert/Commit by Profile)
+				Note:SQL Query parameter allows you to
+				prepare and execute dynamic SQL queries at runtime.
+			</helpText>
+		</field>
+
+	</operation>
+
+	<operation types="UPDATE" trackedDocument="user">
+
+		<field type="string" id="Type" label="Update Operation Type"
+			scope="both">
+			<helpText>Choose the Update Operation Type for update operation
+			</helpText>
+			<defaultValue>Dynamic Update</defaultValue>
+			<allowedValue label="Dynamic Update">
+				<value>Dynamic Update</value>
+			</allowedValue>
+			<allowedValue label="Standard Update">
+				<value>Standard Update</value>
+			</allowedValue>
+		</field>
+		<field type="string" id="schemaName" label="Schema Name"
+			scope="both">
+		</field>
+		<field id="query" type="string" label="SQL Query"
+			displayType="textarea">
+			<helpText>Type or paste a SQL prepared statement that is valid for the Update statement.
+				For more than one statement, separate by semicolon and append a connection property
+				allowMultiQueries=true to the database url.
+			</helpText>
+		</field>
+
+		<field type="boolean" id="joinTransaction" label="Join Transaction?">
+			<helpText>Select to join an existing transaction. For detailed information, please refer to the Boomi Help page.
+				&lt;boomi-help id="GUID:36b0cb58-24e1-42b7-8e2d-7343edcc73ac"&gt;Learn more&lt;/boomi-help&gt;
+			</helpText>
+		</field>
+
+		<field type="string" id="CommitOption" label="Commit Option">
+			<helpText>Sets the commit behavior when the connector writes to the
+				database.
+			</helpText>
+			<defaultValue>Commit By Profile</defaultValue>
+			<allowedValue label="Commit By Profile">
+				<value>Commit By Profile</value>
+			</allowedValue>
+			<allowedValue label="Commit By Number of Rows">
+				<value>Commit By Rows</value>
+			</allowedValue>
+			<visibilityCondition>
+				<valueCondition fieldId="joinTransaction">
+					<value>false</value>
+				</valueCondition>
+			</visibilityCondition>
+		</field>
+
+		<field id="batchCount" type="integer" label="Batch Count">
+			<helpText>Sets the number of prepared statements to be batched
+			</helpText>
+			<visibilityCondition>
+				<valueCondition fieldId="joinTransaction">
+					<value>false</value>
+				</valueCondition>
+			</visibilityCondition>
+		</field>
+
+		<field type="boolean" id="enableQuery" label="Enable Sql Query"
+			scope="browseOnly">
+			<helpText>On selection of this check box, Request Profile will be
+				generated along with the SqlQuery Parameter. This will override the
+				SQL Query text box in the Operation UI (Applies only for Standard
+				Update/Commit by Profile)
+				Note:SQL Query parameter allows you to
+				prepare and execute dynamic SQL queries at runtime.
+			</helpText>
+		</field>
+	</operation>
+
+	<operation types="EXECUTE" trackedDocument="user" customTypeId="GET"
+		customTypeLabel="GET">
+		<field type="string" id="GetType" label="Get Operation Type"
+			scope="both">
+			<helpText>Choose the Get Operation Type for Get operation</helpText>
+			<defaultValue>Dynamic Get</defaultValue>
+			<allowedValue label="Dynamic Get">
+				<value>Dynamic Get</value>
+			</allowedValue>
+			<allowedValue label="Standard Get">
+				<value>Standard Get</value>
+			</allowedValue>
+		</field>
+		<field type="boolean" id="INClause" label="Include IN Clause">
+			<helpText>
+				Note:IN Clause check box is
+				applicable for the Dynamic Get
+				Operation and Standard Operation, IN Clause
+				can be provided in the
+				SQL query field.
+			</helpText>
+		</field>
+			<field type="string" id="schemaName" label="Schema Name"
+			scope="both">
+		</field>
+		<field id="query" type="string" label="SQL Query"
+			displayType="textarea">
+			<helpText>Type or paste a SQL prepared statement that is valid for the Get statement.
+				For more than one statement, separate by semicolon and append a connection property
+				allowMultiQueries=true to the database url.
+			</helpText>
+		</field>
+
+		<field id="linkElement" type="string" label="Link Element">
+			<helpText>Identifies the field, usually the primary key in the
+				database, to split or group results into documents.
+			</helpText>
+		</field>
+
+		<field id="maxRows" type="integer" label="Max Rows" overrideable="true">
+			<helpText>Set the maximum number of rows to be returned from the
+				Database in a single request.
+			</helpText>
+		</field>
+
+		<field id="maxFieldSize" type="integer" label="Max Field Size">
+			<helpText>
+				Sets the limit for the maximum number of bytes that can be
+				returned
+				for character and binary column values in a ResultSetObject
+				produced
+				by this Statement object.This limit applies only to BINARY,
+				VARBINARY, LONGVARBINARY, CHAR, VARCHAR, NCHAR, NVARCHAR,
+				LONGNVARCHAR and LONGVARCHAR fields. If the limit is exceeded, the
+				excess data is silently discarded.
+			</helpText>
+		</field>
+		<field id="documentBatching" label="Document Batching" type="boolean" scope="browseOnly">
+            <helpText>The records retrieved from database are batched in the output.</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+		<field id="batchCount" type="integer" label="Batch Count">
+			<helpText>The number of records retrieved per output document for document batching.
+			</helpText>
+		</field>
+		<field id="fetchSize" type="integer" label="Fetch Size">
+			<helpText>
+				Sets the number of rows fetched when there is 
+				more than one row of result on select statements.
+			</helpText>
+		</field>
+		<field type="boolean" id="enableQuery" label="Enable SQL Query"
+			scope="browseOnly">
+			<helpText>On selection of this check box, Request Profile will be
+				generated along with the SQL Query parameter. This will override the
+				SQL Query text box in the Operation UI (Applies only for Standard
+				Get/Commit by Profile)
+				Note:SQL Query parameter allows you to prepare
+				and execute dynamic SQL queries at runtime.
+			</helpText>
+		</field>
+		<field id="tableNames" type="string" label="Table Names"
+			scope="browseOnly">
+			<helpText>If operating on more than one table in the SQL Query, enter comma separated table names values.
+			</helpText>
+		</field>
+	</operation>
+
+	<operation types="EXECUTE"
+		customTypeId="STOREDPROCEDUREWRITE" customTypeLabel="STOREDPROCEDURE" trackedDocument="user">
+		<field type="boolean" id="joinTransaction" label="Join Transaction?">
+			<helpText>Select to join an existing transaction. For detailed information, please refer to the Boomi Help page.
+				&lt;boomi-help id="GUID:36b0cb58-24e1-42b7-8e2d-7343edcc73ac"&gt;Learn more&lt;/boomi-help&gt;
+			</helpText>
+		</field>
+		<field id="batchCount" type="integer" label="Batch Count">
+			<helpText>Sets the number of prepared statements to be batched. This
+				is
+				applicable for procedures with only input requests
+			</helpText>
+			<visibilityCondition>
+				<valueCondition fieldId="joinTransaction">
+					<value>false</value>
+				</valueCondition>
+			</visibilityCondition>
+		</field>
+
+		<field id="maxFieldSize" type="integer" label="Max Field Size">
+			<helpText>
+				Sets the limit for the maximum number of bytes that can be
+				returned
+				for character and binary column values in a ResultSetObject
+				produced
+				by this Statement object.This limit applies only to BINARY,
+				VARBINARY, LONGVARBINARY, CHAR, VARCHAR, NCHAR, NVARCHAR,
+				LONGNVARCHAR and LONGVARCHAR fields. If the limit is exceeded, the
+				excess data is silently discarded.
+			</helpText>
+		</field>
+		<field type="string" id="schemaName" label="Schema Name"
+			scope="both">
+		</field>
+		<field id="procedureNamePattern" label="Procedure Name Pattern" type="string"
+			   scope="browseOnly">
+			<helpText>
+				You can reduce the load time of stored procedure list using this field with wildcard character (*).
+			</helpText>
+		</field>
+		<field id="fetchSize" type="integer" label="Fetch Size">
+			<helpText>
+				Sets the number of rows fetched when there is
+				more than one row of result on select statements.
+			</helpText>
+		</field>
+	</operation>
+
+	<operation types="EXECUTE" customTypeId="DELETE"
+		customTypeLabel="DELETE" trackedDocument="user">
+		<field type="string" id="DeleteType"
+			label="Delete Operation Type" scope="both">
+			<helpText>Choose the Delete Operation Type for delete operation
+			</helpText>
+			<defaultValue>Dynamic Delete</defaultValue>
+			<allowedValue label="Dynamic Delete">
+				<value>Dynamic Delete</value>
+			</allowedValue>
+			<allowedValue label="Standard Delete">
+				<value>Standard Delete</value>
+			</allowedValue>
+		</field>
+		<field type="string" id="schemaName" label="Schema Name"
+			scope="both">
+		</field>
+		<field id="query" type="string" label="SQL Query"
+			displayType="textarea">
+			<helpText>
+				Type or paste a SQL prepared statement that is valid for the Delete statement.
+				For more than one statement, separate by semicolon and append a connection property
+				allowMultiQueries=true to the database url.
+			</helpText>
+		</field>
+
+		<field type="boolean" id="joinTransaction" label="Join Transaction?">
+			<helpText>Select to join an existing transaction. For detailed information, please refer to the Boomi Help page.
+				&lt;boomi-help id="GUID:36b0cb58-24e1-42b7-8e2d-7343edcc73ac"&gt;Learn more&lt;/boomi-help&gt;
+			</helpText>
+		</field>
+
+		<field type="string" id="CommitOption" label="Commit Option">
+			<helpText>Sets the commit behavior when the connector writes to the
+				database.
+			</helpText>
+			<defaultValue>Commit By Profile</defaultValue>
+			<allowedValue label="Commit By Profile">
+				<value>Commit By Profile</value>
+			</allowedValue>
+			<allowedValue label="Commit By Number of Rows">
+				<value>Commit By Rows</value>
+			</allowedValue>
+			<visibilityCondition>
+				<valueCondition fieldId="joinTransaction">
+					<value>false</value>
+				</valueCondition>
+			</visibilityCondition>
+		</field>
+
+		<field id="batchCount" type="integer" label="Batch Count">
+			<helpText>Sets the number of prepared statements to be batched.
+			</helpText>
+			<visibilityCondition>
+				<valueCondition fieldId="joinTransaction">
+					<value>false</value>
+				</valueCondition>
+			</visibilityCondition>
+		</field>
+
+		<field type="boolean" id="enableQuery" label="Enable SQL Query"
+			scope="browseOnly">
+			<helpText>On selection of this check box, Request Profile will be
+				generated along with the SQL Query parameter. This will override the
+				SQL Query text box in the Operation UI (Applies only for Standard
+				Delete/Commit by Profile).
+				Note:SQL Query parameter allows you to
+				prepare and execute dynamic SQL queries at runtime.
+			</helpText>
+		</field>
+
+	</operation>
+	<operation types="UPSERT" trackedDocument="user">
+		<field type="boolean" id="joinTransaction" label="Join Transaction?">
+			<helpText>Select to join an existing transaction. For detailed information, please refer to the Boomi Help page.
+				&lt;boomi-help id="GUID:36b0cb58-24e1-42b7-8e2d-7343edcc73ac"&gt;Learn more&lt;/boomi-help&gt;
+			</helpText>
+		</field>
+		<field type="string" id="CommitOption" label="Commit Option">
+			<helpText>Sets the commit behavior when the connector writes to the
+				database.
+			</helpText>
+			<defaultValue>Commit By Profile</defaultValue>
+			<allowedValue label="Commit By Profile">
+				<value>Commit By Profile</value>
+			</allowedValue>
+			<allowedValue label="Commit By Number of Rows">
+				<value>Commit By Rows</value>
+			</allowedValue>
+			<visibilityCondition>
+				<valueCondition fieldId="joinTransaction">
+					<value>false</value>
+				</valueCondition>
+			</visibilityCondition>
+		</field>
+		<field type="string" id="schemaName" label="Schema Name"
+			scope="both">
+		</field>
+		<field id="batchCount" type="integer" label="Batch Count">
+			<helpText>Sets the number of prepared statements to be batched.
+			</helpText>
+			<visibilityCondition>
+				<valueCondition fieldId="joinTransaction">
+					<value>false</value>
+				</valueCondition>
+			</visibilityCondition>
+		</field>
+	</operation>
+
+	<operation types="EXECUTE" customTypeId="START_TRANSACTION"
+			   customTypeLabel="START TRANSACTION" supportsBrowse="false" trackedDocument="response" inputType="none" outputType="none">
+	</operation>
+
+	<operation types="EXECUTE" customTypeId="COMMIT_TRANSACTION"
+			   customTypeLabel="COMMIT TRANSACTION" supportsBrowse="false" trackedDocument="response" inputType="none" outputType="none">
+	</operation>
+
+	<operation types="EXECUTE" customTypeId="ROLLBACK_TRANSACTION"
+			   customTypeLabel="ROLLBACK TRANSACTION" supportsBrowse="false" trackedDocument="response" inputType="none" outputType="none">
+	</operation>
+
+	<dynamicProperty type="string" id="param_where" label="param_where" />
+    <dynamicProperty type="string" id="param_orderby" label="param_orderby" />
+
+<!--TODO Add them back once https://boomii.atlassian.net/browse/CON-623 is fixed.-->
+<!--	<trackedProperty id="transactionId" label="Transaction Id"/>-->
+<!--	<trackedProperty id="transactionStatus" label="Transaction Status"/>-->
+</GenericConnectorDescriptor>

@@ -1,0 +1,82 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:b="http://www.boomi.com/connector/annotation">
+    <xs:simpleType name="dtt">
+        <xs:annotation>
+            <xs:appinfo>
+                <b:dataFormat dataType="datetime" format="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"/>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="dt">
+        <xs:annotation>
+            <xs:appinfo>
+                <b:dataFormat dataType="datetime" format="yyyy-MM-dd"/>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="ch">
+        <xs:annotation>
+            <xs:appinfo/>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+    <xs:simpleType name="is">
+        <xs:annotation>
+            <xs:appinfo>
+                <b:fieldSpec ignoreForSort="true"/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:simpleType>
+    <xs:complexType name="done">
+        <xs:sequence/>
+    </xs:complexType>
+    <xs:complexType name="totalSize">
+        <xs:sequence/>
+    </xs:complexType>
+    <xs:complexType name="Case0">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="Id" type="ch"/>
+            <xs:element minOccurs="0" name="IsDeleted" type="ch"/>
+            <xs:element minOccurs="0" name="MasterRecordId" type="ch"/>
+            <xs:element minOccurs="0" name="CaseNumber" type="ch"/>
+            <xs:element minOccurs="0" name="ContactId" type="ch"/>
+            <xs:element minOccurs="0" name="AccountId" type="ch"/>
+            <xs:element minOccurs="0" name="AssetId" type="ch"/>
+            <xs:element minOccurs="0" name="SourceId" type="ch"/>
+            <xs:element minOccurs="0" name="ParentId" type="ch"/>
+            <xs:element minOccurs="0" name="SuppliedName" type="ch"/>
+            <xs:element minOccurs="0" name="SuppliedEmail" type="ch"/>
+            <xs:element minOccurs="0" name="SuppliedPhone" type="ch"/>
+            <xs:element minOccurs="0" name="SuppliedCompany" type="ch"/>
+            <xs:element minOccurs="0" name="Type" type="ch"/>
+            <xs:element minOccurs="0" name="Status" type="ch"/>
+            <xs:element minOccurs="0" name="Reason" type="ch"/>
+            <xs:element minOccurs="0" name="Origin" type="ch"/>
+            <xs:element minOccurs="0" name="Subject" type="ch"/>
+            <xs:element minOccurs="0" name="Priority" type="ch"/>
+            <xs:element minOccurs="0" name="Description" type="ch"/>
+            <xs:element minOccurs="0" name="IsClosed" type="ch"/>
+            <xs:element minOccurs="0" name="ClosedDate" type="dtt"/>
+            <xs:element minOccurs="0" name="IsEscalated" type="ch"/>
+            <xs:element minOccurs="0" name="OwnerId" type="ch"/>
+            <xs:element minOccurs="0" name="CreatedDate" type="dtt"/>
+            <xs:element minOccurs="0" name="CreatedById" type="ch"/>
+            <xs:element minOccurs="0" name="LastModifiedDate" type="dtt"/>
+            <xs:element minOccurs="0" name="LastModifiedById" type="ch"/>
+            <xs:element minOccurs="0" name="SystemModstamp" type="dtt"/>
+            <xs:element minOccurs="0" name="ContactPhone" type="ch"/>
+            <xs:element minOccurs="0" name="ContactMobile" type="ch"/>
+            <xs:element minOccurs="0" name="ContactEmail" type="ch"/>
+            <xs:element minOccurs="0" name="ContactFax" type="ch"/>
+            <xs:element minOccurs="0" name="Comments" type="ch"/>
+            <xs:element minOccurs="0" name="LastViewedDate" type="dtt"/>
+            <xs:element minOccurs="0" name="LastReferencedDate" type="dtt"/>
+            <xs:element minOccurs="0" name="EngineeringReqNumber__c" type="ch"/>
+            <xs:element minOccurs="0" name="SLAViolation__c" type="ch"/>
+            <xs:element minOccurs="0" name="Product__c" type="ch"/>
+            <xs:element minOccurs="0" name="PotentialLiability__c" type="ch"/>
+        </xs:sequence>
+        <xs:attribute name="type"/>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,120 @@
+I don't understand doc fields. there is no comma delimiting? Do all documents share the same field set? What is below vs. "common"
+
+
+{
+  "name": "name__v",
+  "scope": "DocumentVersion",
+  "type": "String",
+  "required": true,
+  "maxLength": 100,
+  "repeating": false,
+  "systemAttribute": true,
+  "editable": true,
+  "setOnCreateOnly": false,
+  "disabled": false,
+  "label": "Name",
+  "section": "generalProperties",
+  "sectionPosition": 1,
+  "hidden": false,
+  "queryable": true,
+  "shared": false,
+  "helpContent": "The document name.",
+  "definedInType": "type",
+  "definedIn": "base_document__v"
+}
+{
+  "name": "product__v",
+  "scope": "DocumentVersion",
+  "type": "ObjectReference",
+  "required": true,
+  "repeating": true,
+  "systemAttribute": true,
+  "editable": true,
+  "setOnCreateOnly": false,
+  "disabled": false,
+  "objectType": "product__v",
+  "label": "Product",
+  "section": "productInformation",
+  "sectionPosition": 1,
+  "hidden": false,
+  "queryable": true,
+  "shared": false,
+  "definedInType": "type",
+  "definedIn": "base_document__v",
+  "relationshipType": "reference",
+  "relationshipName": "document_product__vr"
+}
+{
+  "name": "document_creation_date__v",
+  "scope": "Document",
+  "type": "DateTime",
+  "required": true,
+  "repeating": false,
+  "systemAttribute": true,
+  "editable": false,
+  "setOnCreateOnly": false,
+  "disabled": false,
+  "label": "Created Date",
+  "section": "generalProperties",
+  "sectionPosition": 18,
+  "hidden": false,
+  "queryable": true,
+  "shared": false,
+  "definedInType": "type",
+  "definedIn": "base_document__v"
+}
+
+
+
+common
+
+{
+  "name": "submission_date__c",
+  "scope": "DocumentVersion",
+  "type": "Date",
+  "required": false,
+  "repeating": false,
+  "systemAttribute": false,
+  "editable": true,
+  "setOnCreateOnly": false,
+  "disabled": false,
+  "label": "Submission Date",
+  "section": "submissionDetails",
+  "sectionPosition": 3,
+  "hidden": false,
+  "queryable": true,
+  "shared": true,
+  "usedIn": [
+    {
+      "key": "promotional_piece__c",
+      "type": "type"
+    }, {
+      "key": "compliance_package__v",
+      "type": "type"
+    }, {
+      "key": "claim__c",
+      "type": "type"
+    }
+  ]
+}
+{
+  "name": "withdrawal_effective_date__c",
+  "scope": "DocumentVersion",
+  "type": "Date",
+  "required": false,
+  "repeating": false,
+  "systemAttribute": false,
+  "editable": true,
+  "setOnCreateOnly": false,
+  "disabled": false,
+  "label": "Withdrawal Effective Date",
+  "section": "pieceDetails",
+  "sectionPosition": 17,
+  "hidden": false,
+  "queryable": true,
+  "shared": false,
+  "definedInType": "type",
+  "definedIn": "promotional_piece__c"
+}
+ 
+ 

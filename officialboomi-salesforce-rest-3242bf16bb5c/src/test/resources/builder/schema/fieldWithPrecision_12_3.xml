@@ -1,0 +1,7 @@
+<xs:element minOccurs="0" name="name" type="xs:string">
+    <xs:annotation>
+        <xs:appinfo>
+            <b:dataFormat dataType="number" format="#########.###"/>
+        </xs:appinfo>
+    </xs:annotation>
+</xs:element>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<GenericConnectorDescriptor
+	browsingType="any" requireConnectionForBrowse="true">
+
+	<field id="url" label="URL" type="string">
+		<helpText>The URL field for the connector helps you connect to Live Optics portal and only supports the GET operation. Project details can be fetched with the given project ID as input.</helpText>
+		<defaultValue>https://papi.liveoptics.com/</defaultValue>
+	</field>
+	<field id="loginID" label="Login ID" type="string">
+		<helpText>An ASCII string of characters that uniquely identifies the user</helpText>
+	</field>
+	<field id="loginSecret" label="Login Secret" type="password">
+		<helpText>A base64-encoded string for user authentication</helpText>
+	</field>
+	<field id="sharedSecret" label="Shared Secret" type="password">
+		<helpText>A second base64-encoded string that extracts the session string from the Session Login method response</helpText>
+	</field>
+	<operation types="GET">
+		<field id="includeEntities" label="Include Entities" type="boolean">
+			<helpText>If checked, individual summaries for servers in this project will be provided in the response</helpText>
+		</field>
+	</operation>
+</GenericConnectorDescriptor>

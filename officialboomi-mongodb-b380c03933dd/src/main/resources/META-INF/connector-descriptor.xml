@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<GenericConnectorDescriptor
+    requireConnectionForBrowse="true">
+    <description>MongoDB Connector</description>
+    <field type="string" id="hostname" label="Host">
+  		<helpText>Enter the hostname or IP address of the MongoDB server.</helpText>
+  	</field>
+  	<field type="string" id="port" label="Port">
+  		<helpText>Enter the port of the MongoDB server.</helpText>
+  	</field>
+  	<field type="string" id="database" label="Database Name">
+  	</field>
+  	
+  	<field type="string" id="authDatabase" label="Authentication Database">
+        <helpText>When adding a user, you create the user in a specific database. This database is the authentication database for the user.</helpText>
+    </field>
+    
+  	<field type="boolean" id="mongosrv" label="Mongo+SRV">
+  		<helpText>Used to identify if we are using mongo+srv connection string.</helpText>
+  		<defaultValue>false</defaultValue>
+  		<allowedValue label="True">
+  			<value>true</value>
+  		</allowedValue>
+  		<allowedValue label="False">
+  			<value>false</value>
+  		</allowedValue>
+  	</field>
+  	
+  	<field type="string" id="connstring" label="Connection String">
+        <helpText>The Connection String describes the hosts to be used and options.The format of the Connection String is:
+        mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database.collection][?options]] 
+        mongodb:// is a required prefix to identify that this is a string in the standard connection format.
+        </helpText>
+        <visibilityCondition>
+        <valueCondition  fieldId="mongosrv">
+            <value>true</value>
+        </valueCondition>
+    </visibilityCondition>
+    </field>
+  	 	
+  	<field type="string" id="username" label="Username/Client Principal">
+        <helpText>Provide the username of the user. Username is known as client principal in case of Kerberos Authentication.</helpText>
+    </field>
+    <field type="password" id="password" label="Password">
+        <helpText>Enter the password of the user.</helpText>
+    </field>
+     	
+  	<field type="string" id="replicaSetMembers" label="Replica Set Members">
+  		<helpText>Enter replica set members as comma-separated values. Replica sets provide redundancy and high availability.</helpText>
+  	</field>
+  	<field type="string" id="authtype" label="Authentication Type">
+  		<helpText> Different authentication mechanisms that clients can use to verify their identity.</helpText>
+         <defaultValue>None</defaultValue>
+         <allowedValue label="None">
+         	<value>None</value>
+         </allowedValue>       
+  		<allowedValue label="SCRAM-SHA-1">
+  			<value>SCRAMSHA1</value>	
+  		</allowedValue>
+  		<allowedValue label="SCRAM-SHA-256">
+  			<value>SCRAMSHA256</value>
+  		</allowedValue>
+  		<allowedValue label="X.509">
+  			<value>X.509</value>
+  		</allowedValue>
+  		<allowedValue label="LDAP">
+  			<value>LDAP</value>		
+  		</allowedValue> 
+  		<allowedValue label="KERBEROS">
+  			<value>KERBEROS</value>		
+  		</allowedValue>             	
+  	</field>
+  	
+  	<field id="userCert" label="User Certificate" type="privatecertificate">
+        <helpText>A certificate which includes fields specifying the subject used for issuing CA, and other required information such as the certificate�s version and validity period which can be used to for X.509 authentication.</helpText>
+         <visibilityCondition>
+        <valueCondition  fieldId="authtype">
+            <value>X.509</value>
+        </valueCondition>
+        </visibilityCondition>
+    </field>
+    
+    <field id="caCert" label="CA Certificate" type="publiccertificate">
+        <helpText>A digital certificate issued by CA which certifies the ownership of a public key by the named subject of the certificate. A self-signed CA certificate can also be used.</helpText>
+        <visibilityCondition>
+        <valueCondition  fieldId="authtype">
+            <value>X.509</value>
+        </valueCondition>
+        </visibilityCondition>
+    </field>
+  	
+  	<field type="boolean" id="useSSL" label="Use SSL">
+  		<helpText>Used for establishing an encrypted link between a server and a client. Can be used for any of the selected Authentication Type.</helpText>
+  		<defaultValue>false</defaultValue>
+  		<allowedValue label="True">
+  			<value>true</value>
+  		</allowedValue>
+  		<allowedValue label="False">
+  			<value>false</value>
+  		</allowedValue>
+  	</field>
+  	<field type="string" id="kdc" label="KDC Name">
+        <helpText>Provide KDC Name. Required for Kerberos Authentication.</helpText>
+        <visibilityCondition>
+        <valueCondition  fieldId="authtype">
+            <value>KERBEROS</value>
+        </valueCondition>
+    </visibilityCondition>
+    </field>
+    <field type="string" id="realm" label="Realm Name">
+        <helpText>Provide Realm Name. Required for Kerberos Authentication.</helpText>
+        <visibilityCondition>
+        <valueCondition  fieldId="authtype">
+            <value>KERBEROS</value>
+        </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field type="string" id="krb5Path" label="Krb5 Config Path">
+        <helpText>Provide Krb5.conf file path of the local directory. Required for Kerberos Authentication.</helpText>
+        <visibilityCondition>
+        <valueCondition  fieldId="authtype">
+            <value>KERBEROS</value>
+        </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field type="string" id="gssPath" label="JAAS Config Path">
+        <helpText>Provide gss-jaas.conf file path of the local directory. Required for Kerberos Authentication.</helpText>
+        <visibilityCondition>
+        <valueCondition  fieldId="authtype">
+            <value>KERBEROS</value>
+        </valueCondition>
+        </visibilityCondition>
+    </field>
+  	
+  	
+  	
+  	 <testConnection method="CUSTOM" />
+  	<operation types="GET" >
+  	<field type="boolean" id="structureData" label="Structured Data" scope="browseOnly">
+		<helpText>On selection of this check box, a json schema will be created else no json schema is created. In order to create a json schema, please provide the ID.</helpText>
+	</field>
+  	<field type="string" id="objectId" label="Id" scope="browseOnly">
+		<helpText>This id is the ObjectId of any record in the MongoDB. Based on the provided id, a json schema will be generated which will be used as request/response profile for a particular operation.</helpText>
+	</field>
+	<field type="string" id="datatype" label="Datatype" scope="browseOnly">
+  		<helpText> This is the datatype of any record in MongoDB. Based on the provided datatype, a json schema will be generated which will be used as request/response profile for a particular operation.</helpText>
+         <defaultValue>None</defaultValue>
+         <allowedValue label="NONE">
+         	<value>NONE</value>
+         </allowedValue>       
+  		<allowedValue label="INTEGER">
+  			<value>INTEGER</value>	
+  		</allowedValue>
+  		<allowedValue label="BOOLEAN">
+  			<value>BOOLEAN</value>
+  		</allowedValue>
+  		<allowedValue label="STRING">
+  			<value>STRING</value>		
+  		</allowedValue>		
+  		<allowedValue label="DECIMAL128">
+  			<value>DECIMAL128</value>		
+  		</allowedValue>	
+  		<allowedValue label="DATE">
+  			<value>DATE</value>		
+  		</allowedValue>	
+  		<allowedValue label="DOUBLE">
+  			<value>DOUBLE</value>		
+  		</allowedValue>	
+  		<allowedValue label="LONG">
+  			<value>LONG</value>		
+  		</allowedValue>	
+  		<allowedValue label="OBJECTID">
+  			<value>OBJECTID</value>		
+  		</allowedValue>	
+  		<allowedValue label="BINARYDATA">
+  			<value>BINARYDATA</value>		
+  		</allowedValue>
+  		<allowedValue label="JAVASCRIPT">
+  			<value>JAVASCRIPT</value>		
+  		</allowedValue>
+  		<allowedValue label="TIMESTAMP">
+  			<value>TIMESTAMP</value>		
+  		</allowedValue>
+  		<allowedValue label="NULL">
+  			<value>NULL</value>		
+  		</allowedValue>	
+  	</field>
+  	</operation>
+  	<operation types="QUERY" allowFieldSelection="true">
+  	<field type="boolean" id="structureData" label="Structured Data" scope="browseOnly">
+		<helpText>On selection of this check box, a json schema will be created else no json schema is created. In order to create a json schema, please provide the ID.</helpText>
+	</field>
+		<field type="string" id="objectId" label="Id" scope="browseOnly">
+		<helpText>This id is the ObjectId of any record in the MongoDB. Based on the provided id, a json schema will be generated which will be used as request/response profile for a particular operation.</helpText>
+	</field>
+	<field type="string" id="datatype" label="Datatype" scope="browseOnly">
+  		<helpText> This is the datatype of any record in MongoDB. Based on the provided datatype, a json schema will be generated which will be used as request/response profile for a particular operation.</helpText>
+         <defaultValue>None</defaultValue>
+         <allowedValue label="NONE">
+         	<value>NONE</value>
+         </allowedValue>       
+  		<allowedValue label="INTEGER">
+  			<value>INTEGER</value>	
+  		</allowedValue>
+  		<allowedValue label="BOOLEAN">
+  			<value>BOOLEAN</value>
+  		</allowedValue>
+  		<allowedValue label="STRING">
+  			<value>STRING</value>		
+  		</allowedValue>	
+  		<allowedValue label="DECIMAL128">
+  			<value>DECIMAL128</value>		
+  		</allowedValue>	
+  		<allowedValue label="DATE">
+  			<value>DATE</value>		
+  		</allowedValue>	
+  		<allowedValue label="DOUBLE">
+  			<value>DOUBLE</value>		
+  		</allowedValue>	
+  		<allowedValue label="LONG">
+  			<value>LONG</value>		
+  		</allowedValue>	
+  		<allowedValue label="OBJECTID">
+  			<value>OBJECTID</value>		
+  		</allowedValue>	
+  		<allowedValue label="BINARYDATA">
+  			<value>BINARYDATA</value>		
+  		</allowedValue>
+  		<allowedValue label="JAVASCRIPT">
+  			<value>JAVASCRIPT</value>		
+  		</allowedValue>
+  		<allowedValue label="TIMESTAMP">
+  			<value>TIMESTAMP</value>		
+  		</allowedValue>
+  		<allowedValue label="NULL">
+  			<value>NULL</value>		
+  		</allowedValue>		
+  	</field>
+	<field type="integer" id="batchSize" label="Batch Size">
+		<helpText>The number of documents to be returned in each batch(default 1)</helpText>
+	</field>
+	<queryFilter grouping="any" sorting="one">
+		<operator id="EQUALS" label="Equal To" />
+		<operator id="NOT_EQUALS" label="Not Equal To" />
+		<operator id="GREATER_THAN" label="Greater Than" />
+		<operator id="LESS_THAN" label="Less Than" />
+		<operator id="GREATER_THAN_OR_EQUALS" label="Greater Than Or Equal" />
+		<operator id="LESS_THAN_OR_EQUALS" label="Less Than Or Equal" />
+		<operator id="IN_LIST" label="In">
+			<helpText>Comma separated list of values</helpText>
+		</operator>
+		<sortOrder id="asc" label="Ascending">
+			<supportedType type="string" />
+			<supportedType type="number" />
+		</sortOrder>
+		<sortOrder id="desc" label="Descending">
+			<supportedType type="string" />
+			<supportedType type="number" />
+		</sortOrder>
+	</queryFilter>
+ </operation> 
+ <operation types="CREATE">
+ <field type="boolean" id="structureData" label="Structured Data" scope="browseOnly">
+		<helpText>On selection of this check box, a json schema will be created else no json schema is created. In order to create a json schema, please provide the ID.</helpText>
+	</field>
+	<field type="boolean" id="includeSizeExceededPayload" label="Include Size Exceeded Payload" >
+		<helpText>On selection of this check box, input documents that were filtered based on size will be included in output.</helpText>
+	</field>
+  	<field type="string" id="objectId" label="Id" scope="browseOnly">
+		<helpText>This id is the ObjectId of any record in the MongoDB. Based on the provided id, a json schema will be generated which will be used as request/response profile for a particular operation.</helpText>
+	</field>
+	<field type="string" id="datatype" label="Datatype" scope="browseOnly">
+  		<helpText> This is the datatype of any record in MongoDB. Based on the provided datatype, a json schema will be generated which will be used as request/response profile for a particular operation.</helpText>
+         <allowedValue label="NONE">
+         	<value>NONE</value>
+         </allowedValue>       
+  		<allowedValue label="INTEGER">
+  			<value>INTEGER</value>	
+  		</allowedValue>
+  		<allowedValue label="BOOLEAN">
+  			<value>BOOLEAN</value>
+  		</allowedValue>
+  		<allowedValue label="STRING">
+  			<value>STRING</value>		
+  		</allowedValue>	
+  		<allowedValue label="DECIMAL128">
+  			<value>DECIMAL128</value>		
+  		</allowedValue>	
+  		<allowedValue label="DATE">
+  			<value>DATE</value>		
+  		</allowedValue>	
+  		<allowedValue label="DOUBLE">
+  			<value>DOUBLE</value>		
+  		</allowedValue>	
+  		<allowedValue label="LONG">
+  			<value>LONG</value>		
+  		</allowedValue>	
+  		<allowedValue label="OBJECTID">
+  			<value>OBJECTID</value>		
+  		</allowedValue>	
+  		<allowedValue label="BINARYDATA">
+  			<value>BINARYDATA</value>		
+  		</allowedValue>
+  		<allowedValue label="JAVASCRIPT">
+  			<value>JAVASCRIPT</value>		
+  		</allowedValue>
+  		<allowedValue label="TIMESTAMP">
+  			<value>TIMESTAMP</value>		
+  		</allowedValue>
+  		<allowedValue label="NULL">
+  			<value>NULL</value>		
+  		</allowedValue>		
+  	</field>
+  		<field type="integer" id="batchSize" label="Batch Size">
+  			<helpText>The number of documents to be returned in each batch(default 1)</helpText>
+  		</field>
+  	</operation>
+  <operation types="UPDATE">
+   <field type="boolean" id="structureData" label="Structured Data" scope="browseOnly">
+		<helpText>On selection of this check box, a json schema will be created else no json schema is created. In order to create a json schema, please provide the ID.</helpText>
+	</field>
+	  <field type="boolean" id="includeSizeExceededPayload" label="Include Size Exceeded Payload" >
+		<helpText>On selection of this check box, input documents that were filtered based on size will be included in output.</helpText>
+	</field>
+  	<field type="string" id="objectId" label="Id" scope="browseOnly">
+		<helpText>This id is the ObjectId of any record in the MongoDB. Based on the provided id, a json schema will be generated which will be used as request/response profile for a particular operation.</helpText>
+	</field>
+	<field type="string" id="datatype" label="Datatype" scope="browseOnly">
+  		<helpText> This is the datatype of any record in MongoDB. Based on the provided datatype, a json schema will be generated which will be used as request/response profile for a particular operation.</helpText>
+         <allowedValue label="NONE">
+         	<value>NONE</value>
+         </allowedValue>       
+  		<allowedValue label="INTEGER">
+  			<value>INTEGER</value>	
+  		</allowedValue>
+  		<allowedValue label="BOOLEAN">
+  			<value>BOOLEAN</value>
+  		</allowedValue>
+  		<allowedValue label="STRING">
+  			<value>STRING</value>		
+  		</allowedValue>	
+  		<allowedValue label="DECIMAL128">
+  			<value>DECIMAL128</value>		
+  		</allowedValue>	
+  		<allowedValue label="DATE">
+  			<value>DATE</value>		
+  		</allowedValue>	
+  		<allowedValue label="DOUBLE">
+  			<value>DOUBLE</value>		
+  		</allowedValue>	
+  		<allowedValue label="LONG">
+  			<value>LONG</value>		
+  		</allowedValue>	
+  		<allowedValue label="OBJECTID">
+  			<value>OBJECTID</value>		
+  		</allowedValue>	
+  		<allowedValue label="BINARYDATA">
+  			<value>BINARYDATA</value>		
+  		</allowedValue>
+  		<allowedValue label="JAVASCRIPT">
+  			<value>JAVASCRIPT</value>		
+  		</allowedValue>
+  		<allowedValue label="TIMESTAMP">
+  			<value>TIMESTAMP</value>		
+  		</allowedValue>
+  		<allowedValue label="NULL">
+  			<value>NULL</value>		
+  		</allowedValue>	
+  	</field>
+  		<field type="integer" id="batchSize" label="Batch Size">
+  			<helpText>The number of documents to be returned in each batch(default 1)</helpText>
+  		</field>
+  </operation>
+  <operation types="UPSERT">
+  <field type="boolean" id="structureData" label="Structured Data" scope="browseOnly">
+		<helpText>On selection of this check box, a json schema will be created else no json schema is created. In order to create a json schema, please provide the ID.</helpText>
+	</field>
+	<field type="boolean" id="includeSizeExceededPayload" label="Include Size Exceeded Payload" >
+		<helpText>On selection of this check box, input documents that were filtered based on size will be included in output.</helpText>
+	</field>
+  	<field type="string" id="objectId" label="Id" scope="browseOnly">
+		<helpText>This id is the ObjectId of any record in the MongoDB. Based on the provided id, a json schema will be generated which will be used as request/response profile for a particular operation.</helpText>
+	</field>
+	<field type="string" id="datatype" label="Datatype" scope="browseOnly">
+  		<helpText> This is the datatype of any record in MongoDB. Based on the provided datatype, a json schema will be generated which will be used as request/response profile for a particular operation.</helpText>
+         <allowedValue label="NONE">
+         	<value>NONE</value>
+         </allowedValue>       
+  		<allowedValue label="INTEGER">
+  			<value>INTEGER</value>	
+  		</allowedValue>
+  		<allowedValue label="BOOLEAN">
+  			<value>BOOLEAN</value>
+  		</allowedValue>
+  		<allowedValue label="STRING">
+  			<value>STRING</value>		
+  		</allowedValue>	
+  		<allowedValue label="DECIMAL128">
+  			<value>DECIMAL128</value>		
+  		</allowedValue>	
+  		<allowedValue label="DATE">
+  			<value>DATE</value>		
+  		</allowedValue>	
+  		<allowedValue label="DOUBLE">
+  			<value>DOUBLE</value>		
+  		</allowedValue>	
+  		<allowedValue label="LONG">
+  			<value>LONG</value>		
+  		</allowedValue>	
+  		<allowedValue label="OBJECTID">
+  			<value>OBJECTID</value>		
+  		</allowedValue>	
+  		<allowedValue label="BINARYDATA">
+  			<value>BINARYDATA</value>		
+  		</allowedValue>
+  		<allowedValue label="JAVASCRIPT">
+  			<value>JAVASCRIPT</value>		
+  		</allowedValue>
+  		<allowedValue label="TIMESTAMP">
+  			<value>TIMESTAMP</value>		
+  		</allowedValue>
+  		<allowedValue label="NULL">
+  			<value>NULL</value>		
+  		</allowedValue>	
+  	</field>
+  		<field type="integer" id="batchSize" label="Batch Size">
+  			<helpText>The number of documents to be returned in each batch (default 1)</helpText>
+  		</field>
+  </operation>
+  <operation types="DELETE" allowFieldSelection="true">
+  		<field type="integer" id="batchSize" label="Batch Size">
+  			<helpText>The number of documents to be returned in each batch (default 1)</helpText>
+  		</field>
+  </operation>
+</GenericConnectorDescriptor>

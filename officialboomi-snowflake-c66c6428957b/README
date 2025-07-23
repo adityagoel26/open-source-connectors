@@ -1,0 +1,356 @@
+Snowflake Connector 
+
+The Snowflake connector is a key part of the Boomi Integration process that makes it easy to work with Snowflake, one of the fastest growing cloud data management platforms.  
+
+The Snowflake connector lets users take advantage of all the capabilities a Snowflake data warehouse offers: speed, usability, and flexibility. 
+
+Boomi Integration uses JDBC to connect to the Snowflake Cloud Data Platform. 
+
+The Snowflake connector is using Amazon S3 default encryption. 
+
+
+Connector configuration 
+
+To configure a connector to communicate with your Snowflake tenant, set up two components: 
+
+Snowflake  connection 
+
+Snowflake  operation 
+
+This design provides reusable components, which contain connection settings such as username, password, etc. After building your connection and operation, set up your connector within a process. When you have properly configured your connector within your process, Boomi Integration can map to and from virtually any system using the Snowflake connector to query, create, update and/or delete data. 
+
+Supported editions 
+
+The Snowflake connector works with Snowflake through JDBC driver version 3.12.1 (or later). 
+
+Prerequisites 
+
+To set up the connector, you must download a Snowflake JDBC driver. This is a JAR file (snowflake-jdbc-#.#.#.jar – where #.#.# is the JDBC driver version number) Follow this documentation to download the driver: https://docs.snowflake.com/en/user-guide/jdbc-download.html#downloading-the-driver 
+
+The Snowflake JDBC driver requires a 64-bit Boomi runtime using Java 1.8 (or higher). 
+
+Deploy the JDBC driver by uploading the JAR file into a  Boomi Integration Account Library (Setup > Account Libraries), then create a Custom Library component that referenced that file and set the ‘Custom Library Type’ to type ‘Connector’ and the ‘Connector Type’ to ‘Snowflake’. Then deploy the Custom Library to the appropriate Atom or Molecule environment(s). 
+
+If you experience difficulties, try the steps below:  
+
+Restart runtime and try again. 
+
+Manually copy the driver (‘snowflake-jdbc-x.xx.x.jar’) to the runtimes userlib directory, restart runtime and try again. 
+
+Contact support. 
+
+Note: Uploaded or imported files are first passed through a virus scanner. If it detects a virus, the upload or import will result in an error, and the file will be rejected. Please contact Boomi Support if an error persists. 
+
+Tracked properties 
+
+This connector has the following tracked properties that you can set or reference in various shape parameters: 
+
+SnowSQL – the SnowSQL script containing the SnowSQL command you want to execute. 
+
+Additional resources 
+
+https://docs.snowflake.com/en/user-guide/intro-key-concepts.html 
+
+ 
+
+Snowflake connection 
+
+The Snowflake connection represents a single instance, it contains the connection settings for Snowflake, including connection URL, username, password and other optional fields. 
+
+Connection tab 
+
+The Snowflake connection tab contains all of the needed information to connect to a Snowflake tenant. 
+
+The following fields appear on the Connections tab: 
+
+Connection URL – The connection string to establish a connection to Snowflake instance in which you must replace ACCOUNTNAME with the full account name provided by Snowflake, it may include [account].[region_id].[platform] 
+
+Username - Username to authenticate with Snowflake. 
+
+Password - Password to authenticate with Snowflake. 
+
+Private Key String (Optional) – Key Pair Authentication username. 
+
+Passphrase (Optional) – Key Pair Authentication password. 
+
+Warehouse Name (Optional) – The warehouse name. Case sensitive if written between double quotation marks. 
+
+Database Name (Optional) - The database name. Case sensitive if written between double quotation marks. 
+
+Schema Name (Optional) – The database schema name. Case sensitive if written between double quotation marks. 
+
+Role (Optional) – The user’s role. 
+
+S3 Access Key ID (Optional): Enter the access key for your AWS account if you want to use Amazon S3 for staging. You manage access keys for your AWS account using the AWS Management Console as the AWS account root user. Leave the field empty to not use bulk loading through AWS S3.  
+
+S3 Secret Key (Optional): Enter the secret access key for your AWS account. When you create an access key, AWS allows you to view and download your secret key. Leave the field empty to not use bulk loading through AWS S3. 
+
+Date Time Format (Optional): Choose the desired Date Time format. 
+
+Date Format (Optional): Choose the desired Date format. 
+
+Time Format (Optional): Choose the desired Time format. 
+
+ 
+
+The connector applies Date / Time formats when it is writing Boomi date/time values into Snowflake. Conversely, it applies these formats when it is reading date/time values from Snowflake into Boomi variables. 
+
+ 
+
+Additional resources 
+
+https://docs.snowflake.com/en/user-guide/jdbc-using.html 
+
+ 
+
+ 
+
+Snowflake operations 
+
+A Snowflake operation defines how to interact with the connection, including transactions, batching, custom properties, etc. It supports the following actions: 
+
+Inbound: Get, Query, Bulk Unload 
+
+Outbound: Create, Update, Delete, SnowSQL, Bulk Load 
+
+In/Outbound: Execute 
+
+ 
+
+Options tab 
+
+When you configure an action, the following fields appear on the Options tab: 
+
+Connector Action (All) – The name of the action. 
+
+Object (All) – The operation’s returned object. 
+
+Response Profile (Get, Query) - JSON profile that contains the base fields for the response. 
+
+Request Profile (Create, Update, Delete, Execute, SnowSQL, Bulk Load, Bulk Unload) - JSON profile that contains the base fields for the request. 
+
+Tracking direction (All) - This setting enables you to choose which document appears in Process Reporting.  
+
+Return Application Error Responses (All)- This setting controls whether an application error prevents an operation from completing. 
+
+Batch Size (Get, Create, Update, Query, Delete, Execute, SnowSQL) – For Get, it represents the number of records retrieved per fetch of the query’s result set.  
+
+For Create, it represents the number of records sent to the database in one execution. 
+
+For Update, it represents the number of update requests per database call. 
+
+For Query, it represents the number of records retrieved per database query. 
+
+For Delete, it represents the number of deleted queries per database call. 
+
+For Execute, it represents the number of stored procedure calls per database call. 
+
+For SnowSQL, it is applicable when Apply Batching is checked. Default value: 1. 
+
+For example: statement1; statement2; statement3; statement4; 
+
+When Batch Size is applied and for example Batch Size is 5, the connector is going to wait until it receives 5 input documents; then statement1 is going to be executed 5 times after that statement2 5 times and so on. 
+
+S3 Bucket Name (Optional) (Bulk Load, Bulk Unload) – The bucket name of AWS S3. Leave empty to not use bulk unloading through AWS S3. 
+
+AWS Region (Optional) (Bulk Load, Bulk Unload) – The name of the AWS region in which your account resides. 
+
+Stage Name (Optional) (Bulk Load, Bulk Unload) – Name of Snowflake internalStage. Leave empty to not use internalStage. Case sensitive if written between double quotation marks. 
+
+Option - Truncate before loading (Optional) (Create, Bulk Load)– Check if you want to empty the Snowflake table before loading data into it.  
+
+Files Path (Optional) (Bulk Load) – Leave empty if not using internalStage. Path and name of the files you want to upload. Use the following format “<path>/<file_name>” (For example: C:/directory/file). Wildcard characters (*,?) are supported to enable uploading multiple files in a directory. 
+
+Parallelism (Optional) (Bulk Load)– Leave empty if not using internalStage. The number of threads (1- 99) the action will use to upload the files. Default value: 4. 
+
+Option - Auto Compress (Optional) (Bulk Load) – Leave empty if not using internalStage. Check if you want to compress files during upload. 
+
+COPY INTO Compression (Optional) (Bulk Load, Bulk Unload) – Leave empty if not using Snowflake internalStage. The compression method the action will use on already compressed files. Default value: AUTO_DETECT. 
+
+PUT Compression (Optional) (Bulk Load) – Leave empty if not using Snowflake internalStage. The compression method the action will use on already compressed files. Default value: AUTO_DETECT. 
+
+Option – Overwrite (Optional) (Bulk Load) – Leave empty if not using Snowflake internalStage. Check if you want to overwrite an existing file with the same name during upload.  
+
+Unique Key(s) (comma separated) (Update, Delete) – A list of one or more column name(s) used to uniquely identify the affected record(s). Column names are case sensitive if enclosed in double quotes. 
+
+SQL Script (SnowSQL) – The SnowSQL command you want to execute. 
+
+Option - Apply Batching (SnowSQL) – Check if you want to apply batching. 
+
+Column Names (Optional) (Bulk Load) – An explicit set of columns (separated by comma) to load from the data files. 
+
+File Format Name (Optional) (Bulk Load, Bulk Unload) - Snowflakes predefined format names. Leave empty if you don’t want to use a predefined file format. 
+
+File Format Type (Optional) (Bulk Load, Bulk Unload) – The data files format. Default value: CSV. 
+
+Other Format Options (space separated) (Optional) (Bulk Load, Bulk Unload) – Fill if the document is implementing other format options. Leave empty if not applicable. 
+
+For example: RECORD_DELIMITER = '\n’ 
+
+More details at Snowflake Format Type Options 
+
+Copy Options (Optional) (Bulk Load, Bulk Unload) – Fill if you want to implement copy options (space separated). Leave empty if not applicable. 
+
+For example: SIZE_LIMIT = 5 
+
+More details at Snowflake Copy Options 
+
+Chunk Size (Bulk Load) – the maximum size of each chunk of query results to download (in MB). It is available for CSV and JSON file formats. Default value 250MB. Use -1 to disable chunking. 
+
+Stage Path (Bulk Load, Bulk Unload) - the staging path. If left empty, the connector will use an internal default path. Variables can be used: 
+
+$OPERATION – the name of the operation (bulkUnload/bulkLoad). 
+
+$DATE - today's date in yyyyMMdd format. 
+
+$TIME – current time in HHmmss.SSS format  
+
+If you don’t specify any path, the connector will generate a default path ‘boomi/$OPERATION/$DATE/$TIME/$UUID/’, where $UUID is the Universally Unique Identifier, a 36 characters value displayed as five numeric groups separated by hyphens. 
+
+Option – Include Column Header (Optional) (Bulk Unload) – Check if you want to include the column headers in the output file. 
+
+ 
+
+Get 
+
+Retrieves one or more rows from a database table or view as JSON files to Dell Boomi platform. This operation will fetch the imported database object to Boomi in Batch size rows per execution. 
+
+The GET Operation works with input data via a JDBC profile that can be created via the operation’s Import functionality. The created profile’s ID element is set to a JSON object specifying the selection criteria. It has the ability to import generated table profile elements. The GET operation supports batching. 
+
+ 
+
+ 
+
+Create  
+
+Inserts data to Snowflake. Each document input to the connector must contain a single record that will be a row inserted into the target table. This operation has the ability to import generated table profile elements and it supports batching. 
+
+This operation inserts records to a Snowflake table by converting the input data to insert statements that can be batched and executed Batch size rows at a time until all data is processed. 
+
+ 
+
+Update 
+
+Updates the value of data in the database. You use this operation to import generated table profile elements. You can choose the columns which you want to use as the primary key and then give them new values. Works with dynamic data that can be overridden by static data. 
+
+Update operation supports batching. 
+
+ 
+
+ 
+
+Query 
+
+Retrieves one or more records from a specific table. By importing a generated profile element, you can see the whole table. It supports sorting and filters. It has the ability to import generated table profile elements.  
+
+Query operation supports batching. 
+
+ 
+
+ 
+
+Delete 
+
+Deletes record(s) from the database. It uses a message shape to convert the JSON deletion object into XML format, extracting their selection criteria (For example: ID) from the JSON object. It has the ability to import generated table profile elements.   
+
+Delete operation supports batching. 
+
+ 
+
+Execute 
+
+The Snowflake  connector supports executing Snowflake stored procedures. First you must create the stored procedures with the Snowflake DDL command. After this, you can request the response profile for the stored procedure with the Execute action. When calling, using, and getting values back from stored procedures, you might need to do a conversion from a Snowflake SQL data type to a JavaScript data type (or vice versa). The stored procedures use data as JavaScript variable in JSON format. The connector has the ability to import generated stored procedure parameters profile elements.  
+
+Execute operation supports batching. 
+
+ 
+
+SnowSQL 
+
+The Snowflake  connector supports executing a SQL command. Enter the desired command in the SQL Script field.  
+
+ 
+
+The SQL script can contain defined parameters using $ sign.  
+
+Example: INSERT INTO LOGTABLE PARSE_JSON($param1); 
+
+ 
+
+When importing an object in the SnowSQL operation the connector provides a generated dummy JSON profile which you can customize based on the parameters written in the SQL script.  
+
+ 
+
+You can add a new JSON profile by importing a JSON schema from your local drive that matches the parameters written in the SQL script. 
+
+ 
+
+ 
+
+Bulk Load   
+
+Inserts new data from files on your local disk or Amazon S3 bucket into Snowflake.  
+
+This operation works as follows:   
+
+Specifying an S3 Bucket Name or Stage Name, the action will send the data to that Amazon S3 bucket or Snowflake internalStage that was defined. Then it will fill the Snowflake Table with that data using Snowflake “COPY INTO” command. Finally, it will delete the data from the bucket/internalStage.  
+
+via Snowflake internalStage 
+
+This is enabled by filling in the fields: Stage Name, Files Path, Parallelism, Option - Auto Compress, Compression, Option – Overwrite. 
+
+When using Snowflake internalStages you need to do some configuration in Snowflake: create the internalStage (https://docs.snowflake.com/en/sql-reference/sql/create-stage.html#create-stage), with the FILE_FORMAT parameter added in the create stage statement. 
+
+via S3 external location 
+
+This is enabled by filling in the fields: S3 Bucket Name, Region  
+
+When using Amazon S3 bucket as an external location, you need only the S3 credentials, no staging or any other configurations, except granting permissions on the S3 account. 
+
+ 
+
+ 
+
+Bulk Unload 
+
+Retrieves data from a database table or view as CSV/JSON files to Dell Boomi platform. This operation works as follows:   
+
+By specifying the S3 Bucket Name or Stage Name, the action will send the imported database object to that Amazon S3 bucket using Snowflake “COPY INTO” command. Then it will retrieve it into Boomi. Finally, it will decide whether to remove it from the bucket or not, based on parameters entered in the Copy Options field.  
+
+via Snowflake internalStage 
+
+This is enabled by filling in the fields: Stage Name, Files Path, Parallelism, Option - Auto Compress, Compression, Option – Overwrite. 
+
+When using Snowflake internalStages you need to do some configuration in Snowflake: create the internalStage (https://docs.snowflake.com/en/sql-reference/sql/create-stage.html#create-stage), with the FILE_FORMAT parameter added in the create stage statement.  
+
+via S3 external location 
+
+This is enabled by filling in the fields: S3 Bucket Name, Region  
+
+When using Amazon S3 bucket as an external location, you need only the S3 credentials, no staging or any other configurations, except granting permissions on the S3 account. 
+
+  
+
+  
+
+ 
+
+Archiving tab 
+
+See Connector operation's Archiving tab for more information. 
+
+ 
+
+Tracking tab 
+
+See Connector operation's Tracking tab for more information. 
+
+ 
+
+Caching tab 
+
+See Connector operation's Caching tab for more information. 
+
+ 
+
+ 

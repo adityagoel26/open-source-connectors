@@ -1,0 +1,17 @@
+# pipelines configuration based on https://bitbucket.org/officialboomi/connectivity-pipelines/src/main/README.md
+image: amazoncorretto:8-al2-jdk
+
+pipelines:
+  default:
+    import: connectivity-pipelines:main:build-and-test
+  pull-requests:
+    '**':
+      import: connectivity-pipelines:main:build-test-and-scan
+  branches:
+    '{development}':
+      import: connectivity-pipelines:main:build-test-scan-and-deploy-connector-to-qa
+    '{main,master}':
+      import: connectivity-pipelines:main:build-test-scan-and-manually-tag-connector-internal
+  tags:
+    '*':
+      import: connectivity-pipelines:main:build-test-scan-and-deploy-connector-to-qa-and-production

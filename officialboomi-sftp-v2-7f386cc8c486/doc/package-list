@@ -1,0 +1,9 @@
+com.boomi.connector.sftp
+com.boomi.connector.sftp.actions
+com.boomi.connector.sftp.common
+com.boomi.connector.sftp.constants
+com.boomi.connector.sftp.exception
+com.boomi.connector.sftp.handlers
+com.boomi.connector.sftp.operations
+com.boomi.connector.sftp.results
+com.boomi.connector.sftp.retry

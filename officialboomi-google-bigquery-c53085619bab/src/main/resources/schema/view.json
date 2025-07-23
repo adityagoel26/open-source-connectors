@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "tableReference": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string"
+        },
+        "datasetId": {
+          "type": "string"
+        },
+        "tableId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "projectId",
+        "datasetId",
+        "tableId"
+      ]
+    },
+    "view": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "userDefinedFunctionResources": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "resourceUri": {
+                  "type": "string"
+                },
+                "inlineCode": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "resourceUri",
+                "inlineCode"
+              ]
+            }
+          ]
+        },
+        "useLegacySql": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "query"
+      ]
+    },
+    "expirationTime": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "labels": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "key"
+      ]
+    }
+  },
+  "required": [
+    "view"
+  ]
+}

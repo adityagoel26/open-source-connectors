@@ -1,0 +1,1 @@
+{"properties":{"/Person":{"isKey":true,"type":"String"},"/OrdinalNumber":{"isKey":true,"type":"String"},"/AddressID":{"isKey":true,"type":"String"},"/":{"odata.type":"API_BUSINESS_PARTNER.A_AddressEmailAddressType","numChildren":7}}}

@@ -1,0 +1,9 @@
+com.boomi.connector.workdayprism
+com.boomi.connector.workdayprism.model
+com.boomi.connector.workdayprism.operations
+com.boomi.connector.workdayprism.operations.status
+com.boomi.connector.workdayprism.operations.upload
+com.boomi.connector.workdayprism.operations.upload.multipart
+com.boomi.connector.workdayprism.requests
+com.boomi.connector.workdayprism.responses
+com.boomi.connector.workdayprism.utils

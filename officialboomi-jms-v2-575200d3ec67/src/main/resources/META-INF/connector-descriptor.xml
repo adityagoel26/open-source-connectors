@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenericConnectorDescriptor requireConnectionForBrowse="true" disableDefaultObjectTypeFilter="true">
+
+    <field id="version" label="JMS Version" type="string">
+        <helpText>Select the desired JMS Version the connector uses to connect to the service.</helpText>
+        <defaultValue>V2_0</defaultValue>
+        <allowedValue label="JMS 2.0">
+            <value>V2_0</value>
+        </allowedValue>
+        <allowedValue label="JMS 1.1">
+            <value>V1_1</value>
+        </allowedValue>
+    </field>
+
+    <field id="server_type" label="Server Type" type="string">
+        <helpText>Select the JMS Vendor. Use Generic JNDI when the desired Server Type is not listed among the
+            options.
+        </helpText>
+        <defaultValue>GENERIC_JNDI</defaultValue>
+        <allowedValue label="Generic JNDI">
+            <value>GENERIC_JNDI</value>
+        </allowedValue>
+        <allowedValue label="ActiveMQ Classic">
+            <value>ACTIVEMQ_CLASSIC</value>
+        </allowedValue>
+        <allowedValue label="ActiveMQ Artemis">
+            <value>ACTIVEMQ_ARTEMIS</value>
+        </allowedValue>
+        <allowedValue label="Oracle AQ">
+            <value>ORACLE_AQ</value>
+        </allowedValue>
+        <allowedValue label="Oracle AQ (WebLogic)">
+            <value>ORACLE_AQ_WEBLOGIC</value>
+        </allowedValue>
+        <allowedValue label="SonicMQ">
+            <value>SONICMQ</value>
+        </allowedValue>
+        <allowedValue label="WebSphere MQ - Single QM">
+            <value>WEBSPHERE_MQ_SINGLE</value>
+        </allowedValue>
+        <allowedValue label="WebSphere MQ - Multi-instance QM">
+            <value>WEBSPHERE_MQ_MULTI_INSTANCE</value>
+        </allowedValue>
+    </field>
+
+    <field id="authentication" label="Use Authentication" type="boolean">
+        <helpText>Indicate whether authentication is required to establish the connection to the service or not.
+        </helpText>
+        <defaultValue>false</defaultValue>
+    </field>
+
+    <field id="username" label="Username" type="string">
+        <helpText>Enter your username to log into your service account.</helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="authentication">
+                <value>true</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+
+    <field id="password" label="Password" type="password">
+        <helpText>Enter your password to log into your service account.</helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="authentication">
+                <value>true</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+
+    <field id="jndi_lookup_factory" label="Connection Factory JNDI Lookup" type="string">
+        <helpText>Enter the JNDI name of the connection factory.</helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="server_type">
+                <value>ACTIVEMQ_CLASSIC</value>
+                <value>ACTIVEMQ_ARTEMIS</value>
+                <value>GENERIC_JNDI</value>
+                <value>ORACLE_AQ_WEBLOGIC</value>
+                <value>SONICMQ</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+
+    <field id="initial_context_factory" label="Initial Context Factory" type="string">
+        <helpText>Enter the fully qualified class name of the factory class that creates the initial context.</helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="server_type">
+                <value>GENERIC_JNDI</value>
+                <value>ACTIVEMQ_CLASSIC</value>
+                <value>ACTIVEMQ_ARTEMIS</value>
+                <value>ORACLE_AQ_WEBLOGIC</value>
+                <value>SONICMQ</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+
+    <field id="provider_url" label="Provider URL" type="string">
+        <helpText>Enter the the URL for the service provider.</helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="server_type">
+                <value>GENERIC_JNDI</value>
+                <value>ACTIVEMQ_CLASSIC</value>
+                <value>ACTIVEMQ_ARTEMIS</value>
+                <value>ORACLE_AQ_WEBLOGIC</value>
+                <value>SONICMQ</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+
+    <field id="jdbc_url" label="JDBC URL" type="string">
+        <helpText>Enter the JDBC URL, which may differ depending on which JDBC driver you use. Refer to the JDBC vendor
+            documentation for the connection URL syntax.
+        </helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="server_type">
+                <value>ORACLE_AQ</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+
+    <field id="jms_properties" label="JMS Properties" type="customproperties">
+        <helpText>Enter the custom configuration properties to be used when connecting to the service.</helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="server_type">
+                <value>GENERIC_JNDI</value>
+                <value>ACTIVEMQ_CLASSIC</value>
+                <value>ACTIVEMQ_ARTEMIS</value>
+                <value>ORACLE_AQ_WEBLOGIC</value>
+                <value>SONICMQ</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+
+    <!-- start websphere fields -->
+    <field id="websphere_host_name" label="Host Name" type="string">
+        <helpText>Enter the name of the host where the queue manager is installed.</helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="server_type">
+                <value>WEBSPHERE_MQ_SINGLE</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field id="websphere_host_list" label="Connection Name List" type="string">
+        <helpText>Enter a comma-separated list containing the IP addresses and ports of active and standby queue
+            managers.
+            Use the following format: ip-address1(port1),ip-address(port2). For example: 127.0.0.1(5555),127.0.0.2(5555)
+        </helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="server_type">
+                <value>WEBSPHERE_MQ_MULTI_INSTANCE</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field id="websphere_host_port" label="Port" type="integer">
+        <helpText>Enter the port number used by the queue manager.</helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="server_type">
+                <value>WEBSPHERE_MQ_SINGLE</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field id="websphere_queue_manager" label="Queue Manager" type="string">
+        <helpText>Enter the name of the queue manager to connect to.</helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="server_type">
+                <value>WEBSPHERE_MQ_SINGLE</value>
+                <value>WEBSPHERE_MQ_MULTI_INSTANCE</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field id="websphere_channel" label="Channel" type="string">
+        <helpText>Enter the name of the WebSphere MQ channel used to connect to the queue manager.</helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="server_type">
+                <value>WEBSPHERE_MQ_SINGLE</value>
+                <value>WEBSPHERE_MQ_MULTI_INSTANCE</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field id="websphere_use_ssl" label="Use SSL" type="boolean">
+        <helpText>Select to display a list of SSL cipher suites available for selection.</helpText>
+        <defaultValue>false</defaultValue>
+        <visibilityCondition>
+            <valueCondition fieldId="server_type">
+                <value>WEBSPHERE_MQ_SINGLE</value>
+                <value>WEBSPHERE_MQ_MULTI_INSTANCE</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field id="websphere_ssl_suite_option" label="SSL Cipher Suite" type="string">
+        <helpText>Select the SSL cipher suite to use with this connection. If the desired SSL suite is not listed,
+            select 'Custom SSL Cipher Suite' and enter its name in the field below.
+        </helpText>
+        <defaultValue>CUSTOM_SSL_SUITE</defaultValue>
+        <allowedValue label="Custom SSL Cipher Suite">
+            <value>CUSTOM_SSL_SUITE</value>
+        </allowedValue>
+        <allowedValue label="TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA">
+            <value>TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA</value>
+        </allowedValue>
+        <allowedValue label="TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256">
+            <value>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</value>
+        </allowedValue>
+        <allowedValue label="TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256">
+            <value>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</value>
+        </allowedValue>
+        <allowedValue label="TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384">
+            <value>TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</value>
+        </allowedValue>
+        <allowedValue label="TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384">
+            <value>TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</value>
+        </allowedValue>
+        <allowedValue label="TLS_RSA_WITH_AES_128_CBC_SHA">
+            <value>TLS_RSA_WITH_AES_128_CBC_SHA</value>
+        </allowedValue>
+        <allowedValue label="TLS_RSA_WITH_AES_128_CBC_SHA256">
+            <value>TLS_RSA_WITH_AES_128_CBC_SHA256</value>
+        </allowedValue>
+        <allowedValue label="TLS_RSA_WITH_AES_128_GCM_SHA256">
+            <value>TLS_RSA_WITH_AES_128_GCM_SHA256</value>
+        </allowedValue>
+        <allowedValue label="TLS_RSA_WITH_AES_256_CBC_SHA">
+            <value>TLS_RSA_WITH_AES_256_CBC_SHA</value>
+        </allowedValue>
+        <allowedValue label="TLS_RSA_WITH_AES_256_CBC_SHA256">
+            <value>TLS_RSA_WITH_AES_256_CBC_SHA256</value>
+        </allowedValue>
+        <allowedValue label="TLS_RSA_WITH_AES_256_GCM_SHA384">
+            <value>TLS_RSA_WITH_AES_256_GCM_SHA384</value>
+        </allowedValue>
+        <visibilityCondition>
+            <valueCondition fieldId="server_type">
+                <value>WEBSPHERE_MQ_SINGLE</value>
+                <value>WEBSPHERE_MQ_MULTI_INSTANCE</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <field id="websphere_ssl_suite_text" label="Custom SSL Cipher Suite" type="string">
+        <helpText>Enter the name of the custom SSL cipher suite to use with this connection. This value is only take
+            into consideration when selecting the option 'Custom SSL Cipher Suite'
+        </helpText>
+        <visibilityCondition>
+            <valueCondition fieldId="server_type">
+                <value>WEBSPHERE_MQ_SINGLE</value>
+                <value>WEBSPHERE_MQ_MULTI_INSTANCE</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+    <!-- end websphere fields -->
+
+    <!-- start connection pool -->
+
+    <field id="use_connection_pooling" label="Use Connection Pool" type="boolean">
+        <helpText>Select to enable connection pooling. This may increase performance by using resources more
+            efficiently.
+        </helpText>
+        <defaultValue>false</defaultValue>
+    </field>
+
+    <field id="pool_maximum_connections" label="Pool Maximum Connections" type="integer">
+        <helpText>Enter the maximum number of connections allowed in the pool at any time. Setting this value to 0
+            indicates an unbounded number of connections. You will receive an error if you attempt to exceed the
+            maximum.
+        </helpText>
+        <defaultValue>10</defaultValue>
+        <visibilityCondition>
+            <valueCondition fieldId="use_connection_pooling">
+                <value>true</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+
+    <field id="pool_minimum_connections" label="Pool Minimum Connections" type="integer">
+        <helpText>Enter the minimum number of connections allowed in the pool at all times. This number must be less or
+            equals to Pool Maximum Connections.
+        </helpText>
+        <defaultValue>0</defaultValue>
+        <visibilityCondition>
+            <valueCondition fieldId="use_connection_pooling">
+                <value>true</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+
+    <field id="pool_maximum_idle_time" label="Pool Maximum Idle Time" type="integer">
+        <helpText>Enter the length of time in seconds that a connection can remain open in an idle state.</helpText>
+        <defaultValue>10</defaultValue>
+        <visibilityCondition>
+            <valueCondition fieldId="use_connection_pooling">
+                <value>true</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+
+    <field id="pool_maximum_wait_time" label="Pool Maximum Wait Time" type="integer">
+        <helpText>Enter the length of time in seconds to wait for a connection from the pool.</helpText>
+        <defaultValue>10</defaultValue>
+        <visibilityCondition>
+            <valueCondition fieldId="use_connection_pooling">
+                <value>true</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+
+    <field id="pool_exhausted_action" label="Pool Exhausted Action" type="string">
+        <helpText>Indicate whether to wait for a connection or immediately fail when a connection pool becomes
+            exhausted.
+        </helpText>
+        <defaultValue>WAIT_FOR_CONNECTION</defaultValue>
+        <allowedValue label="Wait for Connection">
+            <value>WAIT_FOR_CONNECTION</value>
+        </allowedValue>
+        <allowedValue label="Immediately fail">
+            <value>IMMEDIATELY_FAIL</value>
+        </allowedValue>
+
+        <visibilityCondition>
+            <valueCondition fieldId="use_connection_pooling">
+                <value>true</value>
+            </valueCondition>
+        </visibilityCondition>
+    </field>
+
+    <!-- end connection pool -->
+
+    <testConnection method="CUSTOM"/>
+
+    <operation types="CREATE" customTypeId="SEND" customTypeLabel="SEND">
+        <field id="use_transaction" label="Use Transactions" type="boolean">
+            <helpText>Enable/Disable Transactional mode.</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+
+        <field id="transaction_batch_size" label="Transaction Batch Size" type="integer">
+            <helpText>Indicate the number of messages to be sent within a transaction batch.</helpText>
+            <defaultValue>1</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="use_transaction">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+
+        <field id="correlation_id" label="Correlation ID" type="string" overrideable="true">
+            <helpText>Indicate the correlation ID for the message.</helpText>
+        </field>
+
+        <field id="message_type" label="Message Type" type="string" overrideable="true">
+            <helpText>Indicate the message type.</helpText>
+        </field>
+
+        <field id="priority" label="Priority" type="string" overrideable="true">
+            <helpText>Indicate the priority level for this message.</helpText>
+        </field>
+
+        <field id="reply_to" label="Reply To" type="string" overrideable="true">
+            <helpText>Indicate the Destination object to which a reply to this message should be sent.</helpText>
+        </field>
+
+        <field id="time_to_live" label="Time to live" type="integer" overrideable="true">
+            <helpText>Set the length of time in milliseconds from its dispatch time that a produced message should be
+                retained by the message system. The value has to be greater or equal to zero. Zero indicates that the
+                message does not expire.
+            </helpText>
+            <defaultValue>0</defaultValue>
+        </field>
+
+        <field id="jms_operation_properties" label="Custom Properties" type="customproperties" overrideable="true">
+            <helpText>Indicate the properties values with their specified name into the message.</helpText>
+        </field>
+        <field id="entityFilter" label="Filter" type="string" scope="browseOnly">
+            <helpText>Use a filter to reduce the number of returned objects in the query. The filter does not support
+                wildcard characters (* or ?). Queue names beginning with the specified string are returned.
+            </helpText>
+        </field>
+    </operation>
+
+    <operation types="QUERY" customTypeId="GET" customTypeLabel="GET">
+        <field id="use_transaction" label="Use Transactions" type="boolean">
+            <helpText>Enable/Disable Transactional mode.</helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+
+        <field id="use_durable_subscription" label="Durable Subscription (only for Topics)" type="boolean">
+            <helpText>A durable subscription allows subscribers to receive all the messages published on a topic,
+                including those published while the subscriber is inactive.
+            </helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+
+        <field id="subscription_name" label="Subscription Name" type="string">
+            <helpText>The unique id with which durable subscription will be identified.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="use_durable_subscription">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+
+        <field id="receive_mode" label="Receive Mode" type="string">
+            <helpText>Select the Receive Mode to specify how the connector fetches messages from JMS.
+                Select No Wait for retrieving a single message already available in the destination.
+                Select Limited Number of Messages to configure the number of messages the connector fetches before
+                returning them.
+                Select Limited Number of Messages with Timeout to configure the number of messages to be fetched and the
+                number of milliseconds the connector waits before returning them.
+                Select Unlimited Number of Messages with Timeout to configure the number of milliseconds the connector
+                fetches messages before returning them.
+            </helpText>
+            <defaultValue>NO_WAIT</defaultValue>
+            <allowedValue label="No Wait">
+                <value>NO_WAIT</value>
+            </allowedValue>
+            <allowedValue label="Limited Number of Messages">
+                <value>LIMITED_NUMBER_OF_MESSAGES</value>
+            </allowedValue>
+            <allowedValue label="Limited Number of Messages with Timeout">
+                <value>LIMITED_NUMBER_OF_MESSAGES_WITH_TIMEOUT</value>
+            </allowedValue>
+            <allowedValue label="Unlimited Number of Messages with Timeout">
+                <value>UNLIMITED_NUMBER_OF_MESSAGES_WITH_TIMEOUT</value>
+            </allowedValue>
+        </field>
+
+        <field id="number_of_messages" label="Number of Messages" type="integer">
+            <helpText>Indicate the number of messages to be retrieved by the connector</helpText>
+            <defaultValue>1</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="receive_mode">
+                    <value>LIMITED_NUMBER_OF_MESSAGES</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+
+        <field id="maximum_number_of_messages" label="Maximum Number of Messages" type="integer">
+            <helpText>Indicate the maximum number of messages the connector attempts to retrieve in the configured
+                timeout
+            </helpText>
+            <defaultValue>1</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="receive_mode">
+                    <value>LIMITED_NUMBER_OF_MESSAGES_WITH_TIMEOUT</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+
+        <field id="receive_timeout" label="Receive Timeout" type="integer">
+            <helpText>Indicate the timeout in milliseconds for the connector to retrieve messages</helpText>
+            <defaultValue>60000</defaultValue>
+            <visibilityCondition>
+                <valueCondition fieldId="receive_mode">
+                    <value>LIMITED_NUMBER_OF_MESSAGES_WITH_TIMEOUT</value>
+                    <value>UNLIMITED_NUMBER_OF_MESSAGES_WITH_TIMEOUT</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="entityFilter" label="Filter" type="string" scope="browseOnly">
+            <helpText>Use a filter to reduce the number of returned objects in the query. The filter does not support
+                wildcard characters (* or ?). Queue names beginning with the specified string are returned.
+            </helpText>
+        </field>
+        <queryFilter grouping="noNestingImplicitAnd" sorting="none">
+            <operator id="EQUAL_TO" label="Equals To" numArguments="1"/>
+        </queryFilter>
+    </operation>
+    <operation types="LISTEN">
+        <field id="delivery_policy" label="Delivery Policy" type="string">
+            <helpText>Select the delivery policy to specify how to handle the receipt and acknowledgment of messages.
+                Select «At least once» to acknowledge message receipt after successfully processing the messages. Select
+                «At most once» to acknowledge message receipt before processing the messages.
+            </helpText>
+            <defaultValue>AT_LEAST_ONCE</defaultValue>
+            <allowedValue label="At least once">
+                <value>AT_LEAST_ONCE</value>
+            </allowedValue>
+            <allowedValue label="At most once">
+                <value>AT_MOST_ONCE</value>
+            </allowedValue>
+        </field>
+        <field id="use_transaction" label="Use Transactions" type="boolean">
+            <helpText>Enable/Disable Transactional mode.</helpText>
+        </field>
+        <field id="message_selector" label="Message Selector" type="string">
+            <helpText>Indicate the selector expression to filter the messages based on their properties.</helpText>
+        </field>
+        <field id="use_durable_subscription" label="Durable Subscription (only for Topics)" type="boolean">
+            <helpText>When «Durable Subscription» is enabled, the server returns every non expired message to the named
+                subscription, including those published while the subscriber was inactive.
+            </helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="subscription_name" label="Subscription Name" type="string">
+            <helpText>The Unique ID with which «Durable Subscription» will be identified.</helpText>
+            <visibilityCondition>
+                <valueCondition fieldId="use_durable_subscription">
+                    <value>true</value>
+                </valueCondition>
+            </visibilityCondition>
+        </field>
+        <field id="max_concurrent_executions" label="Maximum Concurrent Executions" type="integer">
+            <helpText>Specify the maximum number of process executions that are allowed to run simultaneously in a
+                single runtime container.
+            </helpText>
+            <defaultValue>1</defaultValue>
+        </field>
+        <field id="singleton_listener" label="Singleton Listener" type="boolean">
+            <helpText>If selected, the Listen operation will start in a single node for multi-node runtimes, with only
+                one instance of the singleton operation per container. When unchecked, the listener will be started in
+                all available nodes by default.
+            </helpText>
+            <defaultValue>false</defaultValue>
+        </field>
+        <field id="entityFilter" label="Filter" type="string" scope="browseOnly">
+            <helpText>Use a filter to reduce the number of returned objects in the query. The filter does not support
+                wildcard characters (* or ?). Queue names beginning with the specified string are returned.
+            </helpText>
+        </field>
+    </operation>
+    <trackedProperty id="correlation_id" label="Correlation ID"/>
+    <trackedProperty id="destination" label="Destination"/>
+    <trackedProperty id="message_id" label="Message ID"/>
+    <trackedProperty id="message_type" label="Message Type"/>
+    <trackedProperty id="message_class" label="Message Class"/>
+    <trackedProperty id="priority" label="Priority"/>
+    <trackedProperty id="redelivered" label="Redelivered"/>
+    <trackedProperty id="reply_to" label="Reply To"/>
+    <trackedProperty id="expiration_time" label="Expiration Time"/>
+
+    <trackedGroup id="custom_properties" label="Custom Properties"/>
+
+</GenericConnectorDescriptor>

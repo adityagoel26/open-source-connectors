@@ -1,0 +1,28 @@
+{
+  "responseStatus": "SUCCESS",
+  "types": [
+    {
+      "label": "Base Document",
+      "value": "https://etmf-veevapharm.veevavault.com/api/v20.3/metadata/objects/documents/types/base_document__v"
+    }, {
+      "label": "Centralized Testing",
+      "value": "https://etmf-veevapharm.veevavault.com/api/v20.3/metadata/objects/documents/types/centralized_testing__c"
+    }, {
+      "label": "Central Trial Documents",
+      "value": "https://etmf-veevapharm.veevavault.com/api/v20.3/metadata/objects/documents/types/central_trial_documents__c"
+    }, {
+      "label": "Country Master File",
+      "value": "https://etmf-veevapharm.veevavault.com/api/v20.3/metadata/objects/documents/types/country_master_file__v"
+    }, {
+      "label": "Data Management",
+      "value": "https://etmf-veevapharm.veevavault.com/api/v20.3/metadata/objects/documents/types/data_management__c"
+    }, {
+      "label": "Final CRF",
+      "value": "https://etmf-veevapharm.veevavault.com/api/v20.3/metadata/objects/documents/types/final_crf__v"
+    }, {
+      "label": "IP and Trial Supplies",
+      "value": "https://etmf-veevapharm.veevavault.com/api/v20.3/metadata/objects/documents/types/ip_and_trial_supplies__c"
+    }
+  ],
+  "lock": "https://etmf-veevapharm.veevavault.com/api/v20.3/metadata/objects/documents/lock"
+}

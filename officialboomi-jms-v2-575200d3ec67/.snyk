@@ -1,0 +1,20 @@
+ignore:
+  'SNYK:LIC:MAVEN:COM.IBM.MQ:COM.IBM.MQ.ALLCLIENT:UNKNOWN':
+    - '*':
+        reason: the library is provided by users
+        expires: 2024-11-11T23:59:59.999Z
+
+  'SNYK:LIC:MAVEN:COM.ORACLE.DATABASE.JDBC:OJDBC8:UNKNOWN':
+    - '*':
+        reason: the library is provided by users
+        expires: 2024-11-11T23:59:59.999Z
+
+  'SNYK:LIC:MAVEN:COM.ORACLE.DATABASE.MESSAGING:AQAPI:UNKNOWN':
+    - '*':
+        reason: the library is provided by users
+        expires: 2024-11-11T23:59:59.999Z
+
+  'SNYK:LIC:MAVEN:JAVAX.XML.BIND:JSR173_API:UNKNOWN':
+    - '*':
+        reason: the library is provided by users
+        expires: 2024-11-11T23:59:59.999Z

@@ -1,0 +1,63 @@
+{
+  "kind": "bigquery#getQueryResultsResponse",
+  "etag": "\"fxz8O53ySp5NTVj5DEaTLWZ1mro/sTxWlILjBuxAsT83BstoCRyWPVI\"",
+  "schema": {
+    "fields": [{
+      "name": "id",
+      "type": "INTEGER",
+      "mode": "NULLABLE"
+    }, {
+      "name": "name",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }, {
+      "name": "price",
+      "type": "FLOAT",
+      "mode": "NULLABLE"
+    }, {
+      "name": "tax",
+      "type": "FLOAT",
+      "mode": "NULLABLE"
+    }]
+  },
+  "jobReference": {
+    "projectId": "qasandbox-151720",
+    "jobId": "job_IQxPnGzjvhnk7KmsCrBb7JWIqjBM",
+    "location": "US"
+  },
+  "totalRows": "3",
+  "rows": [{
+    "f": [{
+      "v": "0"
+    }, {
+      "v": "Article1"
+    }, {
+      "v": "100.0"
+    }, {
+      "v": "7.0"
+    }]
+  }, {
+    "f": [{
+      "v": "5"
+    }, {
+      "v": "Article5"
+    }, {
+      "v": "146.0"
+    }, {
+      "v": "35.0"
+    }]
+  }, {
+    "f": [{
+      "v": "6"
+    }, {
+      "v": "Article6"
+    }, {
+      "v": "147.0"
+    }, {
+      "v": "36.0"
+    }]
+  }],
+  "totalBytesProcessed": "3456",
+  "jobComplete": true,
+  "cacheHit": false
+}
